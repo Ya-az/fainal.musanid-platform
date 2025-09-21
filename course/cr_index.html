@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الدرس - مساند</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'musanid-dark': '#1E3A8A',
+                        'musanid-light': '#38BDF8',
+                    },
+                    fontFamily: {
+                        'tajawal': ['Tajawal', 'sans-serif'],
+                        'cairo': ['Cairo', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="../css/styles.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50">
+    <nav class="bg-white shadow-sm mb-8">
+        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center gap-8">
+                <a href="../hp_index.html" class="logo text-2xl text-musanid-dark font-cairo font-bold tracking-wide">مساند</a>
+                <div class="hidden md:flex gap-6">
+                    <a href="../hp_index.html" class="nav-link text-gray-600 hover:text-musanid-dark transition">الرئيسية</a>
+                    <a href="../dashboard/db_index.html" class="nav-link text-gray-600 hover:text-musanid-dark transition">لوحة التحكم</a>
+                    <a href="cr_index.html" class="nav-link font-extrabold text-musanid-light border-b-2 border-musanid-light px-2">الدورات</a>
+                    <a href="../certificate/ct_index.html" class="nav-link text-gray-600 hover:text-musanid-dark transition">الشهادات</a>
+                    <a href="../faq.html" class="nav-link text-gray-600 hover:text-musanid-dark transition">الأسئلة الشائعة</a>
+                    <a href="../support/sp_index.html" class="nav-link text-gray-600 hover:text-musanid-dark transition">الدعم الفني</a>
+                    <a href="../about.html" class="nav-link text-gray-600 hover:text-musanid-dark transition">عن مساند</a>
+                </div>
+            </div>
+            <div class="md:hidden">
+                <button id="mobileMenuBtn" class="text-gray-600 hover:text-musanid-dark focus:outline-none">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden px-4 pb-4">
+            <div class="flex flex-col gap-2 bg-white rounded-lg shadow-lg mt-2 p-4">
+                <a href="../hp_index.html" class="nav-link text-gray-600 hover:text-musanid-dark">الرئيسية</a>
+                <a href="../dashboard/db_index.html" class="nav-link text-gray-600 hover:text-musanid-dark">لوحة التحكم</a>
+                <a href="cr_index.html" class="nav-link font-extrabold text-musanid-light border-b-2 border-musanid-light px-2">الدورات</a>
+                <a href="../certificate/ct_index.html" class="nav-link text-gray-600 hover:text-musanid-dark">الشهادات</a>
+                <a href="../faq.html" class="nav-link text-gray-600 hover:text-musanid-dark">الأسئلة الشائعة</a>
+                <a href="../support/sp_index.html" class="nav-link text-gray-600 hover:text-musanid-dark">الدعم الفني</a>
+                <a href="../about.html" class="nav-link text-gray-600 hover:text-musanid-dark">عن مساند</a>
+            </div>
+        </div>
+    </nav>
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        if(mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            document.addEventListener('click', (e) => {
+                if (!mobileMenuBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        }
+    </script>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <!-- Filter Bar -->
+        <section class="mb-8">
+            <div class="flex flex-wrap gap-3 justify-center">
+                <button class="filter-btn btn-secondary" data-category="all">جميع الدورات</button>
+                <button class="filter-btn btn-secondary" data-category="programming">برمجة</button>
+                <button class="filter-btn btn-secondary" data-category="web">تطوير ويب</button>
+                <button class="filter-btn btn-secondary" data-category="database">قواعد بيانات</button>
+                <button class="filter-btn btn-secondary" data-category="design">تصميم</button>
+            </div>
+        </section>
+        <!-- Video Section -->
+        <section class="bg-white rounded-lg shadow-sm p-6 mb-8">
+            <h1 class="text-2xl font-bold text-musanid-dark mb-4" id="lessonTitle">عنوان الدرس</h1>
+            <div class="aspect-w-16 aspect-h-9 mb-6">
+                <div class="bg-gray-800 rounded-lg">
+                    <!-- سيتم إضافة مشغل الفيديو هنا -->
+                    <video id="lessonVideo" class="w-full rounded-lg" controls>
+                        <source src="" type="video/mp4">
+                        متصفحك لا يدعم تشغيل الفيديو.
+                    </video>
+                </div>
+            </div>
+        </section>
+
+        <!-- Courses List -->
+        <section class="bg-white rounded-lg shadow-sm p-6 mb-8">
+            <h2 class="text-xl font-bold text-musanid-dark mb-4">الدورات المتاحة</h2>
+            <div id="coursesList" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="course-card" data-category="programming">
+                    <div class="p-4 border rounded-lg card-hover">
+                        <h3 class="font-bold text-musanid-dark mb-2">مقدمة في البرمجة</h3>
+                        <p class="text-gray-600 mb-2">تعلم أساسيات البرمجة من الصفر.</p>
+                        <span class="inline-block bg-musanid-light text-white text-xs px-3 py-1 rounded">برمجة</span>
+                    </div>
+                </div>
+                <div class="course-card" data-category="web">
+                    <div class="p-4 border rounded-lg card-hover">
+                        <h3 class="font-bold text-musanid-dark mb-2">تطوير مواقع الويب</h3>
+                        <p class="text-gray-600 mb-2">أساسيات بناء مواقع تفاعلية وجذابة.</p>
+                        <span class="inline-block bg-musanid-light text-white text-xs px-3 py-1 rounded">تطوير ويب</span>
+                    </div>
+                </div>
+                <div class="course-card" data-category="database">
+                    <div class="p-4 border rounded-lg card-hover">
+                        <h3 class="font-bold text-musanid-dark mb-2">قواعد البيانات</h3>
+                        <p class="text-gray-600 mb-2">تعلم تصميم وإدارة قواعد البيانات.</p>
+                        <span class="inline-block bg-musanid-light text-white text-xs px-3 py-1 rounded">قواعد بيانات</span>
+                    </div>
+                </div>
+                <div class="course-card" data-category="design">
+                    <div class="p-4 border rounded-lg card-hover">
+                        <h3 class="font-bold text-musanid-dark mb-2">مبادئ التصميم</h3>
+                        <p class="text-gray-600 mb-2">أساسيات التصميم الجرافيكي وتجربة المستخدم.</p>
+                        <span class="inline-block bg-musanid-light text-white text-xs px-3 py-1 rounded">تصميم</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Lesson Summary -->
+        <section class="bg-white rounded-lg shadow-sm p-6 mb-8">
+            <h2 class="text-xl font-bold text-musanid-dark mb-4">ملخص الدرس</h2>
+            <div class="prose prose-lg" id="lessonSummary">
+                <!-- سيتم إضافة ملخص الدرس هنا -->
+                <p>محتوى الملخص سيظهر هنا...</p>
+            </div>
+        </section>
+
+        <!-- Rating Section -->
+        <section class="bg-white rounded-lg shadow-sm p-6 mb-8">
+            <h2 class="text-xl font-bold text-musanid-dark mb-4">قيّم هذا الدرس</h2>
+            <form id="ratingForm" class="flex flex-col items-center gap-4">
+                <div class="flex items-center gap-1 text-3xl">
+                    <span class="star cursor-pointer text-gray-300" data-value="1">★</span>
+                    <span class="star cursor-pointer text-gray-300" data-value="2">★</span>
+                    <span class="star cursor-pointer text-gray-300" data-value="3">★</span>
+                    <span class="star cursor-pointer text-gray-300" data-value="4">★</span>
+                    <span class="star cursor-pointer text-gray-300" data-value="5">★</span>
+                </div>
+                <textarea id="ratingComment" class="input-field w-full max-w-md" rows="2" placeholder="اكتب تعليقك (اختياري)"></textarea>
+                <button type="submit" class="btn-primary w-full max-w-md">إرسال التقييم</button>
+                <div id="ratingMsg" class="text-musanid-light font-bold mt-2 hidden">شكرًا لتقييمك!</div>
+            </form>
+        </section>
+
+        <!-- Quiz Section -->
+        <section class="bg-white rounded-lg shadow-sm p-6">
+            <h2 class="text-xl font-bold text-musanid-dark mb-6">اختبار قصير</h2>
+            <form id="quizForm" class="space-y-8">
+                <!-- مثال سؤال 1 -->
+                <div class="quiz-question" data-correct="b">
+                    <p class="font-medium text-gray-900 mb-4">1. ما هي لغة البرمجة الأكثر استخداماً لتطوير الويب؟</p>
+                    <div class="space-y-2">
+                        <div class="flex items-center">
+                            <input type="radio" id="q1_a" name="q1" value="a" class="ml-2">
+                            <label for="q1_a" class="text-gray-700">Python</label>
+                        </div>
+                        <div class="flex items-center">
+                            <input type="radio" id="q1_b" name="q1" value="b" class="ml-2">
+                            <label for="q1_b" class="text-gray-700">JavaScript</label>
+                        </div>
+                        <div class="flex items-center">
+                            <input type="radio" id="q1_c" name="q1" value="c" class="ml-2">
+                            <label for="q1_c" class="text-gray-700">C++</label>
+                        </div>
+                    </div>
+                    <div class="mt-2 text-sm font-bold hidden" id="q1_result"></div>
+                </div>
+                <!-- مثال سؤال 2 -->
+                <div class="quiz-question" data-correct="a">
+                    <p class="font-medium text-gray-900 mb-4">2. أي قاعدة بيانات تستخدم لغة SQL؟</p>
+                    <div class="space-y-2">
+                        <div class="flex items-center">
+                            <input type="radio" id="q2_a" name="q2" value="a" class="ml-2">
+                            <label for="q2_a" class="text-gray-700">MySQL</label>
+                        </div>
+                        <div class="flex items-center">
+                            <input type="radio" id="q2_b" name="q2" value="b" class="ml-2">
+                            <label for="q2_b" class="text-gray-700">MongoDB</label>
+                        </div>
+                        <div class="flex items-center">
+                            <input type="radio" id="q2_c" name="q2" value="c" class="ml-2">
+                            <label for="q2_c" class="text-gray-700">Firebase</label>
+                        </div>
+                    </div>
+                    <div class="mt-2 text-sm font-bold hidden" id="q2_result"></div>
+                </div>
+                <!-- يمكن إضافة المزيد من الأسئلة بنفس النمط -->
+                <button type="submit" class="btn-primary w-full">إرسال الإجابات</button>
+            </form>
+        </section>
+    </main>
+
+    <script>
+        // فلترة الدورات حسب التصنيف
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const category = this.getAttribute('data-category');
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('ring-2', 'ring-musanid-dark'));
+                this.classList.add('ring-2', 'ring-musanid-dark');
+                document.querySelectorAll('.course-card').forEach(card => {
+                    if (category === 'all' || card.getAttribute('data-category') === category) {
+                        card.style.display = '';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // تفعيل الفلتر الافتراضي
+        document.querySelector('.filter-btn[data-category="all"]').click();
+
+        // سيتم إضافة الوظائف الخاصة بالـ JavaScript لاحقاً
+        document.getElementById('quizForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            let score = 0;
+            let total = 0;
+            document.querySelectorAll('.quiz-question').forEach((q, idx) => {
+                total++;
+                const correct = q.getAttribute('data-correct');
+                const name = 'q' + (idx + 1);
+                const selected = document.querySelector('input[name="' + name + '"]:checked');
+                const resultDiv = document.getElementById(name + '_result');
+                if (selected) {
+                    if (selected.value === correct) {
+                        score++;
+                        resultDiv.textContent = 'إجابة صحيحة ✔';
+                        resultDiv.className = 'mt-2 text-sm font-bold text-green-600';
+                    } else {
+                        resultDiv.textContent = 'إجابة خاطئة ✖، الإجابة الصحيحة: ' + q.querySelector('input[value="' + correct + '"]').nextElementSibling.textContent;
+                        resultDiv.className = 'mt-2 text-sm font-bold text-red-600';
+                    }
+                    resultDiv.classList.remove('hidden');
+                } else {
+                    resultDiv.textContent = 'يرجى اختيار إجابة';
+                    resultDiv.className = 'mt-2 text-sm font-bold text-yellow-600';
+                    resultDiv.classList.remove('hidden');
+                }
+            });
+            // يمكن هنا إضافة حفظ النتيجة في قاعدة البيانات
+        });
+
+        // نظام التقييم بالنجوم
+        const stars = document.querySelectorAll('.star');
+        let selectedRating = 0;
+        stars.forEach(star => {
+            star.addEventListener('mouseenter', function() {
+                const val = parseInt(this.getAttribute('data-value'));
+                stars.forEach(s => {
+                    if (parseInt(s.getAttribute('data-value')) <= val) {
+                        s.classList.add('text-yellow-400');
+                    } else {
+                        s.classList.remove('text-yellow-400');
+                    }
+                });
+            });
+            star.addEventListener('mouseleave', function() {
+                stars.forEach(s => {
+                    if (parseInt(s.getAttribute('data-value')) <= selectedRating) {
+                        s.classList.add('text-yellow-400');
+                    } else {
+                        s.classList.remove('text-yellow-400');
+                    }
+                });
+            });
+            star.addEventListener('click', function() {
+                selectedRating = parseInt(this.getAttribute('data-value'));
+                stars.forEach(s => {
+                    if (parseInt(s.getAttribute('data-value')) <= selectedRating) {
+                        s.classList.add('text-yellow-400');
+                    } else {
+                        s.classList.remove('text-yellow-400');
+                    }
+                });
+            });
+        });
+
+        document.getElementById('ratingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            if (selectedRating === 0) {
+                alert('يرجى اختيار عدد النجوم أولاً');
+                return;
+            }
+            document.getElementById('ratingMsg').classList.remove('hidden');
+            setTimeout(() => {
+                document.getElementById('ratingMsg').classList.add('hidden');
+            }, 2500);
+            this.reset();
+            selectedRating = 0;
+            stars.forEach(s => s.classList.remove('text-yellow-400'));
+        });
+    </script>
+</body>
+</html>

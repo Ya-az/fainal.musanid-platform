@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة التحكم - مساند</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'musanid-dark': '#1E3A8A',
+                        'musanid-light': '#38BDF8',
+                    },
+                    fontFamily: {
+                        'tajawal': ['Tajawal', 'sans-serif'],
+                        'cairo': ['Cairo', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="/css/styles.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50">
+    <!-- Navbar -->
+    <nav class="bg-white shadow-sm">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex items-center justify-between">
+                <div class="logo text-2xl text-musanid-dark">مساند</div>
+                <div class="flex items-center gap-4">
+                    <span class="text-gray-600" id="userName">مرحباً، <span class="font-bold">اسم المستخدم</span> 👋</span>
+                    <button onclick="logout()" class="btn-secondary">تسجيل خروج</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <!-- Progress Section -->
+        <section class="bg-white rounded-lg shadow-sm p-6 mb-8">
+            <h2 class="text-2xl font-bold text-musanid-dark mb-4">تقدمك في التعلم</h2>
+            <div class="w-full bg-gray-200 rounded-full h-4 mb-4">
+                <div class="bg-musanid-light h-4 rounded-full" style="width: 25%" id="progressBar"></div>
+            </div>
+            <p class="text-gray-600">أكملت <span id="completedLessons">5</span> من أصل <span id="totalLessons">20</span> درس</p>
+        </section>
+
+        <!-- Lessons Section -->
+        <section class="bg-white rounded-lg shadow-sm p-6">
+            <h2 class="text-2xl font-bold text-musanid-dark mb-6">قائمة الدروس</h2>
+            <div class="space-y-4" id="lessonsList">
+                <!-- Lesson Item Template -->
+                <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                    <div class="flex items-center">
+                        <span class="text-green-500 ml-2">✅</span>
+                        <div>
+                            <h3 class="font-bold text-gray-900">مقدمة في البرمجة</h3>
+                            <p class="text-sm text-gray-600">المدة: 30 دقيقة</p>
+                        </div>
+                    </div>
+                    <a href="/course/1" class="btn-primary text-sm">مشاهدة الدرس</a>
+                </div>
+
+                <!-- Add more lessons here -->
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // سيتم إضافة الوظائف الخاصة بالـ JavaScript لاحقاً
+        function logout() {
+            // تنفيذ عملية تسجيل الخروج
+            window.location.href = '/auth/login';
+        }
+    </script>
+</body>
+</html>

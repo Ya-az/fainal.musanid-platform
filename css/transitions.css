@@ -1,0 +1,70 @@
+/* تأثيرات الانتقال */
+.page-transition {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.page-transition.loaded {
+    opacity: 1;
+}
+
+/* تأثيرات التمرير */
+.fade-in-element {
+    opacity: 0;
+    transform: translateY(1rem);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in-element.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* تأثيرات الأزرار */
+.btn-hover-effect {
+    transition: transform 0.2s ease-in-out;
+}
+
+.btn-hover-effect:hover {
+    transform: translateY(-2px);
+}
+
+/* تأثيرات القوائم */
+.nav-link {
+    position: relative;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background-color: #1E3A8A;
+    transition: width 0.3s ease-in-out;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* تأثيرات النماذج */
+.input-field {
+    transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.input-field:focus {
+    border-color: #38BDF8;
+    box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.2);
+}
+
+/* تأثيرات البطاقات */
+.card-hover {
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.card-hover:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}

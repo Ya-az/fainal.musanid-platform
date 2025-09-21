@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الشهادات - مساند</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'musanid-dark': '#1E3A8A',
+                        'musanid-light': '#38BDF8',
+                    },
+                    fontFamily: {
+                        'tajawal': ['Tajawal', 'sans-serif'],
+                        'cairo': ['Cairo', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="../css/styles.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50">
+    <!-- Navbar -->
+    <nav class="bg-white shadow-sm mb-8">
+        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center gap-8">
+                <a href="../hp_index.html" class="logo text-2xl text-musanid-dark font-cairo font-bold tracking-wide">مساند</a>
+                <div class="hidden md:flex gap-6">
+                    <a href="../hp_index.html" class="nav-link text-gray-600 hover:text-musanid-dark transition">الرئيسية</a>
+                    <a href="../dashboard/db_index.html" class="nav-link text-gray-600 hover:text-musanid-dark transition">لوحة التحكم</a>
+                    <a href="../course/cr_index.html" class="nav-link text-gray-600 hover:text-musanid-dark transition">الدورات</a>
+                    <a href="ct_index.html" class="nav-link font-extrabold text-musanid-light border-b-2 border-musanid-light px-2">الشهادات</a>
+                    <a href="../faq.html" class="nav-link text-gray-600 hover:text-musanid-dark transition">الأسئلة الشائعة</a>
+                    <a href="../support/sp_index.html" class="nav-link text-gray-600 hover:text-musanid-dark transition">الدعم الفني</a>
+                    <a href="../about.html" class="nav-link text-gray-600 hover:text-musanid-dark transition">عن مساند</a>
+                </div>
+            </div>
+            <div class="md:hidden">
+                <button id="mobileMenuBtn" class="text-gray-600 hover:text-musanid-dark focus:outline-none">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden px-4 pb-4">
+            <div class="flex flex-col gap-2 bg-white rounded-lg shadow-lg mt-2 p-4">
+                <a href="../hp_index.html" class="nav-link text-gray-600 hover:text-musanid-dark">الرئيسية</a>
+                <a href="../dashboard/db_index.html" class="nav-link text-gray-600 hover:text-musanid-dark">لوحة التحكم</a>
+                <a href="../course/cr_index.html" class="nav-link text-gray-600 hover:text-musanid-dark">الدورات</a>
+                <a href="ct_index.html" class="nav-link font-extrabold text-musanid-light border-b-2 border-musanid-light px-2">الشهادات</a>
+                <a href="../faq.html" class="nav-link text-gray-600 hover:text-musanid-dark">الأسئلة الشائعة</a>
+                <a href="../support/sp_index.html" class="nav-link text-gray-600 hover:text-musanid-dark">الدعم الفني</a>
+                <a href="../about.html" class="nav-link text-gray-600 hover:text-musanid-dark">عن مساند</a>
+            </div>
+        </div>
+    </nav>
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        if(mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            document.addEventListener('click', (e) => {
+                if (!mobileMenuBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        }
+    </script>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <!-- Certificate Section -->
+        <section class="bg-white rounded-lg shadow-sm p-6">
+            <h1 class="text-2xl font-bold text-musanid-dark mb-6">شهاداتك</h1>
+            
+            <!-- Progress Requirements -->
+            <div class="mb-8">
+                <h2 class="text-lg font-bold text-gray-900 mb-4">متطلبات الحصول على الشهادة:</h2>
+                <ul class="space-y-2">
+                    <li class="flex items-center text-gray-700">
+                        <span class="text-green-500 ml-2">✅</span>
+                        إكمال جميع الدروس
+                    </li>
+                    <li class="flex items-center text-gray-700">
+                        <span class="text-yellow-500 ml-2">⏳</span>
+                        اجتياز جميع الاختبارات بنجاح
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Certificate Preview -->
+            <div class="border-2 border-dashed border-gray-300 rounded-lg p-8 mb-8">
+                <div class="text-center">
+                    <h2 class="text-2xl font-bold text-musanid-dark mb-4">شهادة إتمام</h2>
+                    <p class="text-lg text-gray-700 mb-2">نشهد أن</p>
+                    <p class="text-xl font-bold text-gray-900 mb-4" id="certificateName">اسم المتعلم</p>
+                    <p class="text-lg text-gray-700 mb-4">قد أتم بنجاح دورة</p>
+                    <p class="text-xl font-bold text-musanid-dark mb-6">أساسيات البرمجة</p>
+                    <p class="text-gray-600" id="certificateDate">تاريخ الإصدار: <span>21 سبتمبر 2025</span></p>
+                </div>
+            </div>
+
+            <!-- Download Button -->
+            <div class="text-center">
+                <button id="downloadCertificate" class="btn-primary" disabled>
+                    تحميل الشهادة
+                </button>
+                <p class="text-sm text-gray-600 mt-2">
+                    * يجب إكمال جميع المتطلبات للحصول على الشهادة
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // سيتم إضافة الوظائف الخاصة بالـ JavaScript لاحقاً
+        document.getElementById('downloadCertificate').addEventListener('click', function() {
+            // معالجة تحميل الشهادة
+        });
+    </script>
+</body>
+</html>
