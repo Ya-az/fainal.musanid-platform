@@ -64,10 +64,15 @@ app.use('/course', require('./routes/course'));
 app.use('/certificate', require('./routes/certificate'));
 app.use('/support', require('./routes/support'));
 
-// Error handling
+// 404 Not Found
+app.use((req, res) => {
+    res.status(404).sendFile(path.join(__dirname, '../public/404.html'));
+});
+
+// Error handling (500)
 app.use((err, req, res, next) => {
     console.error(err.stack);
-    res.status(500).send('حدث خطأ في الخادم!');
+    res.status(500).sendFile(path.join(__dirname, '../public/500.html'));
 });
 
 const PORT = process.env.PORT || 3000;

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://your-domain.example.com/</loc></url>
+  <url><loc>https://your-domain.example.com/faq</loc></url>
+  <url><loc>https://your-domain.example.com/about</loc></url>
+  <url><loc>https://your-domain.example.com/support</loc></url>
+  <url><loc>https://your-domain.example.com/auth/login</loc></url>
+  <url><loc>https://your-domain.example.com/auth/register</loc></url>
+  <url><loc>https://your-domain.example.com/dashboard</loc></url>
+  <url><loc>https://your-domain.example.com/course</loc></url>
+  <url><loc>https://your-domain.example.com/certificate</loc></url>
+</urlset>

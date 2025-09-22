@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Disallow admin endpoints (if any)
+Disallow: /admin
+
+Sitemap: https://your-domain.example.com/sitemap.xml
