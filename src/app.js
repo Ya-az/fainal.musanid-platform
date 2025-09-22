@@ -49,6 +49,7 @@ app.use(session({
     ['/course/index.html', '/course'],
     ['/certificate/index', '/certificate'],
     ['/certificate/index.html', '/certificate'],
+    ['/settings.html', '/settings'],
 ].forEach(([from, to]) => {
     app.get(from, (req, res) => res.redirect(301, to));
 });
@@ -63,6 +64,7 @@ app.use('/dashboard', require('./routes/dashboard'));
 app.use('/course', require('./routes/course'));
 app.use('/certificate', require('./routes/certificate'));
 app.use('/support', require('./routes/support'));
+app.use('/settings', require('./routes/settings'));
 
 // 404 Not Found
 app.use((req, res) => {

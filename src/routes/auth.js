@@ -87,4 +87,10 @@ router.post('/logout', (req, res) => {
   });
 });
 
+// بيانات المستخدم الحالي
+router.get('/me', (req, res) => {
+  if (req.session && req.session.user) return res.json(req.session.user);
+  return res.status(401).json({ message: 'غير مسجل' });
+});
+
 module.exports = router;
