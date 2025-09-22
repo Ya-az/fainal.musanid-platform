@@ -131,11 +131,14 @@
     </footer>
 
     <script>
-        // سيتم إضافة الوظائف الخاصة بالـ JavaScript لاحقاً
-        function logout() {
-            // تنفيذ عملية تسجيل الخروج
-            window.location.href = '../auth/login.html';
-        }
+        // تسجيل الخروج عبر الخادم
+        document.getElementById('logoutBtn')?.addEventListener('click', async () => {
+            try {
+                await fetch('/auth/logout', { method: 'POST', credentials: 'include' });
+            } finally {
+                window.location.href = '/';
+            }
+        });
     </script>
 </body>
 </html>

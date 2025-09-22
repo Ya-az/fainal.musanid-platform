@@ -1,6 +1,9 @@
 const express = require('express');
 const path = require('path');
 const session = require('express-session');
+const helmet = require('helmet');
+const cors = require('cors');
+const rateLimit = require('express-rate-limit');
 const cookieParser = require('cookie-parser');
 require('dotenv').config();
 
@@ -10,6 +13,20 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+// أمن أساسي
+app.use(helmet());
+app.use(cors({
+    origin: process.env.CORS_ORIGIN ? process.env.CORS_ORIGIN.split(',') : true,
+    credentials: true
+}));
+// تحديد معدّل الطلبات لمسارات المصادقة
+const authLimiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 100,
+    standardHeaders: true,
+    legacyHeaders: false,
+});
+app.use('/auth', authLimiter);
 // دعم العمل خلف Proxy في بيئة الإنتاج (لتفعيل الكوكي الآمن)
 if (process.env.NODE_ENV === 'production') {
     app.set('trust proxy', 1);
@@ -20,6 +37,21 @@ app.use(session({
     saveUninitialized: false,
     cookie: { secure: process.env.NODE_ENV === 'production' }
 }));
+
+// Legacy index.html redirects to clean routes
+[
+    ['/index.html', '/'],
+    ['/support/index', '/support'],
+    ['/support/index.html', '/support'],
+    ['/dashboard/index', '/dashboard'],
+    ['/dashboard/index.html', '/dashboard'],
+    ['/course/index', '/course'],
+    ['/course/index.html', '/course'],
+    ['/certificate/index', '/certificate'],
+    ['/certificate/index.html', '/certificate'],
+].forEach(([from, to]) => {
+    app.get(from, (req, res) => res.redirect(301, to));
+});
 
 // Static files
 app.use(express.static(path.join(__dirname, '../public')));
