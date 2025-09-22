@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مساند - لتعليم أفضل بخطوات واضحة</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'musanid-dark': '#1E3A8A',
+                        'musanid-light': '#38BDF8',
+                    },
+                    fontFamily: {
+                        'tajawal': ['Tajawal', 'sans-serif'],
+                        'cairo': ['Cairo', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="css/styles.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50 min-h-screen flex flex-col">
+    <nav class="bg-white shadow-sm w-full mb-8">
+        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center gap-8">
+                <a href="hp_index.html" class="logo text-2xl text-musanid-dark font-cairo font-bold tracking-wide">مساند</a>
+                <div class="hidden md:flex gap-6">
+                    <a href="hp_index.html" class="nav-link text-gray-600 hover:text-musanid-dark transition">الرئيسية</a>
+                    <a href="dashboard/db_index.html" class="nav-link text-gray-600 hover:text-musanid-dark transition">لوحة التحكم</a>
+                    <a href="course/cr_index.html" class="nav-link text-gray-600 hover:text-musanid-dark transition">الدورات</a>
+                    <a href="certificate/ct_index.html" class="nav-link text-gray-600 hover:text-musanid-dark transition">الشهادات</a>
+                    <a href="faq.html" class="nav-link text-gray-600 hover:text-musanid-dark transition">الأسئلة الشائعة</a>
+                    <a href="support/sp_index.html" class="nav-link text-gray-600 hover:text-musanid-dark transition">الدعم الفني</a>
+                    <a href="about.html" class="nav-link text-gray-600 hover:text-musanid-dark transition">عن مساند</a>
+                </div>
+            </div>
+            <div class="md:hidden">
+                <button id="mobileMenuBtnMainIndex" class="text-gray-600 hover:text-musanid-dark focus:outline-none">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobileMenuMainIndex" class="hidden md:hidden px-4 pb-4">
+            <div class="flex flex-col gap-2 bg-white rounded-lg shadow-lg mt-2 p-4">
+                <a href="hp_index.html" class="nav-link text-gray-600 hover:text-musanid-dark">الرئيسية</a>
+                <a href="dashboard/db_index.html" class="nav-link text-gray-600 hover:text-musanid-dark">لوحة التحكم</a>
+                <a href="course/cr_index.html" class="nav-link text-gray-600 hover:text-musanid-dark">الدورات</a>
+                <a href="certificate/ct_index.html" class="nav-link text-gray-600 hover:text-musanid-dark">الشهادات</a>
+                <a href="faq.html" class="nav-link text-gray-600 hover:text-musanid-dark">الأسئلة الشائعة</a>
+                <a href="support/sp_index.html" class="nav-link text-gray-600 hover:text-musanid-dark">الدعم الفني</a>
+                <a href="about.html" class="nav-link text-gray-600 hover:text-musanid-dark">عن مساند</a>
+            </div>
+        </div>
+    </nav>
+    <script>
+        // Mobile menu toggle for main index page
+        (function() {
+            const mobileMenuBtnMainIndex = document.getElementById('mobileMenuBtnMainIndex');
+            const mobileMenuMainIndex = document.getElementById('mobileMenuMainIndex');
+            if(mobileMenuBtnMainIndex && mobileMenuMainIndex) {
+                mobileMenuBtnMainIndex.addEventListener('click', () => {
+                    mobileMenuMainIndex.classList.toggle('hidden');
+                });
+                document.addEventListener('click', (e) => {
+                    if (!mobileMenuBtnMainIndex.contains(e.target) && !mobileMenuMainIndex.contains(e.target)) {
+                        mobileMenuMainIndex.classList.add('hidden');
+                    }
+                });
+            }
+        })();
+    </script>
+    
+
+    <main class="flex-1">
+    <!-- Hero Section -->
+    <section class="py-16 bg-gradient-to-b from-white to-gray-50">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl font-bold text-musanid-dark mb-4">
+                مساند – لتعليم أفضل بخطوات واضحة
+            </h1>
+            <p class="text-xl text-gray-600 mb-8">
+                نساعدك في رحلة التعلم خطوة بخطوة، بمنهجية واضحة ومحتوى عالي الجودة
+            </p>
+            <a href="auth/register.html" class="btn-primary text-lg">ابدأ الآن</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-16">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">ماذا ستتعلم؟</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <h3 class="text-xl font-bold text-musanid-dark mb-4">أساسيات البرمجة</h3>
+                    <p class="text-gray-600">تعلم المفاهيم الأساسية في البرمجة بشكل مبسط وعملي</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <h3 class="text-xl font-bold text-musanid-dark mb-4">تطوير الويب</h3>
+                    <p class="text-gray-600">اكتشف كيفية بناء مواقع ويب تفاعلية وجذابة</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <h3 class="text-xl font-bold text-musanid-dark mb-4">قواعد البيانات</h3>
+                    <p class="text-gray-600">تعلم تصميم وإدارة قواعد البيانات بكفاءة</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Course Preview Section -->
+    <section class="py-16 bg-musanid-dark text-white">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div>
+                    <h2 class="text-3xl font-bold mb-6">تعرف على دوراتنا</h2>
+                    <p class="text-lg mb-8">شاهد مقدمة عن محتوى الدورات وطريقة التعلم في منصة مساند</p>
+                    <a href="auth/register.html" class="btn-secondary">سجل الآن</a>
+                </div>
+                <div class="aspect-video">
+                    <!-- سيتم إضافة الفيديو لاحقاً -->
+                    <div class="bg-musanid-light bg-opacity-20 rounded-lg p-8 text-center">
+                        فيديو تعريفي
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    </main>
+    <!-- Footer -->
+    <footer class="bg-gray-100 py-8">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-gray-600">&copy; 2025 مساند. جميع الحقوق محفوظة</p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الملف الشخصي - مساند</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'musanid-dark': '#1E3A8A',
+                        'musanid-light': '#38BDF8',
+                    },
+                    fontFamily: {
+                        'tajawal': ['Tajawal', 'sans-serif'],
+                        'cairo': ['Cairo', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="css/styles.css" rel="stylesheet">
+    <link href="css/transitions.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50 min-h-screen flex flex-col">
+    <nav class="bg-white shadow-sm mb-8">
+        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center gap-8">
+                <a href="hp_index.html" class="logo text-2xl text-musanid-dark font-cairo font-bold tracking-wide">مساند</a>
+                <div class="hidden md:flex gap-6">
+                    <a href="hp_index.html" class="nav-link text-gray-600 hover:text-musanid-dark transition">الرئيسية</a>
+                    <a href="dashboard/db_index.html" class="nav-link text-gray-600 hover:text-musanid-dark transition">لوحة التحكم</a>
+                    <a href="course/cr_index.html" class="nav-link text-gray-600 hover:text-musanid-dark transition">الدورات</a>
+                    <a href="certificate/ct_index.html" class="nav-link text-gray-600 hover:text-musanid-dark transition">الشهادات</a>
+                    <a href="faq.html" class="nav-link text-gray-600 hover:text-musanid-dark transition">الأسئلة الشائعة</a>
+                    <a href="support/sp_index.html" class="nav-link text-gray-600 hover:text-musanid-dark transition">الدعم الفني</a>
+                    <a href="profile.html" class="nav-link font-extrabold text-musanid-light border-b-2 border-musanid-light px-2">الملف الشخصي</a>
+                </div>
+            </div>
+            <div class="md:hidden">
+                <button id="mobileMenuBtn" class="text-gray-600 hover:text-musanid-dark focus:outline-none">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden px-4 pb-4">
+            <div class="flex flex-col gap-2 bg-white rounded-lg shadow-lg mt-2 p-4">
+                <a href="hp_index.html" class="nav-link text-gray-600 hover:text-musanid-dark">الرئيسية</a>
+                <a href="dashboard/db_index.html" class="nav-link text-gray-600 hover:text-musanid-dark">لوحة التحكم</a>
+                <a href="course/cr_index.html" class="nav-link text-gray-600 hover:text-musanid-dark">الدورات</a>
+                <a href="certificate/ct_index.html" class="nav-link text-gray-600 hover:text-musanid-dark">الشهادات</a>
+                <a href="faq.html" class="nav-link text-gray-600 hover:text-musanid-dark">الأسئلة الشائعة</a>
+                <a href="support/sp_index.html" class="nav-link text-gray-600 hover:text-musanid-dark">الدعم الفني</a>
+                <a href="profile.html" class="nav-link font-extrabold text-musanid-light border-b-2 border-musanid-light px-2">الملف الشخصي</a>
+            </div>
+        </div>
+    </nav>
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        if(mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            document.addEventListener('click', (e) => {
+                if (!mobileMenuBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        }
+    </script>
+    <main class="container mx-auto px-4 max-w-2xl flex-1">
+        <div class="bg-white rounded-xl shadow-sm p-8 mb-8">
+            <h1 class="text-2xl font-bold text-musanid-dark mb-6 text-center">الملف الشخصي</h1>
+            <form class="space-y-6">
+                <div class="flex flex-col items-center gap-4 mb-6">
+                    <img id="profileImg" src="https://ui-avatars.com/api/?name=مستخدم" alt="الصورة الشخصية" class="w-24 h-24 rounded-full border-2 border-musanid-light object-cover">
+                    <label for="profilePic" class="btn-secondary cursor-pointer">تغيير الصورة</label>
+                    <input type="file" id="profilePic" name="profilePic" accept="image/*" class="hidden" onchange="previewProfilePic(event)">
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label for="firstName" class="block text-sm font-medium text-gray-700 mb-1">الاسم الأول</label>
+                        <input id="firstName" name="firstName" type="text" class="input-field" placeholder="أدخل اسمك الأول" required>
+                    </div>
+                    <div>
+                        <label for="lastName" class="block text-sm font-medium text-gray-700 mb-1">اسم العائلة</label>
+                        <input id="lastName" name="lastName" type="text" class="input-field" placeholder="أدخل اسم العائلة" required>
+                    </div>
+                </div>
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700 mb-1">البريد الإلكتروني</label>
+                    <input id="email" name="email" type="email" class="input-field" placeholder="example@email.com" required>
+                </div>
+                <div>
+                    <label for="password" class="block text-sm font-medium text-gray-700 mb-1">كلمة المرور الجديدة</label>
+                    <input id="password" name="password" type="password" class="input-field" placeholder="اتركها فارغة إذا لا تريد التغيير">
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn-primary w-full">حفظ التعديلات</button>
+                </div>
+            </form>
+        </div>
+    </main>
+    <!-- Footer -->
+    <footer class="bg-gray-100 py-8">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-gray-600">&copy; 2025 مساند. جميع الحقوق محفوظة</p>
+        </div>
+    </footer>
+
+    <script>
+        function previewProfilePic(event) {
+            const reader = new FileReader();
+            reader.onload = function(){
+                const output = document.getElementById('profileImg');
+                output.src = reader.result;
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    </script>
+</body>
+</html>
