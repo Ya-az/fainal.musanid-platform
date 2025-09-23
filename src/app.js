@@ -8,6 +8,7 @@ const helmet = require('helmet');
 const cors = require('cors');
 const rateLimit = require('express-rate-limit');
 const cookieParser = require('cookie-parser');
+const csurf = require('csurf');
 require('dotenv').config();
 
 const app = express();
@@ -68,6 +69,13 @@ app.use(session({
         maxAge: 1000 * 60 * 60 * 24 * 7 // 7 days
     }
 }));
+
+// CSRF protection using double-submit cookie pattern
+const csrfProtection = csurf({ cookie: { httpOnly: true, sameSite: 'lax', secure: process.env.NODE_ENV === 'production' } });
+app.use(csrfProtection);
+app.get('/csrf-token', (req, res) => {
+    res.json({ csrfToken: req.csrfToken() });
+});
 
 // Legacy index.html redirects to clean routes
 [

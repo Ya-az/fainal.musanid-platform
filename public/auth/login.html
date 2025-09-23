@@ -87,7 +87,7 @@
                     </a>
                 </p>
             </div>
-            <form class="mt-8 space-y-6" action="/auth/login" method="POST">
+            <form id="loginForm" class="mt-8 space-y-6" action="/auth/login" method="POST">
                 <div class="rounded-md shadow-sm -space-y-px">
                     <div class="mb-4">
                         <label for="userOrEmail" class="block text-sm font-medium text-gray-700 mb-1">
@@ -136,5 +136,19 @@
             <p class="text-gray-600">&copy; 2025 مساند. جميع الحقوق محفوظة</p>
         </div>
     </footer>
+<script>
+document.addEventListener('DOMContentLoaded', async () => {
+    try {
+        const res = await fetch('/csrf-token', { credentials: 'include' });
+        const { csrfToken } = await res.json();
+        const form = document.getElementById('loginForm');
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = '_csrf';
+        input.value = csrfToken;
+        form.prepend(input);
+    } catch (e) {}
+});
+</script>
 </body>
 </html>
