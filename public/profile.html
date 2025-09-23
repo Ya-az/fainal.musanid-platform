@@ -28,14 +28,14 @@
     <nav class="bg-white shadow-sm mb-8">
         <div class="container mx-auto px-4 py-3 flex items-center justify-between">
             <div class="flex items-center gap-8">
-                <a href="hp_index.html" class="logo text-2xl text-musanid-dark font-cairo font-bold tracking-wide">مساند</a>
+                <a href="/" class="logo text-2xl text-musanid-dark font-cairo font-bold tracking-wide">مساند</a>
                 <div class="hidden md:flex gap-6">
-                    <a href="hp_index.html" class="nav-link text-gray-600 hover:text-musanid-dark transition">الرئيسية</a>
-                    <a href="dashboard/db_index.html" class="nav-link text-gray-600 hover:text-musanid-dark transition">لوحة التحكم</a>
-                    <a href="course/cr_index.html" class="nav-link text-gray-600 hover:text-musanid-dark transition">الدورات</a>
-                    <a href="certificate/ct_index.html" class="nav-link text-gray-600 hover:text-musanid-dark transition">الشهادات</a>
-                    <a href="faq.html" class="nav-link text-gray-600 hover:text-musanid-dark transition">الأسئلة الشائعة</a>
-                    <a href="support/sp_index.html" class="nav-link text-gray-600 hover:text-musanid-dark transition">الدعم الفني</a>
+                    <a href="/" class="nav-link text-gray-600 hover:text-musanid-dark transition">الرئيسية</a>
+                    <a href="/dashboard" class="nav-link text-gray-600 hover:text-musanid-dark transition">لوحة التحكم</a>
+                    <a href="/course" class="nav-link text-gray-600 hover:text-musanid-dark transition">الدورات</a>
+                    <a href="/certificate" class="nav-link text-gray-600 hover:text-musanid-dark transition">الشهادات</a>
+                    <a href="/faq" class="nav-link text-gray-600 hover:text-musanid-dark transition">الأسئلة الشائعة</a>
+                    <a href="/support" class="nav-link text-gray-600 hover:text-musanid-dark transition">الدعم الفني</a>
                     <a href="profile.html" class="nav-link font-extrabold text-musanid-light border-b-2 border-musanid-light px-2">الملف الشخصي</a>
                 </div>
             </div>
@@ -50,12 +50,12 @@
         <!-- Mobile Menu -->
         <div id="mobileMenu" class="hidden md:hidden px-4 pb-4">
             <div class="flex flex-col gap-2 bg-white rounded-lg shadow-lg mt-2 p-4">
-                <a href="hp_index.html" class="nav-link text-gray-600 hover:text-musanid-dark">الرئيسية</a>
-                <a href="dashboard/db_index.html" class="nav-link text-gray-600 hover:text-musanid-dark">لوحة التحكم</a>
-                <a href="course/cr_index.html" class="nav-link text-gray-600 hover:text-musanid-dark">الدورات</a>
-                <a href="certificate/ct_index.html" class="nav-link text-gray-600 hover:text-musanid-dark">الشهادات</a>
-                <a href="faq.html" class="nav-link text-gray-600 hover:text-musanid-dark">الأسئلة الشائعة</a>
-                <a href="support/sp_index.html" class="nav-link text-gray-600 hover:text-musanid-dark">الدعم الفني</a>
+                <a href="/" class="nav-link text-gray-600 hover:text-musanid-dark">الرئيسية</a>
+                <a href="/dashboard" class="nav-link text-gray-600 hover:text-musanid-dark">لوحة التحكم</a>
+                <a href="/course" class="nav-link text-gray-600 hover:text-musanid-dark">الدورات</a>
+                <a href="/certificate" class="nav-link text-gray-600 hover:text-musanid-dark">الشهادات</a>
+                <a href="/faq" class="nav-link text-gray-600 hover:text-musanid-dark">الأسئلة الشائعة</a>
+                <a href="/support" class="nav-link text-gray-600 hover:text-musanid-dark">الدعم الفني</a>
                 <a href="profile.html" class="nav-link font-extrabold text-musanid-light border-b-2 border-musanid-light px-2">الملف الشخصي</a>
             </div>
         </div>
@@ -102,8 +102,9 @@
                     <label for="password" class="block text-sm font-medium text-gray-700 mb-1">كلمة المرور الجديدة</label>
                     <input id="password" name="password" type="password" class="input-field" placeholder="اتركها فارغة إذا لا تريد التغيير">
                 </div>
-                <div class="text-center">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 items-center">
                     <button type="submit" class="btn-primary w-full">حفظ التعديلات</button>
+                    <a href="/certificate/download" class="w-full text-center bg-green-600 hover:bg-green-700 text-white font-semibold px-6 py-3 rounded-lg transition">تحميل الشهادة PDF</a>
                 </div>
             </form>
         </div>
@@ -124,6 +125,27 @@
             };
             reader.readAsDataURL(event.target.files[0]);
         }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            try {
+                const res = await fetch('/auth/me', { credentials: 'include' });
+                if (!res.ok) throw new Error('unauthorized');
+                const { user } = await res.json();
+                if (user) {
+                    const fullName = [user.firstName, user.lastName].filter(Boolean).join(' ');
+                    const avatar = document.getElementById('profileImg');
+                    avatar.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(fullName || user.username || 'مستخدم')}`;
+                    const fn = document.getElementById('firstName');
+                    const ln = document.getElementById('lastName');
+                    const em = document.getElementById('email');
+                    if (fn) fn.value = user.firstName || '';
+                    if (ln) ln.value = user.lastName || '';
+                    if (em) em.value = user.email || '';
+                }
+            } catch (e) {
+                window.location.href = '/auth/login';
+            }
+        });
     </script>
 </body>
 </html>

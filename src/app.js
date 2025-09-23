@@ -33,9 +33,15 @@ if (process.env.NODE_ENV === 'production') {
 }
 app.use(session({
     secret: process.env.SESSION_SECRET || 'musanid-secret-key',
+    name: 'musanid.sid',
     resave: false,
     saveUninitialized: false,
-    cookie: { secure: process.env.NODE_ENV === 'production' }
+    cookie: {
+        httpOnly: true,
+        sameSite: 'lax',
+        secure: process.env.NODE_ENV === 'production',
+        maxAge: 1000 * 60 * 60 * 24 * 7 // 7 days
+    }
 }));
 
 // Legacy index.html redirects to clean routes
@@ -56,6 +62,9 @@ app.use(session({
 
 // Static files
 app.use(express.static(path.join(__dirname, '../public')));
+
+// Health check
+app.get('/health', (req, res) => res.json({ status: 'ok' }));
 
 // Routes
 app.use('/', require('./routes/index'));
