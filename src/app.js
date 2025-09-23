@@ -1,6 +1,9 @@
 const express = require('express');
 const path = require('path');
 const session = require('express-session');
+const compression = require('compression');
+const morgan = require('morgan');
+const MySQLStoreFactory = require('express-mysql-session');
 const helmet = require('helmet');
 const cors = require('cors');
 const rateLimit = require('express-rate-limit');
@@ -13,6 +16,8 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+app.use(compression());
+app.use(morgan('combined'));
 // أمن أساسي
 app.use(helmet());
 app.use(cors({
@@ -31,11 +36,31 @@ app.use('/auth', authLimiter);
 if (process.env.NODE_ENV === 'production') {
     app.set('trust proxy', 1);
 }
+// MySQL session store
+const MySQLStore = MySQLStoreFactory(session);
+const sessionStore = new MySQLStore({
+    host: process.env.DB_HOST || 'localhost',
+    port: process.env.DB_PORT ? parseInt(process.env.DB_PORT, 10) : 3306,
+    user: process.env.DB_USER || 'root',
+    password: process.env.DB_PASSWORD || '',
+    database: process.env.DB_NAME || 'musanid_db',
+    createDatabaseTable: true,
+    schema: {
+        tableName: 'sessions',
+        columnNames: {
+            session_id: 'session_id',
+            expires: 'expires',
+            data: 'data'
+        }
+    }
+});
+
 app.use(session({
     secret: process.env.SESSION_SECRET || 'musanid-secret-key',
     name: 'musanid.sid',
     resave: false,
     saveUninitialized: false,
+    store: sessionStore,
     cookie: {
         httpOnly: true,
         sameSite: 'lax',
