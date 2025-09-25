@@ -1,0 +1,29 @@
+<% layout('layout') -%>
+<section class="mb-10">
+  <div class="bg-white rounded-lg shadow-sm p-8 text-center">
+    <h1 class="text-3xl font-bold text-musanid-dark mb-4">أهلاً بك في منصة مساند</h1>
+    <p class="text-gray-600 mb-6">ابدأ رحلتك التعليمية الآن وتابع تقدمك خطوة بخطوة.</p>
+    <% if(!user){ %>
+      <div class="flex justify-center gap-4">
+        <a href="/auth/register" class="btn-primary">إنشاء حساب</a>
+        <a href="/auth/login" class="btn-secondary">تسجيل دخول</a>
+      </div>
+    <% } else { %>
+      <a href="/dashboard" class="btn-primary">الذهاب إلى لوحة التحكم</a>
+    <% } %>
+  </div>
+</section>
+<section class="grid md:grid-cols-3 gap-6">
+  <div class="p-6 bg-white rounded-lg shadow-sm">
+    <h3 class="font-bold text-musanid-dark mb-2">دورات محدثة</h3>
+    <p class="text-sm text-gray-600">محتوى تعليمي متجدد يناسب مختلف المستويات.</p>
+  </div>
+  <div class="p-6 bg-white rounded-lg shadow-sm">
+    <h3 class="font-bold text-musanid-dark mb-2">شهادات معتمدة</h3>
+    <p class="text-sm text-gray-600">احصل على شهادة تثبت تقدمك ومهاراتك.</p>
+  </div>
+  <div class="p-6 bg-white rounded-lg shadow-sm">
+    <h3 class="font-bold text-musanid-dark mb-2">دعم فني مستمر</h3>
+    <p class="text-sm text-gray-600">فريقنا حاضر دائماً لمساعدتك في استفساراتك.</p>
+  </div>
+</section>

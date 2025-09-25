@@ -6,7 +6,13 @@
   "scripts": {
     "start": "node src/app.js",
     "dev": "nodemon src/app.js",
-  "seed:user": "node src/scripts/seed_user.js",
+    "dev:css": "npx tailwindcss -i ./css/tw-input.css -o ./public/css/styles.css --watch",
+    "build:css": "npx tailwindcss -i ./css/tw-input.css -o ./public/css/styles.css --minify",
+    "seed:user": "node src/scripts/seed_user.js",
+    "lint": "eslint \"src/**/*.js\" --max-warnings=0",
+  "lint:fix": "eslint \"src/**/*.js\" --fix",
+  "check:legacy": "node src/scripts/check_legacy_redirects.js",
+    "format": "prettier --write .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": ["education", "learning", "arabic"],
@@ -28,9 +34,14 @@
     "compression": "^1.7.4",
     "morgan": "^1.10.0",
     "express-mysql-session": "^3.0.0",
-    "csurf": "^1.11.0"
+    "csurf": "^1.11.0",
+    "ejs": "^3.1.10"
   },
   "devDependencies": {
-    "nodemon": "^3.0.1"
+    "nodemon": "^3.0.1",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-import": "^2.29.0",
+    "prettier": "^3.2.5"
   }
 }

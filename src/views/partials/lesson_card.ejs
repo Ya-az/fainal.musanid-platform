@@ -1,0 +1,15 @@
+<div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+  <div class="flex items-center">
+    <span class="<%= lesson.completed ? 'text-green-500' : 'text-gray-400' %> ml-2"><%= lesson.completed ? '✅' : '⌛' %></span>
+    <div>
+      <h3 class="font-bold text-gray-900"><%= lesson.title %></h3>
+      <p class="text-sm text-gray-600">المدة: <%= lesson.duration %></p>
+    </div>
+  </div>
+  <div class="flex gap-2 items-center">
+    <a href="/course/<%= lesson.slug %>" class="btn-primary text-sm">فتح</a>
+    <% if(typeof toggle !== 'undefined' && toggle){ %>
+      <button data-slug="<%= lesson.slug %>" data-completed="<%= !!lesson.completed %>" class="toggleLesson btn-secondary text-xs"><%= lesson.completed ? 'إلغاء' : 'اكتمال' %></button>
+    <% } %>
+  </div>
+</div>

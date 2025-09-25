@@ -1,0 +1,50 @@
+<nav class="bg-white shadow-sm w-full mb-8" aria-label="التنقل الرئيسي">
+  <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+    <div class="flex items-center gap-8">
+      <a href="/" class="logo text-2xl text-musanid-dark font-cairo font-bold tracking-wide">مساند</a>
+      <div class="hidden md:flex gap-6">
+        <a href="/" class="nav-link <%= currentPath==='/' ? 'font-extrabold text-musanid-light border-b-2 border-musanid-light px-2' : 'text-gray-600 hover:text-musanid-dark' %>">الرئيسية</a>
+        <a href="/dashboard" class="nav-link <%= currentPath.startsWith('/dashboard') ? 'font-extrabold text-musanid-light border-b-2 border-musanid-light px-2' : 'text-gray-600 hover:text-musanid-dark' %>">لوحة التحكم</a>
+        <a href="/course" class="nav-link <%= currentPath.startsWith('/course') ? 'font-extrabold text-musanid-light border-b-2 border-musanid-light px-2' : 'text-gray-600 hover:text-musanid-dark' %>">الدورات</a>
+        <a href="/certificate" class="nav-link <%= currentPath.startsWith('/certificate') ? 'font-extrabold text-musanid-light border-b-2 border-musanid-light px-2' : 'text-gray-600 hover:text-musanid-dark' %>">الشهادات</a>
+        <a href="/faq" class="nav-link <%= currentPath.startsWith('/faq') ? 'font-extrabold text-musanid-light border-b-2 border-musanid-light px-2' : 'text-gray-600 hover:text-musanid-dark' %>">الأسئلة الشائعة</a>
+        <a href="/support" class="nav-link <%= currentPath.startsWith('/support') ? 'font-extrabold text-musanid-light border-b-2 border-musanid-light px-2' : 'text-gray-600 hover:text-musanid-dark' %>">الدعم الفني</a>
+        <a href="/about" class="nav-link <%= currentPath.startsWith('/about') ? 'font-extrabold text-musanid-light border-b-2 border-musanid-light px-2' : 'text-gray-600 hover:text-musanid-dark' %>">عن مساند</a>
+      </div>
+    </div>
+    <div class="flex items-center gap-4">
+      <% if(user){ %>
+        <span class="text-sm text-gray-600">مرحباً، <span class="font-bold"><%= user.firstName || user.username %></span> 👋</span>
+        <form method="POST" action="/auth/logout" class="inline">
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+          <button class="btn-secondary text-sm">تسجيل خروج</button>
+        </form>
+      <% } else { %>
+        <a href="/auth/login" class="text-sm text-musanid-dark hover:underline">دخول</a>
+        <a href="/auth/register" class="btn-primary text-sm">حساب جديد</a>
+      <% } %>
+      <button id="mobileMenuBtn" class="md:hidden text-gray-600 hover:text-musanid-dark focus:outline-none" aria-label="قائمة الجوال" aria-expanded="false">
+        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+        </svg>
+      </button>
+    </div>
+  </div>
+  <div id="mobileMenu" class="hidden md:hidden px-4 pb-4" aria-label="قائمة الجوال">
+    <div class="flex flex-col gap-2 bg-white rounded-lg shadow-lg mt-2 p-4">
+      <a href="/" class="nav-link <%= currentPath==='/' ? 'font-extrabold text-musanid-light' : 'text-gray-600 hover:text-musanid-dark' %>">الرئيسية</a>
+      <a href="/dashboard" class="nav-link <%= currentPath.startsWith('/dashboard') ? 'font-extrabold text-musanid-light' : 'text-gray-600 hover:text-musanid-dark' %>">لوحة التحكم</a>
+      <a href="/course" class="nav-link <%= currentPath.startsWith('/course') ? 'font-extrabold text-musanid-light' : 'text-gray-600 hover:text-musanid-dark' %>">الدورات</a>
+      <a href="/certificate" class="nav-link <%= currentPath.startsWith('/certificate') ? 'font-extrabold text-musanid-light' : 'text-gray-600 hover:text-musanid-dark' %>">الشهادات</a>
+      <a href="/faq" class="nav-link <%= currentPath.startsWith('/faq') ? 'font-extrabold text-musanid-light' : 'text-gray-600 hover:text-musanid-dark' %>">الأسئلة الشائعة</a>
+      <a href="/support" class="nav-link <%= currentPath.startsWith('/support') ? 'font-extrabold text-musanid-light' : 'text-gray-600 hover:text-musanid-dark' %>">الدعم الفني</a>
+      <a href="/about" class="nav-link <%= currentPath.startsWith('/about') ? 'font-extrabold text-musanid-light' : 'text-gray-600 hover:text-musanid-dark' %>">عن مساند</a>
+      <% if(user){ %>
+        <form method="POST" action="/auth/logout">
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+          <button class="text-right text-red-600 hover:text-red-800 mt-2">تسجيل خروج</button>
+        </form>
+      <% } %>
+    </div>
+  </div>
+</nav>

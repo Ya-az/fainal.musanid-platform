@@ -9,7 +9,7 @@ function requireAuth(req, res, next) {
 }
 
 router.get('/', requireAuth, (req, res) => {
-  res.sendFile(path.join(__dirname, '../../public/certificate/ct_index.html'));
+  res.render('certificate/index', { title: 'الشهادات' });
 });
 
 router.get('/download', requireAuth, (req, res) => {

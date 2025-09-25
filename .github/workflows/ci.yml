@@ -1,0 +1,68 @@
+name: CI
+
+on:
+  push:
+    branches: [ master, main ]
+  pull_request:
+    branches: [ master, main ]
+
+jobs:
+  build-and-check:
+    runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:8
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: musanid_db
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping -h localhost -proot" 
+          --health-interval=10s 
+          --health-timeout=5s 
+          --health-retries=5
+    env:
+      DB_HOST: 127.0.0.1
+      DB_USER: root
+      DB_PASSWORD: root
+      DB_NAME: musanid_db
+      SESSION_SECRET: test-secret-ci
+      NODE_ENV: test
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: 'npm'
+      - name: Install dependencies
+        run: npm install
+      - name: Lint
+        run: npm run lint
+      - name: Build CSS
+        run: npm run build:css
+      - name: Wait for MySQL
+        run: |
+          for i in {1..30}; do
+            if mysqladmin ping -h 127.0.0.1 -proot --silent; then
+              echo "MySQL is up"; break; fi; echo 'Waiting MySQL...'; sleep 2; done
+      - name: Seed initial user (optional)
+        run: node src/scripts/seed_user.js || echo "Seed skipped"
+      - name: Start server
+        run: |
+          node src/app.js &
+          echo $! > server.pid
+          sleep 5
+      - name: Check legacy redirects
+        run: npm run check:legacy
+      - name: Show server logs (on failure)
+        if: failure()
+        run: |
+          cat server.pid 2>/dev/null || true
+          ps -p $(cat server.pid) -o pid,cmd 2>/dev/null || true
+      - name: Stop server
+        if: always()
+        run: |
+          if [ -f server.pid ]; then kill $(cat server.pid) || true; fi

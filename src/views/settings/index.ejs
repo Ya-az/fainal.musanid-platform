@@ -1,0 +1,47 @@
+<% layout('layout') -%>
+<h1 class="text-2xl font-bold text-musanid-dark mb-6">الإعدادات</h1>
+<form class="space-y-4 max-w-xl" method="POST" action="/settings/profile">
+  <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+  <div class="grid md:grid-cols-2 gap-4">
+    <div>
+      <label class="block mb-1 text-sm font-medium">الاسم الأول</label>
+      <input name="firstName" value="<%= (user && user.firstName) || '' %>" class="w-full border rounded px-3 py-2" required />
+    </div>
+    <div>
+      <label class="block mb-1 text-sm font-medium">اسم العائلة</label>
+      <input name="lastName" value="<%= (user && user.lastName) || '' %>" class="w-full border rounded px-3 py-2" required />
+    </div>
+    <div>
+      <label class="block mb-1 text-sm font-medium">اسم المستخدم</label>
+      <input name="username" value="<%= (user && user.username) || '' %>" class="w-full border rounded px-3 py-2" required />
+    </div>
+    <div>
+      <label class="block mb-1 text-sm font-medium">البريد الإلكتروني</label>
+      <input type="email" name="email" value="<%= (user && user.email) || '' %>" class="w-full border rounded px-3 py-2" required />
+    </div>
+  </div>
+  <button class="btn-primary">حفظ</button>
+</form>
+<hr class="my-10" />
+<form class="space-y-4 max-w-md" method="POST" action="/settings/password">
+  <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+  <h2 class="text-xl font-bold text-musanid-dark">تغيير كلمة المرور</h2>
+  <div>
+    <label class="block mb-1 text-sm font-medium">كلمة المرور الحالية</label>
+    <input type="password" name="currentPassword" class="w-full border rounded px-3 py-2" required />
+  </div>
+  <div>
+    <label class="block mb-1 text-sm font-medium">كلمة المرور الجديدة</label>
+    <input type="password" name="newPassword" class="w-full border rounded px-3 py-2" required />
+    <div class="mt-2 flex items-center gap-3">
+      <meter id="passwordStrength" min="0" max="5" low="2" high="4" optimum="5" value="0" class="w-40 h-4"></meter>
+      <span class="text-xs text-gray-500">القوة</span>
+    </div>
+    <ul class="mt-2 text-xs text-gray-500 list-disc pr-4 space-y-1">
+      <li>٨ أحرف على الأقل</li>
+      <li>حرف كبير وصغير</li>
+      <li>رقم ورمز خاص</li>
+    </ul>
+  </div>
+  <button class="btn-secondary" data-password-change>تحديث كلمة المرور</button>
+</form>

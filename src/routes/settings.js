@@ -10,7 +10,7 @@ function requireAuth(req, res, next) {
 }
 
 router.get('/', requireAuth, (req, res) => {
-  res.sendFile(path.join(__dirname, '../../public/settings.html'));
+  res.render('settings/index', { title: 'الإعدادات' });
 });
 
 router.post('/profile', requireAuth, async (req, res) => {
@@ -41,6 +41,13 @@ router.post('/password', requireAuth, async (req, res) => {
   try {
     const { currentPassword, newPassword } = req.body;
     if (!currentPassword || !newPassword) return res.status(400).json({ message: 'بيانات ناقصة' });
+    const issues = [];
+    if (newPassword.length < 8) issues.push('الطول >= 8');
+    if (!/[A-Z]/.test(newPassword)) issues.push('حرف كبير');
+    if (!/[a-z]/.test(newPassword)) issues.push('حرف صغير');
+    if (!/[0-9]/.test(newPassword)) issues.push('رقم');
+    if (!/[^A-Za-z0-9]/.test(newPassword)) issues.push('رمز خاص');
+    if (issues.length) return res.status(400).json({ message: 'كلمة المرور ضعيفة: ' + issues.join('، ') });
     const [rows] = await db.query('SELECT * FROM users WHERE username=? OR email=? LIMIT 1', [req.session.user.username, req.session.user.email]);
     const user = rows && rows[0];
     if (!user) return res.status(401).json({ message: 'جلسة غير صالحة' });

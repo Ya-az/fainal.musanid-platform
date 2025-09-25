@@ -13,6 +13,10 @@ require('dotenv').config();
 
 const app = express();
 
+// View engine (EJS) setup
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
+
 // Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -21,6 +25,20 @@ app.use(compression());
 app.use(morgan('combined'));
 // أمن أساسي
 app.use(helmet());
+// تفعيل CSP (لا سكربتات inline حالياً)
+app.use(helmet.contentSecurityPolicy({
+    useDefaults: true,
+    directives: {
+        "default-src": ["'self'"],
+        "script-src": ["'self'"],
+        "style-src": ["'self'", 'https:'],
+        "img-src": ["'self'", 'data:'],
+        "object-src": ["'none'"],
+        "base-uri": ["'self'"],
+        "frame-ancestors": ["'self'"],
+        "form-action": ["'self'"],
+    }
+}));
 app.use(cors({
     origin: process.env.CORS_ORIGIN ? process.env.CORS_ORIGIN.split(',') : true,
     credentials: true
@@ -33,6 +51,14 @@ const authLimiter = rateLimit({
     legacyHeaders: false,
 });
 app.use('/auth', authLimiter);
+// معدل خاص لتحديث التقدم (أخف لكن يحمي من الإساءة)
+const progressLimiter = rateLimit({
+    windowMs: 60 * 1000,
+    max: 60, // 60 طلب بالدقيقة للمستخدم (كافٍ للتفاعل)
+    standardHeaders: true,
+    legacyHeaders: false,
+});
+app.use('/api/progress', progressLimiter);
 // دعم العمل خلف Proxy في بيئة الإنتاج (لتفعيل الكوكي الآمن)
 if (process.env.NODE_ENV === 'production') {
     app.set('trust proxy', 1);
@@ -73,24 +99,47 @@ app.use(session({
 // CSRF protection using double-submit cookie pattern
 const csrfProtection = csurf({ cookie: { httpOnly: true, sameSite: 'lax', secure: process.env.NODE_ENV === 'production' } });
 app.use(csrfProtection);
-app.get('/csrf-token', (req, res) => {
-    res.json({ csrfToken: req.csrfToken() });
+
+// Make common template locals available
+app.use((req, res, next) => {
+    try {
+        res.locals.csrfToken = req.csrfToken();
+    } catch (e) {
+        res.locals.csrfToken = null;
+    }
+    res.locals.user = req.session ? req.session.user : null;
+    res.locals.currentPath = req.path;
+    res.locals.appName = 'مساند';
+    next();
 });
 
-// Legacy index.html redirects to clean routes
-[
-    ['/index.html', '/'],
-    ['/support/index', '/support'],
-    ['/support/index.html', '/support'],
-    ['/dashboard/index', '/dashboard'],
-    ['/dashboard/index.html', '/dashboard'],
-    ['/course/index', '/course'],
-    ['/course/index.html', '/course'],
-    ['/certificate/index', '/certificate'],
-    ['/certificate/index.html', '/certificate'],
-    ['/settings.html', '/settings'],
-].forEach(([from, to]) => {
-    app.get(from, (req, res) => res.redirect(301, to));
+app.get('/csrf-token', (req, res) => {
+    res.json({ csrfToken: res.locals.csrfToken });
+});
+
+// (تمت إزالة إعادة التوجيه القديمة بعد الانتقال إلى القوالب)
+
+// Legacy static HTML redirects (clean hybrid approach)
+// أي روابط قديمة محفوظة ستُعاد توجيهها دائماً إلى الصفحات الديناميكية الجديدة
+const legacyRedirects = {
+    '/hp_index.html': '/',
+    '/index.html': '/',
+    '/about.html': '/about',
+    '/faq.html': '/faq',
+    '/profile.html': '/profile',
+    '/settings.html': '/settings',
+    '/support/sp_index.html': '/support',
+    '/support/index.html': '/support',
+    '/course/cr_index.html': '/course',
+    '/certificate/ct_index.html': '/certificate',
+    '/dashboard/db_index.html': '/dashboard'
+};
+app.use((req, res, next) => {
+    const to = legacyRedirects[req.path.toLowerCase()];
+    if (to) {
+        return res.redirect(301, to);
+    }
+    next();
 });
 
 // Static files
@@ -107,16 +156,17 @@ app.use('/course', require('./routes/course'));
 app.use('/certificate', require('./routes/certificate'));
 app.use('/support', require('./routes/support'));
 app.use('/settings', require('./routes/settings'));
+app.use('/api', require('./routes/api'));
 
 // 404 Not Found
 app.use((req, res) => {
-    res.status(404).sendFile(path.join(__dirname, '../public/404.html'));
+    res.status(404).render('errors/404', { title: 'غير موجود' });
 });
 
 // Error handling (500)
 app.use((err, req, res, next) => {
     console.error(err.stack);
-    res.status(500).sendFile(path.join(__dirname, '../public/500.html'));
+    res.status(500).render('errors/500', { title: 'خطأ' });
 });
 
 const PORT = process.env.PORT || 3000;

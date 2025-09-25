@@ -1,0 +1,16 @@
+<% layout('layout') -%>
+<section class="max-w-xl mx-auto bg-white rounded-lg shadow-sm p-6 space-y-4">
+  <h1 class="text-2xl font-bold text-musanid-dark mb-2">الملف الشخصي</h1>
+  <% if(!user){ %>
+    <p class="text-gray-600">يجب تسجيل الدخول لعرض هذه الصفحة.</p>
+  <% } else { %>
+    <dl class="divide-y divide-gray-200 text-sm">
+      <div class="py-2 flex justify-between"><dt class="font-medium text-gray-700">الاسم:</dt><dd><%= user.firstName || '-' %> <%= user.lastName || '' %></dd></div>
+      <div class="py-2 flex justify-between"><dt class="font-medium text-gray-700">اسم المستخدم:</dt><dd><%= user.username %></dd></div>
+      <div class="py-2 flex justify-between"><dt class="font-medium text-gray-700">البريد:</dt><dd><%= user.email %></dd></div>
+    </dl>
+    <div class="pt-4">
+      <a href="/settings" class="btn-secondary text-sm">تعديل البيانات</a>
+    </div>
+  <% } %>
+</section>

@@ -1,0 +1,38 @@
+<% layout('layout') -%>
+<% if(!lesson){ %>
+  <p class="text-red-600">الدرس غير موجود.</p>
+<% } else { %>
+  <div class="mb-6 flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
+    <h1 class="text-2xl font-bold text-musanid-dark"><%= lesson.title %></h1>
+    <div class="flex flex-col md:items-end gap-1">
+      <span class="text-sm text-gray-500">المدة: <%= lesson.durationMinutes %> دقيقة</span>
+      <div class="flex gap-2">
+        <% if(lesson.category){ %>
+          <span class="px-2 py-0.5 bg-musanid-dark text-white rounded text-[10px]"><%= lesson.category %></span>
+        <% } %>
+        <% if(lesson.level){ %>
+          <span class="px-2 py-0.5 bg-musanid-light text-white rounded text-[10px]"><%= lesson.level === 'beginner' ? 'مبتدئ' : (lesson.level==='intermediate'?'متوسط':'متقدم') %></span>
+        <% } %>
+      </div>
+    </div>
+  </div>
+  <div class="bg-white rounded-lg shadow-sm p-6 space-y-6">
+    <div>
+      <h2 class="text-lg font-semibold text-musanid-dark mb-2">وصف الدرس</h2>
+      <p class="text-gray-700 leading-relaxed"><%= lesson.description || 'لا يوجد وصف متاح حالياً.' %></p>
+    </div>
+    <div class="border-t pt-4">
+      <h3 class="font-semibold mb-2 text-musanid-dark text-sm">تقدمك العام</h3>
+      <div class="w-full bg-gray-200 h-3 rounded-full">
+        <div id="globalProgressBar" class="bg-musanid-light h-3 rounded-full transition-all duration-500" style="width:0%"></div>
+      </div>
+      <p id="globalProgressText" class="mt-2 text-xs text-gray-600"></p>
+    </div>
+    <div class="flex gap-4 items-center">
+      <button id="toggleCompleteBtn" data-completed="<%= completed %>" class="btn-primary">
+        <%= completed ? 'إلغاء إكمال' : 'تعليم كمكتمل' %>
+      </button>
+      <a href="/course" class="btn-secondary">رجوع للدروس</a>
+    </div>
+  </div>
+<% } %>

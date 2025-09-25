@@ -1,0 +1,28 @@
+<% layout('layout') -%>
+<h1 class="text-2xl font-bold text-musanid-dark mb-6">الدروس المتاحة</h1>
+<% if(!(lessons && lessons.length)){ %>
+  <p class="text-gray-600">لا توجد دروس متاحة حالياً.</p>
+<% } else { %>
+  <ul class="space-y-3">
+    <% lessons.forEach(l => { %>
+      <li class="p-4 bg-white rounded shadow-sm flex justify-between items-center">
+        <div class="flex flex-col gap-1">
+          <div class="flex flex-wrap items-center gap-3">
+            <span class="text-sm <%= l.completed ? 'text-green-600' : 'text-gray-400' %>"><%= l.completed ? 'مكتمل' : 'قيد التقدم' %></span>
+            <span class="font-medium"><%= l.title %></span>
+            <span class="text-xs text-gray-500">(<%= l.duration %>)</span>
+          </div>
+          <div class="flex gap-2 mt-1">
+            <% if(l.category){ %>
+              <span class="px-2 py-0.5 bg-musanid-dark text-white rounded text-2xs text-[10px]"><%= l.category %></span>
+            <% } %>
+            <% if(l.level){ %>
+              <span class="px-2 py-0.5 bg-musanid-light text-white rounded text-2xs text-[10px]"><%= l.level === 'beginner' ? 'مبتدئ' : (l.level==='intermediate'?'متوسط':'متقدم') %></span>
+            <% } %>
+          </div>
+        </div>
+        <a href="/course/<%= l.slug %>" class="btn-primary text-sm">فتح</a>
+      </li>
+    <% }) %>
+  </ul>
+<% } %>

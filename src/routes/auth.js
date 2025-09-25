@@ -6,11 +6,11 @@ const router = express.Router();
 
 // صفحات الواجهة
 router.get('/login', (req, res) => {
-  res.sendFile(path.join(__dirname, '../../public/auth/login.html'));
+  res.render('auth/login', { title: 'تسجيل الدخول' });
 });
 
 router.get('/register', (req, res) => {
-  res.sendFile(path.join(__dirname, '../../public/auth/register.html'));
+  res.render('auth/register', { title: 'حساب جديد' });
 });
 
 // إنشاء جدول المستخدمين إن لم يكن موجوداً
@@ -34,6 +34,16 @@ router.post('/register', async (req, res) => {
     const { firstName, lastName, username, email, password } = req.body;
     if (!firstName || !lastName || !username || !email || !password) {
       return res.status(400).send('بيانات ناقصة');
+    }
+    // فحص قوة كلمة المرور
+    const issues = [];
+    if (password.length < 8) issues.push('يجب أن تكون 8 أحرف على الأقل');
+    if (!/[A-Z]/.test(password)) issues.push('حرف كبير واحد على الأقل (A-Z)');
+    if (!/[a-z]/.test(password)) issues.push('حرف صغير واحد على الأقل (a-z)');
+    if (!/[0-9]/.test(password)) issues.push('رقم واحد على الأقل');
+    if (!/[^A-Za-z0-9]/.test(password)) issues.push('رمز خاص واحد على الأقل');
+    if (issues.length) {
+      return res.status(400).send('كلمة المرور ضعيفة: ' + issues.join('، '));
     }
     const hashed = await bcrypt.hash(password, 10);
     await db.query(
