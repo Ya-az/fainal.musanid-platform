@@ -20,8 +20,13 @@ const mapping = {
   '/support/sp_index.html': '/support',
   '/support/index.html': '/support',
   '/course/cr_index.html': '/course',
+  '/course/index.html': '/course',
   '/certificate/ct_index.html': '/certificate',
-  '/dashboard/db_index.html': '/dashboard'
+  '/certificate/index.html': '/certificate',
+  '/dashboard/db_index.html': '/dashboard',
+  '/dashboard/index.html': '/dashboard',
+  '/auth/login.html': '/auth/login',
+  '/auth/register.html': '/auth/register'
 };
 
 async function checkOne(path, expected) {

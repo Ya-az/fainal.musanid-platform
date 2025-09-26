@@ -1,0 +1,57 @@
+<%- include('../layout', { title: 'المفضلة' }) %>
+
+<div class="container mx-auto py-8 px-4">
+  <h1 class="text-3xl font-bold mb-8 text-center">دروسي المفضلة</h1>
+  
+  <% if (favorites && favorites.length > 0) { %>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <% favorites.forEach(lesson => { %>
+        <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+          <div class="p-5">
+            <h3 class="text-xl font-semibold mb-2 text-gray-900"><%= lesson.title %></h3>
+            <p class="text-sm text-gray-600 mb-4"><%= lesson.description %></p>
+            
+            <div class="flex justify-between items-center">
+              <div class="flex items-center space-x-2 rtl:space-x-reverse">
+                <span class="px-2 py-1 bg-gray-100 text-xs font-medium rounded-full"><%= lesson.category %></span>
+                <span class="px-2 py-1 bg-gray-100 text-xs font-medium rounded-full"><%= lesson.level %></span>
+              </div>
+              <div class="text-sm text-gray-500">
+                <span><%= lesson.durationMinutes %> دقيقة</span>
+              </div>
+            </div>
+            
+            <div class="flex justify-between items-center mt-4">
+              <a href="/course/<%= lesson.slug %>" class="btn-primary">عرض الدرس</a>
+              <button 
+                data-slug="<%= lesson.slug %>" 
+                data-id="<%= lesson.id %>" 
+                class="favorite-btn is-favorite flex items-center justify-center p-2 rounded-md text-red-500 hover:bg-gray-100 transition-colors"
+                title="إزالة من المفضلة">
+                <span class="favorite-icon">
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                  </svg>
+                </span>
+                <span class="favorite-text sr-only">إزالة من المفضلة</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  <% } else { %>
+    <div class="text-center py-10">
+      <div class="mb-4">
+        <svg class="w-16 h-16 text-gray-400 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+        </svg>
+      </div>
+      <h3 class="text-xl font-medium text-gray-900 mb-2">لا توجد دروس مفضلة</h3>
+      <p class="text-gray-500 mb-6">أضف الدروس التي تهتم بها إلى المفضلة لعرضها هنا</p>
+      <a href="/course" class="btn-primary">استعراض الدروس</a>
+    </div>
+  <% } %>
+</div>
+
+<script src="/js/favorites-page.js" defer></script>

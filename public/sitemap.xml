@@ -1,12 +1,80 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://your-domain.example.com/</loc></url>
-  <url><loc>https://your-domain.example.com/faq</loc></url>
-  <url><loc>https://your-domain.example.com/about</loc></url>
-  <url><loc>https://your-domain.example.com/support</loc></url>
-  <url><loc>https://your-domain.example.com/auth/login</loc></url>
-  <url><loc>https://your-domain.example.com/auth/register</loc></url>
-  <url><loc>https://your-domain.example.com/dashboard</loc></url>
-  <url><loc>https://your-domain.example.com/course</loc></url>
-  <url><loc>https://your-domain.example.com/certificate</loc></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+  <!-- الصفحات الرئيسية -->
+  <url>
+    <loc>https://musanid.com/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <lastmod>2025-09-25T12:00:00+03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://musanid.com/faq</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2025-09-20T12:00:00+03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://musanid.com/about</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2025-09-18T12:00:00+03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://musanid.com/support</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2025-09-15T12:00:00+03:00</lastmod>
+  </url>
+
+  <!-- صفحات المصادقة -->
+  <url>
+    <loc>https://musanid.com/auth/login</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <lastmod>2025-09-10T12:00:00+03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://musanid.com/auth/register</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <lastmod>2025-09-10T12:00:00+03:00</lastmod>
+  </url>
+
+  <!-- صفحات الدورات والمنصة -->
+  <url>
+    <loc>https://musanid.com/course</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+    <lastmod>2025-09-26T10:00:00+03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://musanid.com/dashboard</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2025-09-25T12:00:00+03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://musanid.com/certificate</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2025-09-22T12:00:00+03:00</lastmod>
+  </url>
+
+  <url>
+    <loc>https://musanid.com/favorites</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2025-09-26T12:00:00+03:00</lastmod>
+  </url>
 </urlset>

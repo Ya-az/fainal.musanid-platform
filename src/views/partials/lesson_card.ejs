@@ -11,5 +11,17 @@
     <% if(typeof toggle !== 'undefined' && toggle){ %>
       <button data-slug="<%= lesson.slug %>" data-completed="<%= !!lesson.completed %>" class="toggleLesson btn-secondary text-xs"><%= lesson.completed ? 'إلغاء' : 'اكتمال' %></button>
     <% } %>
+    <button 
+      data-slug="<%= lesson.slug %>" 
+      data-id="<%= lesson.id %>" 
+      class="favorite-btn flex items-center justify-center p-1 rounded-md text-gray-600 hover:text-primary-500 hover:bg-gray-100 transition-colors"
+      title="إضافة إلى المفضلة">
+      <span class="favorite-icon">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+        </svg>
+      </span>
+      <span class="favorite-text sr-only">إضافة إلى المفضلة</span>
+    </button>
   </div>
 </div>

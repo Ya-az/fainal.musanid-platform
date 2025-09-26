@@ -1,22 +1,35 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" class="theme-light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title><%= (title ? (title + ' - ') : '') %><%= appName %></title>
   <meta name="description" content="منصة مساند للتعلم" />
   <meta name="csrf-token" content="<%= csrfToken %>">
+  <meta name="theme-color" content="#1E3A8A" />
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="icon" href="/img/icons/logo.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/img/icons/icon-192x192.png" />
   <link rel="stylesheet" href="/css/styles.css" />
   <!-- تم تعليق CDN بعد الانتقال لبناء Tailwind محلي -->
   <!-- <script src="https://cdn.tailwindcss.com"></script> -->
   <!-- <script>tailwind.config = { theme: { extend: { colors: { 'musanid-dark':'#1E3A8A','musanid-light':'#38BDF8' }, fontFamily:{ 'tajawal':['Tajawal','sans-serif'],'cairo':['Cairo','sans-serif'] } } } };</script> -->
 </head>
-<body class="bg-gray-50 min-h-screen flex flex-col">
+<body class="bg-gray-50 dark:bg-dark-bg min-h-screen flex flex-col transition-colors duration-200">
   <%- include('partials/navbar') %>
   <main id="mainContent" class="flex-1 container mx-auto px-4 py-8">
     <%- body %>
   </main>
   <div id="toastHolder" class="fixed bottom-4 right-4 flex flex-col gap-2 z-50"></div>
+  <div id="notification-container" class="fixed bottom-4 start-4 z-50 flex flex-col"></div>
+  <button id="darkModeToggle" class="fixed top-4 left-4 text-gray-700 dark:text-gray-300 rounded-full p-2 z-40 bg-white dark:bg-dark-card shadow-md" aria-label="تبديل الوضع المظلم">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 sun-icon" viewBox="0 0 20 20" fill="currentColor">
+      <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd" />
+    </svg>
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 moon-icon hidden" viewBox="0 0 20 20" fill="currentColor">
+      <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
+    </svg>
+  </button>
   <%- include('partials/footer') %>
   <script src="/js/app.js" defer></script>
 </body>

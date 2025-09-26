@@ -2,9 +2,10 @@ const bcrypt = require('bcryptjs');
 const db = require('../config/database');
 
 async function seed() {
-  const username = 'yazeed';
-  const email = 'yazeed@example.com';
-  const password = 'yaz1122()';
+  // Demo user for local testing only — update or remove before production
+  const username = 'demo';
+  const email = 'demo@example.com';
+  const password = 'DemoUser1122()';
   const hashed = await bcrypt.hash(password, 10);
   await db.query(`CREATE TABLE IF NOT EXISTS users (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -22,8 +23,8 @@ async function seed() {
     process.exit(0);
   }
   await db.query('INSERT INTO users (firstName, lastName, username, email, password) VALUES (?, ?, ?, ?, ?)',
-    ['Yazeed', 'User', username, email, hashed]);
-  console.log('Seeded user yazeed with provided password.');
+    ['Demo', 'User', username, email, hashed]);
+  console.log('Seeded demo user with provided password.');
   process.exit(0);
 }
 

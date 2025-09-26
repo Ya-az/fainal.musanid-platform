@@ -14,7 +14,7 @@
 <section class="bg-white rounded-lg shadow-sm p-6 mb-8">
   <h2 class="text-2xl font-bold text-musanid-dark mb-4">تقدمك في التعلم</h2>
   <div class="w-full bg-gray-200 rounded-full h-4 mb-4">
-  <div class="bg-musanid-light h-4 rounded-full" data-progress="<%= progressPercent || 0 %>" id="progressBar" style="width:0" aria-label="نسبة التقدم" role="progressbar" aria-valuenow="<%= progressPercent || 0 %>" aria-valuemin="0" aria-valuemax="100"></div>
+  <div class="bg-musanid-light h-4 rounded-full w-0" data-progress="<%= progressPercent || 0 %>" id="progressBar" aria-label="نسبة التقدم" role="progressbar" aria-valuenow="<%= progressPercent || 0 %>" aria-valuemin="0" aria-valuemax="100"></div>
   </div>
   <p class="text-gray-600">أكملت <span id="completedLessons"><%= completedLessons || 0 %></span> من أصل <span id="totalLessons"><%= totalLessons || 0 %></span> درس</p>
 </section>

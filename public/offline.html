@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>أنت غير متصل - منصة مساند</title>
+  <meta name="theme-color" content="#1E3A8A" />
+  <link rel="stylesheet" href="/css/styles.css" />
+  <link rel="icon" href="/img/icons/logo.svg" type="image/svg+xml" />
+  <style>
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+    .animate-pulse { animation: pulse 2s infinite; }
+  </style>
+</head>
+<body class="min-h-screen bg-gray-50 dark:bg-dark-bg text-center flex items-center justify-center p-6">
+  <div class="max-w-md w-full bg-white dark:bg-dark-card rounded-lg shadow p-6">
+    <div class="text-amber-500 mb-4">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mx-auto animate-pulse" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M8.257 3.099c.366-.756 1.42-.756 1.786 0l7.021 14.501A1 1 0 0116.154 19H3.846a1 1 0 01-.91-1.4L8.257 3.1zM11 14a1 1 0 10-2 0 1 1 0 002 0zm-1-7a1 1 0 00-1 1v3a1 1 0 002 0V8a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
+    </div>
+    <h1 class="text-2xl font-bold mb-2">أنت غير متصل</h1>
+    <p class="text-gray-600 dark:text-gray-300 mb-4">حاول إعادة الاتصال بالإنترنت. لا تقلق، سنحفظ الصفحات لتعمل بدون اتصال لاحقاً.</p>
+    
+    <div class="mb-6 text-sm text-gray-500 dark:text-gray-400">
+      <p>المحتويات المتاحة بدون اتصال:</p>
+      <ul class="mt-2 list-disc list-inside">
+        <li>الصفحة الرئيسية</li>
+        <li>ملفات CSS والجافاسكربت الأساسية</li>
+        <li>صفحات تم زيارتها سابقاً</li>
+      </ul>
+    </div>
+    
+    <div class="flex flex-col gap-2 sm:flex-row sm:gap-4 justify-center">
+      <a href="/" class="btn-primary inline-block">العودة للرئيسية</a>
+      <button id="refreshBtn" class="btn-secondary inline-block">إعادة المحاولة</button>
+    </div>
+    
+    <div id="connectionStatus" class="mt-4 text-sm hidden">
+      <p class="text-green-500">تم استعادة الاتصال! جاري إعادة التوجيه...</p>
+    </div>
+  </div>
+
+  <script>
+    // سكربت بسيط للتحقق من حالة الاتصال
+    document.getElementById('refreshBtn').addEventListener('click', function() {
+      const statusEl = document.getElementById('connectionStatus');
+      statusEl.innerHTML = '<p class="text-blue-500">جاري التحقق من الاتصال...</p>';
+      statusEl.classList.remove('hidden');
+      
+      fetch('/', { method: 'HEAD' })
+        .then(function() {
+          statusEl.innerHTML = '<p class="text-green-500">تم استعادة الاتصال! جاري إعادة التوجيه...</p>';
+          setTimeout(function() {
+            window.location.reload();
+          }, 1000);
+        })
+        .catch(function() {
+          statusEl.innerHTML = '<p class="text-red-500">لا يزال الاتصال مفقوداً. حاول مجدداً لاحقاً.</p>';
+        });
+    });
+  </script>
+</body>
+</html>

@@ -3,7 +3,7 @@
   "env": {
     "es2021": true,
     "node": true,
-    "browser": false
+    "browser": true
   },
   "extends": [
     "eslint:recommended",
@@ -16,7 +16,21 @@
   },
   "rules": {
     "no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }],
-    "no-console": ["off"],
-    "import/no-unresolved": "off"
-  }
+    "no-console": ["warn", { "allow": ["error", "warn", "info"] }],
+    "import/no-unresolved": "off",
+    "prefer-const": "warn",
+    "no-var": "warn",
+    "eqeqeq": ["warn", "always"],
+    "curly": ["warn", "multi-line"],
+    "comma-dangle": ["warn", "never"]
+  },
+  "overrides": [
+    {
+      "files": ["public/js/*.js"],
+      "env": {
+        "browser": true,
+        "node": false
+      }
+    }
+  ]
 }

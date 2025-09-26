@@ -30,190 +30,146 @@
       menu.classList.add('hidden');
     });
   }
+  
+  // تهيئة الوضع المظلم
+  function initDarkMode() {
+    const darkModeToggle = qs('#darkModeToggle');
+    const htmlElement = document.documentElement;
+    
+    // فحص التفضيل المحفوظ مسبقًا
+    const savedDarkMode = localStorage.getItem('darkMode');
+    if (savedDarkMode === 'dark') {
+      htmlElement.classList.add('dark');
+    } else {
+      htmlElement.classList.remove('dark');
+    }
+    
+    // تهيئة زر التبديل
+    if (darkModeToggle) {
+      darkModeToggle.addEventListener('click', () => {
+        // تبديل الوضع
+        if (htmlElement.classList.contains('dark')) {
+          htmlElement.classList.remove('dark');
+          localStorage.setItem('darkMode', 'light');
+        } else {
+          htmlElement.classList.add('dark');
+          localStorage.setItem('darkMode', 'dark');
+        }
+      });
+    }
+    
+    // فحص تفضيل النظام (إذا لم يتم تعيين تفضيل)
+    if (!savedDarkMode) {
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (prefersDark) {
+        htmlElement.classList.add('dark');
+        localStorage.setItem('darkMode', 'dark');
+      }
+    }
+  }
 
-  // Dashboard Progress + Lessons toggle
-  async function fetchProgress(updateLessons){
-    const progressBar = qs('#progressBar');
-    const completedEl = qs('#completedLessons');
-    const totalEl = qs('#totalLessons');
-    if(!progressBar) return; // ليس في لوحة التحكم
-    try {
-      const url = '/api/progress' + (updateLessons ? '?include=lessons' : '');
-      const r = await fetch(url, { headers: { 'Accept':'application/json' }});
+  // Favorites: تحميل الحالة وتحديث الشارة وتبديل الأزرار
+  async function initFavoritesUI(){
+    const favBtns = qsa('.favorite-btn');
+    const badge = qs('.favorites-count');
+    // إن لم توجد أزرار ولا شارة، لا نعمل شيء
+    if(!favBtns.length && !badge) return;
+    try{
+      const r = await fetch('/api/favorites', { headers: { 'Accept':'application/json' }, credentials: 'same-origin' });
+      if(r.status === 401) return; // غير مسجل دخول
       if(!r.ok) return;
       const data = await r.json();
-      const { percent=0, completed=0, total=0 } = data;
-      progressBar.setAttribute('aria-valuenow', percent);
-      requestAnimationFrame(()=> progressBar.style.width = percent + '%');
-      if(completedEl) completedEl.textContent = completed;
-      if(totalEl) totalEl.textContent = total;
-      if(updateLessons && data.lessons){ rebuildLessons(data.lessons); }
-    } catch(e){ /* تجاهل */ }
-  }
-
-  function rebuildLessons(lessons){
-    const list = qs('#lessonsList');
-    if(!list) return;
-    list.innerHTML = '';
-    if(!lessons.length){ list.innerHTML = '<p class="text-sm text-gray-500">لا يوجد دروس حالياً.</p>'; return; }
-    lessons.forEach(l => {
-      const wrapper = document.createElement('div');
-      wrapper.innerHTML = `<div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">\n        <div class=\"flex items-center\">\n          <span class=\"${l.completed ? 'text-green-500' : 'text-gray-400'} ml-2\">${l.completed ? '✅' : '⌛'}<\/span>\n          <div>\n            <h3 class=\"font-bold text-gray-900\">${l.title}<\/h3>\n            <p class=\"text-sm text-gray-600\">المدة: ${l.durationMinutes} دقيقة<\/p>\n          </div>\n        </div>\n        <div class=\"flex gap-2\">\n          <a href=\"/course/${l.slug}\" class=\"btn-primary text-sm\">فتح<\/a>\n          <button data-slug=\"${l.slug}\" data-completed=\"${l.completed}\" class=\"toggleLesson btn-secondary text-sm\">${l.completed? 'إلغاء' : 'اكتمال'}<\/button>\n        </div>\n      </div>`;
-      list.appendChild(wrapper.firstChild);
-    });
-  }
-
-  async function toggleLesson(slug, completed){
-    try {
-      const method = completed ? 'DELETE' : 'POST';
-      const r = await fetch('/api/progress/' + slug, { method, headers: { 'CSRF-Token': getCsrf() }});
-      if(r.ok){
-        const data = await r.json();
-        showToast(data.message || 'تم');
-        fetchProgress(true);
-      } else {
-        showToast('فشل التحديث', true);
+      // تحديث الشارة
+      if(badge){
+        const c = data.count || 0;
+        badge.textContent = c;
+        badge.classList.toggle('hidden', c === 0);
       }
-    } catch { showToast('تعذر الاتصال', true); }
-  }
-
-  function initDashboard(){
-    if(!qs('#progressBar')) return; // ليس في لوحة التحكم
-    // تشغيل بداية الحركة للقيمة المخزنة في data-progress (محقونة من السيرفر)
-    const bar = qs('#progressBar');
-    const initial = parseFloat(bar.getAttribute('data-progress')) || 0;
-    requestAnimationFrame(()=> bar.style.width = initial + '%');
-    document.addEventListener('click', (e)=>{
-      const btn = e.target.closest('.toggleLesson');
-      if(!btn) return;
-      const slug = btn.getAttribute('data-slug');
-      const completed = btn.getAttribute('data-completed') === 'true';
-      btn.disabled = true; btn.textContent = '...';
-      toggleLesson(slug, completed).finally(()=> btn.disabled = false);
-    });
-  }
-
-  // Lesson page logic
-  async function refreshGlobalProgress(){
-    const bar = qs('#globalProgressBar');
-    if(!bar) return; // ليس صفحة درس
-    try {
-      const r = await fetch('/api/progress', { headers: { 'Accept':'application/json' }});
-      if(!r.ok) return; const data = await r.json();
-      const { percent=0, completed=0, total=0 } = data;
-      requestAnimationFrame(()=> bar.style.width = percent + '%');
-      const txt = qs('#globalProgressText');
-      if(txt) txt.textContent = `أكملت ${completed} من ${total} ( ${percent}% )`;
-    } catch{ /* */ }
-  }
-
-  function initLessonPage(){
-    const btn = qs('#toggleCompleteBtn');
-    if(!btn) return;
-    refreshGlobalProgress();
-    btn.addEventListener('click', async function(){
-      const completed = this.getAttribute('data-completed') === 'true';
-      this.disabled = true; const old = this.textContent; this.textContent = '...';
-      const slug = this.getAttribute('data-slug') || window.location.pathname.split('/').pop();
-      try {
-        const method = completed ? 'DELETE' : 'POST';
-        const r = await fetch('/api/progress/' + slug, { method, headers: { 'CSRF-Token': getCsrf() }});
-        if(r.ok){
-          const data = await r.json();
-            showToast(data.message || 'تم');
-            this.setAttribute('data-completed', (!completed).toString());
-            this.textContent = completed ? 'تعليم كمكتمل' : 'إلغاء إكمال';
-            refreshGlobalProgress();
-        } else {
-          showToast('تعذر تحديث التقدم', true); this.textContent = old;
+      const favSet = new Set(data.ids || []);
+      // تحديث أزرار المفضلة وفق ids
+      favBtns.forEach(btn=>{
+        const id = parseInt(btn.getAttribute('data-id'), 10);
+        if(id && favSet.has(id)){
+          btn.classList.add('is-favorite');
+          const icon = btn.querySelector('.favorite-icon');
+          if(icon){ icon.innerHTML = '<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>'; }
+          const text = btn.querySelector('.favorite-text');
+          if(text) text.textContent = 'إزالة من المفضلة';
         }
-      } catch { showToast('تعذر الاتصال', true); this.textContent = old; }
-      this.disabled = false;
+      });
+    } catch {}
+
+    // تفويض حدث النقر للتبديل
+    document.addEventListener('click', async (e)=>{
+      const btn = e.target.closest('.favorite-btn');
+      if(!btn) return;
+      e.preventDefault();
+      const slug = btn.getAttribute('data-slug');
+      if(!slug) return;
+      const isFav = btn.classList.contains('is-favorite');
+      const method = isFav ? 'DELETE' : 'POST';
+      btn.classList.add('loading');
+      btn.setAttribute('disabled','true');
+      try{
+        const r = await fetch('/api/favorites/' + slug, { method, headers: { 'CSRF-Token': getCsrf(), 'Accept':'application/json' }, credentials: 'same-origin' });
+        const data = await r.json().catch(()=>({}));
+        if(r.ok){
+          btn.classList.toggle('is-favorite');
+          const delta = isFav ? -1 : 1;
+          const b = qs('.favorites-count');
+          if(b){
+            const current = parseInt(b.textContent||'0',10) || 0;
+            const next = Math.max(0, current + delta);
+            b.textContent = next; b.classList.toggle('hidden', next===0);
+          }
+          const icon = btn.querySelector('.favorite-icon');
+          if(icon){ icon.innerHTML = isFav
+            ? '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>'
+            : '<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>';
+          }
+          const text = btn.querySelector('.favorite-text');
+          if(text) text.textContent = isFav ? 'إضافة إلى المفضلة' : 'إزالة من المفضلة';
+          showToast(data.message || 'تم');
+        } else {
+          showToast(data.message || 'حدث خطأ أثناء تحديث المفضلة', true);
+        }
+      } catch { showToast('خطأ اتصال', true); }
+      finally{ btn.classList.remove('loading'); btn.removeAttribute('disabled'); }
     });
   }
-
-  // Password strength helper (client side optional)
-  function initPasswordStrength(){
-    // تسجيل: name="password"
-    const regPwd = qs('form input[name="password"]');
-    const regMeter = qs('#passwordStrength');
-    if(regPwd && regMeter){
-      regPwd.addEventListener('input', ()=>{ regMeter.value = passwordScore(regPwd.value||''); });
-    }
-    // الإعدادات: name="newPassword" في نموذج تغيير كلمة المرور
-    const newPwd = qs('form input[name="newPassword"]');
-    if(newPwd && regMeter){
-      newPwd.addEventListener('input', ()=>{ regMeter.value = passwordScore(newPwd.value||''); });
-    }
-  }
-
-  function passwordScore(p){
-    let s = 0; if(p.length >= 8) s++; if(/[A-Z]/.test(p)) s++; if(/[a-z]/.test(p)) s++; if(/[0-9]/.test(p)) s++; if(/[^A-Za-z0-9]/.test(p)) s++; return s; }
-
+  
   function init(){
     initMobileMenu();
-    initDashboard();
-    initLessonPage();
-    initPasswordStrength();
-    initSettingsForms();
-    initSupportForm();
+    initDarkMode();
+    initFavoritesUI();
+    // تسجيل Service Worker مع معالجة أفضل
+    if('serviceWorker' in navigator){
+      window.addEventListener('load', ()=>{
+        navigator.serviceWorker.register('/sw.js')
+          .then(reg => {
+            console.log('Service Worker مسجل بنجاح مع النطاق: ', reg.scope);
+            
+            // التعامل مع تحديثات الخدمة
+            reg.addEventListener('updatefound', () => {
+              const newWorker = reg.installing;
+              newWorker.addEventListener('statechange', () => {
+                if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                  // توجد نسخة جديدة جاهزة للاستخدام - إظهار إشعار للمستخدم
+                  showToast('توجد نسخة جديدة من التطبيق متاحة! أعد تحميل الصفحة للتحديث.', false);
+                }
+              });
+            });
+          })
+          .catch(error => {
+            console.error('فشل تسجيل Service Worker: ', error);
+          });
+        
+        // التحقق من حالة الاتصال وتوفير تجربة offline أفضل
+        window.addEventListener('online', () => showToast('تم استعادة الاتصال بالإنترنت.', false));
+        window.addEventListener('offline', () => showToast('أنت الآن غير متصل بالإنترنت. بعض الوظائف قد لا تعمل.', true));
+      });
+    }
   }
 
   document.addEventListener('DOMContentLoaded', init);
-
-  // إعداد نماذج الإعدادات (بروفايل + كلمة مرور) AJAX
-  function initSettingsForms(){
-    const profileForm = document.querySelector('form[action="/settings/profile"]');
-    if(profileForm){
-      profileForm.addEventListener('submit', async (e)=>{
-        e.preventDefault();
-        const btn = profileForm.querySelector('button[type="submit"], button:not([type])') || profileForm.querySelector('button');
-        if(btn){ btn.disabled = true; var old = btn.textContent; btn.textContent = '...'; }
-        const fd = new FormData(profileForm);
-        try {
-          const r = await fetch('/settings/profile', { method:'POST', headers: { 'CSRF-Token': getCsrf() }, body: fd });
-          const ok = r.ok;
-          let msg = 'تم';
-          if(ok){ const data = await r.json().catch(()=>({message:'تم'})); msg = data.message || msg; }
-          else { msg = 'فشل تحديث الملف'; }
-          showToast(msg, !ok);
-        } catch { showToast('خطأ اتصال', true); }
-        if(btn){ btn.disabled = false; btn.textContent = old; }
-      });
-    }
-    const pwdForm = document.querySelector('form[action="/settings/password"]');
-    if(pwdForm){
-      pwdForm.addEventListener('submit', async (e)=>{
-        e.preventDefault();
-        const btn = pwdForm.querySelector('[data-password-change]');
-        if(btn){ btn.disabled = true; var oldT = btn.textContent; btn.textContent = '...'; }
-        const fd = new FormData(pwdForm);
-        try {
-          const r = await fetch('/settings/password', { method:'POST', headers: { 'CSRF-Token': getCsrf() }, body: fd });
-          const resp = await r.json().catch(()=>({message:'تم'}));
-          showToast(resp.message || 'تم', !r.ok);
-          if(r.ok){ pwdForm.reset(); }
-        } catch { showToast('خطأ اتصال', true); }
-        if(btn){ btn.disabled = false; btn.textContent = oldT; }
-      });
-    }
-  }
-
-  function initSupportForm(){
-    const form = document.getElementById('supportForm');
-    if(!form) return;
-    form.addEventListener('submit', async (e)=>{
-      e.preventDefault();
-      const btn = form.querySelector('[data-support-submit]');
-      if(btn){ btn.disabled = true; var old = btn.textContent; btn.textContent = '...'; }
-      const fd = new FormData(form);
-      try {
-        const r = await fetch('/support', { method:'POST', headers: { 'CSRF-Token': getCsrf() }, body: fd });
-        const data = await r.json().catch(()=>({message:'تم'}));
-        showToast(data.message || 'تم', !r.ok);
-        if(r.ok) form.reset();
-      } catch { showToast('خطأ اتصال', true); }
-      if(btn){ btn.disabled = false; btn.textContent = old; }
-    });
-  }
 })();

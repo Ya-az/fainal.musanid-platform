@@ -30,9 +30,10 @@ app.use(helmet.contentSecurityPolicy({
     useDefaults: true,
     directives: {
         "default-src": ["'self'"],
-        "script-src": ["'self'"],
-        "style-src": ["'self'", 'https:'],
-        "img-src": ["'self'", 'data:'],
+    // بعد نقل السكربتات إلى ملفات خارجية، نحذف 'unsafe-inline'
+    "script-src": ["'self'"],
+    "style-src": ["'self'", 'https:'],
+    "img-src": ["'self'", 'data:', 'https:'],
         "object-src": ["'none'"],
         "base-uri": ["'self'"],
         "frame-ancestors": ["'self'"],
@@ -131,8 +132,13 @@ const legacyRedirects = {
     '/support/sp_index.html': '/support',
     '/support/index.html': '/support',
     '/course/cr_index.html': '/course',
+    '/course/index.html': '/course',
     '/certificate/ct_index.html': '/certificate',
+    '/certificate/index.html': '/certificate',
     '/dashboard/db_index.html': '/dashboard'
+    ,'/dashboard/index.html': '/dashboard'
+    ,'/auth/login.html': '/auth/login'
+    ,'/auth/register.html': '/auth/register'
 };
 app.use((req, res, next) => {
     const to = legacyRedirects[req.path.toLowerCase()];
@@ -156,6 +162,7 @@ app.use('/course', require('./routes/course'));
 app.use('/certificate', require('./routes/certificate'));
 app.use('/support', require('./routes/support'));
 app.use('/settings', require('./routes/settings'));
+app.use('/favorites', require('./routes/favorites'));
 app.use('/api', require('./routes/api'));
 
 // 404 Not Found

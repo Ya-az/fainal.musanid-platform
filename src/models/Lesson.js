@@ -1,5 +1,16 @@
+/**
+ * @fileoverview نموذج الدروس - يتعامل مع البيانات المتعلقة بالدروس التعليمية
+ * @module models/Lesson
+ */
+
 const db = require('../config/database');
 
+/**
+ * التأكد من وجود جدول الدروس في قاعدة البيانات وأنه محدث بآخر الأعمدة
+ * @async
+ * @function ensureLessonsTable
+ * @returns {Promise<void>}
+ */
 async function ensureLessonsTable() {
   await db.query(`CREATE TABLE IF NOT EXISTS lessons (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -26,6 +37,12 @@ async function ensureLessonsTable() {
   }
 }
 
+/**
+ * الحصول على جميع الدروس المتاحة
+ * @async
+ * @function getAllLessons
+ * @returns {Promise<Array>} قائمة بجميع الدروس
+ */
 async function getAllLessons() {
   await ensureLessonsTable();
   const [rows] = await db.query('SELECT * FROM lessons ORDER BY id ASC');

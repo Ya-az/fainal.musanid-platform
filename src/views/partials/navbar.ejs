@@ -7,6 +7,12 @@
         <a href="/dashboard" class="nav-link <%= currentPath.startsWith('/dashboard') ? 'font-extrabold text-musanid-light border-b-2 border-musanid-light px-2' : 'text-gray-600 hover:text-musanid-dark' %>">لوحة التحكم</a>
         <a href="/course" class="nav-link <%= currentPath.startsWith('/course') ? 'font-extrabold text-musanid-light border-b-2 border-musanid-light px-2' : 'text-gray-600 hover:text-musanid-dark' %>">الدورات</a>
         <a href="/certificate" class="nav-link <%= currentPath.startsWith('/certificate') ? 'font-extrabold text-musanid-light border-b-2 border-musanid-light px-2' : 'text-gray-600 hover:text-musanid-dark' %>">الشهادات</a>
+        <% if(user){ %>
+        <a href="/favorites" class="nav-link relative <%= currentPath.startsWith('/favorites') ? 'font-extrabold text-musanid-light border-b-2 border-musanid-light px-2' : 'text-gray-600 hover:text-musanid-dark' %>">
+          المفضلة
+          <span class="favorites-count hidden absolute -top-2 -left-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center"></span>
+        </a>
+        <% } %>
         <a href="/faq" class="nav-link <%= currentPath.startsWith('/faq') ? 'font-extrabold text-musanid-light border-b-2 border-musanid-light px-2' : 'text-gray-600 hover:text-musanid-dark' %>">الأسئلة الشائعة</a>
         <a href="/support" class="nav-link <%= currentPath.startsWith('/support') ? 'font-extrabold text-musanid-light border-b-2 border-musanid-light px-2' : 'text-gray-600 hover:text-musanid-dark' %>">الدعم الفني</a>
         <a href="/about" class="nav-link <%= currentPath.startsWith('/about') ? 'font-extrabold text-musanid-light border-b-2 border-musanid-light px-2' : 'text-gray-600 hover:text-musanid-dark' %>">عن مساند</a>
@@ -36,6 +42,12 @@
       <a href="/dashboard" class="nav-link <%= currentPath.startsWith('/dashboard') ? 'font-extrabold text-musanid-light' : 'text-gray-600 hover:text-musanid-dark' %>">لوحة التحكم</a>
       <a href="/course" class="nav-link <%= currentPath.startsWith('/course') ? 'font-extrabold text-musanid-light' : 'text-gray-600 hover:text-musanid-dark' %>">الدورات</a>
       <a href="/certificate" class="nav-link <%= currentPath.startsWith('/certificate') ? 'font-extrabold text-musanid-light' : 'text-gray-600 hover:text-musanid-dark' %>">الشهادات</a>
+      <% if(user){ %>
+      <a href="/favorites" class="nav-link flex items-center justify-between <%= currentPath.startsWith('/favorites') ? 'font-extrabold text-musanid-light' : 'text-gray-600 hover:text-musanid-dark' %>">
+        المفضلة
+        <span class="favorites-count hidden bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center"></span>
+      </a>
+      <% } %>
       <a href="/faq" class="nav-link <%= currentPath.startsWith('/faq') ? 'font-extrabold text-musanid-light' : 'text-gray-600 hover:text-musanid-dark' %>">الأسئلة الشائعة</a>
       <a href="/support" class="nav-link <%= currentPath.startsWith('/support') ? 'font-extrabold text-musanid-light' : 'text-gray-600 hover:text-musanid-dark' %>">الدعم الفني</a>
       <a href="/about" class="nav-link <%= currentPath.startsWith('/about') ? 'font-extrabold text-musanid-light' : 'text-gray-600 hover:text-musanid-dark' %>">عن مساند</a>

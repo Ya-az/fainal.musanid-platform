@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { getAllLessons } = require('../models/Lesson');
 const { getUserProgressMap, markLessonCompleted, unmarkLessonCompleted } = require('../models/Progress');
+const { getUserFavoritesMap, addFavorite, removeFavorite } = require('../models/Favorite');
 
 function requireAuth(req, res, next) {
   if (req.session && req.session.user) return next();
@@ -72,6 +73,103 @@ router.delete('/progress/:slug', requireAuth, async (req, res) => {
   } catch (e) {
     console.error(e);
     res.status(500).json({ message: 'خطأ أثناء تحديث التقدم' });
+  }
+});
+
+// GET /api/favorites  -> current user favorites
+router.get('/favorites', requireAuth, async (req, res) => {
+  try {
+    const lessons = await getAllLessons();
+    const favoritesMap = await getUserFavoritesMap(req.session.user.id);
+    
+    // إذا طلب المستخدم جلب الدروس المفضلة كاملة
+    if (req.query.include === 'lessons') {
+      const favoriteLessons = lessons
+        .filter(l => favoritesMap.has(l.id))
+        .map(l => ({ 
+          id: l.id, 
+          slug: l.slug, 
+          title: l.title, 
+          description: l.description,
+          category: l.category,
+          level: l.level,
+          durationMinutes: l.durationMinutes
+        }));
+        
+      return res.json({ 
+        count: favoriteLessons.length,
+        lessons: favoriteLessons
+      });
+    }
+    
+    // بخلاف ذلك، عودة مع الأيدي فقط
+    const favoriteIds = Array.from(favoritesMap);
+    res.json({ 
+      count: favoriteIds.length,
+      ids: favoriteIds
+    });
+  } catch (e) {
+    console.error(e);
+    res.status(500).json({ message: 'خطأ في جلب المفضلة' });
+  }
+});
+
+// POST /api/favorites/:slug  -> add lesson to favorites
+router.post('/favorites/:slug', requireAuth, async (req, res) => {
+  try {
+    const slug = req.params.slug;
+    const lessons = await getAllLessons();
+    const lesson = lessons.find(l => l.slug === slug);
+    
+    if (!lesson) {
+      return res.status(404).json({ message: 'الدرس غير موجود' });
+    }
+    
+    const favoritesMap = await getUserFavoritesMap(req.session.user.id);
+    const alreadyFavorite = favoritesMap.has(lesson.id);
+    
+    if (!alreadyFavorite) {
+      await addFavorite(req.session.user.id, lesson.id);
+    }
+    
+    res.json({ 
+      message: alreadyFavorite ? 'موجود بالفعل في المفضلة' : 'تمت الإضافة إلى المفضلة',
+      lesson: { 
+        id: lesson.id, 
+        slug: lesson.slug,
+        title: lesson.title
+      }
+    });
+  } catch (e) {
+    console.error(e);
+    res.status(500).json({ message: 'خطأ أثناء إضافة الدرس للمفضلة' });
+  }
+});
+
+// DELETE /api/favorites/:slug  -> remove lesson from favorites
+router.delete('/favorites/:slug', requireAuth, async (req, res) => {
+  try {
+    const slug = req.params.slug;
+    const lessons = await getAllLessons();
+    const lesson = lessons.find(l => l.slug === slug);
+    
+    if (!lesson) {
+      return res.status(404).json({ message: 'الدرس غير موجود' });
+    }
+    
+    await removeFavorite(req.session.user.id, lesson.id);
+    
+    res.json({ 
+      message: 'تمت إزالة الدرس من المفضلة',
+      lesson: { 
+        id: lesson.id, 
+        slug: lesson.slug,
+        title: lesson.title
+      }
+    });
+  } catch (e) {
+    console.error(e);
+    res.status(500).json({ message: 'خطأ أثناء إزالة الدرس من المفضلة' });
   }
 });
 

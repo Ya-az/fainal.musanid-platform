@@ -1,0 +1,187 @@
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* قواعد إضافية للوضع المظلم */
+html {
+  scroll-behavior: smooth;
+}
+
+.dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6 {
+  color: #f3f4f6; /* text-gray-100 */
+}
+
+.dark p, .dark li {
+  color: #d1d5db; /* text-gray-300 */
+}
+
+html.dark body {
+  background-color: #121826; /* dark-bg */
+  color: #e0e2e7; /* dark-text */
+}
+
+/* أيقونات الوضع المظلم/المضيء */
+html.dark .sun-icon {
+  display: none;
+}
+
+html.dark .moon-icon {
+  display: block;
+}
+
+html:not(.dark) .sun-icon {
+  display: block;
+}
+
+html:not(.dark) .moon-icon {
+  display: none;
+}
+
+/* التصميم العام */
+body {
+  font-family: 'Tajawal', sans-serif;
+  direction: rtl;
+  background-color: #f9fafb;
+}
+
+/* البطاقات */
+.card {
+  background-color: white;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+html.dark .card {
+  background-color: #1F2A40; /* dark-card */
+  border-color: #374151; /* border-gray-700 */
+}
+
+/* الأزرار */
+.btn-primary {
+  background-color: #1E3A8A; /* musanid-dark */
+  color: white;
+  border-radius: 0.25rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.btn-primary:hover {
+  background-color: rgba(30, 58, 138, 0.9); /* musanid-dark/90 */
+}
+
+.btn-secondary {
+  background-color: #f3f4f6; /* gray-100 */
+  color: #1f2937; /* gray-800 */
+  border-radius: 0.25rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.btn-secondary:hover {
+  background-color: #e5e7eb; /* gray-200 */
+}
+
+html.dark .btn-secondary {
+  background-color: #374151; /* gray-700 */
+  color: #e5e7eb; /* gray-200 */
+}
+
+html.dark .btn-secondary:hover {
+  background-color: #4b5563; /* gray-600 */
+}
+
+/* حقول الإدخال */
+.input-field {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid #d1d5db; /* border-gray-300 */
+  transition: all 0.2s;
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: #38BDF8; /* musanid-light */
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.3); /* musanid-light/30 */
+}
+
+html.dark .input-field {
+  background-color: #1F2A40; /* dark-card */
+  border-color: #4b5563; /* gray-600 */
+  color: #e0e2e7; /* dark-text */
+}
+
+/* روابط التنقل */
+.nav-link {
+  font-size: 0.875rem; /* text-sm */
+}
+
+/* تأثيرات الانتقال - من ملف transitions.css */
+.page-transition {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.page-transition.loaded {
+    opacity: 1;
+}
+
+/* تأثيرات التمرير */
+.fade-in-element {
+    opacity: 0;
+    transform: translateY(1rem);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in-element.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* تأثيرات الأزرار */
+.btn-hover-effect {
+    transition: transform 0.2s ease-in-out;
+}
+
+.btn-hover-effect:hover {
+    transform: translateY(-2px);
+}
+
+/* تأثيرات القوائم */
+.nav-link {
+    position: relative;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background-color: #1E3A8A;
+    transition: width 0.3s ease-in-out;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* تأثيرات البطاقات */
+.card-hover {
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.card-hover:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}

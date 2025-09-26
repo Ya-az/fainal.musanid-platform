@@ -1,141 +1,0 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>لوحة التحكم - مساند</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'musanid-dark': '#1E3A8A',
-                        'musanid-light': '#38BDF8',
-                    },
-                    fontFamily: {
-                        'tajawal': ['Tajawal', 'sans-serif'],
-                        'cairo': ['Cairo', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
-    <link href="../css/styles.css" rel="stylesheet">
-</head>
-<body class="bg-gray-50">
-    <nav class="bg-white shadow-sm w-full mb-8">
-        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
-            <div class="flex items-center gap-8">
-                <a href="../index.html" class="logo text-2xl text-musanid-dark font-cairo font-bold tracking-wide">مساند</a>
-                <div class="hidden md:flex gap-6">
-                    <!-- تمت إزالة جرس الإشعارات -->
-                    <a href="../index.html" class="nav-link text-gray-600 hover:text-musanid-dark transition">الرئيسية</a>
-                    <a href="index.html" class="nav-link font-extrabold text-musanid-light border-b-2 border-musanid-light px-2">لوحة التحكم</a>
-                    <a href="../course/index.html" class="nav-link text-gray-600 hover:text-musanid-dark transition">الدورات</a>
-                    <a href="../certificate/index.html" class="nav-link text-gray-600 hover:text-musanid-dark transition">الشهادات</a>
-                    <a href="../faq.html" class="nav-link text-gray-600 hover:text-musanid-dark transition">الأسئلة الشائعة</a>
-                    <a href="../support/index.html" class="nav-link text-gray-600 hover:text-musanid-dark transition">الدعم الفني</a>
-                    <a href="../about.html" class="nav-link text-gray-600 hover:text-musanid-dark transition">عن مساند</a>
-                </div>
-            </div>
-            <div class="md:hidden">
-                <button id="mobileMenuBtnDashboard" class="text-gray-600 hover:text-musanid-dark focus:outline-none">
-                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-                    </svg>
-                </button>
-            </div>
-        </div>
-        <!-- Mobile Menu -->
-        <div id="mobileMenuDashboard" class="hidden md:hidden px-4 pb-4">
-            <div class="flex flex-col gap-2 bg-white rounded-lg shadow-lg mt-2 p-4">
-                <a href="../index.html" class="nav-link text-gray-600 hover:text-musanid-dark">الرئيسية</a>
-                <a href="index.html" class="nav-link font-extrabold text-musanid-light border-b-2 border-musanid-light px-2">لوحة التحكم</a>
-                <a href="../course/index.html" class="nav-link text-gray-600 hover:text-musanid-dark">الدورات</a>
-                <a href="../certificate/index.html" class="nav-link text-gray-600 hover:text-musanid-dark">الشهادات</a>
-                <a href="../faq.html" class="nav-link text-gray-600 hover:text-musanid-dark">الأسئلة الشائعة</a>
-                <a href="../support/index.html" class="nav-link text-gray-600 hover:text-musanid-dark">الدعم الفني</a>
-                <a href="../about.html" class="nav-link text-gray-600 hover:text-musanid-dark">عن مساند</a>
-            </div>
-        </div>
-    </nav>
-    <script>
-        // Mobile menu toggle for dashboard page
-        (function() {
-            const mobileMenuBtnDashboard = document.getElementById('mobileMenuBtnDashboard');
-            const mobileMenuDashboard = document.getElementById('mobileMenuDashboard');
-            if(mobileMenuBtnDashboard && mobileMenuDashboard) {
-                mobileMenuBtnDashboard.addEventListener('click', () => {
-                    mobileMenuDashboard.classList.toggle('hidden');
-                });
-                document.addEventListener('click', (e) => {
-                    if (!mobileMenuBtnDashboard.contains(e.target) && !mobileMenuDashboard.contains(e.target)) {
-                        mobileMenuDashboard.classList.add('hidden');
-                    }
-                });
-            }
-        })();
-    </script>
-
-    <!-- Main Content -->
-    <main class="container mx-auto px-4 py-8">
-        <!-- Welcome Message & Notification -->
-        <section class="mb-8">
-            <div class="bg-musanid-light bg-opacity-10 border border-musanid-light rounded-lg p-6 flex flex-col md:flex-row items-center gap-4 shadow-sm fade-in-element">
-                <div class="flex-1">
-                    <h2 class="text-xl font-bold text-musanid-dark mb-2">مرحباً <span class="text-musanid-light" id="dashboardUser">اسم المستخدم</span> 👋</h2>
-                    <p class="text-gray-700">سعيدون بعودتك إلى منصة <span class="font-bold text-musanid-dark">مساند</span>! استمر في التعلم وحقق أهدافك خطوة بخطوة. إذا احتجت لأي مساعدة، فريقنا دائماً بجانبك.</p>
-                </div>
-                <div class="flex items-center gap-2">
-                    <span class="inline-block bg-musanid-dark text-white text-xs px-3 py-1 rounded">جديد</span>
-                    <span class="text-musanid-dark font-bold">تم إضافة دورات جديدة!</span>
-                </div>
-            </div>
-        </section>
-        <!-- Progress Section -->
-        <section class="bg-white rounded-lg shadow-sm p-6 mb-8">
-            <h2 class="text-2xl font-bold text-musanid-dark mb-4">تقدمك في التعلم</h2>
-            <div class="w-full bg-gray-200 rounded-full h-4 mb-4">
-                <div class="bg-musanid-light h-4 rounded-full" style="width: 25%" id="progressBar"></div>
-            </div>
-            <p class="text-gray-600">أكملت <span id="completedLessons">5</span> من أصل <span id="totalLessons">20</span> درس</p>
-        </section>
-
-        <!-- Lessons Section -->
-        <section class="bg-white rounded-lg shadow-sm p-6">
-            <h2 class="text-2xl font-bold text-musanid-dark mb-6">قائمة الدروس</h2>
-            <div class="space-y-4" id="lessonsList">
-                <!-- Lesson Item Template -->
-                <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
-                    <div class="flex items-center">
-                        <span class="text-green-500 ml-2">✅</span>
-                        <div>
-                            <h3 class="font-bold text-gray-900">مقدمة في البرمجة</h3>
-                            <p class="text-sm text-gray-600">المدة: 30 دقيقة</p>
-                        </div>
-                    </div>
-                    <a href="../course/index.html" class="btn-primary text-sm">مشاهدة الدرس</a>
-                </div>
-
-                <!-- Add more lessons here -->
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-gray-100 py-8">
-        <div class="container mx-auto px-4 text-center">
-            <p class="text-gray-600">&copy; 2025 مساند. جميع الحقوق محفوظة</p>
-        </div>
-    </footer>
-
-    <script>
-        // سيتم إضافة الوظائف الخاصة بالـ JavaScript لاحقاً
-        function logout() {
-            // تنفيذ عملية تسجيل الخروج
-            window.location.href = '../auth/login.html';
-        }
-    </script>
-</body>
-</html>
