@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منصة مساند - لتعليم أفضل بخطوات واضحة</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'musanid-dark': '#1E3A8A',
+                        'musanid-light': '#38BDF8',
+                    },
+                    fontFamily: {
+                        'tajawal': ['Tajawal', 'sans-serif'],
+                        'cairo': ['Cairo', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="css/styles.css" rel="stylesheet">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <nav class="site-nav">
+                <a href="index-standalone.html" class="site-brand">مساند</a>
+                <button class="site-nav__toggle" type="button" aria-label="فتح القائمة" data-nav-target="primaryNav">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="6" x2="21" y2="6" />
+                        <line x1="3" y1="12" x2="21" y2="12" />
+                        <line x1="3" y1="18" x2="21" y2="18" />
+                    </svg>
+                </button>
+                <div class="site-nav__links" id="primaryNav">
+                    <a href="index-standalone.html" class="site-nav__link is-active">الرئيسية</a>
+                    <a href="course/cr_index.html" class="site-nav__link">الدورات</a>
+                    <a href="faq.html" class="site-nav__link">الأسئلة الشائعة</a>
+                    <a href="support/sp_index.html" class="site-nav__link">الدعم الفني</a>
+                    <a href="about-musanid.html" class="site-nav__link">عن مساند</a>
+                </div>
+                <div class="site-nav__actions">
+                    <a href="auth/login.html" class="btn btn-secondary">تسجيل الدخول</a>
+                    <a href="course/cr_index.html" class="btn btn-primary">ابدأ التعلم</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <div class="hero__content">
+                    <span class="pill hero__pill">رحلة تعلم متكاملة</span>
+                    <h1 class="hero__headline">تعلم بمرونة مع منصة مساند الشاملة</h1>
+                    <p class="hero__subheadline">
+                        محتوى عربي عالي الجودة، خطط تعلم واضحة، وأدوات تفاعلية تساعدك على الانتقال من التعلم إلى التطبيق بثقة كاملة.
+                    </p>
+                    <div class="hero__actions">
+                        <a href="course/cr_index.html" class="btn btn-primary">استكشف الدورات</a>
+                        <a href="support/sp_index.html" class="btn btn-outline">احصل على استشارة</a>
+                    </div>
+                    <div class="hero__media card card--glass layout-stack">
+                        <h2 class="section__title" style="font-size:1.65rem;">تعرف على طريقة تعلمنا</h2>
+                        <p style="color:rgba(255,255,255,0.86);">استعراض سريع يوضح كيف نخطط رحلتك التعليمية من أول درس وحتى شهادة التخرج.</p>
+                        <a href="course/cr_index.html" class="btn btn-outline" style="align-self:center;">مشاهدة العرض التوضيحي</a>
+                    </div>
+                    <div class="hero__stats">
+                        <div class="hero__stat">
+                            <div class="hero__stat-value">500K+</div>
+                            <div class="hero__stat-label">متعلمين سعداء</div>
+                        </div>
+                        <div class="hero__stat">
+                            <div class="hero__stat-value">300+</div>
+                            <div class="hero__stat-label">دورة متخصصة</div>
+                        </div>
+                        <div class="hero__stat">
+                            <div class="hero__stat-value">150+</div>
+                            <div class="hero__stat-label">مدرب معتمد</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section--alt">
+            <div class="container">
+                <div class="section__header">
+                    <span class="section__eyebrow">مميزات مساند</span>
+                    <h2 class="section__title">كل ما تحتاجه لتتعلم بثقة وفاعلية</h2>
+                    <p class="section__subtitle">خمس ركائز تصميمنا التعليمي تمكّنك من الانطلاق بسرعة ومتابعة التقدم خطوة بخطوة.</p>
+                </div>
+                <div class="grid grid--columns-3">
+                    <article class="card card--feature">
+                        <div class="card__icon">🎯</div>
+                        <h3>مسارات واضحة</h3>
+                        <p class="text-muted">خطط تعلم موجهة تحدد لك الدروس والاختبارات والأنشطة العملية بالترتيب الأمثل.</p>
+                    </article>
+                    <article class="card card--feature">
+                        <div class="card__icon">🧠</div>
+                        <h3>تجربة تطبيقية</h3>
+                        <p class="text-muted">مشاريع حقيقية، ملفات عمل جاهزة، وتقييمات فورية تساعدك على تثبيت المعرفة.</p>
+                    </article>
+                    <article class="card card--feature">
+                        <div class="card__icon">🤝</div>
+                        <h3>مجتمع داعم</h3>
+                        <p class="text-muted">مجالس نقاش، جلسات مباشرة، وموجهون متخصصون للإجابة عن أي استفسار.</p>
+                    </article>
+                    <article class="card card--feature">
+                        <div class="card__icon">📊</div>
+                        <h3>لوحة تتبع متقدمة</h3>
+                        <p class="text-muted">اعرف مستوى تقدمك، الوقت المتبقي، والمهارات التي قمت بإتقانها في لمحة.</p>
+                    </article>
+                    <article class="card card--feature">
+                        <div class="card__icon">📚</div>
+                        <h3>مكتبة شاملة</h3>
+                        <p class="text-muted">مصادر إضافية، قوالب جاهزة، وأدلة عملية تعزز كل درس تقوم بدراسته.</p>
+                    </article>
+                    <article class="card card--feature">
+                        <div class="card__icon">✅</div>
+                        <h3>شهادات معتمدة</h3>
+                        <p class="text-muted">توثّق إنجازك بشهادات رقمية يمكن مشاركتها مع أصحاب العمل والمنصات المهنية.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container split">
+                <div class="card card--muted">
+                    <h2 class="section__title" style="font-size:1.85rem;">خطوات مسارك في مساند</h2>
+                    <div class="timeline layout-stack">
+                        <div class="timeline__item">
+                            <h3>قياس المستوى وتحديد الهدف</h3>
+                            <p class="text-muted">ابدأ بتقييم سريع يساعدنا على بناء خطة تعلم مخصصة لأهدافك المهنية.</p>
+                        </div>
+                        <div class="timeline__item">
+                            <h3>دروس قصيرة بمهام عملية</h3>
+                            <p class="text-muted">تقدم تدريجي وواضح مع تطبيق فوري في مشاريع حقيقية أو دراسات حالة متخصصة.</p>
+                        </div>
+                        <div class="timeline__item">
+                            <h3>دعم مستمر ومتابعة أسبوعية</h3>
+                            <p class="text-muted">جلسات موجهين، مراجعة للأعمال، وتنبيهات ذكية تضمن التزامك بالتعلم.</p>
+                        </div>
+                        <div class="timeline__item">
+                            <h3>شهادة وتوصيات مهنية</h3>
+                            <p class="text-muted">اكمل المسار لتحصل على شهادة موثوقة ونصائح عملية للانتقال للخطوة التالية في مسارك.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="layout-stack">
+                    <div class="stat-card">
+                        <div class="stat-card__value">94%</div>
+                        <div class="stat-card__label">نسبة الرضا عن جودة المحتوى</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card__value">8.4</div>
+                        <div class="stat-card__label">متوسط تقييمات الدورات من 10</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card__value">72 ساعة</div>
+                        <div class="stat-card__label">متوسط الوقت للوصول لأول إنجاز مهني</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section--alt">
+            <div class="container">
+                <div class="section__header">
+                    <span class="section__eyebrow">دورات مختارة</span>
+                    <h2 class="section__title">ابدأ من حيث تمنحك مساند أقوى قيمة</h2>
+                </div>
+                <div class="grid grid--columns-3">
+                    <article class="course-card card">
+                        <div class="course-card__header">
+                            <h3>مسار تطوير الويب المتكامل</h3>
+                            <p class="text-muted">من الأساسيات وحتى إطلاق مشروعك الأول.</p>
+                        </div>
+                        <div class="layout-stack">
+                            <div class="course-card__meta">
+                                <span>38 درس</span>
+                                <span>9 مشاريع</span>
+                            </div>
+                            <a class="btn btn-soft" href="course/cr_index.html">عرض تفاصيل المسار</a>
+                        </div>
+                    </article>
+                    <article class="course-card card">
+                        <div class="course-card__header">
+                            <h3>تحليل البيانات بالبايثون</h3>
+                            <p class="text-muted">تعلم تحليل البيانات وبناء لوحات تفاعلية.</p>
+                        </div>
+                        <div class="layout-stack">
+                            <div class="course-card__meta">
+                                <span>24 درس</span>
+                                <span>6 مشاريع تطبيقية</span>
+                            </div>
+                            <a class="btn btn-soft" href="course/cr_index.html">عرض تفاصيل المسار</a>
+                        </div>
+                    </article>
+                    <article class="course-card card">
+                        <div class="course-card__header">
+                            <h3>تصميم تجربة المستخدم</h3>
+                            <p class="text-muted">صمّم واجهات ترتكز على احتياجات المستخدم.</p>
+                        </div>
+                        <div class="layout-stack">
+                            <div class="course-card__meta">
+                                <span>31 درس</span>
+                                <span>ملف أعمال متكامل</span>
+                            </div>
+                            <a class="btn btn-soft" href="course/cr_index.html">عرض تفاصيل المسار</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="section__header">
+                    <span class="section__eyebrow">قصص نجاح</span>
+                    <h2 class="section__title">ماذا يقول متعلمونا عن مساند؟</h2>
+                </div>
+                <div class="grid grid--columns-3">
+                    <article class="testimonial">
+                        <p>"بعد ثلاثة أشهر من التعلم مع مساند، حصلت على أول وظيفة لي كمطور واجهات. تنظيم المحتوى والمتابعة الدائمة كانت نقطة التحول بالنسبة لي."</p>
+                        <div class="testimonial__author">
+                            <div class="testimonial__avatar" style="background-image:url('img/student1.jpg');"></div>
+                            <div>
+                                <strong>محمد الهويمل</strong>
+                                <div class="testimonial__meta">مطور واجهات أمامية</div>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="testimonial">
+                        <p>"الدورات مصممة بعناية، وكل درس ينتهي بتطبيق عملي يجعل المعلومات تلتصق بالذاكرة. فريق الدعم حاضر على مدار الساعة."</p>
+                        <div class="testimonial__author">
+                            <div class="testimonial__avatar" style="background-image:url('img/student2.jpg');"></div>
+                            <div>
+                                <strong>سارة اليوسف</strong>
+                                <div class="testimonial__meta">محللة بيانات</div>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="testimonial">
+                        <p>"المحتوى العربي المتخصص قليل، لكن مساند غيّر المعادلة. حصلت على ترقية بعد إنهاء مسار إدارة المنتجات."</p>
+                        <div class="testimonial__author">
+                            <div class="testimonial__avatar" style="background-image:url('img/student3.jpg');"></div>
+                            <div>
+                                <strong>خالد المطيري</strong>
+                                <div class="testimonial__meta">مدير منتج رقمي</div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="hero hero--light" style="margin-top:0;">
+            <div class="container layout-stack" style="text-align:center; align-items:center;">
+                <span class="section__eyebrow">ابدأ اليوم</span>
+                <h2 class="hero__headline" style="color:var(--color-primary);">خطوتك القادمة تبدأ بقرار صغير</h2>
+                <p class="hero__subheadline" style="color:var(--color-neutral-600);">
+                    سجّل مجانًا لاستكشاف المنصة، أو اختر خطة مدفوعة لتستمتع بالتجربة كاملة مع مشاريع وشهادات معتمدة.
+                </p>
+                <div class="hero__actions" style="justify-content:center;">
+                    <a href="auth/login.html" class="btn btn-primary">إنشاء حساب جديد</a>
+                    <a href="faq.html" class="btn btn-secondary">تصفح الأسئلة الشائعة</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="site-footer__grid">
+                <div class="site-footer__grid-large layout-stack">
+                    <a href="index-standalone.html" class="site-brand" style="color:#fff;">مساند</a>
+                    <p class="text-muted" style="color:rgba(255,255,255,0.72);">
+                        منصة عربية متكاملة للتعلم الإلكتروني، نصمم تجارب تعليمية تفاعلية تساعدك على بناء مهاراتك والارتقاء بمسارك المهني.
+                    </p>
+                </div>
+                <div>
+                    <h4>روابط سريعة</h4>
+                    <ul class="layout-stack" style="gap:0.6rem;">
+                        <li><a href="about-musanid.html">عن المنصة</a></li>
+                        <li><a href="course/cr_index.html">الدورات</a></li>
+                        <li><a href="faq.html">الأسئلة الشائعة</a></li>
+                        <li><a href="support/sp_index.html">الدعم الفني</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>المصادر</h4>
+                    <ul class="layout-stack" style="gap:0.6rem;">
+                        <li><a href="manifest.json">التطبيق التقدمي PWA</a></li>
+                        <li><a href="offline.html">وضع عدم الاتصال</a></li>
+                        <li><a href="support/sp_index.html#contact">مركز المساعدة</a></li>
+                        <li><a href="faq.html#general">أهم الأسئلة</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>تواصل معنا</h4>
+                    <ul class="layout-stack" style="gap:0.6rem;">
+                        <li><a href="mailto:contact@musanid.com">contact@musanid.com</a></li>
+                        <li><a href="tel:+966501234567">+966 50 123 4567</a></li>
+                        <li><span class="pill">الرياض - المملكة العربية السعودية</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="site-footer__bottom">
+                <p>© 2025 مساند. جميع الحقوق محفوظة.</p>
+                <div class="social-links">
+                    <a href="#" aria-label="Twitter">ﻁ</a>
+                    <a href="#" aria-label="LinkedIn">in</a>
+                    <a href="#" aria-label="YouTube">▶</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

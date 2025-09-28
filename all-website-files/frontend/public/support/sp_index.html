@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الدعم الفني - منصة مساند التعليمية</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="../css/styles.css" rel="stylesheet">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <nav class="site-nav">
+                <a href="../index-standalone.html" class="site-brand">مساند</a>
+                <button class="site-nav__toggle" type="button" aria-label="فتح القائمة" data-nav-target="supportNav">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="6" x2="21" y2="6" />
+                        <line x1="3" y1="12" x2="21" y2="12" />
+                        <line x1="3" y1="18" x2="21" y2="18" />
+                    </svg>
+                </button>
+                <div class="site-nav__links" id="supportNav">
+                    <a href="../index-standalone.html" class="site-nav__link">الرئيسية</a>
+                    <a href="../course/cr_index.html" class="site-nav__link">الدورات</a>
+                    <a href="../faq.html" class="site-nav__link">الأسئلة الشائعة</a>
+                    <a href="sp_index.html" class="site-nav__link is-active">الدعم الفني</a>
+                    <a href="../about-musanid.html" class="site-nav__link">عن مساند</a>
+                </div>
+                <div class="site-nav__actions">
+                    <a href="../auth/login.html" class="btn btn-secondary">تسجيل الدخول</a>
+                    <a href="../auth/login.html" class="btn btn-primary">إنشاء حساب</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero hero--light">
+            <div class="container layout-stack" style="max-width:720px; text-align:center;">
+                <span class="pill">نحن إلى جانبك في كل خطوة</span>
+                <h1 class="hero__headline" style="color:var(--color-primary);">مركز دعم متكامل لكل استفساراتك</h1>
+                <p class="hero__subheadline" style="color:var(--color-neutral-700);">
+                    سواءً كنت جديدًا على منصة مساند أو أحد متعلمينا القدامى، ستجد هنا الموارد والقنوات المناسبة لحل مشكلتك بسرعة وبأسلوب ودود.
+                </p>
+                <div class="hero__actions" style="justify-content:center;">
+                    <a href="#contact" class="btn btn-primary">إرسال طلب دعم</a>
+                    <a href="../faq.html" class="btn btn-secondary">استكشاف الأسئلة الشائعة</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="section__header">
+                    <span class="section__eyebrow">قنوات متعددة</span>
+                    <h2 class="section__title">اختر الطريقة الأنسب للتواصل معنا</h2>
+                    <p class="section__subtitle">نعمل على مدار الأسبوع لنضمن استجابة سريعة وواضحة لجميع المتعلمين والشركاء.</p>
+                </div>
+                <div class="grid grid--columns-3">
+                    <article class="card card--muted layout-stack" style="text-align:center;">
+                        <div class="card__icon" style="margin:0 auto 1rem; font-size:2rem; color:var(--color-secondary);">💬</div>
+                        <h3>محادثة مباشرة</h3>
+                        <p class="text-muted">تواصل فورًا مع فريق الدعم عبر المحادثة المباشرة داخل المنصة من الساعة 9 صباحًا حتى 9 مساءً.</p>
+                        <a href="#contact" class="btn btn-secondary" style="margin-top:auto;">بدء المحادثة</a>
+                    </article>
+                    <article class="card card--muted layout-stack" style="text-align:center;">
+                        <div class="card__icon" style="margin:0 auto 1rem; font-size:2rem; color:var(--color-secondary);">📧</div>
+                        <h3>البريد الإلكتروني</h3>
+                        <p class="text-muted">أرسل لنا تفاصيل طلبك، وسنعود إليك خلال أقل من 12 ساعة مع الخطوات المناسبة.</p>
+                        <a href="mailto:support@musanid.com" class="btn btn-secondary" style="margin-top:auto;">support@musanid.com</a>
+                    </article>
+                    <article class="card card--muted layout-stack" style="text-align:center;">
+                        <div class="card__icon" style="margin:0 auto 1rem; font-size:2rem; color:var(--color-secondary);">📞</div>
+                        <h3>الاتصال الهاتفي</h3>
+                        <p class="text-muted">للطلبات العاجلة يمكنك الاتصال بنا مباشرة من الأحد إلى الخميس خلال أوقات العمل الرسمية.</p>
+                        <a href="tel:+966501234567" class="btn btn-secondary" style="margin-top:auto;">+966 50 123 4567</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section--alt" id="contact">
+            <div class="container split">
+                <div class="card card--glass layout-stack">
+                    <span class="pill" style="align-self:flex-start;">كيف نعالج الطلبات؟</span>
+                    <h2 class="section__title" style="font-size:1.9rem;">عملية واضحة ودعم بشري حقيقي</h2>
+                    <ul class="layout-stack" style="gap:1rem; color:var(--color-neutral-600);">
+                        <li><strong>1. استقبال الطلب</strong> – نراجع الرسالة ونحدد مستوى الأولوية خلال 30 دقيقة.</li>
+                        <li><strong>2. الرد الأولي</strong> – تحصل على تحديث أولي يتضمن خطوات فورية أو طلب معلومات إضافية.</li>
+                        <li><strong>3. المتابعة</strong> – نتعاون مع فريق المحتوى أو التقنية لإنهاء المشكلة، ونبقيك على اطلاع.</li>
+                        <li><strong>4. إغلاق التذكرة</strong> – نتأكد من رضاك، ونرسل موارد تساعدك على منع تكرار المشكلة.</li>
+                    </ul>
+                    <div class="stat-card" style="text-align:right;">
+                        <div class="stat-card__value">92%</div>
+                        <div class="stat-card__label">معدل الرضا عن الدعم خلال 2025</div>
+                    </div>
+                </div>
+                <form id="contactForm" class="card form">
+                    <h3 style="font-size:1.6rem;">أرسل تذكرة دعم</h3>
+                    <p class="text-muted">املأ التفاصيل التالية وسيعاودك فريقنا خلال أقل من 6 ساعات عمل.</p>
+                    <div class="form__row">
+                        <div>
+                            <label for="name" class="form-label">الاسم الكامل</label>
+                            <input id="name" name="name" type="text" class="input-field" placeholder="أدخل اسمك" required>
+                        </div>
+                        <div>
+                            <label for="email" class="form-label">البريد الإلكتروني</label>
+                            <input id="email" name="email" type="email" class="input-field" placeholder="example@mail.com" required>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="subject" class="form-label">عنوان الطلب</label>
+                        <input id="subject" name="subject" type="text" class="input-field" placeholder="ملخص قصير للمشكلة" required>
+                    </div>
+                    <div>
+                        <label for="message" class="form-label">شرح المشكلة</label>
+                        <textarea id="message" name="message" rows="5" class="input-field" placeholder="اذكر الخطوات، الرسائل الظاهرة، وأي تفاصيل إضافية" required></textarea>
+                        <p class="form-helper">إذا كانت مشكلتك مالية أو تتعلق بالشهادات الرجاء ذكر رقم الطلب أو اسم الدورة.</p>
+                    </div>
+                    <button type="submit" class="btn btn-primary">إرسال التذكرة الآن</button>
+                </form>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container layout-stack">
+                <div class="section__header" style="margin-bottom:1.5rem;">
+                    <span class="section__eyebrow">حلول سريعة</span>
+                    <h2 class="section__title">أبرز الاستفسارات التقنية</h2>
+                </div>
+                <div class="accordion" data-allow-multiple="false">
+                    <article class="accordion__item" data-faq-question="الدفع لا يكتمل تظهر رسالة رفض البطاقة ما الحل">
+                        <button class="accordion__trigger">
+                            <span>عملية الدفع لا تكتمل، ماذا أفعل؟</span>
+                            <span class="accordion__icon">+</span>
+                        </button>
+                        <div class="accordion__content">
+                            تحقق من توفر رصيد كافٍ وتأكد من تفعيل الشراء الإلكتروني في بطاقتك. يمكنك أيضًا تجربة طريقة دفع أخرى أو مراسلتنا مع رسالة الرفض الظاهرة لنساعدك على الفور.
+                        </div>
+                    </article>
+                    <article class="accordion__item" data-faq-question="المحتوى لا يعمل الفيديو يتوقف ولا يظهر صوت">
+                        <button class="accordion__trigger">
+                            <span>مقاطع الفيديو لا تعمل لدي</span>
+                            <span class="accordion__icon">+</span>
+                        </button>
+                        <div class="accordion__content">
+                            جرّب تحديث الصفحة واستخدام متصفح حديث مثل Chrome أو Edge. إذا استمرت المشكلة، امسح ذاكرة المتصفح المؤقتة أو افتح المنصة في نافذة خاصة. ما زالت المشكلة قائمة؟ راسلنا مع صورة الشاشة.
+                        </div>
+                    </article>
+                    <article class="accordion__item" data-faq-question="كيف احصل على شهادة اتمام الدورة متى تصدر الشهادة">
+                        <button class="accordion__trigger">
+                            <span>متى أستلم شهادة الدورة؟</span>
+                            <span class="accordion__icon">+</span>
+                        </button>
+                        <div class="accordion__content">
+                            بمجرد إنهاء جميع الدروس والاختبارات المطلوبة، ستظهر لك الشهادة تلقائيًا مع خيار التحميل والطباعة. إذا لم تظهر الشهادة، أرسل لنا اسم الدورة لنراجع حالتك.
+                        </div>
+                    </article>
+                    <article class="accordion__item" data-faq-question="نسيت كلمة المرور ولم يصلني بريد إعادة التعيين">
+                        <button class="accordion__trigger">
+                            <span>لم تصلني رسالة إعادة تعيين كلمة المرور</span>
+                            <span class="accordion__icon">+</span>
+                        </button>
+                        <div class="accordion__content">
+                            تأكد من فحص صندوق الرسائل غير المرغوبة. إذا لم تجد الرسالة بعد 10 دقائق، أعد الطلب باستخدام نفس البريد أو راسلنا مع اسم المستخدم لنساعدك يدويًا.
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section--alt">
+            <div class="container card card--glass" style="text-align:center;">
+                <h2 class="section__title" style="margin-bottom:0.75rem;">ما زلت بحاجة لمساعدة متخصصة؟</h2>
+                <p class="text-muted" style="max-width:560px; margin:0 auto 1.5rem;">يمكنك حجز جلسة دعم خاصة مع أحد خبرائنا لمراجعة التحديات التقنية أو التعليمية التي تواجهك داخل المنصة.</p>
+                <div class="hero__actions" style="justify-content:center;">
+                    <a href="mailto:success@musanid.com" class="btn btn-primary">حجز جلسة دعم شخصية</a>
+                    <a href="tel:+966112345678" class="btn btn-secondary">الاتصال بمكتب الشركاء</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="site-footer__grid">
+                <div class="site-footer__grid-large layout-stack">
+                    <a href="../index-standalone.html" class="site-brand" style="color:#fff;">مساند</a>
+                    <p class="text-muted" style="color:rgba(255,255,255,0.72);">
+                        فريق دعم متخصص يقدم لك حلولاً عملية وسريعة، لأن نجاح تجربتك التعليمية هو أولويتنا القصوى.
+                    </p>
+                </div>
+                <div>
+                    <h4>روابط سريعة</h4>
+                    <ul class="layout-stack" style="gap:0.6rem;">
+                        <li><a href="../index-standalone.html">الرئيسية</a></li>
+                        <li><a href="../course/cr_index.html">الدورات</a></li>
+                        <li><a href="../faq.html">الأسئلة الشائعة</a></li>
+                        <li><a href="sp_index.html">الدعم الفني</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>مستندات</h4>
+                    <ul class="layout-stack" style="gap:0.6rem;">
+                        <li><a href="../offline.html">الوصول دون اتصال</a></li>
+                        <li><a href="../manifest.json">تطبيق الويب التقدمي</a></li>
+                        <li><a href="../faq.html#general">أدلة البدء السريع</a></li>
+                        <li><a href="../support/sp_index.html#contact">حجز جلسة دعم</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>تواصل سريع</h4>
+                    <ul class="layout-stack" style="gap:0.6rem;">
+                        <li><a href="mailto:support@musanid.com">support@musanid.com</a></li>
+                        <li><a href="tel:+966501234567">+966 50 123 4567</a></li>
+                        <li><span class="pill">الرياض - المملكة العربية السعودية</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="site-footer__bottom">
+                <p>© 2025 مساند. جميع الحقوق محفوظة.</p>
+                <div class="social-links">
+                    <a href="#" aria-label="Twitter">ﻁ</a>
+                    <a href="#" aria-label="LinkedIn">in</a>
+                    <a href="#" aria-label="YouTube">▶</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>
