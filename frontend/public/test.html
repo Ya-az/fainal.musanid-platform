@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صفحة الاختبار - منصة مساند</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="css/styles.css" rel="stylesheet">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <nav class="site-nav">
+                <a href="index-standalone.html" class="site-brand">مساند</a>
+                <button class="site-nav__toggle" type="button" aria-label="فتح القائمة" data-nav-target="testNav">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="6" x2="21" y2="6" />
+                        <line x1="3" y1="12" x2="21" y2="12" />
+                        <line x1="3" y1="18" x2="21" y2="18" />
+                    </svg>
+                </button>
+                <div class="site-nav__links" id="testNav">
+                    <a href="index-standalone.html" class="site-nav__link">الرئيسية</a>
+                    <a href="course/cr_index.html" class="site-nav__link">الدورات</a>
+                    <a href="faq.html" class="site-nav__link">الأسئلة الشائعة</a>
+                    <a href="support/sp_index.html" class="site-nav__link">الدعم الفني</a>
+                    <a href="about-musanid.html" class="site-nav__link">عن مساند</a>
+                </div>
+                <div class="site-nav__actions">
+                    <a href="auth/login.html" class="btn btn-secondary">تسجيل الدخول</a>
+                    <a href="course/cr_index.html" class="btn btn-primary">ابدأ التعلم</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero hero--light">
+            <div class="container layout-stack" style="text-align:center; align-items:center;">
+                <span class="section__eyebrow">فحص جاهزية النظام</span>
+                <h1 class="hero__headline" style="color:var(--color-primary);">تم تشغيل صفحة الاختبار بنجاح</h1>
+                <p class="hero__subheadline" style="color:var(--color-neutral-600);">
+                    إذا ظهرت لك هذه الصفحة فهذا يعني أن الخادم يعمل، والروابط الأساسية متاحة، ويمكنك متابعة التحقق من اتصالك بالمكونات المختلفة.
+                </p>
+                <div class="hero__actions" style="justify-content:center;">
+                    <a href="index-standalone.html" class="btn btn-primary">العودة للصفحة الرئيسية</a>
+                    <button id="test-connection" type="button" class="btn btn-secondary">اختبار الاتصال بالخادم الخلفي</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" style="padding-top:0;">
+            <div class="container grid grid--columns-2">
+                <article class="card layout-stack" id="systemInfo">
+                    <h2 class="section__title" style="font-size:1.8rem;">معلومات جهازك</h2>
+                    <div class="layout-stack" style="gap:0.85rem; color:var(--color-neutral-600);">
+                        <div class="card card--muted" style="margin:0;">
+                            <strong>المتصفح</strong>
+                            <p id="browser-info" class="text-muted" style="margin-top:0.25rem;">جاري التحميل...</p>
+                        </div>
+                        <div class="card card--muted" style="margin:0;">
+                            <strong>نظام التشغيل</strong>
+                            <p id="os-info" class="text-muted" style="margin-top:0.25rem;">جاري التحميل...</p>
+                        </div>
+                        <div class="card card--muted" style="margin:0;">
+                            <strong>دقة الشاشة</strong>
+                            <p id="resolution-info" class="text-muted" style="margin-top:0.25rem;">جاري التحميل...</p>
+                        </div>
+                    </div>
+                </article>
+                <article class="card card--glass layout-stack">
+                    <h2 class="section__title" style="font-size:1.6rem;">نتيجة الاتصال</h2>
+                    <p class="text-muted">ستظهر نتيجة الاختبار هنا بعد الضغط على زر "اختبار الاتصال بالخادم الخلفي". يستخدم الاختبار محاكاة بسيطة ويمكنك استبداله باستدعاء API حقيقي لاحقًا.</p>
+                    <div id="connection-result" class="site-toast" style="display:none;"></div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="site-footer__grid">
+                <div class="site-footer__grid-large layout-stack">
+                    <a href="index-standalone.html" class="site-brand" style="color:#fff;">مساند</a>
+                    <p class="text-muted" style="color:rgba(255,255,255,0.72);">
+                        منصة تعليمية عربية متكاملة تدعمك بأدوات قياس وحلول فنية موثوقة في كل خطوة.
+                    </p>
+                </div>
+                <div>
+                    <h4>روابط أساسية</h4>
+                    <ul class="layout-stack" style="gap:0.6rem;">
+                        <li><a href="index-standalone.html">الرئيسية</a></li>
+                        <li><a href="course/cr_index.html">الدورات</a></li>
+                        <li><a href="faq.html">الأسئلة الشائعة</a></li>
+                        <li><a href="support/sp_index.html">الدعم الفني</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>خدمات إضافية</h4>
+                    <ul class="layout-stack" style="gap:0.6rem;">
+                        <li><a href="manifest.json">التطبيق التقدمي</a></li>
+                        <li><a href="offline.html">الوصول دون اتصال</a></li>
+                        <li><a href="support/sp_index.html#contact">مركز المساعدة</a></li>
+                        <li><a href="faq.html#general">إرشادات البدء</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>تواصل</h4>
+                    <ul class="layout-stack" style="gap:0.6rem;">
+                        <li><a href="mailto:contact@musanid.com">contact@musanid.com</a></li>
+                        <li><a href="tel:+966501234567">+966 50 123 4567</a></li>
+                        <li><span class="pill">الرياض - المملكة العربية السعودية</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="site-footer__bottom">
+                <p>© 2025 مساند. جميع الحقوق محفوظة.</p>
+                <div class="social-links">
+                    <a href="#" aria-label="Twitter">ﻁ</a>
+                    <a href="#" aria-label="LinkedIn">in</a>
+                    <a href="#" aria-label="YouTube">▶</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const userAgent = navigator.userAgent;
+            let browserInfo = 'غير معروف';
+
+            if (userAgent.includes('Firefox')) {
+                browserInfo = 'Mozilla Firefox';
+            } else if (userAgent.includes('Chrome') && !userAgent.includes('Edg')) {
+                browserInfo = 'Google Chrome';
+            } else if (userAgent.includes('Safari') && !userAgent.includes('Chrome')) {
+                browserInfo = 'Safari';
+            } else if (userAgent.includes('Edg')) {
+                browserInfo = 'Microsoft Edge';
+            } else if (userAgent.includes('MSIE') || userAgent.includes('Trident')) {
+                browserInfo = 'Internet Explorer';
+            }
+
+            document.getElementById('browser-info').textContent = browserInfo;
+
+            let osInfo = 'غير معروف';
+            if (userAgent.includes('Windows')) {
+                osInfo = 'Windows';
+            } else if (userAgent.includes('Mac')) {
+                osInfo = 'macOS';
+            } else if (userAgent.includes('Linux')) {
+                osInfo = 'Linux';
+            } else if (userAgent.includes('Android')) {
+                osInfo = 'Android';
+            } else if (userAgent.includes('iPhone') || userAgent.includes('iPad')) {
+                osInfo = 'iOS';
+            }
+
+            document.getElementById('os-info').textContent = osInfo;
+            document.getElementById('resolution-info').textContent = `${window.screen.width}x${window.screen.height}`;
+
+            const testButton = document.getElementById('test-connection');
+            const resultBox = document.getElementById('connection-result');
+
+            testButton?.addEventListener('click', () => {
+                testButton.disabled = true;
+                testButton.classList.add('is-loading');
+
+                setTimeout(() => {
+                    testButton.disabled = false;
+                    testButton.classList.remove('is-loading');
+                    if (resultBox) {
+                        resultBox.textContent = 'الاتصال بالخادم الخلفي يعمل بشكل صحيح.';
+                        resultBox.style.display = 'block';
+                        resultBox.classList.remove('site-toast--error');
+                        resultBox.classList.add('site-toast--success');
+                    }
+                }, 600);
+            });
+        });
+    </script>
+</body>
+</html>

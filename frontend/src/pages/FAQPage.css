@@ -1,0 +1,314 @@
+.faq-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  font-family: 'Cairo', sans-serif;
+  direction: rtl;
+}
+
+.faq-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding: 2rem;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+}
+
+.faq-header h1 {
+  font-size: 2.5rem;
+  color: #2c3e50;
+  margin-bottom: 1rem;
+}
+
+.faq-header p {
+  font-size: 1.1rem;
+  color: #7f8c8d;
+  margin-bottom: 2rem;
+}
+
+.faq-search {
+  display: flex;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.faq-search input {
+  flex: 1;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px 0 0 4px;
+  font-size: 1rem;
+  font-family: 'Cairo', sans-serif;
+}
+
+.faq-search button {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 0 1.5rem;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.faq-search button:hover {
+  background-color: #2980b9;
+}
+
+.faq-categories {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
+
+.faq-category-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  width: 120px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.faq-category-link:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.faq-category-link i {
+  font-size: 2rem;
+  color: #3498db;
+  margin-bottom: 1rem;
+}
+
+.faq-category-link span {
+  color: #2c3e50;
+  font-weight: 600;
+  text-align: center;
+}
+
+.faq-content {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  margin-bottom: 3rem;
+}
+
+.faq-section {
+  scroll-margin-top: 100px;
+}
+
+.faq-section-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.faq-section-header i {
+  font-size: 2rem;
+  color: #3498db;
+  margin-left: 1rem;
+}
+
+.faq-section-header h2 {
+  font-size: 1.8rem;
+  color: #2c3e50;
+}
+
+.faq-questions {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.faq-item {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.faq-question {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem;
+  background-color: #f8f9fa;
+  cursor: pointer;
+}
+
+.faq-question h3 {
+  font-size: 1.1rem;
+  margin: 0;
+  color: #2c3e50;
+}
+
+.faq-toggle {
+  font-size: 1.5rem;
+  color: #3498db;
+  transition: transform 0.3s;
+}
+
+.faq-answer {
+  padding: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  background-color: #fff;
+}
+
+.faq-item.active .faq-toggle {
+  transform: rotate(45deg);
+}
+
+.faq-item.active .faq-answer {
+  padding: 1.2rem;
+  max-height: 500px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.faq-answer p {
+  margin: 0;
+  color: #555;
+  line-height: 1.6;
+}
+
+.faq-not-found {
+  text-align: center;
+  padding: 3rem;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  margin-top: 2rem;
+}
+
+.faq-not-found h2 {
+  font-size: 1.8rem;
+  color: #2c3e50;
+  margin-bottom: 1rem;
+}
+
+.faq-not-found p {
+  font-size: 1.1rem;
+  color: #7f8c8d;
+  margin-bottom: 2rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.faq-actions {
+  display: flex;
+  justify-content: center;
+}
+
+.faq-contact-btn {
+  display: inline-block;
+  background-color: #3498db;
+  color: white;
+  padding: 0.8rem 2rem;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: background-color 0.2s;
+}
+
+.faq-contact-btn:hover {
+  background-color: #2980b9;
+}
+
+/* Add JavaScript functionality for toggle */
+@media (max-width: 768px) {
+  .faq-categories {
+    gap: 0.5rem;
+  }
+  
+  .faq-category-link {
+    width: 100px;
+    padding: 1rem;
+  }
+  
+  .faq-category-link i {
+    font-size: 1.5rem;
+  }
+  
+  .faq-section-header h2 {
+    font-size: 1.5rem;
+  }
+  
+  .faq-question h3 {
+    font-size: 1rem;
+  }
+}
+
+/* Add this script to your page */
+/* 
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const faqItems = document.querySelectorAll('.faq-item');
+    
+    faqItems.forEach(item => {
+      const question = item.querySelector('.faq-question');
+      
+      question.addEventListener('click', () => {
+        // Close all other items
+        faqItems.forEach(otherItem => {
+          if (otherItem !== item) {
+            otherItem.classList.remove('active');
+          }
+        });
+        
+        // Toggle current item
+        item.classList.toggle('active');
+      });
+    });
+    
+    // Handle search functionality
+    const searchInput = document.querySelector('.faq-search input');
+    
+    searchInput.addEventListener('input', function() {
+      const searchTerm = this.value.toLowerCase();
+      
+      faqItems.forEach(item => {
+        const questionText = item.querySelector('.faq-question h3').textContent.toLowerCase();
+        const answerText = item.querySelector('.faq-answer p').textContent.toLowerCase();
+        
+        if (questionText.includes(searchTerm) || answerText.includes(searchTerm)) {
+          item.style.display = '';
+          item.closest('.faq-section').style.display = '';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+      
+      // Hide sections with no visible questions
+      document.querySelectorAll('.faq-section').forEach(section => {
+        const visibleQuestions = section.querySelectorAll('.faq-item[style="display: "";"]').length;
+        if (visibleQuestions === 0) {
+          section.style.display = 'none';
+        }
+      });
+    });
+    
+    // Smooth scroll to sections
+    document.querySelectorAll('.faq-category-link').forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href').substring(1);
+        const targetElement = document.getElementById(targetId);
+        
+        window.scrollTo({
+          top: targetElement.offsetTop - 100,
+          behavior: 'smooth'
+        });
+      });
+    });
+  });
+</script>
+*/
