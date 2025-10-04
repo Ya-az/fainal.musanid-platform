@@ -1,0 +1,5 @@
+1. ما معنى Object-Oriented؟
+2. ما الفرق بين Class و Object؟
+3. ما معنى Inheritance؟
+4. ما معنى Polymorphism؟
+5. لماذا OOP مهمة؟

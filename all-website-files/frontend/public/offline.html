@@ -35,36 +35,38 @@
   </header>
 
   <main>
-    <section class="hero hero--light" style="margin-bottom:0;">
-      <div class="container layout-stack" style="text-align:center; align-items:center;">
-        <span class="section__eyebrow">لا توجد إشارة إنترنت</span>
-        <h1 class="hero__headline" style="color:var(--color-primary);">يبدو أنك غير متصل بالإنترنت حاليًا</h1>
-        <p class="hero__subheadline" style="color:var(--color-neutral-600);">
-          احرص على الاتصال بالشبكة لمتابعة تعلمك، أو تصفح المحتوى الذي تم حفظه مسبقًا دون اتصال. بمجرد عودة الإنترنت يمكنك تحديث الصفحة ومتابعة العمل.
-        </p>
-        <div class="hero__actions" style="justify-content:center;">
-          <button type="button" class="btn btn-primary" onclick="window.location.reload()">إعادة المحاولة الآن</button>
-          <a href="support/sp_index.html#contact" class="btn btn-secondary">طلب المساعدة</a>
+    <section class="hero hero--light hero--compact">
+      <div class="container">
+        <div class="hero__content">
+          <span class="pill hero__pill">لا توجد إشارة إنترنت</span>
+          <h1 class="hero__headline">يبدو أنك غير متصل بالإنترنت حاليًا</h1>
+          <p class="hero__subheadline">
+            احرص على الاتصال بالشبكة لمتابعة تعلمك، أو تصفح المحتوى الذي تم حفظه مسبقًا دون اتصال. بمجرد عودة الإنترنت يمكنك تحديث الصفحة ومتابعة العمل.
+          </p>
+          <div class="hero__actions">
+            <button type="button" class="btn btn-primary" onclick="window.location.reload()">إعادة المحاولة الآن</button>
+            <a href="support/sp_index.html#contact" class="btn btn-secondary">طلب المساعدة</a>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="section" style="padding-top:0;">
+    <section class="section section--flush-top">
       <div class="container grid grid--columns-3">
         <article class="card card--muted layout-stack">
-          <h2 class="section__title" style="font-size:1.5rem;">ماذا يحدث أثناء عدم الاتصال؟</h2>
+          <h2 class="section__title section__title--sm">ماذا يحدث أثناء عدم الاتصال؟</h2>
           <p class="text-muted">نحاول حفظ آخر درس زرته وبعض الملفات المهمة لتستمر بالاطلاع عليها دون توقف. قد لا تتوفر المزايا التفاعلية مثل الاختبارات أو تحديث التقدم لحين عودة الشبكة.</p>
         </article>
         <article class="card layout-stack">
-          <h3 style="font-size:1.25rem;">نصائح سريعة</h3>
-          <ul class="layout-stack" style="gap:0.65rem; color:var(--color-neutral-600);">
+          <h3 class="heading-sm">نصائح سريعة</h3>
+          <ul class="layout-stack layout-stack--tight text-body">
             <li>📁 قم بتنزيل الموارد المهمة كي تبقى معك في وضع عدم الاتصال.</li>
             <li>🗒️ دوّن ملاحظاتك وسيتم مزامنتها تلقائيًا عند الاتصال من جديد.</li>
             <li>🔔 ستتلقى إشعارًا بمجرد عودة الإنترنت واستئناف التتبع.</li>
           </ul>
         </article>
         <article class="card card--glass layout-stack">
-          <h3 style="font-size:1.25rem;">حالة الاتصال</h3>
+          <h3 class="heading-sm">حالة الاتصال</h3>
           <p class="text-muted">نراقب حالة الاتصال في الخلفية. عند عودته، سيتم تحديث الصفحة تلقائيًا أو يمكنك الضغط على زر إعادة المحاولة.</p>
           <div class="badge">تلميح: جرّب التبديل إلى شبكة مختلفة إن أمكن.</div>
         </article>
@@ -74,16 +76,16 @@
 
   <footer class="site-footer">
     <div class="container">
-      <div class="site-footer__grid">
+        <div class="site-footer__grid">
         <div class="site-footer__grid-large layout-stack">
-          <a href="index-standalone.html" class="site-brand" style="color:#fff;">مساند</a>
-          <p class="text-muted" style="color:rgba(255,255,255,0.72);">
+          <a href="index-standalone.html" class="site-brand">مساند</a>
+          <p class="text-muted">
             منصة عربية متخصصة في تطوير المهارات المستقبلية، نوفر محتوى تفاعليًا يمكن الوصول إليه حتى في ظل انقطاع الإنترنت.
           </p>
         </div>
         <div>
           <h4>روابط أساسية</h4>
-          <ul class="layout-stack" style="gap:0.6rem;">
+          <ul class="layout-stack layout-stack--tight">
             <li><a href="index-standalone.html">الرئيسية</a></li>
             <li><a href="course/cr_index.html">الدورات</a></li>
             <li><a href="faq.html">الأسئلة الشائعة</a></li>
@@ -92,7 +94,7 @@
         </div>
         <div>
           <h4>خدمات إضافية</h4>
-          <ul class="layout-stack" style="gap:0.6rem;">
+          <ul class="layout-stack layout-stack--tight">
             <li><a href="manifest.json">التطبيق التقدمي</a></li>
             <li><a href="offline.html">الوصول دون اتصال</a></li>
             <li><a href="support/sp_index.html#contact">مركز المساعدة</a></li>
@@ -101,7 +103,7 @@
         </div>
         <div>
           <h4>تواصل</h4>
-          <ul class="layout-stack" style="gap:0.6rem;">
+          <ul class="layout-stack layout-stack--tight">
             <li><a href="mailto:contact@musanid.com">contact@musanid.com</a></li>
             <li><a href="tel:+966501234567">+966 50 123 4567</a></li>
             <li><span class="pill">الرياض - المملكة العربية السعودية</span></li>
