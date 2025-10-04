@@ -1,0 +1,35 @@
+{
+  "name": "musanid-backend",
+  "version": "1.0.0",
+  "description": "Backend server for Musanid Educational Platform",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js",
+    "build": "echo 'No build step needed for backend' && exit 0",
+    "test": "jest"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "compression": "^1.7.4",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "csurf": "^1.11.0",
+    "dotenv": "^16.0.0",
+    "express": "^4.18.1",
+    "express-mysql-session": "^2.1.8",
+    "express-rate-limit": "^6.4.0",
+    "express-session": "^1.17.3",
+    "express-validator": "^6.14.0",
+    "helmet": "^5.1.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.3.1",
+    "morgan": "^1.10.0",
+    "mysql2": "^2.3.3"
+  },
+  "devDependencies": {
+    "jest": "^28.0.3",
+    "nodemon": "^2.0.16",
+    "supertest": "^6.2.3"
+  }
+}

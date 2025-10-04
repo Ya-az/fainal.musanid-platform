@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>وضع عدم الاتصال | منصة مساند</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="css/styles.css" rel="stylesheet">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <nav class="site-nav">
+        <a href="index-standalone.html" class="site-brand">مساند</a>
+        <button class="site-nav__toggle" type="button" aria-label="فتح القائمة" data-nav-target="offlineNav">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <line x1="3" y1="12" x2="21" y2="12" />
+            <line x1="3" y1="18" x2="21" y2="18" />
+          </svg>
+        </button>
+        <div class="site-nav__links" id="offlineNav">
+          <a href="index-standalone.html" class="site-nav__link">الرئيسية</a>
+          <a href="course/cr_index.html" class="site-nav__link">الدورات</a>
+          <a href="faq.html" class="site-nav__link">الأسئلة الشائعة</a>
+          <a href="support/sp_index.html" class="site-nav__link">الدعم الفني</a>
+          <a href="about-musanid.html" class="site-nav__link">عن مساند</a>
+        </div>
+        <div class="site-nav__actions">
+          <a href="auth/login.html" class="btn btn-secondary">تسجيل الدخول</a>
+          <a href="course/cr_index.html" class="btn btn-primary">ابدأ التعلم</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero hero--light" style="margin-bottom:0;">
+      <div class="container layout-stack" style="text-align:center; align-items:center;">
+        <span class="section__eyebrow">لا توجد إشارة إنترنت</span>
+        <h1 class="hero__headline" style="color:var(--color-primary);">يبدو أنك غير متصل بالإنترنت حاليًا</h1>
+        <p class="hero__subheadline" style="color:var(--color-neutral-600);">
+          احرص على الاتصال بالشبكة لمتابعة تعلمك، أو تصفح المحتوى الذي تم حفظه مسبقًا دون اتصال. بمجرد عودة الإنترنت يمكنك تحديث الصفحة ومتابعة العمل.
+        </p>
+        <div class="hero__actions" style="justify-content:center;">
+          <button type="button" class="btn btn-primary" onclick="window.location.reload()">إعادة المحاولة الآن</button>
+          <a href="support/sp_index.html#contact" class="btn btn-secondary">طلب المساعدة</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:0;">
+      <div class="container grid grid--columns-3">
+        <article class="card card--muted layout-stack">
+          <h2 class="section__title" style="font-size:1.5rem;">ماذا يحدث أثناء عدم الاتصال؟</h2>
+          <p class="text-muted">نحاول حفظ آخر درس زرته وبعض الملفات المهمة لتستمر بالاطلاع عليها دون توقف. قد لا تتوفر المزايا التفاعلية مثل الاختبارات أو تحديث التقدم لحين عودة الشبكة.</p>
+        </article>
+        <article class="card layout-stack">
+          <h3 style="font-size:1.25rem;">نصائح سريعة</h3>
+          <ul class="layout-stack" style="gap:0.65rem; color:var(--color-neutral-600);">
+            <li>📁 قم بتنزيل الموارد المهمة كي تبقى معك في وضع عدم الاتصال.</li>
+            <li>🗒️ دوّن ملاحظاتك وسيتم مزامنتها تلقائيًا عند الاتصال من جديد.</li>
+            <li>🔔 ستتلقى إشعارًا بمجرد عودة الإنترنت واستئناف التتبع.</li>
+          </ul>
+        </article>
+        <article class="card card--glass layout-stack">
+          <h3 style="font-size:1.25rem;">حالة الاتصال</h3>
+          <p class="text-muted">نراقب حالة الاتصال في الخلفية. عند عودته، سيتم تحديث الصفحة تلقائيًا أو يمكنك الضغط على زر إعادة المحاولة.</p>
+          <div class="badge">تلميح: جرّب التبديل إلى شبكة مختلفة إن أمكن.</div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="site-footer__grid">
+        <div class="site-footer__grid-large layout-stack">
+          <a href="index-standalone.html" class="site-brand" style="color:#fff;">مساند</a>
+          <p class="text-muted" style="color:rgba(255,255,255,0.72);">
+            منصة عربية متخصصة في تطوير المهارات المستقبلية، نوفر محتوى تفاعليًا يمكن الوصول إليه حتى في ظل انقطاع الإنترنت.
+          </p>
+        </div>
+        <div>
+          <h4>روابط أساسية</h4>
+          <ul class="layout-stack" style="gap:0.6rem;">
+            <li><a href="index-standalone.html">الرئيسية</a></li>
+            <li><a href="course/cr_index.html">الدورات</a></li>
+            <li><a href="faq.html">الأسئلة الشائعة</a></li>
+            <li><a href="support/sp_index.html">الدعم الفني</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>خدمات إضافية</h4>
+          <ul class="layout-stack" style="gap:0.6rem;">
+            <li><a href="manifest.json">التطبيق التقدمي</a></li>
+            <li><a href="offline.html">الوصول دون اتصال</a></li>
+            <li><a href="support/sp_index.html#contact">مركز المساعدة</a></li>
+            <li><a href="faq.html#general">إرشادات البدء</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>تواصل</h4>
+          <ul class="layout-stack" style="gap:0.6rem;">
+            <li><a href="mailto:contact@musanid.com">contact@musanid.com</a></li>
+            <li><a href="tel:+966501234567">+966 50 123 4567</a></li>
+            <li><span class="pill">الرياض - المملكة العربية السعودية</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="site-footer__bottom">
+        <p>© 2025 مساند. جميع الحقوق محفوظة.</p>
+        <div class="social-links">
+          <a href="#" aria-label="Twitter">ﻁ</a>
+          <a href="#" aria-label="LinkedIn">in</a>
+          <a href="#" aria-label="YouTube">▶</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    window.addEventListener('online', () => {
+      window.location.reload();
+    });
+  </script>
+</body>
+</html>
