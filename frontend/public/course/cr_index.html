@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الدورات والمسارات - منصة مساند التعليمية</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="../css/styles.css" rel="stylesheet">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <nav class="site-nav">
+                <a href="../index-standalone.html" class="site-brand">مساند</a>
+                <button class="site-nav__toggle" type="button" aria-label="فتح القائمة" data-nav-target="coursesNav">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="6" x2="21" y2="6" />
+                        <line x1="3" y1="12" x2="21" y2="12" />
+                        <line x1="3" y1="18" x2="21" y2="18" />
+                    </svg>
+                </button>
+                <div class="site-nav__links" id="coursesNav">
+                    <a href="../index-standalone.html" class="site-nav__link">الرئيسية</a>
+                    <a href="cr_index.html" class="site-nav__link is-active">الدورات</a>
+                    <a href="../faq.html" class="site-nav__link">الأسئلة الشائعة</a>
+                    <a href="../support/sp_index.html" class="site-nav__link">الدعم الفني</a>
+                    <a href="../about-musanid.html" class="site-nav__link">عن مساند</a>
+                </div>
+                <div class="site-nav__actions">
+                    <a href="../auth/login.html" class="btn btn-secondary">تسجيل الدخول</a>
+                    <a href="../auth/login.html" class="btn btn-primary">ابدأ التعلم</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container layout-stack" style="text-align:center; color:#fff; max-width:760px;">
+                <span class="pill">مسارات متدرجة بوضوح</span>
+                <h1 class="hero__headline">دورات تفاعلية تقودك من الأساسيات إلى الاحتراف</h1>
+                <p class="hero__subheadline">اختر المسار المناسب لسرعتك، وتواصل مع المدربين، وطبّق ما تتعلمه عبر مشاريع عملية مع مراجعات دقيقة.</p>
+                <div class="hero__actions" style="justify-content:center;">
+                    <a href="#catalog" class="btn btn-outline">تصفح قائمة الدورات</a>
+                    <a href="../auth/login.html" class="btn btn-primary">ابدأ التعلم الآن</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container split">
+                <div class="card card--glass layout-stack">
+                    <div class="hero__media" id="lessonPreview" style="min-height:220px; display:flex; align-items:flex-end; justify-content:space-between; padding:1.5rem; color:#fff; background:linear-gradient(135deg, rgba(30,58,138,0.85), rgba(56,189,248,0.65));">
+                        <span class="badge" style="background:rgba(0,0,0,0.35); color:#fff;">منهج منظم</span>
+                        <span class="badge" style="background:rgba(0,0,0,0.35); color:#fff;">HD</span>
+                    </div>
+                    <h2 id="lessonTitle" style="font-size:1.85rem;">مقدمة في البرمجة</h2>
+                    <p id="lessonDescription" class="text-muted">تعرف على مفاهيم البرمجة الأساسية باستخدام أمثلة تفاعلية وتمارين قصيرة تساعدك على بناء الثقة في كتابة الشفرات.</p>
+                    <div class="card__meta" style="gap:0.75rem;">
+                        <span>⏱️ <strong id="lessonDuration">6 أسابيع</strong></span>
+                        <span>🎯 <strong id="lessonLevel">مبتدئ</strong></span>
+                        <span>📚 <strong id="lessonSessions">24 درسًا</strong></span>
+                    </div>
+                </div>
+                <div class="card card--muted layout-stack">
+                    <h3 style="font-size:1.6rem;">كيف نبني تجارب التعلم؟</h3>
+                    <p class="text-muted">كل دورة على منصة مساند تمر بمراحل تصميم دقيقة تبدأ بتحديد المهارات المطلوبة في سوق العمل، يليها تطوير محتوى تفاعلي ومشاريع عملية بإشراف خبراء معتمدين.</p>
+                    <ul class="layout-stack" style="gap:0.75rem; color:var(--color-neutral-600);">
+                        <li>📈 مسارات واضحة مع أهداف قابلة للقياس لكل أسبوع.</li>
+                        <li>🤝 دعم مباشر من المدربين عبر جلسات الأسئلة والأجوبة.</li>
+                        <li>🧭 لوحة تقدم ذكية تخبرك بما يجب إنجازه بعد كل درس.</li>
+                    </ul>
+                    <div class="stat-card">
+                        <div class="stat-card__value">1.2M+</div>
+                        <div class="stat-card__label">ساعات تعليمية تم تنفيذها على المنصة</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section--alt" id="catalog">
+            <div class="container layout-stack">
+                <div class="section__header">
+                    <span class="section__eyebrow">كتالوج محدث أسبوعيًا</span>
+                    <h2 class="section__title">اختر مسارك المفضل</h2>
+                    <p class="section__subtitle">استخدم عوامل التصفية لاختيار الدورات حسب المجال أو مستوى الخبرة.</p>
+                </div>
+                <div class="filter-group">
+                    <button type="button" class="filter-btn" data-course-filter="all">كل الدورات</button>
+                    <button type="button" class="filter-btn" data-course-filter="programming">برمجة</button>
+                    <button type="button" class="filter-btn" data-course-filter="web">تطوير الويب</button>
+                    <button type="button" class="filter-btn" data-course-filter="data">تحليل البيانات</button>
+                    <button type="button" class="filter-btn" data-course-filter="design">تصميم وتجربة المستخدم</button>
+                    <button type="button" class="filter-btn" data-course-filter="cloud">حوسبة سحابية</button>
+                    <button type="button" class="filter-btn" data-course-filter="business">إدارة المنتجات</button>
+                </div>
+
+                <div class="grid grid--columns-3" id="coursesList">
+                    <article class="card course-card layout-stack" tabindex="0" role="button" aria-pressed="false"
+                        data-course-category="programming"
+                        data-course-title="مقدمة في البرمجة"
+                        data-course-description="تعلم التفكير البرمجي المنهجي وبناء أول تطبيقاتك خطوة بخطوة."
+                        data-course-duration="6 أسابيع"
+                        data-course-level="مبتدئ"
+                        data-course-sessions="24 درسًا + 3 مشاريع"
+                        data-course-summary="تتعرف على أنواع البيانات والجمل الشرطية والحلقات.|تنفّذ تطبيقات مصغرة بلغة JavaScript تعزز فهمك.|تحصل على جلسات مراجعة شخصية لتصحيح الشفرات."
+                        data-course-preview="linear-gradient(135deg, rgba(147,197,253,0.85), rgba(59,130,246,0.85))">
+                        <div class="course-card__header">
+                            <span class="badge">مسار أساسي</span>
+                            <h3>مقدمة في البرمجة</h3>
+                        </div>
+                        <p class="text-muted">ابدأ من الصفر وتعلم مبادئ البرمجة باستخدام JavaScript عبر مشاريع قصيرة ممتعة.</p>
+                        <div class="course-card__meta">
+                            <span>⏱️ 24 ساعة تدريبية</span>
+                            <span>🧩 12 تمرين</span>
+                        </div>
+                    </article>
+
+                    <article class="card course-card layout-stack" tabindex="0" role="button" aria-pressed="false"
+                        data-course-category="web"
+                        data-course-title="تطوير واجهات الويب المتقدمة"
+                        data-course-description="صمم واجهات تفاعلية عصرية باستخدام React وTailwind مع أفضل ممارسات الأداء."
+                        data-course-duration="8 أسابيع"
+                        data-course-level="متوسط"
+                        data-course-sessions="32 درسًا + 4 مشاريع"
+                        data-course-summary="تتعلم بناء مكونات قابلة لإعادة الاستخدام وإدارة الحالة بكفاءة.|تطبق تحسينات الأداء وتحسين تجربة المستخدم.|تُنهي الدورة ببناء منصة Dashboard متكاملة."
+                        data-course-preview="linear-gradient(135deg, rgba(129,140,248,0.85), rgba(56,189,248,0.75))">
+                        <div class="course-card__header">
+                            <span class="badge">الأكثر طلبًا</span>
+                            <h3>تطوير واجهات الويب المتقدمة</h3>
+                        </div>
+                        <p class="text-muted">اتقن تطوير الواجهات الحديثة مع React، واستخدم Tailwind لتسريع بناء التصاميم المتجاوبة.</p>
+                        <div class="course-card__meta">
+                            <span>💼 4 مشاريع تطبيقية</span>
+                            <span>🧠 مراجعات أسبوعية</span>
+                        </div>
+                    </article>
+
+                    <article class="card course-card layout-stack" tabindex="0" role="button" aria-pressed="false"
+                        data-course-category="data"
+                        data-course-title="تحليل البيانات باستخدام Python"
+                        data-course-description="تعلم معالجة البيانات، بناء لوحات تفاعلية، وتقديم تقارير تستند إلى الأرقام."
+                        data-course-duration="7 أسابيع"
+                        data-course-level="متوسط"
+                        data-course-sessions="28 درسًا + 2 مشاريع capstone"
+                        data-course-summary="تتعرف على Pandas وNumPy لمعالجة البيانات بكفاءة.|تستخدم Matplotlib وPlotly لبناء لوحات بيانات جذابة.|تطبق دراسات حالة حقيقية من قطاعات الأعمال المختلفة."
+                        data-course-preview="linear-gradient(135deg, rgba(45,212,191,0.9), rgba(14,165,233,0.8))">
+                        <div class="course-card__header">
+                            <span class="badge">تحليل البيانات</span>
+                            <h3>تحليل البيانات باستخدام Python</h3>
+                        </div>
+                        <p class="text-muted">من الاستيراد والتنظيف وصولًا إلى بناء لوحات التفاعل المؤتمتة، كل ما تحتاجه لتصبح محلل بيانات.</p>
+                        <div class="course-card__meta">
+                            <span>📊 6 دراسات حالة</span>
+                            <span>🤝 دعم منتدى المتعلمين</span>
+                        </div>
+                    </article>
+
+                    <article class="card course-card layout-stack" tabindex="0" role="button" aria-pressed="false"
+                        data-course-category="design"
+                        data-course-title="تصميم تجربة المستخدم الشامل"
+                        data-course-description="انتقل من البحث إلى النمذجة والاختبار مع تطبيق عملي على منتج حقيقي."
+                        data-course-duration="5 أسابيع"
+                        data-course-level="مبتدئ إلى متوسط"
+                        data-course-sessions="18 درسًا + مشروع نهائي"
+                        data-course-summary="تتعلم إجراء مقابلات المستخدمين وتحليل النتائج.|تصمم خرائط رحلة المستخدم ونماذج أولية عالية الدقة.|تجري اختبارات قابلية الاستخدام وتوثق نتائج التحسين."
+                        data-course-preview="linear-gradient(135deg, rgba(250,204,21,0.85), rgba(249,115,22,0.75))">
+                        <div class="course-card__header">
+                            <span class="badge">تصميم وتجربة</span>
+                            <h3>تصميم تجربة المستخدم الشامل</h3>
+                        </div>
+                        <p class="text-muted">اكتشف خطوات تصميم UX/UI متكاملة، وطبّق الأدوات الاحترافية لبناء واجهات متمحورة حول المستخدم.</p>
+                        <div class="course-card__meta">
+                            <span>🧪 جلسات اختبار حية</span>
+                            <span>🎨 ملفات Figma جاهزة</span>
+                        </div>
+                    </article>
+
+                    <article class="card course-card layout-stack" tabindex="0" role="button" aria-pressed="false"
+                        data-course-category="cloud"
+                        data-course-title="أساسيات الحوسبة السحابية على AWS"
+                        data-course-description="تعرف على خدمات AWS الأساسية وكيفية نشر التطبيقات وتنظيم البنى التحتية."
+                        data-course-duration="6 أسابيع"
+                        data-course-level="متوسط"
+                        data-course-sessions="21 درسًا + معامل تطبيقية"
+                        data-course-summary="تتعرف على خدمات AWS الأساسية مثل EC2 وS3 وRDS.|تُنشئ بنى تحتية آمنة باستخدام CloudFormation.|تطبق أفضل ممارسات المراقبة وإدارة التكاليف."
+                        data-course-preview="linear-gradient(135deg, rgba(96,165,250,0.85), rgba(20,184,166,0.75))">
+                        <div class="course-card__header">
+                            <span class="badge">حوسبة سحابية</span>
+                            <h3>أساسيات الحوسبة السحابية على AWS</h3>
+                        </div>
+                        <p class="text-muted">اكتسب مهارات بناء ونشر التطبيقات على السحابة مع تمارين عملية وإرشادات الخبراء.</p>
+                        <div class="course-card__meta">
+                            <span>☁️ مختبرات عملية</span>
+                            <span>🔐 أفضل ممارسات الأمان</span>
+                        </div>
+                    </article>
+
+                    <article class="card course-card layout-stack" tabindex="0" role="button" aria-pressed="false"
+                        data-course-category="business"
+                        data-course-title="استراتيجيات إدارة المنتجات الرقمية"
+                        data-course-description="تعلم تخطيط خارطة الطريق، تحليل الاحتياجات، وإطلاق المنتجات بنجاح."
+                        data-course-duration="4 أسابيع"
+                        data-course-level="متقدم"
+                        data-course-sessions="16 درسًا + مشروع محاكاة"
+                        data-course-summary="تحدد مقاييس النجاح وتبني لوحة قيادة للمنتج.|تُجري تحليلًا للمنافسين وتحدد القيمة المضافة.|تتدرب على قيادة فرق متعددة التخصصات لإطلاق منتج جديد."
+                        data-course-preview="linear-gradient(135deg, rgba(244,114,182,0.85), rgba(99,102,241,0.75))">
+                        <div class="course-card__header">
+                            <span class="badge">إدارة المنتجات</span>
+                            <h3>استراتيجيات إدارة المنتجات الرقمية</h3>
+                        </div>
+                        <p class="text-muted">طوّر مهارات قيادة المنتج من مرحلة الاكتشاف حتى الإطلاق، مع قوالب عملية قابلة للتطبيق فورًا.</p>
+                        <div class="course-card__meta">
+                            <span>🗺️ خارطة طريق معتمدة</span>
+                            <span>🤝 جلسات إرشاد فردية</span>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container split">
+                <div class="card card--muted layout-stack">
+                    <h2 class="section__title" style="font-size:1.7rem;">ملخص الدرس</h2>
+                    <div id="lessonSummary" class="layout-stack" style="gap:1rem;">
+                        <p>تتعرف على أنواع البيانات والجمل الشرطية والحلقات.</p>
+                        <p>تنفّذ تطبيقات مصغرة بلغة JavaScript تعزز فهمك.</p>
+                        <p>تحصل على جلسات مراجعة شخصية لتصحيح الشفرات.</p>
+                    </div>
+                </div>
+                <div class="card card--glass layout-stack">
+                    <h3 style="font-size:1.5rem;">موارد مرافقة</h3>
+                    <p class="text-muted">نوفر مكتبة شاملة من الملفات الجاهزة والقوالب لتسريع تعلّمك، مع تحديث أسبوعي لأفضل المقالات والفيديوهات.</p>
+                    <ul class="layout-stack" style="gap:0.75rem; color:var(--color-neutral-600);">
+                        <li>📘 دليل عملي لكل وحدة مع أمثلة قابلة للتنزيل.</li>
+                        <li>🎧 تسجيلات الجلسات المباشرة للمراجعة في أي وقت.</li>
+                        <li>🤖 اختبارات تقييم ذاتية مع توصيات فورية للخطوات التالية.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section--alt">
+            <div class="container grid grid--columns-2">
+                <article class="card layout-stack">
+                    <h2 class="section__title" style="font-size:1.6rem;">قيّم تجربتك</h2>
+                    <p class="text-muted">ساعدنا على تحسين المحتوى من خلال مشاركتنا رأيك في الدرس الحالي.</p>
+                    <form id="ratingForm" class="layout-stack" style="gap:1.25rem;">
+                        <div class="rating-stars" role="radiogroup" aria-label="تقييم الدرس">
+                            <button type="button" class="rating-star" data-rating-star="1" aria-label="نجمة واحدة">★</button>
+                            <button type="button" class="rating-star" data-rating-star="2" aria-label="نجمتان">★</button>
+                            <button type="button" class="rating-star" data-rating-star="3" aria-label="ثلاث نجمات">★</button>
+                            <button type="button" class="rating-star" data-rating-star="4" aria-label="أربع نجمات">★</button>
+                            <button type="button" class="rating-star" data-rating-star="5" aria-label="خمس نجمات">★</button>
+                        </div>
+                        <textarea id="ratingComment" class="input-field" rows="3" placeholder="ما الذي أعجبك؟ وما الذي يمكن تحسينه؟"></textarea>
+                        <button type="submit" class="btn btn-primary">إرسال التقييم</button>
+                        <div id="ratingMessage" class="rating-message"></div>
+                    </form>
+                </article>
+                <article class="card layout-stack">
+                    <h2 class="section__title" style="font-size:1.6rem;">اختبار قصير</h2>
+                    <p class="text-muted">اختبر معلوماتك بسرعة للتأكد من استيعاب المفاهيم الأساسية.</p>
+                    <form id="quizForm" class="layout-stack" style="gap:1.5rem;">
+                        <div class="quiz-question" data-correct="b" data-quiz-question>
+                            <p class="text-muted" style="font-weight:600;">1. أي خيار يمثل أفضل وصف للجملة الشرطية في البرمجة؟</p>
+                            <label style="display:flex; align-items:center; gap:0.6rem; color:var(--color-neutral-600);">
+                                <input type="radio" name="q1" value="a">
+                                <span>تنفيذ مجموعة أوامر بشكل متتالٍ دون شرط.</span>
+                            </label>
+                            <label style="display:flex; align-items:center; gap:0.6rem; color:var(--color-neutral-600);">
+                                <input type="radio" name="q1" value="b">
+                                <span>اختبار حالة محددة وتغيير مسار التنفيذ بناءً على النتيجة.</span>
+                            </label>
+                            <label style="display:flex; align-items:center; gap:0.6rem; color:var(--color-neutral-600);">
+                                <input type="radio" name="q1" value="c">
+                                <span>تخزين مجموعة من القيم ضمن مصفوفة.</span>
+                            </label>
+                            <div class="quiz-result" data-quiz-result></div>
+                        </div>
+                        <div class="quiz-question" data-correct="a" data-quiz-question>
+                            <p class="text-muted" style="font-weight:600;">2. ما الفائدة الرئيسية من تقسيم المشروع إلى مهام صغيرة؟</p>
+                            <label style="display:flex; align-items:center; gap:0.6rem; color:var(--color-neutral-600);">
+                                <input type="radio" name="q2" value="a">
+                                <span>يسهل متابعة التقدم وتحديد المسؤوليات بدقة.</span>
+                            </label>
+                            <label style="display:flex; align-items:center; gap:0.6rem; color:var(--color-neutral-600);">
+                                <input type="radio" name="q2" value="b">
+                                <span>يزيد عدد أعضاء الفريق المطلوبين لإنجاز العمل.</span>
+                            </label>
+                            <label style="display:flex; align-items:center; gap:0.6rem; color:var(--color-neutral-600);">
+                                <input type="radio" name="q2" value="c">
+                                <span>يلغي الحاجة إلى مراجعة الجودة في نهاية المشروع.</span>
+                            </label>
+                            <div class="quiz-result" data-quiz-result></div>
+                        </div>
+                        <button type="submit" class="btn btn-secondary">إرسال الإجابات</button>
+                        <div id="quizScore" class="form-helper" style="display:none;"></div>
+                    </form>
+                </article>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container card card--glass" style="text-align:center;">
+                <h2 class="section__title" style="margin-bottom:0.75rem;">جاهز للانتقال إلى المستوى التالي؟</h2>
+                <p class="text-muted" style="max-width:560px; margin:0 auto 1.5rem;">انضم إلى جلسات التدريب المباشر الأسبوعية مع خبراء مساند لتطبيق ما تعلمته على مشاريع حقيقية وتحصل على مراجعة فورية.</p>
+                <div class="hero__actions" style="justify-content:center;">
+                    <a href="../auth/login.html" class="btn btn-primary">احجز مقعدك الآن</a>
+                    <a href="../support/sp_index.html" class="btn btn-secondary">تحدث مع مستشار التعلم</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="site-footer__grid">
+                <div class="site-footer__grid-large layout-stack">
+                    <a href="../index-standalone.html" class="site-brand" style="color:#fff;">مساند</a>
+                    <p class="text-muted" style="color:rgba(255,255,255,0.72);">
+                        نوفر محتوى عربيًا متخصصًا ومسارات مهنية مصممة بعناية لتصل إلى أهدافك بثقة واستمرارية.
+                    </p>
+                </div>
+                <div>
+                    <h4>روابط سريعة</h4>
+                    <ul class="layout-stack" style="gap:0.6rem;">
+                        <li><a href="../index-standalone.html">الرئيسية</a></li>
+                        <li><a href="cr_index.html">الدورات</a></li>
+                        <li><a href="../faq.html">الأسئلة الشائعة</a></li>
+                        <li><a href="../support/sp_index.html">الدعم الفني</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>المتعلمون</h4>
+                    <ul class="layout-stack" style="gap:0.6rem;">
+                        <li><a href="../offline.html">الوصول دون اتصال</a></li>
+                        <li><a href="../manifest.json">تطبيق الويب التقدمي</a></li>
+                        <li><a href="../faq.html#general">إرشادات البدء</a></li>
+                        <li><a href="../support/sp_index.html#contact">مركز الدعم</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>تواصل</h4>
+                    <ul class="layout-stack" style="gap:0.6rem;">
+                        <li><a href="mailto:contact@musanid.com">contact@musanid.com</a></li>
+                        <li><a href="tel:+966501234567">+966 50 123 4567</a></li>
+                        <li><span class="pill">الرياض - المملكة العربية السعودية</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="site-footer__bottom">
+                <p>© 2025 مساند. جميع الحقوق محفوظة.</p>
+                <div class="social-links">
+                    <a href="#" aria-label="Twitter">ﻁ</a>
+                    <a href="#" aria-label="LinkedIn">in</a>
+                    <a href="#" aria-label="YouTube">▶</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script>
+        (function () {
+            const defaultPreview = 'linear-gradient(135deg, rgba(30,58,138,0.85), rgba(56,189,248,0.65))';
+            const filterButtons = document.querySelectorAll('[data-course-filter]');
+            const courseCards = document.querySelectorAll('[data-course-category]');
+            const lessonTitleEl = document.getElementById('lessonTitle');
+            const lessonDescriptionEl = document.getElementById('lessonDescription');
+            const lessonDurationEl = document.getElementById('lessonDuration');
+            const lessonLevelEl = document.getElementById('lessonLevel');
+            const lessonSessionsEl = document.getElementById('lessonSessions');
+            const lessonSummaryEl = document.getElementById('lessonSummary');
+            const lessonPreviewEl = document.getElementById('lessonPreview');
+
+            function applyCourseData(card) {
+                if (!card) {
+                    lessonTitleEl.textContent = 'اختر دورة لاستعراض تفاصيلها';
+                    lessonDescriptionEl.textContent = '';
+                    lessonDurationEl.textContent = '-';
+                    lessonLevelEl.textContent = '-';
+                    lessonSessionsEl.textContent = '-';
+                    lessonSummaryEl.innerHTML = '<p class="text-muted">سيتم عرض ملخص الدرس بعد اختيار دورة من القائمة.</p>';
+                    lessonPreviewEl.style.background = defaultPreview;
+                    return;
+                }
+
+                lessonTitleEl.textContent = card.dataset.courseTitle || '';
+                lessonDescriptionEl.textContent = card.dataset.courseDescription || '';
+                lessonDurationEl.textContent = card.dataset.courseDuration || '-';
+                lessonLevelEl.textContent = card.dataset.courseLevel || '-';
+                lessonSessionsEl.textContent = card.dataset.courseSessions || '-';
+
+                const summary = (card.dataset.courseSummary || '')
+                    .split('|')
+                    .map(item => item.trim())
+                    .filter(Boolean)
+                    .map(item => `<p>${item}</p>`)
+                    .join('');
+
+                lessonSummaryEl.innerHTML = summary || '<p class="text-muted">جاري تحديث الملخص لهذه الدورة.</p>';
+                lessonPreviewEl.style.background = card.dataset.coursePreview || defaultPreview;
+            }
+
+            function setActiveCard(card) {
+                courseCards.forEach(c => {
+                    const isActive = c === card;
+                    c.classList.toggle('is-active', isActive);
+                    c.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+                });
+                applyCourseData(card);
+            }
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const value = button.dataset.courseFilter;
+                    filterButtons.forEach(btn => btn.classList.remove('is-active'));
+                    button.classList.add('is-active');
+
+                    let firstVisible = null;
+                    courseCards.forEach(card => {
+                        const matches = value === 'all' || card.dataset.courseCategory === value;
+                        card.style.display = matches ? '' : 'none';
+                        if (matches && !firstVisible) {
+                            firstVisible = card;
+                        }
+                    });
+
+                    setActiveCard(firstVisible);
+                });
+            });
+
+            courseCards.forEach(card => {
+                card.addEventListener('click', () => setActiveCard(card));
+                card.addEventListener('keypress', event => {
+                    if (event.key === 'Enter' || event.key === ' ') {
+                        event.preventDefault();
+                        setActiveCard(card);
+                    }
+                });
+            });
+
+            if (filterButtons.length) {
+                filterButtons[0].click();
+            } else if (courseCards.length) {
+                setActiveCard(courseCards[0]);
+            }
+
+            const ratingStars = document.querySelectorAll('[data-rating-star]');
+            const ratingForm = document.getElementById('ratingForm');
+            const ratingMessage = document.getElementById('ratingMessage');
+            let currentRating = 0;
+
+            const highlightStars = value => {
+                ratingStars.forEach(star => {
+                    const starValue = Number(star.dataset.ratingStar);
+                    star.classList.toggle('is-active', starValue <= value);
+                });
+            };
+
+            ratingStars.forEach(star => {
+                const value = Number(star.dataset.ratingStar);
+                star.addEventListener('mouseenter', () => highlightStars(value));
+                star.addEventListener('focus', () => highlightStars(value));
+                star.addEventListener('mouseleave', () => highlightStars(currentRating));
+                star.addEventListener('blur', () => highlightStars(currentRating));
+                star.addEventListener('click', () => {
+                    currentRating = value;
+                    highlightStars(currentRating);
+                });
+                star.addEventListener('keydown', event => {
+                    if (event.key === 'Enter' || event.key === ' ') {
+                        event.preventDefault();
+                        currentRating = value;
+                        highlightStars(currentRating);
+                    }
+                });
+            });
+
+            if (ratingForm && ratingMessage) {
+                ratingForm.addEventListener('submit', event => {
+                    event.preventDefault();
+
+                    if (!currentRating) {
+                        ratingMessage.textContent = 'اختر عدد النجوم قبل إرسال التقييم.';
+                        ratingMessage.classList.add('is-error');
+                        ratingMessage.style.display = 'block';
+                        return;
+                    }
+
+                    ratingMessage.textContent = 'شكرًا لملاحظاتك! سنستفيد منها في تحسين المحتوى.';
+                    ratingMessage.classList.remove('is-error');
+                    ratingMessage.style.display = 'block';
+                    ratingForm.reset();
+                    currentRating = 0;
+                    highlightStars(0);
+
+                    setTimeout(() => {
+                        ratingMessage.style.display = 'none';
+                    }, 3500);
+                });
+            }
+
+            const quizForm = document.getElementById('quizForm');
+            const quizScore = document.getElementById('quizScore');
+
+            if (quizForm) {
+                quizForm.addEventListener('submit', event => {
+                    event.preventDefault();
+                    let score = 0;
+                    let total = 0;
+
+                    quizForm.querySelectorAll('[data-quiz-question]').forEach((question, index) => {
+                        total += 1;
+                        const correct = question.getAttribute('data-correct');
+                        const name = `q${index + 1}`;
+                        const selected = question.querySelector(`input[name="${name}"]:checked`);
+                        const result = question.querySelector('[data-quiz-result]');
+
+                        if (!result) {
+                            return;
+                        }
+
+                        if (!selected) {
+                            result.textContent = 'يرجى اختيار إجابة.';
+                            result.style.color = 'var(--color-warning)';
+                            return;
+                        }
+
+                        if (selected.value === correct) {
+                            score += 1;
+                            result.textContent = 'إجابة صحيحة ✔';
+                            result.style.color = 'var(--color-success)';
+                        } else {
+                            const correctOption = question.querySelector(`input[value="${correct}"]`);
+                            const correctText = correctOption ? correctOption.nextElementSibling.textContent : '';
+                            result.textContent = `إجابة خاطئة ✖، الإجابة الصحيحة: ${correctText}`;
+                            result.style.color = 'var(--color-error)';
+                        }
+                    });
+
+                    if (quizScore) {
+                        quizScore.textContent = `نتيجتك: ${score} من ${total}. أحسنت!`;
+                        quizScore.style.display = 'block';
+                    }
+                });
+            }
+        })();
+    </script>
+</body>
+</html>

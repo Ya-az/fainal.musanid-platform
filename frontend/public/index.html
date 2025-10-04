@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#4b70e2" />
+    <meta
+      name="description"
+      content="منصة مساند التعليمية - موقع تعليمي متخصص في مجال تطوير الويب وتقنية المعلومات"
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <title>منصة مساند التعليمية</title>
+    <style>
+      /* تنسيقات مؤقتة لتجنب الشاشة البيضاء */
+      #loading {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        height: 100vh;
+        background-color: #f8f9fa;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
+      
+      .spinner {
+        width: 50px;
+        height: 50px;
+        border: 5px solid #f3f3f3;
+        border-top: 5px solid #4b70e2;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin-bottom: 20px;
+      }
+      
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      
+      #loading h2 {
+        color: #333;
+      }
+    </style>
+  </head>
+  <body>
+    <noscript>يجب تفعيل JavaScript لتشغيل هذا التطبيق.</noscript>
+    
+    <!-- شاشة تحميل مؤقتة -->
+    <div id="loading">
+      <div class="spinner"></div>
+      <h2>جاري تحميل منصة مساند التعليمية...</h2>
+    </div>
+    
+    <div id="root"></div>
+    
+    <script>
+      // إخفاء شاشة التحميل بعد تحميل التطبيق
+      window.addEventListener('load', function() {
+        setTimeout(function() {
+          const loadingElement = document.getElementById('loading');
+          if (loadingElement) {
+            loadingElement.style.display = 'none';
+          }
+        }, 1000);
+      });
+    </script>
+  </body>
+</html>

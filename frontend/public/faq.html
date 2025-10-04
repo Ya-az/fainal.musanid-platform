@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الأسئلة الشائعة - منصة مساند التعليمية</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="css/styles.css" rel="stylesheet">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <nav class="site-nav">
+                        <a href="index-standalone.html" class="site-brand">مساند</a>
+                        <button class="site-nav__toggle" type="button" aria-label="فتح القائمة" data-nav-target="faqNav">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="3" y1="6" x2="21" y2="6" />
+                                <line x1="3" y1="12" x2="21" y2="12" />
+                                <line x1="3" y1="18" x2="21" y2="18" />
+                            </svg>
+                        </button>
+                        <div class="site-nav__links" id="faqNav">
+                            <a href="index-standalone.html" class="site-nav__link">الرئيسية</a>
+                            <a href="course/cr_index.html" class="site-nav__link">الدورات</a>
+                            <a href="faq.html" class="site-nav__link is-active">الأسئلة الشائعة</a>
+                            <a href="support/sp_index.html" class="site-nav__link">الدعم الفني</a>
+                            <a href="about-musanid.html" class="site-nav__link">عن مساند</a>
+                        </div>
+                        <div class="site-nav__actions">
+                            <a href="auth/login.html" class="btn btn-secondary">تسجيل الدخول</a>
+                            <a href="auth/login.html" class="btn btn-primary">إنشاء حساب</a>
+                        </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero hero--faq">
+            <div class="container layout-stack" style="text-align:center; max-width:760px; color:#fff;">
+                        <span class="pill">إجابات لكل ما يدور في بالك</span>
+                        <h1 class="hero__headline">الأسئلة الأكثر شيوعًا حول منصة مساند</h1>
+                        <p class="hero__subheadline" style="color:rgba(255,255,255,0.9);">
+                            جمعنا لك كل التفاصيل حول التسجيل، الدورات، الشهادات، والدعم الفني حتى تكون تجربتك أسهل منذ اللحظة الأولى.
+                        </p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container layout-stack">
+                <div class="card card--muted" style="max-width:640px; margin:0 auto; text-align:center;">
+                            <h2 class="section__title" style="font-size:1.8rem;">ابحث بسرعة عن سؤالك</h2>
+                            <p class="text-muted">اكتب كلمة مفتاحية وسيتم تصفية النتائج فورًا.</p>
+                            <input id="faqSearch" class="input-field" type="search" placeholder="مثال: الشهادات، الدفع، تغيير كلمة المرور" aria-label="بحث في الأسئلة الشائعة">
+                        </div>
+
+                        <div class="faq-filters">
+                            <button class="faq-filter__button" type="button" data-faq-filter="all">كل الأسئلة</button>
+                            <button class="faq-filter__button" type="button" data-faq-filter="general">أسئلة عامة</button>
+                            <button class="faq-filter__button" type="button" data-faq-filter="courses">الدورات</button>
+                            <button class="faq-filter__button" type="button" data-faq-filter="certificates">الشهادات</button>
+                            <button class="faq-filter__button" type="button" data-faq-filter="payment">الدفع والاشتراك</button>
+                            <button class="faq-filter__button" type="button" data-faq-filter="technical">تقني</button>
+                            <button class="faq-filter__button" type="button" data-faq-filter="account">إدارة الحساب</button>
+                        </div>
+
+                        <div class="layout-stack" style="gap:2.5rem;">
+                            <section class="layout-stack" data-faq-panel="general">
+                                <h2 class="section__title" style="font-size:1.6rem;">أسئلة عامة</h2>
+                                <div class="accordion" data-allow-multiple="false">
+                                    <article class="accordion__item" data-faq-question="ما هي منصة مساند منصة مساند هي منصة تعليمية عربية تقدم دورات تدريبية مع شهادات">
+                                        <button class="accordion__trigger">
+                                            <span>ما هي منصة مساند؟</span>
+                                            <span class="accordion__icon">+</span>
+                                        </button>
+                                        <div class="accordion__content">
+                                            مساند منصة تعليم إلكتروني عربية توفر محتوى متخصصًا في مجالات التقنية والأعمال والتصميم، مع متابعة ودعم مستمر وشهادات معتمدة بعد إكمال الدورات.
+                                        </div>
+                                    </article>
+                                    <article class="accordion__item" data-faq-question="كيفية إنشاء حساب التسجيل في منصة مساند">
+                                        <button class="accordion__trigger">
+                                            <span>كيف يمكنني إنشاء حساب؟</span>
+                                            <span class="accordion__icon">+</span>
+                                        </button>
+                                        <div class="accordion__content">
+                                            اضغط على زر "إنشاء حساب"، املأ بياناتك الأساسية أو استخدم حسابك في Google أو Apple، وستصل رسالة تفعيل لإكمال العملية خلال دقائق.
+                                        </div>
+                                    </article>
+                                    <article class="accordion__item" data-faq-question="هل يمكن تصفح الدورات بدون حساب">
+                                        <button class="accordion__trigger">
+                                            <span>هل يمكنني تصفح الدورات بدون تسجيل؟</span>
+                                            <span class="accordion__icon">+</span>
+                                        </button>
+                                        <div class="accordion__content">
+                                            نعم، يمكنك استعراض جميع الدورات ومسارات التعلم. عند رغبتك في التسجيل أو الانضمام للمحتوى ستحتاج إلى إنشاء حساب مجاني.
+                                        </div>
+                                    </article>
+                                </div>
+                            </section>
+
+                            <section class="layout-stack" data-faq-panel="courses">
+                                <h2 class="section__title" style="font-size:1.6rem;">الدورات والمسارات</h2>
+                                <div class="accordion" data-allow-multiple="false">
+                                    <article class="accordion__item" data-faq-question="كيفية التسجيل في دورة مساند">
+                                        <button class="accordion__trigger">
+                                            <span>كيف أسجل في دورة؟</span>
+                                            <span class="accordion__icon">+</span>
+                                        </button>
+                                        <div class="accordion__content">
+                                            ادخل على صفحة الدورة، اضغط "التسجيل الآن"، ثم اختر الخطة المناسبة. في حال كانت الدورة مجانية ستحصل على الوصول مباشرة بعد تسجيل الدخول.
+                                        </div>
+                                    </article>
+                                    <article class="accordion__item" data-faq-question="هل الدورات متاحة مدى الحياة بعد الشراء">
+                                        <button class="accordion__trigger">
+                                            <span>هل أملك الدورة مدى الحياة؟</span>
+                                            <span class="accordion__icon">+</span>
+                                        </button>
+                                        <div class="accordion__content">
+                                            نعم، بمجرد شرائك للدورة ستبقى متاحة في حسابك مع جميع التحديثات المستقبلية دون أي رسوم إضافية.
+                                        </div>
+                                    </article>
+                                    <article class="accordion__item" data-faq-question="تنزيل محتوى الدورة بدون اتصال">
+                                        <button class="accordion__trigger">
+                                            <span>هل أستطيع التعلم بدون اتصال بالإنترنت؟</span>
+                                            <span class="accordion__icon">+</span>
+                                        </button>
+                                        <div class="accordion__content">
+                                            يمكنك تنزيل المحاضرات والملفات من تطبيق الجوال للدراسة لاحقًا، مع ملاحظة أن المناقشات والاختبارات المباشرة تتطلب اتصالًا بالإنترنت.
+                                        </div>
+                                    </article>
+                                </div>
+                            </section>
+
+                            <section class="layout-stack" data-faq-panel="certificates">
+                                <h2 class="section__title" style="font-size:1.6rem;">الشهادات</h2>
+                                <div class="accordion" data-allow-multiple="false">
+                                    <article class="accordion__item" data-faq-question="كيفية الحصول على شهادة من مساند">
+                                        <button class="accordion__trigger">
+                                            <span>كيف أحصل على شهادة الإكمال؟</span>
+                                            <span class="accordion__icon">+</span>
+                                        </button>
+                                        <div class="accordion__content">
+                                            أكمل جميع الدروس والمهام المطلوبة، واجتز الاختبار النهائي بنسبة النجاح المحددة. بعدها يمكنك تنزيل الشهادة أو مشاركتها مباشرة عبر لينكدإن.
+                                        </div>
+                                    </article>
+                                    <article class="accordion__item" data-faq-question="هل شهادات مساند معتمدة">
+                                        <button class="accordion__trigger">
+                                            <span>هل شهادات مساند معتمدة؟</span>
+                                            <span class="accordion__icon">+</span>
+                                        </button>
+                                        <div class="accordion__content">
+                                            نعم، شهاداتنا معتمدة من المنصة ويصادق عليها شركاؤنا الأكاديميون، وتحتوي على رقم تحقق يمكن لأصحاب العمل التأكد منه إلكترونيًا.
+                                        </div>
+                                    </article>
+                                </div>
+                            </section>
+
+                            <section class="layout-stack" data-faq-panel="payment">
+                                <h2 class="section__title" style="font-size:1.6rem;">الدفع والاشتراكات</h2>
+                                <div class="accordion" data-allow-multiple="false">
+                                    <article class="accordion__item" data-faq-question="طرق الدفع المتاحة في مساند">
+                                        <button class="accordion__trigger">
+                                            <span>ما طرق الدفع المتوفرة؟</span>
+                                            <span class="accordion__icon">+</span>
+                                        </button>
+                                        <div class="accordion__content">
+                                            نقبل بطاقات فيزا، ماستر كارد، مدى، STC Pay، Apple Pay، إضافة إلى التحويل البنكي للشركات والمؤسسات التعليمية.
+                                        </div>
+                                    </article>
+                                    <article class="accordion__item" data-faq-question="سياسة استرداد المبلغ مساند">
+                                        <button class="accordion__trigger">
+                                            <span>هل يمكنني استرداد رسوم الدورة؟</span>
+                                            <span class="accordion__icon">+</span>
+                                        </button>
+                                        <div class="accordion__content">
+                                            نعم، بإمكانك طلب الاسترداد خلال 14 يومًا من الشراء بشرط ألا يتجاوز استهلاكك 25٪ من محتوى الدورة. يتم معالجة الطلب خلال 5 أيام عمل.
+                                        </div>
+                                    </article>
+                                </div>
+                            </section>
+
+                            <section class="layout-stack" data-faq-panel="technical">
+                                <h2 class="section__title" style="font-size:1.6rem;">القسم التقني</h2>
+                                <div class="accordion" data-allow-multiple="false">
+                                    <article class="accordion__item" data-faq-question="متطلبات النظام لتشغيل منصة مساند">
+                                        <button class="accordion__trigger">
+                                            <span>ما المتطلبات التقنية لاستخدام المنصة؟</span>
+                                            <span class="accordion__icon">+</span>
+                                        </button>
+                                        <div class="accordion__content">
+                                            نوصي باستخدام أحد المتصفحات الحديثة (Chrome، Safari، Edge) مع اتصال إنترنت مستقر بسرعة 5 ميجابت على الأقل للحصول على أفضل تجربة.
+                                        </div>
+                                    </article>
+                                    <article class="accordion__item" data-faq-question="حل مشكلات تشغيل الفيديو في مساند">
+                                        <button class="accordion__trigger">
+                                            <span>الفيديو لا يعمل، ماذا أفعل؟</span>
+                                            <span class="accordion__icon">+</span>
+                                        </button>
+                                        <div class="accordion__content">
+                                            قم بتحديث المتصفح، جرّب وضع التصفح الخفي، عطّل الإضافات التي قد تعيق التشغيل، واختر جودة أقل من إعدادات الفيديو إذا استمرت المشكلة.
+                                        </div>
+                                    </article>
+                                </div>
+                            </section>
+
+                            <section class="layout-stack" data-faq-panel="account">
+                                <h2 class="section__title" style="font-size:1.6rem;">إدارة الحساب</h2>
+                                <div class="accordion" data-allow-multiple="false">
+                                    <article class="accordion__item" data-faq-question="كيفية تغيير كلمة المرور في مساند">
+                                        <button class="accordion__trigger">
+                                            <span>كيف أغير كلمة المرور؟</span>
+                                            <span class="accordion__icon">+</span>
+                                        </button>
+                                        <div class="accordion__content">
+                                            من لوحة التحكم اختر "إعدادات الحساب" ثم "تغيير كلمة المرور"، أدخل كلمات المرور الحالية والجديدة واحفظ التغييرات فورًا.
+                                        </div>
+                                    </article>
+                                    <article class="accordion__item" data-faq-question="نسيت كلمة المرور استعادة حساب مساند">
+                                        <button class="accordion__trigger">
+                                            <span>نسيت كلمة المرور، ما الحل؟</span>
+                                            <span class="accordion__icon">+</span>
+                                        </button>
+                                        <div class="accordion__content">
+                                            اضغط على "نسيت كلمة المرور" في صفحة تسجيل الدخول، أدخل بريدك الإلكتروني وستصل رسالة تحتوي على رابط لإعادة التعيين.
+                                        </div>
+                                    </article>
+                                </div>
+                            </section>
+                        </div>
+
+                        <div class="card card--muted" style="text-align:center;">
+                            <h2 class="section__title" style="font-size:1.6rem;">لم تجد إجابتك؟</h2>
+                            <p class="text-muted">يسعد فريق الدعم لدينا بخدمتك عبر القنوات التالية.</p>
+                            <div class="hero__actions" style="justify-content:center; margin-top:1.25rem;">
+                                <a href="support/sp_index.html" class="btn btn-primary">تواصل مع الدعم الفني</a>
+                                <a href="mailto:support@musanid.com" class="btn btn-secondary">راسلنا عبر البريد</a>
+                            </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="site-footer__grid">
+                <div class="site-footer__grid-large layout-stack">
+                    <a href="index-standalone.html" class="site-brand" style="color:#fff;">مساند</a>
+                    <p class="text-muted" style="color:rgba(255,255,255,0.72);">
+                        منصة عربية متكاملة للتعلم الإلكتروني، نوفر محتوى متخصصًا وشهادات موثوقة مع دعم فني يرافقك في كل خطوة.
+                    </p>
+                </div>
+                <div>
+                    <h4>روابط سريعة</h4>
+                    <ul class="layout-stack" style="gap:0.6rem;">
+                        <li><a href="index-standalone.html">الرئيسية</a></li>
+                        <li><a href="course/cr_index.html">الدورات</a></li>
+                        <li><a href="faq.html">الأسئلة الشائعة</a></li>
+                        <li><a href="support/sp_index.html">الدعم الفني</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>دليل المساعدة</h4>
+                    <ul class="layout-stack" style="gap:0.6rem;">
+                        <li><a href="#">بدء الاستخدام</a></li>
+                        <li><a href="support/sp_index.html#contact">طلبات الشراكة</a></li>
+                        <li><a href="offline.html">الوصول دون اتصال</a></li>
+                        <li><a href="manifest.json">تطبيق الويب التقدمي</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>تواصل معنا</h4>
+                    <ul class="layout-stack" style="gap:0.6rem;">
+                        <li><a href="mailto:support@musanid.com">support@musanid.com</a></li>
+                        <li><a href="tel:+966501234567">+966 50 123 4567</a></li>
+                        <li><span class="pill">الرياض - المملكة العربية السعودية</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="site-footer__bottom">
+                <p>© 2025 مساند. جميع الحقوق محفوظة.</p>
+                <div class="social-links">
+                    <a href="#" aria-label="Twitter">ﻁ</a>
+                    <a href="#" aria-label="LinkedIn">in</a>
+                    <a href="#" aria-label="YouTube">▶</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
