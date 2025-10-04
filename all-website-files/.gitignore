@@ -1,4 +1,4 @@
-﻿# Ignore everything in parent directory
+﻿# Ignore parent directory
 ../*
-# Don't ignore the current directory
-!./
+# Don't ignore current directory contents
+!/*

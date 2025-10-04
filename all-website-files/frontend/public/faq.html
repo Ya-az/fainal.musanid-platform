@@ -36,19 +36,21 @@
 
     <main>
         <section class="hero hero--faq">
-            <div class="container layout-stack" style="text-align:center; max-width:760px; color:#fff;">
-                        <span class="pill">إجابات لكل ما يدور في بالك</span>
-                        <h1 class="hero__headline">الأسئلة الأكثر شيوعًا حول منصة مساند</h1>
-                        <p class="hero__subheadline" style="color:rgba(255,255,255,0.9);">
-                            جمعنا لك كل التفاصيل حول التسجيل، الدورات، الشهادات، والدعم الفني حتى تكون تجربتك أسهل منذ اللحظة الأولى.
-                        </p>
+            <div class="container">
+                <div class="hero__content">
+                    <span class="pill hero__pill">إجابات لكل ما يدور في بالك</span>
+                    <h1 class="hero__headline">الأسئلة الأكثر شيوعًا حول منصة مساند</h1>
+                    <p class="hero__subheadline">
+                        جمعنا لك كل التفاصيل حول التسجيل، الدورات، الشهادات، والدعم الفني حتى تكون تجربتك أسهل منذ اللحظة الأولى.
+                    </p>
+                </div>
             </div>
         </section>
 
         <section class="section">
             <div class="container layout-stack">
-                <div class="card card--muted" style="max-width:640px; margin:0 auto; text-align:center;">
-                            <h2 class="section__title" style="font-size:1.8rem;">ابحث بسرعة عن سؤالك</h2>
+                <div class="card card--muted card--centered layout-stack max-w-640 mx-auto">
+                            <h2 class="section__title section__title--lg">ابحث بسرعة عن سؤالك</h2>
                             <p class="text-muted">اكتب كلمة مفتاحية وسيتم تصفية النتائج فورًا.</p>
                             <input id="faqSearch" class="input-field" type="search" placeholder="مثال: الشهادات، الدفع، تغيير كلمة المرور" aria-label="بحث في الأسئلة الشائعة">
                         </div>
@@ -63,9 +65,9 @@
                             <button class="faq-filter__button" type="button" data-faq-filter="account">إدارة الحساب</button>
                         </div>
 
-                        <div class="layout-stack" style="gap:2.5rem;">
+                        <div class="layout-stack layout-stack--xxl">
                             <section class="layout-stack" data-faq-panel="general">
-                                <h2 class="section__title" style="font-size:1.6rem;">أسئلة عامة</h2>
+                                <h2 class="section__title section__title--md">أسئلة عامة</h2>
                                 <div class="accordion" data-allow-multiple="false">
                                     <article class="accordion__item" data-faq-question="ما هي منصة مساند منصة مساند هي منصة تعليمية عربية تقدم دورات تدريبية مع شهادات">
                                         <button class="accordion__trigger">
@@ -98,7 +100,7 @@
                             </section>
 
                             <section class="layout-stack" data-faq-panel="courses">
-                                <h2 class="section__title" style="font-size:1.6rem;">الدورات والمسارات</h2>
+                                <h2 class="section__title section__title--md">الدورات والمسارات</h2>
                                 <div class="accordion" data-allow-multiple="false">
                                     <article class="accordion__item" data-faq-question="كيفية التسجيل في دورة مساند">
                                         <button class="accordion__trigger">
@@ -131,7 +133,7 @@
                             </section>
 
                             <section class="layout-stack" data-faq-panel="certificates">
-                                <h2 class="section__title" style="font-size:1.6rem;">الشهادات</h2>
+                                <h2 class="section__title section__title--md">الشهادات</h2>
                                 <div class="accordion" data-allow-multiple="false">
                                     <article class="accordion__item" data-faq-question="كيفية الحصول على شهادة من مساند">
                                         <button class="accordion__trigger">
@@ -155,7 +157,7 @@
                             </section>
 
                             <section class="layout-stack" data-faq-panel="payment">
-                                <h2 class="section__title" style="font-size:1.6rem;">الدفع والاشتراكات</h2>
+                                <h2 class="section__title section__title--md">الدفع والاشتراكات</h2>
                                 <div class="accordion" data-allow-multiple="false">
                                     <article class="accordion__item" data-faq-question="طرق الدفع المتاحة في مساند">
                                         <button class="accordion__trigger">
@@ -179,7 +181,7 @@
                             </section>
 
                             <section class="layout-stack" data-faq-panel="technical">
-                                <h2 class="section__title" style="font-size:1.6rem;">القسم التقني</h2>
+                                <h2 class="section__title section__title--md">القسم التقني</h2>
                                 <div class="accordion" data-allow-multiple="false">
                                     <article class="accordion__item" data-faq-question="متطلبات النظام لتشغيل منصة مساند">
                                         <button class="accordion__trigger">
@@ -203,7 +205,7 @@
                             </section>
 
                             <section class="layout-stack" data-faq-panel="account">
-                                <h2 class="section__title" style="font-size:1.6rem;">إدارة الحساب</h2>
+                                <h2 class="section__title section__title--md">إدارة الحساب</h2>
                                 <div class="accordion" data-allow-multiple="false">
                                     <article class="accordion__item" data-faq-question="كيفية تغيير كلمة المرور في مساند">
                                         <button class="accordion__trigger">
@@ -227,10 +229,10 @@
                             </section>
                         </div>
 
-                        <div class="card card--muted" style="text-align:center;">
-                            <h2 class="section__title" style="font-size:1.6rem;">لم تجد إجابتك؟</h2>
+                        <div class="card card--muted card--centered layout-stack">
+                            <h2 class="section__title section__title--md">لم تجد إجابتك؟</h2>
                             <p class="text-muted">يسعد فريق الدعم لدينا بخدمتك عبر القنوات التالية.</p>
-                            <div class="hero__actions" style="justify-content:center; margin-top:1.25rem;">
+                            <div class="hero__actions hero__actions--center">
                                 <a href="support/sp_index.html" class="btn btn-primary">تواصل مع الدعم الفني</a>
                                 <a href="mailto:support@musanid.com" class="btn btn-secondary">راسلنا عبر البريد</a>
                             </div>
@@ -243,14 +245,14 @@
         <div class="container">
             <div class="site-footer__grid">
                 <div class="site-footer__grid-large layout-stack">
-                    <a href="index-standalone.html" class="site-brand" style="color:#fff;">مساند</a>
-                    <p class="text-muted" style="color:rgba(255,255,255,0.72);">
+                    <a href="index-standalone.html" class="site-brand">مساند</a>
+                    <p class="text-muted">
                         منصة عربية متكاملة للتعلم الإلكتروني، نوفر محتوى متخصصًا وشهادات موثوقة مع دعم فني يرافقك في كل خطوة.
                     </p>
                 </div>
                 <div>
                     <h4>روابط سريعة</h4>
-                    <ul class="layout-stack" style="gap:0.6rem;">
+                    <ul class="layout-stack layout-stack--tight">
                         <li><a href="index-standalone.html">الرئيسية</a></li>
                         <li><a href="course/cr_index.html">الدورات</a></li>
                         <li><a href="faq.html">الأسئلة الشائعة</a></li>
@@ -259,7 +261,7 @@
                 </div>
                 <div>
                     <h4>دليل المساعدة</h4>
-                    <ul class="layout-stack" style="gap:0.6rem;">
+                    <ul class="layout-stack layout-stack--tight">
                         <li><a href="#">بدء الاستخدام</a></li>
                         <li><a href="support/sp_index.html#contact">طلبات الشراكة</a></li>
                         <li><a href="offline.html">الوصول دون اتصال</a></li>
@@ -268,7 +270,7 @@
                 </div>
                 <div>
                     <h4>تواصل معنا</h4>
-                    <ul class="layout-stack" style="gap:0.6rem;">
+                    <ul class="layout-stack layout-stack--tight">
                         <li><a href="mailto:support@musanid.com">support@musanid.com</a></li>
                         <li><a href="tel:+966501234567">+966 50 123 4567</a></li>
                         <li><span class="pill">الرياض - المملكة العربية السعودية</span></li>

@@ -1,0 +1,5 @@
+1. ما هو Malware؟
+2. ما معنى Phishing؟
+3. ما الفرق بين Virus و Worm؟
+4. اذكر مثال Social Engineering.
+5. كيف تحمي البريد الإلكتروني؟

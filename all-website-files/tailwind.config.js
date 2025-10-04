@@ -4,8 +4,8 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'musanid-dark': '#1E3A8A',
-        'musanid-light': '#38BDF8',
+        'musanid-dark': '#6D28D9',
+        'musanid-light': '#A78BFA',
       },
       fontFamily: {
         'tajawal': ['Tajawal', 'sans-serif'],
