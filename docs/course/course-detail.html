@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تفاصيل الكورس - منصة مساند التعليمية</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="../css/styles.css" rel="stylesheet">
+    <script src="../js/course-manager.js"></script>
+    <style>
+        .progress-ring {
+            transform: rotate(-90deg);
+            transition: stroke-dasharray 0.35s;
+        }
+        
+        .lesson-item {
+            transition: all 0.3s ease;
+            border-right: 4px solid transparent;
+        }
+        
+        .lesson-item:hover {
+            background: var(--color-neutral-50);
+            border-right-color: var(--color-primary);
+        }
+        
+        .lesson-item.completed {
+            background: rgba(var(--color-primary-rgb), 0.05);
+            border-right-color: var(--color-success);
+        }
+        
+        .video-container {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: var(--radius-md);
+        }
+        
+        .quiz-question {
+            background: var(--color-neutral-50);
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .quiz-option {
+            padding: 0.75rem 1rem;
+            border: 2px solid var(--color-neutral-200);
+            border-radius: var(--radius-sm);
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .quiz-option:hover {
+            border-color: var(--color-primary);
+            background: rgba(var(--color-primary-rgb), 0.05);
+        }
+        
+        .quiz-option.selected {
+            border-color: var(--color-primary);
+            background: rgba(var(--color-primary-rgb), 0.1);
+        }
+        
+        .quiz-option.correct {
+            border-color: var(--color-success);
+            background: rgba(22, 163, 74, 0.1);
+        }
+        
+        .quiz-option.incorrect {
+            border-color: var(--color-error);
+            background: rgba(220, 38, 38, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <nav class="site-nav">
+                <a href="../index-standalone.html" class="site-brand">مساند</a>
+                <button class="site-nav__toggle" type="button" aria-label="فتح القائمة">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="3" y1="6" x2="21" y2="6" />
+                        <line x1="3" y1="12" x2="21" y2="12" />
+                        <line x1="3" y1="18" x2="21" y2="18" />
+                    </svg>
+                </button>
+                <div class="site-nav__links">
+                    <a href="../index-standalone.html" class="site-nav__link">الرئيسية</a>
+                    <a href="cr_index.html" class="site-nav__link">الدورات</a>
+                    <a href="../faq.html" class="site-nav__link">الأسئلة الشائعة</a>
+                    <a href="../support/sp_index.html" class="site-nav__link">الدعم الفني</a>
+                    <a href="../about-musanid.html" class="site-nav__link">عن مساند</a>
+                </div>
+                <div class="site-nav__actions">
+                    <a href="../auth/login.html" class="btn btn-secondary">تسجيل الدخول</a>
+                    <a href="../auth/login.html" class="btn btn-primary">ابدأ التعلم</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Course Header -->
+        <section class="section">
+            <div class="container">
+                <div class="grid grid--columns-3 gap-lg">
+                    <!-- Course Info -->
+                    <div class="span-2">
+                        <div class="layout-stack">
+                            <div class="flex items-center gap-sm mb-md">
+                                <a href="cr_index.html" class="btn btn-ghost">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="m15 18-6-6 6-6"/>
+                                    </svg>
+                                    العودة للدورات
+                                </a>
+                                <span class="badge" id="courseBadge">شبكات</span>
+                            </div>
+                            <h1 class="heading-xl" id="courseTitle">أساسيات Cisco Packet Tracer</h1>
+                            <p class="text-lg text-muted" id="courseDescription">
+                                ابدأ ببناء شبكات افتراضية باستخدام Packet Tracer وتعلم ضبط الأجهزة خطوة بخطوة مع سيناريوهات عملية.
+                            </p>
+                            <div class="flex gap-md">
+                                <div class="stat-mini">
+                                    <span class="stat-mini__value" id="courseDuration">5</span>
+                                    <span class="stat-mini__label">أسابيع</span>
+                                </div>
+                                <div class="stat-mini">
+                                    <span class="stat-mini__value" id="totalLessons">5</span>
+                                    <span class="stat-mini__label">دروس</span>
+                                </div>
+                                <div class="stat-mini">
+                                    <span class="stat-mini__value" id="courseLevel">مبتدئ</span>
+                                    <span class="stat-mini__label">المستوى</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Progress Card -->
+                    <div class="card layout-stack">
+                        <h3 class="heading-md">التقدم في الكورس</h3>
+                        <div class="flex items-center gap-md">
+                            <div class="progress-circle">
+                                <svg width="80" height="80" viewBox="0 0 80 80">
+                                    <circle cx="40" cy="40" r="36" stroke="var(--color-neutral-200)" stroke-width="8" fill="none"/>
+                                    <circle cx="40" cy="40" r="36" stroke="var(--color-primary)" stroke-width="8" fill="none" 
+                                            class="progress-ring" id="progressRing" stroke-dasharray="0 226"/>
+                                </svg>
+                                <div class="progress-percentage" id="progressPercentage">0%</div>
+                            </div>
+                            <div class="layout-stack layout-stack--sm">
+                                <div><strong id="completedLessons">0</strong> من <span id="totalLessonsCount">5</span> دروس</div>
+                                <div class="text-sm text-muted">دروس مكتملة</div>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary" id="continueBtn">متابعة التعلم</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Course Content -->
+        <section class="section section--alt">
+            <div class="container">
+                <div class="grid grid--columns-4 gap-lg">
+                    <!-- Lessons Sidebar -->
+                    <div class="card layout-stack lessons-sidebar" id="lessonsSidebar">
+                        <div class="flex items-center justify-between">
+                            <h3 class="heading-md">قائمة الدروس</h3>
+                            <button type="button" class="btn btn-secondary lessons-toggle" id="lessonsToggle" aria-expanded="true" aria-controls="lessonsList">
+                                إخفاء القائمة
+                            </button>
+                        </div>
+                        <div class="lessons-list" id="lessonsList">
+                            <!-- Lessons will be populated by JavaScript -->
+                        </div>
+                    </div>
+
+                    <!-- Main Content -->
+                    <div class="span-3">
+                        <!-- Video Section -->
+                        <div class="card layout-stack mb-lg" id="videoSection">
+                            <div class="flex justify-between items-center">
+                                <h2 class="heading-lg" id="currentLessonTitle">الدرس الأول: مقدمة في Packet Tracer</h2>
+                                <div class="lesson-actions">
+                                    <button class="btn btn-ghost" id="prevLessonBtn" disabled>
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="m15 18-6-6 6-6"/>
+                                        </svg>
+                                        السابق
+                                    </button>
+                                    <button class="btn btn-primary" id="nextLessonBtn">
+                                        التالي
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="m9 18 6-6-6-6"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="video-container" id="videoContainer">
+                                <iframe id="videoPlayer" src="" title="مشغل فيديو الدرس" allowfullscreen></iframe>
+                            </div>
+                            
+                            <div class="lesson-content" id="lessonContent">
+                                <!-- سيتم عرض ملخص الدرس هنا كقائمة نقاط إن توفر -->
+                            </div>
+                        </div>
+
+                        <!-- Quiz Section -->
+                        <div class="card layout-stack is-hidden" id="quizSection">
+                            <h3 class="heading-md">اختبار سريع</h3>
+                            <p class="text-muted">أجب على الأسئلة التالية للتأكد من فهمك للدرس:</p>
+                            
+                            <div id="quizQuestions">
+                                <!-- Quiz questions will be populated by JavaScript -->
+                            </div>
+                            
+                            <div class="quiz-actions">
+                                <button class="btn btn-primary" id="submitQuizBtn">إرسال الإجابات</button>
+                                <button class="btn btn-secondary is-hidden" id="showAnswersBtn">عرض الإجابات</button>
+                                <button class="btn btn-ghost is-hidden" id="retryQuizBtn">إعادة المحاولة</button>
+                            </div>
+                            
+                            <div id="quizResults" class="quiz-results is-hidden" aria-live="polite">
+                                <div class="alert">
+                                    <h4 id="quizResultTitle">النتيجة</h4>
+                                    <p id="quizScore">لقد أجبت بشكل صحيح على جميع الأسئلة.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="site-footer__content">
+                <div class="site-footer__brand">
+                    <h3>مساند</h3>
+                    <p>منصة تعليمية عربية متخصصة في التقنية</p>
+                </div>
+                <div class="site-footer__links">
+                    <a href="../index-standalone.html">الرئيسية</a>
+                    <a href="cr_index.html">الدورات</a>
+                    <a href="../faq.html">الأسئلة الشائعة</a>
+                    <a href="../about-musanid.html">عن مساند</a>
+                </div>
+            </div>
+            <div class="site-footer__bottom">
+                <p>&copy; 2025 مساند. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Get course ID from URL parameters or default to Cisco
+        const urlParams = new URLSearchParams(window.location.search);
+        const courseId = urlParams.get('course') || 'cisco-packet-tracer';
+        
+        let currentLessonIndex = 0;
+        let course = null;
+
+        // DOM elements
+        const courseBadge = document.getElementById('courseBadge');
+        const courseTitle = document.getElementById('courseTitle');
+        const courseDescription = document.getElementById('courseDescription');
+        const courseDuration = document.getElementById('courseDuration');
+        const totalLessons = document.getElementById('totalLessons');
+        const courseLevel = document.getElementById('courseLevel');
+        const progressRing = document.getElementById('progressRing');
+        const progressPercentage = document.getElementById('progressPercentage');
+        const completedLessonsEl = document.getElementById('completedLessons');
+        const totalLessonsCount = document.getElementById('totalLessonsCount');
+        const continueBtn = document.getElementById('continueBtn');
+        const lessonsList = document.getElementById('lessonsList');
+        const currentLessonTitle = document.getElementById('currentLessonTitle');
+        const videoPlayer = document.getElementById('videoPlayer');
+        const lessonContent = document.getElementById('lessonContent');
+        const videoSection = document.getElementById('videoSection');
+        const quizSection = document.getElementById('quizSection');
+        const quizQuestions = document.getElementById('quizQuestions');
+        const submitQuizBtn = document.getElementById('submitQuizBtn');
+        const retryQuizBtn = document.getElementById('retryQuizBtn');
+        const quizResults = document.getElementById('quizResults');
+        const quizScore = document.getElementById('quizScore');
+    const showAnswersBtn = document.getElementById('showAnswersBtn');
+        const prevLessonBtn = document.getElementById('prevLessonBtn');
+        const nextLessonBtn = document.getElementById('nextLessonBtn');
+    const lessonsSidebar = document.getElementById('lessonsSidebar');
+    const lessonsToggle = document.getElementById('lessonsToggle');
+
+        // Initialize the course page
+        function initializeCourse() {
+            course = courseManager.getCourse(courseId);
+            
+            if (!course) {
+                console.error('Course not found');
+                return;
+            }
+
+            // Populate course information
+            courseBadge.textContent = course.badge;
+            courseTitle.textContent = course.title;
+            courseDescription.textContent = course.description;
+            courseDuration.textContent = course.duration.replace(' ساعات', '').replace(' ساعة', '');
+            totalLessons.textContent = course.lessons.length;
+            totalLessonsCount.textContent = course.lessons.length;
+            courseLevel.textContent = course.level;
+
+            // Render lessons list
+            renderLessonsList();
+            
+            // Load first lesson
+            loadLesson(0);
+            
+            // Update progress
+            updateProgress();
+        }
+
+        function renderLessonsList() {
+            lessonsList.innerHTML = '';
+            
+            course.lessons.forEach((lesson, index) => {
+                const isCompleted = lesson.completed;
+                const isCurrent = index === currentLessonIndex;
+                
+                const lessonItem = document.createElement('div');
+                lessonItem.className = `lesson-item p-md cursor-pointer ${isCompleted ? 'completed' : ''} ${isCurrent ? 'bg-primary-light' : ''}`;
+                lessonItem.innerHTML = `
+                    <div class="flex items-center gap-sm">
+                        <div class="lesson-number">
+                            ${isCompleted ? '✓' : index + 1}
+                        </div>
+                        <div class="flex-1">
+                            <h4 class="text-sm font-medium">${lesson.title}</h4>
+                            <div class="text-xs text-muted">${lesson.duration}</div>
+                        </div>
+                    </div>
+                `;
+                
+                lessonItem.addEventListener('click', () => loadLesson(index));
+                lessonsList.appendChild(lessonItem);
+            });
+        }
+
+        function loadLesson(index) {
+            if (index < 0 || index >= course.lessons.length) return;
+            
+            currentLessonIndex = index;
+            const lesson = course.lessons[index];
+            
+            // Update lesson title and content
+            currentLessonTitle.textContent = `الدرس ${index + 1}: ${lesson.title}`;
+            // Render summary list if available, else show description
+            if (Array.isArray(lesson.summary) && lesson.summary.length) {
+                const ul = document.createElement('ul');
+                ul.className = 'list-disc pr-lg';
+                lesson.summary.forEach(point => {
+                    const li = document.createElement('li');
+                    li.textContent = point;
+                    ul.appendChild(li);
+                });
+                lessonContent.innerHTML = '';
+                const intro = document.createElement('p');
+                intro.className = 'mb-sm';
+                intro.textContent = lesson.description || '';
+                lessonContent.appendChild(intro);
+                lessonContent.appendChild(ul);
+            } else {
+                lessonContent.textContent = lesson.description || '';
+            }
+            
+            // Load YouTube video
+            if (lesson.videoUrl) {
+                const videoId = extractYouTubeVideoId(lesson.videoUrl);
+                if (videoId) {
+                    videoPlayer.src = `https://www.youtube.com/embed/${videoId}`;
+                    videoPlayer.title = lesson.title;
+                }
+            }
+            
+            // Show video section, hide quiz section initially
+            videoSection.classList.remove('is-hidden');
+            quizSection.classList.add('is-hidden');
+            quizQuestions.innerHTML = '';
+            quizResults.classList.add('is-hidden');
+            submitQuizBtn.classList.remove('is-hidden');
+            retryQuizBtn.classList.add('is-hidden');
+            showAnswersBtn.classList.add('is-hidden');
+            showAnswersBtn.textContent = 'عرض الإجابات';
+            
+            // Update navigation buttons
+            prevLessonBtn.disabled = index === 0;
+            nextLessonBtn.textContent = index === course.lessons.length - 1 ? 'إنهاء الكورس' : 'التالي';
+            
+            // Re-render lessons list to update current lesson highlight
+            renderLessonsList();
+        }
+
+        function extractYouTubeVideoId(url) {
+            const match = url.match(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/);
+            return match ? match[1] : null;
+        }
+
+        function showQuiz() {
+            // Generate quiz for current lesson
+            const lesson = course.lessons[currentLessonIndex];
+            const quiz = courseManager.generateQuiz(courseId, lesson.id);
+            
+            if (!quiz || quiz.length === 0) {
+                // No quiz for this lesson, mark as completed and move to next
+                markLessonCompleted();
+                if (currentLessonIndex < course.lessons.length - 1) {
+                    loadLesson(currentLessonIndex + 1);
+                } else {
+                    alert('تهانينا! لقد أكملت الكورس بنجاح');
+                }
+                return;
+            }
+            
+            videoSection.classList.add('is-hidden');
+            quizSection.classList.remove('is-hidden');
+            
+            // Generate quiz HTML
+            quizQuestions.innerHTML = '';
+            quiz.forEach((question, qIndex) => {
+                const questionEl = document.createElement('div');
+                questionEl.className = 'quiz-question';
+                questionEl.innerHTML = `
+                    <h4 class="mb-md">${qIndex + 1}. ${question.question}</h4>
+                    <div class="quiz-options">
+                        ${question.options.map((option, oIndex) => `
+                            <label class="quiz-option block cursor-pointer" data-question="${qIndex}" data-option="${oIndex}">
+                                <input type="radio" name="question-${qIndex}" value="${oIndex}" class="sr-only">
+                                <span>${option}</span>
+                            </label>
+                        `).join('')}
+                    </div>
+                    <div class="quiz-explanation is-hidden text-sm text-muted mt-sm" data-explain-for="${qIndex}"></div>
+                `;
+                quizQuestions.appendChild(questionEl);
+            });
+            
+            // Add click handlers for quiz options
+            document.querySelectorAll('.quiz-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    const questionIndex = this.dataset.question;
+                    const radio = this.querySelector('input[type="radio"]');
+                    radio.checked = true;
+                    
+                    // Remove selected class from siblings
+                    this.parentElement.querySelectorAll('.quiz-option').forEach(opt => {
+                        opt.classList.remove('selected');
+                    });
+                    
+                    // Add selected class to clicked option
+                    this.classList.add('selected');
+                });
+            });
+
+            // Reset actions state
+            submitQuizBtn.classList.remove('is-hidden');
+            retryQuizBtn.classList.add('is-hidden');
+            showAnswersBtn.classList.add('is-hidden');
+            showAnswersBtn.textContent = 'عرض الإجابات';
+            quizResults.classList.add('is-hidden');
+        }
+
+        function submitQuiz() {
+            const answers = {};
+            const lesson = course.lessons[currentLessonIndex];
+            const quiz = courseManager.generateQuiz(courseId, lesson.id);
+            
+            quiz.forEach((question, qIndex) => {
+                const selectedOption = document.querySelector(`input[name="question-${qIndex}"]:checked`);
+                if (selectedOption) {
+                    answers[qIndex] = parseInt(selectedOption.value);
+                }
+            });
+            
+            const result = courseManager.checkQuizAnswers(courseId, lesson.id, answers);
+            
+            // Show visual feedback for each answer
+            quiz.forEach((question, qIndex) => {
+                const options = document.querySelectorAll(`[data-question="${qIndex}"]`);
+                
+                options.forEach((option, oIndex) => {
+                    option.classList.remove('correct', 'incorrect', 'selected');
+                    
+                    if (oIndex === question.correct) {
+                        option.classList.add('correct');
+                    } else if (answers[qIndex] === oIndex) {
+                        option.classList.add('incorrect');
+                    }
+                });
+                // Fill explanations but keep hidden until requested
+                const exp = document.querySelector(`.quiz-explanation[data-explain-for="${qIndex}"]`);
+                if (exp) {
+                    const detail = result.details[qIndex];
+                    exp.textContent = detail && detail.explanation ? `الشرح: ${detail.explanation}` : '';
+                }
+            });
+            
+            // Show results
+            quizScore.textContent = `لقد أجبت بشكل صحيح على ${result.score} من ${result.total} أسئلة (${result.percentage}%)`;
+            const titleEl = document.getElementById('quizResultTitle');
+            if (result.passed) {
+                quizResults.firstElementChild.className = 'alert alert--success';
+                if (titleEl) titleEl.textContent = 'ممتاز!';
+                showAnswersBtn.classList.remove('is-hidden');
+                markLessonCompleted();
+            } else {
+                quizResults.firstElementChild.className = 'alert alert--warning';
+                if (titleEl) titleEl.textContent = 'يمكنك تحسين النتيجة';
+                retryQuizBtn.classList.remove('is-hidden');
+                showAnswersBtn.classList.remove('is-hidden');
+            }
+            quizResults.classList.remove('is-hidden');
+            submitQuizBtn.classList.add('is-hidden');
+        }
+
+        function markLessonCompleted() {
+            const lesson = course.lessons[currentLessonIndex];
+            courseManager.markLessonCompleted(courseId, lesson.id);
+            updateProgress();
+            renderLessonsList();
+        }
+
+        function updateProgress() {
+            const progress = courseManager.getProgressPercentage(courseId);
+            const completed = course.lessons.filter(l => l.completed).length;
+            const total = course.lessons.length;
+            
+            // Update progress ring
+            const circumference = 2 * Math.PI * 36; // radius = 36
+            const offset = circumference - (progress / 100) * circumference;
+            progressRing.style.strokeDasharray = `${circumference - offset} ${offset}`;
+            
+            // Update text
+            progressPercentage.textContent = `${progress}%`;
+            completedLessonsEl.textContent = completed;
+        }
+
+        function retryQuiz() {
+            // Reset quiz state
+            document.querySelectorAll('.quiz-option').forEach(option => {
+                option.classList.remove('correct', 'incorrect', 'selected');
+                option.querySelector('input').checked = false;
+            });
+            
+            quizResults.classList.add('is-hidden');
+            submitQuizBtn.classList.remove('is-hidden');
+            retryQuizBtn.classList.add('is-hidden');
+            showAnswersBtn.classList.add('is-hidden');
+            document.querySelectorAll('.quiz-explanation').forEach(el => el.classList.add('is-hidden'));
+            showAnswersBtn.textContent = 'عرض الإجابات';
+        }
+
+        function showAnswers() {
+            // Toggle explanations visibility and button text
+            const anyHidden = Array.from(document.querySelectorAll('.quiz-explanation'))
+                .some(el => !el.textContent || el.classList.contains('is-hidden'));
+            document.querySelectorAll('.quiz-explanation').forEach(el => {
+                if (!el.textContent || el.textContent.trim().length === 0) return;
+                if (anyHidden) {
+                    el.classList.remove('is-hidden');
+                } else {
+                    el.classList.add('is-hidden');
+                }
+            });
+            if (anyHidden) {
+                showAnswersBtn.textContent = 'إخفاء الإجابات';
+            } else {
+                showAnswersBtn.textContent = 'عرض الإجابات';
+            }
+        }
+
+        // Event listeners
+        continueBtn.addEventListener('click', () => {
+            // Find first incomplete lesson or current lesson
+            const nextIncomplete = course.lessons.findIndex(lesson => !lesson.completed);
+            loadLesson(nextIncomplete >= 0 ? nextIncomplete : 0);
+        });
+
+        prevLessonBtn.addEventListener('click', () => {
+            if (currentLessonIndex > 0) {
+                loadLesson(currentLessonIndex - 1);
+            }
+        });
+
+        nextLessonBtn.addEventListener('click', () => {
+            if (currentLessonIndex < course.lessons.length - 1) {
+                showQuiz();
+            } else {
+                // Course completed
+                alert('تهانينا! لقد أكملت الكورس بنجاح');
+            }
+        });
+
+    submitQuizBtn.addEventListener('click', submitQuiz);
+        retryQuizBtn.addEventListener('click', retryQuiz);
+    showAnswersBtn.addEventListener('click', showAnswers);
+
+        // Toggle lessons sidebar (mobile)
+        lessonsToggle.addEventListener('click', () => {
+            const collapsed = lessonsSidebar.classList.toggle('is-collapsed');
+            lessonsToggle.setAttribute('aria-expanded', String(!collapsed));
+            lessonsToggle.textContent = collapsed ? 'إظهار القائمة' : 'إخفاء القائمة';
+        });
+
+        // Initialize the course when page loads
+        document.addEventListener('DOMContentLoaded', initializeCourse);
+    </script>
+</body>
+</html>
