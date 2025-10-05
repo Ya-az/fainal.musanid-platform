@@ -8,31 +8,7 @@
     <link href="../css/styles.css" rel="stylesheet">
 </head>
 <body>
-    <header class="site-header">
-        <div class="container">
-            <nav class="site-nav">
-                <a href="../index-standalone.html" class="site-brand">مساند</a>
-                <button class="site-nav__toggle" type="button" aria-label="فتح القائمة" data-nav-target="supportNav">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="3" y1="6" x2="21" y2="6" />
-                        <line x1="3" y1="12" x2="21" y2="12" />
-                        <line x1="3" y1="18" x2="21" y2="18" />
-                    </svg>
-                </button>
-                <div class="site-nav__links" id="supportNav">
-                    <a href="../index-standalone.html" class="site-nav__link">الرئيسية</a>
-                    <a href="../course/cr_index.html" class="site-nav__link">الدورات</a>
-                    <a href="../faq.html" class="site-nav__link">الأسئلة الشائعة</a>
-                    <a href="sp_index.html" class="site-nav__link is-active">الدعم الفني</a>
-                    <a href="../about-musanid.html" class="site-nav__link">عن مساند</a>
-                </div>
-                <div class="site-nav__actions">
-                    <a href="../auth/login.html" class="btn btn-secondary">تسجيل الدخول</a>
-                    <a href="../auth/login.html" class="btn btn-primary">إنشاء حساب</a>
-                </div>
-            </nav>
-        </div>
-    </header>
+    <header class="site-header" data-site-header data-base="../" data-active="support" data-nav-id="supportNav" data-home="index.html" data-primary-text="إنشاء حساب" data-primary-href="../auth/login.html"></header>
 
     <main>
         <section class="hero hero--support">
@@ -197,53 +173,10 @@
         </section>
     </main>
 
-    <footer class="site-footer">
-        <div class="container">
-            <div class="site-footer__grid">
-                <div class="site-footer__grid-large layout-stack">
-                    <a href="../index-standalone.html" class="site-brand">مساند</a>
-                    <p class="text-muted">
-                        فريق دعم متخصص يقدم لك حلولاً عملية وسريعة، لأن نجاح تجربتك التعليمية هو أولويتنا القصوى.
-                    </p>
-                </div>
-                <div>
-                    <h4>روابط سريعة</h4>
-                        <ul class="layout-stack layout-stack--tight">
-                        <li><a href="../index-standalone.html">الرئيسية</a></li>
-                        <li><a href="../course/cr_index.html">الدورات</a></li>
-                        <li><a href="../faq.html">الأسئلة الشائعة</a></li>
-                        <li><a href="sp_index.html">الدعم الفني</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4>مستندات</h4>
-                    <ul class="layout-stack layout-stack--tight">
-                        <li><a href="../offline.html">الوصول دون اتصال</a></li>
-                        <li><a href="../manifest.json">تطبيق الويب التقدمي</a></li>
-                        <li><a href="../faq.html#general">أدلة البدء السريع</a></li>
-                        <li><a href="../support/sp_index.html#contact">حجز جلسة دعم</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4>تواصل سريع</h4>
-                        <ul class="layout-stack layout-stack--tight">
-                        <li><a href="mailto:support@musanid.com">support@musanid.com</a></li>
-                        <li><a href="tel:+966501234567">+966 50 123 4567</a></li>
-                        <li><span class="pill">الرياض - المملكة العربية السعودية</span></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="site-footer__bottom">
-                <p>© 2025 مساند. جميع الحقوق محفوظة.</p>
-                <div class="social-links">
-                    <a href="#" aria-label="Twitter">ﻁ</a>
-                    <a href="#" aria-label="LinkedIn">in</a>
-                    <a href="#" aria-label="YouTube">▶</a>
-                </div>
-            </div>
-        </div>
-    </footer>
+    <footer class="site-footer" data-site-footer data-base="../"></footer>
 
+    <script src="../js/components/header.js"></script>
+    <script src="../js/components/footer.js"></script>
     <script src="../js/main.js"></script>
 </body>
 </html>

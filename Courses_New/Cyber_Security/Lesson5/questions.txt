@@ -1,5 +1,0 @@
-1. ما معنى Patch؟
-2. لماذا التحديثات الأمنية مهمة؟
-3. الفرق بين Antivirus و Antimalware؟
-4. كيف تحمي كلمة المرور؟
-5. ما معنى Multi-Factor Authentication؟

@@ -154,31 +154,7 @@
     </style>
 </head>
 <body>
-    <header class="site-header">
-        <div class="container">
-            <nav class="site-nav">
-                <a href="../index-standalone.html" class="site-brand">مساند</a>
-                <button class="site-nav__toggle" type="button" aria-label="فتح القائمة" data-nav-target="coursesNav">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="3" y1="6" x2="21" y2="6" />
-                        <line x1="3" y1="12" x2="21" y2="12" />
-                        <line x1="3" y1="18" x2="21" y2="18" />
-                    </svg>
-                </button>
-                <div class="site-nav__links" id="coursesNav">
-                    <a href="../index-standalone.html" class="site-nav__link">الرئيسية</a>
-                    <a href="cr_index.html" class="site-nav__link is-active">الدورات</a>
-                    <a href="../faq.html" class="site-nav__link">الأسئلة الشائعة</a>
-                    <a href="../support/sp_index.html" class="site-nav__link">الدعم الفني</a>
-                    <a href="../about-musanid.html" class="site-nav__link">عن مساند</a>
-                </div>
-                <div class="site-nav__actions">
-                    <a href="../auth/login.html" class="btn btn-secondary">تسجيل الدخول</a>
-                    <a href="../auth/login.html" class="btn btn-primary">ابدأ التعلم</a>
-                </div>
-            </nav>
-        </div>
-    </header>
+    <header class="site-header" data-site-header data-base="../" data-active="courses" data-nav-id="coursesNav" data-home="index.html" data-primary-href="../auth/login.html"></header>
 
     <main>
         <!-- Hero Section -->
@@ -483,26 +459,11 @@
         </section>
     </main>
 
-    <footer class="site-footer">
-        <div class="container">
-            <div class="site-footer__content">
-                <div class="site-footer__brand">
-                    <h3>مساند</h3>
-                    <p>منصة تعليمية عربية متخصصة في التقنية</p>
-                </div>
-                <div class="site-footer__links">
-                    <a href="../index-standalone.html">الرئيسية</a>
-                    <a href="cr_index.html">الدورات</a>
-                    <a href="../faq.html">الأسئلة الشائعة</a>
-                    <a href="../about-musanid.html">عن مساند</a>
-                </div>
-            </div>
-            <div class="site-footer__bottom">
-                <p>&copy; 2025 مساند. جميع الحقوق محفوظة.</p>
-            </div>
-        </div>
-    </footer>
+    <footer class="site-footer" data-site-footer data-base="../"></footer>
 
+    <script src="../js/components/header.js"></script>
+    <script src="../js/components/footer.js"></script>
+    <script src="../js/main.js"></script>
     <script>
         // Course filtering functionality
         const filterButtons = document.querySelectorAll('.filter-btn');

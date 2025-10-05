@@ -7,6 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="../css/styles.css" rel="stylesheet">
     <script src="../js/course-manager.js"></script>
+    <script src="../js/certificate-manager.js"></script>
     <style>
         .progress-ring {
             transform: rotate(-90deg);
@@ -80,34 +81,79 @@
             border-color: var(--color-error);
             background: rgba(220, 38, 38, 0.1);
         }
+
+        .certificate-card {
+            border: 1px dashed rgba(var(--color-primary-rgb), 0.35);
+            background: linear-gradient(135deg, rgba(var(--color-primary-rgb), 0.08), rgba(var(--color-primary-rgb), 0));
+        }
+
+        .certificate-icon {
+            width: 3.25rem;
+            height: 3.25rem;
+            border-radius: var(--radius-full);
+            background: rgba(var(--color-primary-rgb), 0.12);
+            display: grid;
+            place-items: center;
+            color: var(--color-primary);
+            flex-shrink: 0;
+        }
+
+        .certificate-meta {
+            border-top: 1px solid var(--color-neutral-200);
+            margin-top: var(--spacing-sm);
+            padding-top: var(--spacing-sm);
+            gap: 0.5rem;
+        }
+
+        .certificate-meta__row {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            font-size: 0.875rem;
+        }
+
+        .certificate-meta__row dd {
+            font-weight: 600;
+        }
+
+        .certificate-modal {
+            position: fixed;
+            inset: 0;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            background: rgba(15, 23, 42, 0.6);
+            z-index: 1000;
+        }
+
+        .certificate-modal.is-open {
+            display: flex;
+        }
+
+        .certificate-modal__content {
+            background: var(--color-neutral-0, #ffffff);
+            border-radius: var(--radius-lg);
+            box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.25);
+            max-width: 480px;
+            width: 100%;
+            padding: 2rem;
+        }
+
+        .certificate-modal__close {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: inherit;
+        }
+
+        body.has-modal-open {
+            overflow: hidden;
+        }
     </style>
 </head>
 <body>
-    <header class="site-header">
-        <div class="container">
-            <nav class="site-nav">
-                <a href="../index-standalone.html" class="site-brand">مساند</a>
-                <button class="site-nav__toggle" type="button" aria-label="فتح القائمة">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <line x1="3" y1="6" x2="21" y2="6" />
-                        <line x1="3" y1="12" x2="21" y2="12" />
-                        <line x1="3" y1="18" x2="21" y2="18" />
-                    </svg>
-                </button>
-                <div class="site-nav__links">
-                    <a href="../index-standalone.html" class="site-nav__link">الرئيسية</a>
-                    <a href="cr_index.html" class="site-nav__link">الدورات</a>
-                    <a href="../faq.html" class="site-nav__link">الأسئلة الشائعة</a>
-                    <a href="../support/sp_index.html" class="site-nav__link">الدعم الفني</a>
-                    <a href="../about-musanid.html" class="site-nav__link">عن مساند</a>
-                </div>
-                <div class="site-nav__actions">
-                    <a href="../auth/login.html" class="btn btn-secondary">تسجيل الدخول</a>
-                    <a href="../auth/login.html" class="btn btn-primary">ابدأ التعلم</a>
-                </div>
-            </nav>
-        </div>
-    </header>
+    <header class="site-header" data-site-header data-base="../" data-active="courses" data-nav-id="courseDetailNav" data-home="index.html" data-primary-href="../auth/login.html"></header>
 
     <main>
         <!-- Course Header -->
@@ -165,6 +211,42 @@
                             </div>
                         </div>
                         <button class="btn btn-primary" id="continueBtn">متابعة التعلم</button>
+                    </div>
+
+                    <!-- Certificate Card -->
+                    <div class="card layout-stack certificate-card is-hidden" id="certificateCard" aria-live="polite">
+                        <div class="flex items-center gap-md">
+                            <div class="certificate-icon" aria-hidden="true">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                                    <path d="M12 15.5 9.5 17l.5-2.9-2-2 2.9-.4L12 9l1.3 2.7 2.9.4-2 2 .5 2.9z" stroke-linejoin="round"/>
+                                    <circle cx="12" cy="12" r="8"/>
+                                </svg>
+                            </div>
+                            <div class="layout-stack layout-stack--xs">
+                                <h3 class="heading-md mb-0">شهادة الإتمام</h3>
+                                <p class="text-sm text-muted" id="certificateStatus">
+                                    أكمل الدروس والاختبارات لتحصل على شهادتك الرقمية الموقعة من منصة مساند.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex flex-wrap gap-sm">
+                            <button type="button" class="btn btn-primary flex-1" id="certificateBtn">إصدار الشهادة</button>
+                            <button type="button" class="btn btn-secondary flex-1 is-hidden" id="viewCertificateBtn">عرض الشهادة</button>
+                        </div>
+                        <dl class="layout-stack layout-stack--xs certificate-meta is-hidden" id="certificateDetails">
+                            <div class="certificate-meta__row">
+                                <dt>رقم الشهادة</dt>
+                                <dd id="certificateIdValue">—</dd>
+                            </div>
+                            <div class="certificate-meta__row">
+                                <dt>تاريخ الإصدار</dt>
+                                <dd id="certificateDateValue">—</dd>
+                            </div>
+                            <div class="certificate-meta__row">
+                                <dt>اسم المتعلم</dt>
+                                <dd id="certificateNameValue">—</dd>
+                            </div>
+                        </dl>
                     </div>
                 </div>
             </div>
@@ -246,33 +328,50 @@
         </section>
     </main>
 
-    <footer class="site-footer">
-        <div class="container">
-            <div class="site-footer__content">
-                <div class="site-footer__brand">
-                    <h3>مساند</h3>
-                    <p>منصة تعليمية عربية متخصصة في التقنية</p>
-                </div>
-                <div class="site-footer__links">
-                    <a href="../index-standalone.html">الرئيسية</a>
-                    <a href="cr_index.html">الدورات</a>
-                    <a href="../faq.html">الأسئلة الشائعة</a>
-                    <a href="../about-musanid.html">عن مساند</a>
-                </div>
+    <div class="certificate-modal" id="certificateModal" role="dialog" aria-modal="true" aria-labelledby="certificateModalTitle">
+        <div class="certificate-modal__content layout-stack">
+            <div class="flex items-center justify-between gap-md">
+                <h3 class="heading-md mb-0" id="certificateModalTitle">إصدار شهادة الإتمام</h3>
+                <button type="button" class="certificate-modal__close" data-dismiss="certificateModal" aria-label="إغلاق النافذة">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                        <path d="M18 6 6 18"/>
+                        <path d="m6 6 12 12"/>
+                    </svg>
+                </button>
             </div>
-            <div class="site-footer__bottom">
-                <p>&copy; 2025 مساند. جميع الحقوق محفوظة.</p>
-            </div>
+            <p class="text-sm text-muted">
+                أدخل الاسم الذي ترغب في ظهوره على الشهادة. يمكنك تنزيل الشهادة كملف PDF أو مشاركتها مع الآخرين.
+            </p>
+            <form id="certificateForm" class="layout-stack" novalidate>
+                <div>
+                    <label for="certificateName" class="form-label">الاسم الكامل على الشهادة</label>
+                    <input id="certificateName" name="certificateName" type="text" class="input-field" placeholder="مثال: سارة العُمري" required>
+                </div>
+                <label class="checkbox-field">
+                    <input type="checkbox" id="certificateShare" name="certificateShare" checked>
+                    <span>أرغب في حفظ هذه الشهادة في ملف إنجازاتي على المنصة.</span>
+                </label>
+                <div class="flex justify-end gap-sm">
+                    <button type="button" class="btn btn-secondary" data-dismiss="certificateModal">إلغاء</button>
+                    <button type="submit" class="btn btn-primary" id="certificateSubmitBtn">إصدار الشهادة الآن</button>
+                </div>
+            </form>
         </div>
-    </footer>
+    </div>
 
+    <footer class="site-footer" data-site-footer data-base="../"></footer>
+
+    <script src="../js/components/header.js"></script>
+    <script src="../js/components/footer.js"></script>
+    <script src="../js/main.js"></script>
     <script>
         // Get course ID from URL parameters or default to Cisco
         const urlParams = new URLSearchParams(window.location.search);
         const courseId = urlParams.get('course') || 'cisco-packet-tracer';
         
-        let currentLessonIndex = 0;
-        let course = null;
+    let currentLessonIndex = 0;
+    let course = null;
+    let hasAnnouncedCompletion = false;
 
         // DOM elements
         const courseBadge = document.getElementById('courseBadge');
@@ -297,11 +396,23 @@
         const retryQuizBtn = document.getElementById('retryQuizBtn');
         const quizResults = document.getElementById('quizResults');
         const quizScore = document.getElementById('quizScore');
-    const showAnswersBtn = document.getElementById('showAnswersBtn');
+        const showAnswersBtn = document.getElementById('showAnswersBtn');
         const prevLessonBtn = document.getElementById('prevLessonBtn');
         const nextLessonBtn = document.getElementById('nextLessonBtn');
-    const lessonsSidebar = document.getElementById('lessonsSidebar');
-    const lessonsToggle = document.getElementById('lessonsToggle');
+        const lessonsSidebar = document.getElementById('lessonsSidebar');
+        const lessonsToggle = document.getElementById('lessonsToggle');
+        const certificateCard = document.getElementById('certificateCard');
+        const certificateStatus = document.getElementById('certificateStatus');
+        const certificateBtn = document.getElementById('certificateBtn');
+        const viewCertificateBtn = document.getElementById('viewCertificateBtn');
+        const certificateDetails = document.getElementById('certificateDetails');
+        const certificateIdValue = document.getElementById('certificateIdValue');
+        const certificateDateValue = document.getElementById('certificateDateValue');
+        const certificateNameValue = document.getElementById('certificateNameValue');
+        const certificateModal = document.getElementById('certificateModal');
+        const certificateForm = document.getElementById('certificateForm');
+        const certificateNameInput = document.getElementById('certificateName');
+    const certificateShareInput = document.getElementById('certificateShare');
 
         // Initialize the course page
         function initializeCourse() {
@@ -553,6 +664,61 @@
             // Update text
             progressPercentage.textContent = `${progress}%`;
             completedLessonsEl.textContent = completed;
+
+            updateCertificateUI(progress, completed, total);
+        }
+
+        function updateCertificateUI(progress, completed, total) {
+            if (!certificateCard || typeof certificateManager === 'undefined') {
+                return;
+            }
+
+            if (progress >= 100) {
+                certificateCard.classList.remove('is-hidden');
+                const existingCertificate = certificateManager.getCertificate(courseId);
+
+                if (existingCertificate) {
+                    certificateStatus.textContent = `تم إصدار الشهادة بتاريخ ${formatCertificateDate(existingCertificate.issuedAt)}.`;
+                    certificateBtn.classList.add('is-hidden');
+                    viewCertificateBtn.classList.remove('is-hidden');
+                    certificateDetails.classList.remove('is-hidden');
+                    certificateIdValue.textContent = existingCertificate.certificateId || '—';
+                    certificateDateValue.textContent = formatCertificateDate(existingCertificate.issuedAt);
+                    certificateNameValue.textContent = existingCertificate.userName || '—';
+                } else {
+                    certificateStatus.textContent = 'تهانينا! أكملت جميع الدروس ويمكنك إصدار شهادة الإتمام الرقمية الخاصة بك الآن.';
+                    certificateBtn.classList.remove('is-hidden');
+                    viewCertificateBtn.classList.add('is-hidden');
+                    certificateDetails.classList.add('is-hidden');
+                    certificateIdValue.textContent = '—';
+                    certificateDateValue.textContent = '—';
+                    certificateNameValue.textContent = '—';
+
+                    if (!hasAnnouncedCompletion) {
+                        if (typeof showMessage === 'function') {
+                            showMessage('تهانينا! أصبحت مؤهلاً لإصدار شهادة إتمام الدورة.', 'success');
+                        }
+                        hasAnnouncedCompletion = true;
+                    }
+                }
+            } else {
+                certificateCard.classList.add('is-hidden');
+            }
+        }
+
+        function formatCertificateDate(value) {
+            if (!value) {
+                return '—';
+            }
+            const date = new Date(value);
+            if (Number.isNaN(date.getTime())) {
+                return '—';
+            }
+            return date.toLocaleDateString('ar-SA', {
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric'
+            });
         }
 
         function retryQuiz() {
@@ -589,6 +755,94 @@
             }
         }
 
+        function openCertificateModal() {
+            if (!certificateModal) {
+                return;
+            }
+
+            prefillCertificateForm();
+            certificateModal.classList.add('is-open');
+            document.body.classList.add('has-modal-open');
+
+            window.requestAnimationFrame(() => {
+                certificateNameInput?.focus();
+            });
+        }
+
+        function closeCertificateModal() {
+            if (!certificateModal) {
+                return;
+            }
+
+            certificateModal.classList.remove('is-open');
+            document.body.classList.remove('has-modal-open');
+        }
+
+        function prefillCertificateForm() {
+            if (!certificateNameInput || typeof certificateManager === 'undefined') {
+                return;
+            }
+
+            const profile = certificateManager.getProfile();
+            if (profile?.fullName) {
+                certificateNameInput.value = profile.fullName;
+            }
+            if (certificateShareInput && typeof profile?.shareCertificates === 'boolean') {
+                certificateShareInput.checked = profile.shareCertificates;
+            }
+        }
+
+        function openCertificatePage(certificateData) {
+            const params = new URLSearchParams({ course: courseId });
+            if (certificateData?.certificateId) {
+                params.set('certificateId', certificateData.certificateId);
+            }
+            window.open(`certificate.html?${params.toString()}`, '_blank', 'noopener');
+        }
+
+        function handleCertificateFormSubmit(event) {
+            event.preventDefault();
+
+            if (!certificateForm || typeof certificateManager === 'undefined') {
+                return;
+            }
+
+            const fullName = certificateNameInput?.value.trim();
+            if (!fullName) {
+                certificateNameInput?.focus();
+                return;
+            }
+
+            const completed = course.lessons.filter(l => l.completed).length;
+            const shareRequested = certificateShareInput?.checked || false;
+            const certificate = certificateManager.issueCertificate(courseId, {
+                courseTitle: course.title,
+                courseBadge: course.badge,
+                userName: fullName,
+                totalLessons: course.lessons.length,
+                lessonsCompleted: completed,
+                metadata: { shareRequested }
+            });
+
+            const existingProfile = certificateManager.getProfile() || {};
+
+            certificateManager.updateProfile({
+                fullName,
+                preferredTrack: course.category,
+                email: existingProfile.email || undefined,
+                shareCertificates: shareRequested
+            });
+
+            closeCertificateModal();
+            updateCertificateUI(100, completed, course.lessons.length);
+
+            if (typeof showMessage === 'function') {
+                showMessage('تم إصدار شهادتك بنجاح! يمكنك تنزيلها أو مشاركتها.', 'success');
+            }
+
+            openCertificatePage(certificate);
+        }
+
         // Event listeners
         continueBtn.addEventListener('click', () => {
             // Find first incomplete lesson or current lesson
@@ -603,17 +857,61 @@
         });
 
         nextLessonBtn.addEventListener('click', () => {
-            if (currentLessonIndex < course.lessons.length - 1) {
+            const lesson = course.lessons[currentLessonIndex];
+
+            if (!lesson.completed) {
                 showQuiz();
-            } else {
-                // Course completed
-                alert('تهانينا! لقد أكملت الكورس بنجاح');
+                return;
+            }
+
+            if (currentLessonIndex < course.lessons.length - 1) {
+                loadLesson(currentLessonIndex + 1);
+                return;
+            }
+
+            updateProgress();
+
+            if (typeof certificateManager !== 'undefined' && certificateManager.hasCertificate(courseId)) {
+                openCertificatePage(certificateManager.getCertificate(courseId));
+            } else if (certificateCard) {
+                certificateCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }
         });
 
     submitQuizBtn.addEventListener('click', submitQuiz);
         retryQuizBtn.addEventListener('click', retryQuiz);
     showAnswersBtn.addEventListener('click', showAnswers);
+
+        certificateBtn?.addEventListener('click', openCertificateModal);
+        viewCertificateBtn?.addEventListener('click', () => {
+            if (typeof certificateManager === 'undefined') {
+                return;
+            }
+            const certificate = certificateManager.getCertificate(courseId);
+            if (certificate) {
+                openCertificatePage(certificate);
+            } else {
+                openCertificateModal();
+            }
+        });
+
+        certificateForm?.addEventListener('submit', handleCertificateFormSubmit);
+
+        document.querySelectorAll('[data-dismiss="certificateModal"]').forEach(element => {
+            element.addEventListener('click', closeCertificateModal);
+        });
+
+        certificateModal?.addEventListener('click', event => {
+            if (event.target === certificateModal) {
+                closeCertificateModal();
+            }
+        });
+
+        document.addEventListener('keydown', event => {
+            if (event.key === 'Escape' && certificateModal?.classList.contains('is-open')) {
+                closeCertificateModal();
+            }
+        });
 
         // Toggle lessons sidebar (mobile)
         lessonsToggle.addEventListener('click', () => {
