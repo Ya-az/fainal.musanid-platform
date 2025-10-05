@@ -1,121 +1,101 @@
 # Musanid Platform
 
-A comprehensive Arabic learning platform that provides an integrated educational experience with a unified design and expandable architecture.
+An Arabic-first learning platform powered by **Node.js/Express** with **EJS** templates, secure MySQL-backed sessions, progress tracking, and an offline-ready **PWA** experience.
 
-## 🚀 Features
+## At a Glance
+- ⚙️ **Backend**: Express + EJS, MySQL storage, hardened middleware (Helmet, CSRF, rate limiting).
+- 🎨 **Frontend**: Tailwind CSS compiled from `src/assets/css` into `public/css`, unified JavaScript in `public/js`.
+- 📦 **Content**: Dynamic pages under `src/views`, alongside a static marketing snapshot under `docs/`.
+- 📄 **Certificates**: Local generation with PDF export and a personal archive persisted in the browser.
+- 📱 **PWA**: Smart service worker, offline landing page, updated manifest and maskable icons.
 
-- **Unified User Experience**: Consistent design across all pages
-- **Responsive Design**: Works seamlessly on all devices
-- **Arabic-First**: Built with Arabic content and RTL support in mind
-- **Modern Architecture**: Separate frontend and backend for scalability
+## Requirements
+- Node.js 18+
+- MySQL 8 (with a pre-created database)
 
-## 📁 Project Structure
-
-```
-all-website-files/
-├── frontend/
-│   ├── public/
-│   │   ├── css/
-│   │   ├── js/
-│   │   └── various HTML pages
-│   └── src/
-│       ├── components/
-│       └── pages/
-└── backend/
-    └── src/
-        ├── config/
-        ├── controllers/
-        ├── middleware/
-        ├── models/
-        └── routes/
-```
-
-## 🛠 Technology Stack
-
-### Frontend
-- HTML5, CSS3, JavaScript
-- React.js for dynamic components
-- Tailwind CSS for styling
-- Service Workers for offline functionality
-
-### Backend
-- Node.js
-- Express.js
-- MongoDB for database
-- JWT for authentication
-
-## 🚦 Getting Started
-
-1. Clone the repository:
-```bash
-git clone https://github.com/Ya-az/fainal.musanid-platform.git
-```
-
-2. Install dependencies:
-```bash
-# Frontend dependencies
-cd frontend
+## Quick Start
+```powershell
+# PowerShell
+Copy-Item .env.example .env
 npm install
-
-# Backend dependencies
-cd ../backend
-npm install
+npm run dev
 ```
 
-3. Start the development servers:
 ```bash
-# Start backend server
-npm run start
-
-# In a new terminal, start frontend
-cd ../frontend
-npm start
+# Bash/Zsh
+cp .env.example .env
+npm install
+npm run dev
 ```
 
-## 🌟 Key Features
+Initialize the database once:
+```sql
+CREATE DATABASE IF NOT EXISTS musanid_db
+    CHARACTER SET utf8mb4
+    COLLATE utf8mb4_unicode_ci;
+```
 
-- Hero banners with consistent design
-- Course management system
-- User authentication
-- Progress tracking
-- Certificate generation
-- Support and consultation system
+Seed a demo account:
+```bash
+npm run seed:user
+```
 
-## 📱 Pages
+## Project Layout
+```
+├── public/              # Built assets served by Express
+├── src/
+│   ├── app.js           # Application entry point
+│   ├── assets/          # Tailwind source & shared JS snippets
+│   ├── config/          # Database and app configuration
+│   ├── middleware/      # Security/session helpers
+│   ├── models/          # MySQL models (lessons, progress, favorites)
+│   ├── routes/          # Web routes + lightweight APIs
+│   ├── scripts/         # Maintenance & legacy utilities
+│   └── views/           # EJS layouts, pages, and error templates
+├── docs/                # Static marketing/exported HTML bundle
+├── tests/               # Jest unit & integration tests
+├── tailwind.config.js
+└── package.json
+```
 
-- Home page with statistics and course overview
-- Course listing and details
-- FAQ page
-- About page
-- Support/consultation page
-- User dashboard
-- Authentication pages (login/register)
+## Useful npm Scripts
+| Script | Description |
+|--------|-------------|
+| `npm run dev` | Start the dev server with Nodemon |
+| `npm run dev:css` | Watch Tailwind sources |
+| `npm run build:css` | Produce minified CSS for release |
+| `npm run seed:user` | Insert a demo learner into MySQL |
+| `npm run lint` / `lint:fix` | Lint (and optionally fix) the codebase |
+| `npm test` | Run the Jest suite |
+| `npm run check:legacy` | Validate 301 redirects for legacy routes |
 
-## 🔧 Configuration
+## Security & Offline Notes
+- **Helmet + CSP** enforce strict script/style origins.
+- **CSRF protection** via `csurf` with double-submit cookies.
+- **Rate limiting** applied to auth and progress endpoints.
+- **Service worker** prioritizes network-first pages with precached essentials.
+- `public/offline.html` guides learners when connectivity drops.
 
-The project uses various configuration files:
-- `.env` for environment variables
-- `tailwind.config.js` for styling configuration
-- Various config files in the backend
+## Tests & QA
+- Jest configuration lives in `jest.config.js`.
+- Tests cover models, frontend helpers, service worker, and legacy redirects.
+- Run `npm test` (or `npm test --watch`) to keep the suite green.
 
-## 📚 Documentation
+## Documentation Hub
+- `CONTRIBUTING.md`: coding standards & contribution flow.
+- `IMPROVEMENTS.md`: summary of major structural upgrades.
+- `GUIDE.md`, `HERO_TEMPLATE.md`: marketing/content guidelines.
+- The `docs/` directory ships a static snapshot for demo hosting.
 
-- Check `HERO_TEMPLATE.md` for banner implementation guidelines
-- API documentation available in the backend
-- Component documentation in frontend source files
+## Deploy Checklist
+1. Set `SESSION_SECRET`, MySQL credentials, and optional `CORS_ORIGIN`.
+2. Build production CSS with `npm run build:css`.
+3. Launch with `NODE_ENV=production` and `npm start` behind an HTTPS-aware reverse proxy.
+4. Review `robots.txt` and `sitemap.xml` for your domain before go-live.
 
-## 🤝 Contributing
+## Extra Notes
+- Password reset flows are planned but not yet implemented.
+- Configure cookie domain + HTTPS in production environments.
+- Legacy HTML links are preserved via redirects—run `npm run check:legacy` if you adjust routes.
 
-1. Fork the repository
-2. Create your feature branch
-3. Commit your changes
-4. Push to the branch
-5. Open a Pull Request
-
-## 📄 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
----
-
-Built with ❤️ for Arabic learners.
+> Legacy README copies were removed; the Arabic edition lives in [`README.md`](README.md).

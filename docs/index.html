@@ -24,83 +24,16 @@
     <link href="css/styles.css" rel="stylesheet">
 </head>
 <body>
-    <header class="site-header">
-        <div class="container">
-            <nav class="site-nav">
-                <a href="index.html" class="site-brand">مساند</a>
-                <button class="site-nav__toggle" type="button" aria-label="فتح القائمة" data-nav-target="primaryNav">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="3" y1="6" x2="21" y2="6" />
-                        <line x1="3" y1="12" x2="21" y2="12" />
-                        <line x1="3" y1="18" x2="21" y2="18" />
-                    </svg>
-                </button>
-                <div class="site-nav__links" id="primaryNav">
-                    <a href="index.html" class="site-nav__link is-active">الرئيسية</a>
-                    <a href="course/cr_index.html" class="site-nav__link">الدورات</a>
-                    <a href="faq.html" class="site-nav__link">الأسئلة الشائعة</a>
-                    <a href="support/sp_index.html" class="site-nav__link">الدعم الفني</a>
-                    <a href="about-musanid.html" class="site-nav__link">عن مساند</a>
-                </div>
-                <div class="site-nav__actions">
-                    <a href="auth/login.html" class="btn btn-secondary">تسجيل الدخول</a>
-                    <a href="course/cr_index.html" class="btn btn-primary">ابدأ التعلم</a>
-                </div>
-            </nav>
-        </div>
-    </header>
+    <header class="site-header" data-site-header data-base="./" data-active="home" data-nav-id="primaryNav" data-home="index.html"></header>
 
     <main>
         <section class="hero">
             <div class="container">
-                <div class="hero__content">
-                    <span class="pill hero__pill">رحلة تعلم متكاملة</span>
-                    <h1 class="hero__headline">تعلم بمرونة مع منصة مساند الشاملة</h1>
-                    <p class="hero__subheadline">
-                        محتوى عربي عالي الجودة، خطط تعلم واضحة، وأدوات تفاعلية تساعدك على الانتقال من التعلم إلى التطبيق بثقة كاملة.
-                    </p>
-                    <div class="hero__actions">
-                        <a href="course/cr_index.html" class="btn btn-primary">استكشف الدورات</a>
-                        <a href="support/sp_index.html" class="btn btn-outline">احصل على استشارة</a>
-                    </div>
-                    <div class="hero__media card card--glass layout-stack">
-                        <h2 class="section__title">تعرف على طريقة تعلمنا</h2>
-                        <p>استعراض سريع يوضح كيف نخطط رحلتك التعليمية من أول درس وحتى شهادة التخرج.</p>
-                        <a href="course/cr_index.html" class="btn btn-outline">مشاهدة العرض التوضيحي</a>
-                    </div>
-                    <div class="hero__stats">
-                        <div class="hero__stat">
-                            <div class="hero__stat-value">500K+</div>
-                            <div class="hero__stat-label">متعلمين سعداء</div>
-                        </div>
-                        <div class="hero__stat">
-                            <div class="hero__stat-value">300+</div>
-                            <div class="hero__stat-label">دورة متخصصة</div>
-                        </div>
-                        <div class="hero__stat">
-                            <div class="hero__stat-value">150+</div>
-                            <div class="hero__stat-label">مدرب معتمد</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+                <footer class="site-footer" data-site-footer data-base="./"></footer>
 
-        <section class="section section--alt">
-            <div class="container">
-                <div class="section__header">
-                    <span class="section__eyebrow">مميزات مساند</span>
-                    <h2 class="section__title">كل ما تحتاجه لتتعلم بثقة وفاعلية</h2>
-                    <p class="section__subtitle">خمس ركائز تصميمنا التعليمي تمكّنك من الانطلاق بسرعة ومتابعة التقدم خطوة بخطوة.</p>
-                </div>
-                <div class="grid grid--columns-3">
-                    <article class="card card--feature">
-                        <div class="card__icon">🎯</div>
-                        <h3>مسارات واضحة</h3>
-                        <p class="text-muted">خطط تعلم موجهة تحدد لك الدروس والاختبارات والأنشطة العملية بالترتيب الأمثل.</p>
-                    </article>
-                    <article class="card card--feature">
-                        <div class="card__icon">🧠</div>
+                <script src="js/components/header.js"></script>
+                <script src="js/components/footer.js"></script>
+                <script src="js/main.js"></script>
                         <h3>تجربة تطبيقية</h3>
                         <p class="text-muted">مشاريع حقيقية، ملفات عمل جاهزة، وتقييمات فورية تساعدك على تثبيت المعرفة.</p>
                     </article>
@@ -339,3 +272,8 @@
     <script src="js/main.js"></script>
 </body>
 </html>
+
+
+
+
+

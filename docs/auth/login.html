@@ -8,83 +8,11 @@
     <link href="../css/styles.css" rel="stylesheet">
 </head>
 <body>
-    <header class="site-header">
-        <div class="container">
-            <nav class="site-nav">
-                <a href="../index-standalone.html" class="site-brand">مساند</a>
-                <button class="site-nav__toggle" type="button" aria-label="فتح القائمة" data-nav-target="authNav">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="3" y1="6" x2="21" y2="6" />
-                        <line x1="3" y1="12" x2="21" y2="12" />
-                        <line x1="3" y1="18" x2="21" y2="18" />
-                    </svg>
-                </button>
-                <div class="site-nav__links" id="authNav">
-                    <a href="../index-standalone.html" class="site-nav__link">الرئيسية</a>
-                    <a href="../course/cr_index.html" class="site-nav__link">الدورات</a>
-                    <a href="../faq.html" class="site-nav__link">الأسئلة الشائعة</a>
-                    <a href="../support/sp_index.html" class="site-nav__link">الدعم الفني</a>
-                    <a href="../about-musanid.html" class="site-nav__link">عن مساند</a>
-                </div>
-                <div class="site-nav__actions">
-                    <a href="login.html" class="btn btn-secondary">تسجيل الدخول</a>
-                    <a href="../course/cr_index.html" class="btn btn-primary">ابدأ التعلم</a>
-                </div>
-            </nav>
-        </div>
-    </header>
+    <header class="site-header" data-site-header data-base="../" data-nav-id="authNav" data-home="index.html" data-secondary-text="" data-primary-href="../course/cr_index.html"></header>
 
     <main>
         <section class="hero hero--light hero--compact">
             <div class="container">
-                <div class="hero__content">
-                    <span class="pill hero__pill">ولوج آمن</span>
-                    <h1 class="hero__headline">مرحبًا بعودتك إلى مجتمع مساند</h1>
-                    <p class="hero__subheadline">
-                        سجّل دخولك لمتابعة تقدمك، الوصول إلى الدروس المحفوظة، والتواصل مع المدربين في أي وقت.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <section class="section section--flush-top">
-            <div class="container split">
-                <div class="card card--glass layout-stack">
-                    <h2 class="section__title mb-0">لماذا نطلب تسجيل الدخول؟</h2>
-                    <p class="text-muted">نحرص على حفظ تقدمك، توصياتك الشخصية، والسجل الكامل لمشاريعك وملفاتك. عند تسجيل الدخول، ستتمكن من:</p>
-                    <ul class="layout-stack layout-stack--sm text-body">
-                        <li>🗂️ الوصول السريع إلى الدورات التي بدأت بها سابقًا.</li>
-                        <li>📈 متابعة الإحصاءات التفصيلية عن أدائك الأسبوعي.</li>
-                        <li>💬 التواصل مع المدربين وطرح الأسئلة مباشرة من لوحة التحكم.</li>
-                    </ul>
-                    <div class="layout-stack layout-stack--sm">
-                        <div class="stat-card text-right">
-                            <div class="stat-card__value">92%</div>
-                            <div class="stat-card__label">من مستخدمينا الفعّالين يسجّلون الدخول مرتين أسبوعيًا</div>
-                        </div>
-                        <div class="badge badge--info align-start">معلومة: يمكن تفعيل التحقق بخطوتين من لوحة الإعدادات</div>
-                    </div>
-                </div>
-
-                <div class="card layout-stack">
-                    <h2 class="section__title section__title--lg">تسجيل الدخول</h2>
-                    <p class="text-muted">ليس لديك حساب بعد؟ <a href="../support/sp_index.html#contact" class="link-accent">تواصل معنا لنرشدك لخطوات الاشتراك</a>.</p>
-                    <form id="loginForm" class="form" action="/auth/login" method="POST">
-                        <div class="layout-stack layout-stack--sm">
-                            <label for="userOrEmail" class="form-label">البريد الإلكتروني أو اسم المستخدم</label>
-                            <input id="userOrEmail" name="userOrEmail" type="text" class="input-field" placeholder="example@email.com" required>
-                        </div>
-                        <div class="layout-stack layout-stack--sm">
-                            <div class="flex-between">
-                                <label for="password" class="form-label mb-0">كلمة المرور</label>
-                                <a href="#" class="link-accent">نسيت كلمة المرور؟</a>
-                            </div>
-                            <input id="password" name="password" type="password" class="input-field" placeholder="********" required>
-                        </div>
-                        <div class="flex-between">
-                            <label class="flex align-center gap-sm text-body">
-                                <input type="checkbox" name="remember_me" class="form-checkbox">
-                                <span>تذكرني على هذا الجهاز</span>
                             </label>
                             <span class="badge badge--info">محمي ببروتوكولات التشفير</span>
                         </div>
@@ -96,53 +24,10 @@
         </section>
     </main>
 
-    <footer class="site-footer">
-        <div class="container">
-            <div class="site-footer__grid">
-                <div class="site-footer__grid-large layout-stack">
-                    <a href="../index-standalone.html" class="site-brand">مساند</a>
-                    <p class="text-muted">
-                        نصمم تجارب تعلم متقدمة تساعدك على بناء مهارات المستقبل بخطوات واضحة ودعم مستمر.
-                    </p>
-                </div>
-                <div>
-                    <h4>روابط أساسية</h4>
-                    <ul class="layout-stack layout-stack--tight">
-                        <li><a href="../index-standalone.html">الرئيسية</a></li>
-                        <li><a href="../course/cr_index.html">الدورات</a></li>
-                        <li><a href="../faq.html">الأسئلة الشائعة</a></li>
-                        <li><a href="../support/sp_index.html">الدعم الفني</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4>خدمات إضافية</h4>
-                    <ul class="layout-stack layout-stack--tight">
-                        <li><a href="../manifest.json">التطبيق التقدمي</a></li>
-                        <li><a href="../offline.html">الوصول دون اتصال</a></li>
-                        <li><a href="../support/sp_index.html#contact">تواصل مع الفريق</a></li>
-                        <li><a href="../faq.html#general">إرشادات البدء</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4>تواصل</h4>
-                    <ul class="layout-stack layout-stack--tight">
-                        <li><a href="mailto:contact@musanid.com">contact@musanid.com</a></li>
-                        <li><a href="tel:+966501234567">+966 50 123 4567</a></li>
-                        <li><span class="pill">الرياض - المملكة العربية السعودية</span></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="site-footer__bottom">
-                <p>© 2025 مساند. جميع الحقوق محفوظة.</p>
-                <div class="social-links">
-                    <a href="#" aria-label="Twitter">ﻁ</a>
-                    <a href="#" aria-label="LinkedIn">in</a>
-                    <a href="#" aria-label="YouTube">▶</a>
-                </div>
-            </div>
-        </div>
-    </footer>
+    <footer class="site-footer" data-site-footer data-base="../"></footer>
 
+    <script src="../js/components/header.js"></script>
+    <script src="../js/components/footer.js"></script>
     <script src="../js/main.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', async () => {

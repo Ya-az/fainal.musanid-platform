@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إنشاء حساب جديد - منصة مساند</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="../css/styles.css" rel="stylesheet">
+</head>
+<body>
+    <header class="site-header" data-site-header data-base="../" data-nav-id="authNav" data-home="index.html" data-primary-text="تسجيل الدخول" data-primary-href="login.html" data-secondary-text="العودة للرئيسية" data-secondary-href="../index.html" data-secondary-variant="outline"></header>
+
+    <main>
+        <section class="hero hero--light hero--compact">
+            <div class="container split">
+                <div class="card card--glass layout-stack">
+                    <span class="pill pill--neutral align-start">دقائق قليلة فقط</span>
+                    <h1 class="section__title section__title--lg">ابدأ رحلة التعلم مع حساب مساند مجاني</h1>
+                    <p class="text-muted">
+                        من خلال حساب واحد تستطيع الوصول إلى الدورات، حفظ تقدمك، استلام الشهادات، وطلب الدعم من خبرائنا في أي وقت.
+                    </p>
+                    <ul class="layout-stack layout-stack--sm text-body">
+                        <li>💡 خطط تعلم مخصصة تبرز أهدافك المهنية.</li>
+                        <li>🧩 مشاريع عملية وشهادات رقمية معتمدة.</li>
+                        <li>🤝 مجتمع نشط ومدربون يرافقونك خطوة بخطوة.</li>
+                    </ul>
+                    <div class="stat-card">
+                        <div class="stat-card__value">+500 ألف</div>
+                        <div class="stat-card__label">متعلم انضموا إلينا حتى الآن</div>
+                    </div>
+                </div>
+
+                <div class="card form layout-stack" aria-labelledby="signupTitle">
+                    <h2 id="signupTitle" class="section__title section__title--md mb-0">إنشاء حساب جديد</h2>
+                    <p class="text-muted">املأ البيانات التالية للبدء. لن يستغرق الأمر أكثر من دقيقتين.</p>
+                    <form id="signupForm" class="layout-stack" action="/auth/register" method="POST" novalidate>
+                        <div class="form__row">
+                            <div>
+                                <label for="firstName" class="form-label">الاسم الأول</label>
+                                <input id="firstName" name="firstName" type="text" class="input-field" placeholder="مثال: سارة" required>
+                            </div>
+                            <div>
+                                <label for="lastName" class="form-label">اسم العائلة</label>
+                                <input id="lastName" name="lastName" type="text" class="input-field" placeholder="مثال: العُمري" required>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="email" class="form-label">البريد الإلكتروني</label>
+                            <input id="email" name="email" type="email" class="input-field" placeholder="name@example.com" autocomplete="email" required>
+                        </div>
+
+                        <div class="form__row">
+                            <div>
+                                <label for="password" class="form-label">كلمة المرور</label>
+                                <input id="password" name="password" type="password" class="input-field" placeholder="••••••••" minlength="8" autocomplete="new-password" required>
+                                <p class="form-helper">يُفضّل استخدام 8 أحرف على الأقل مع مزيج من الرموز والأرقام.</p>
+                            </div>
+                            <div>
+                                <label for="confirmPassword" class="form-label">تأكيد كلمة المرور</label>
+                                <input id="confirmPassword" name="confirmPassword" type="password" class="input-field" placeholder="أعد كتابة كلمة المرور" autocomplete="new-password" required>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="track" class="form-label">اختر المسار الأقرب لاهتماماتك</label>
+                            <select id="track" name="track" class="input-field">
+                                <option value="">سأقرر لاحقًا</option>
+                                <option value="networking">الشبكات وCisco Packet Tracer</option>
+                                <option value="linux">إدارة أنظمة Linux</option>
+                                <option value="java">برمجة Java</option>
+                                <option value="security">الأمن السيبراني</option>
+                            </select>
+                        </div>
+
+                        <label class="checkbox-field">
+                            <input type="checkbox" name="terms" required>
+                            <span>أوافق على <a href="#">شروط الاستخدام</a> و<a href="#">سياسة الخصوصية</a>.</span>
+                        </label>
+
+                        <button type="submit" class="btn btn-primary btn--block">إنشاء الحساب</button>
+                        <p class="form-helper text-center">
+                            لديك حساب بالفعل؟
+                            <a class="link-accent" href="login.html">سجّل الدخول الآن</a>
+                        </p>
+                        <div class="form-helper is-hidden" id="signupMessage" role="alert"></div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer" data-site-footer data-base="../"></footer>
+
+    <script src="../js/components/header.js"></script>
+    <script src="../js/components/footer.js"></script>
+    <script src="../js/certificate-manager.js"></script>
+    <script src="../js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('signupForm');
+            const helper = document.getElementById('signupMessage');
+
+            form?.addEventListener('submit', (event) => {
+                if (!form.checkValidity()) {
+                    helper?.classList.remove('is-hidden', 'is-success');
+                    helper?.classList.add('is-error');
+                    if (helper) {
+                        helper.textContent = 'تحقّق من الحقول وأعد المحاولة. تأكد من مطابقة كلمات المرور والموافقة على الشروط.';
+                    }
+                    event.preventDefault();
+                    return;
+                }
+
+                const password = form.querySelector('#password');
+                const confirm = form.querySelector('#confirmPassword');
+                if (password && confirm && password.value !== confirm.value) {
+                    helper?.classList.remove('is-hidden', 'is-success');
+                    helper?.classList.add('is-error');
+                    if (helper) {
+                        helper.textContent = 'كلمتا المرور غير متطابقتين. الرجاء التحقق وإعادة المحاولة.';
+                    }
+                    event.preventDefault();
+                    confirm?.focus();
+                    return;
+                }
+
+                const profile = {
+                    firstName: form.querySelector('#firstName')?.value.trim() || '',
+                    lastName: form.querySelector('#lastName')?.value.trim() || '',
+                    fullName: `${form.querySelector('#firstName')?.value.trim() || ''} ${form.querySelector('#lastName')?.value.trim() || ''}`.trim(),
+                    email: form.querySelector('#email')?.value.trim() || '',
+                    preferredTrack: form.querySelector('#track')?.value || '',
+                    shareCertificates: true
+                };
+
+                if (typeof certificateManager !== 'undefined') {
+                    certificateManager.updateProfile(profile);
+                } else if (window.localStorage) {
+                    window.localStorage.setItem('musanid-user-profile', JSON.stringify({
+                        ...profile,
+                        updatedAt: new Date().toISOString()
+                    }));
+                }
+
+                helper?.classList.remove('is-hidden', 'is-error');
+                helper?.classList.add('is-success');
+                if (helper) {
+                    helper.textContent = 'تم إنشاء حسابك بنجاح! يمكنك الآن متابعة الدورات واستلام الشهادات الرقمية.';
+                }
+
+                event.preventDefault();
+                form.reset();
+            });
+        });
+    </script>
+</body>
+</html>

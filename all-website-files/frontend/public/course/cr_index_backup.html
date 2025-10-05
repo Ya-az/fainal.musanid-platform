@@ -1,615 +1,0 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>الدورات والمسارات - منصة مساند التعليمية</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="../css/styles.css" rel="stylesheet">
-    <style>
-        .course-card {
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .course-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-md);
-        }
-        
-        .course-card__image {
-            height: 200px;
-            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .course-card__icon {
-            width: 60px;
-            height: 60px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 24px;
-        }
-        
-        .course-card__stats {
-            display: flex;
-            gap: 1rem;
-            font-size: 0.875rem;
-            color: var(--color-neutral-600);
-        }
-        
-        .course-card__stat {
-            display: flex;
-            align-items: center;
-            gap: 0.25rem;
-        }
-        
-        .course-progress {
-            height: 4px;
-            background: var(--color-neutral-200);
-            border-radius: 2px;
-            overflow: hidden;
-        }
-        
-        .course-progress__bar {
-            height: 100%;
-            background: var(--color-primary);
-            transition: width 0.3s ease;
-        }
-        
-        .filter-group {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin-bottom: 2rem;
-        }
-        
-        .filter-btn {
-            padding: 0.75rem 1.5rem;
-            border: 2px solid var(--color-neutral-200);
-            border-radius: var(--radius-full);
-            background: white;
-            color: var(--color-neutral-700);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 500;
-        }
-        
-        .filter-btn:hover,
-        .filter-btn.is-active {
-            border-color: var(--color-primary);
-            background: var(--color-primary);
-            color: white;
-        }
-        
-        .course-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-        
-        .stats-section {
-            background: var(--gradient-primary);
-            color: white;
-            text-align: center;
-        }
-        
-        .stat-item {
-            text-align: center;
-        }
-        
-        .stat-item__number {
-            font-size: 3rem;
-            font-weight: 700;
-            line-height: 1;
-        }
-        
-        .stat-item__label {
-            font-size: 1.125rem;
-            opacity: 0.9;
-        }
-    </style>
-</head>
-<body>
-    <header class="site-header">
-        <div class="container">
-            <nav class="site-nav">
-                <a href="../index-standalone.html" class="site-brand">مساند</a>
-                <button class="site-nav__toggle" type="button" aria-label="فتح القائمة" data-nav-target="coursesNav">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="3" y1="6" x2="21" y2="6" />
-                        <line x1="3" y1="12" x2="21" y2="12" />
-                        <line x1="3" y1="18" x2="21" y2="18" />
-                    </svg>
-                </button>
-                <div class="site-nav__links" id="coursesNav">
-                    <a href="../index-standalone.html" class="site-nav__link">الرئيسية</a>
-                    <a href="cr_index.html" class="site-nav__link is-active">الدورات</a>
-                    <a href="../faq.html" class="site-nav__link">الأسئلة الشائعة</a>
-                    <a href="../support/sp_index.html" class="site-nav__link">الدعم الفني</a>
-                    <a href="../about-musanid.html" class="site-nav__link">عن مساند</a>
-                </div>
-                <div class="site-nav__actions">
-                    <a href="../auth/login.html" class="btn btn-secondary">تسجيل الدخول</a>
-                    <a href="../auth/login.html" class="btn btn-primary">ابدأ التعلم</a>
-                </div>
-            </nav>
-        </div>
-    </header>
-
-    <main>
-        <!-- Hero Section -->
-        <section class="hero">
-            <div class="container layout-stack text-center max-w-760">
-                <span class="pill">مسارات تقنية متخصصة</span>
-                <h1 class="hero__headline">كورسات عربية شاملة في أحدث التقنيات</h1>
-                <p class="hero__subheadline">تعلم Cisco Packet Tracer، لينكس، Java، والأمن السيبراني مع فيديوهات يوتيوب مجانية واختبارات تفاعلية.</p>
-                <div class="hero__actions hero__actions--center">
-                    <a href="#courses" class="btn btn-outline">استكشف الكورسات</a>
-                    <a href="../auth/login.html" class="btn btn-primary">ابدأ التعلم مجاناً</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Stats Section -->
-        <section class="section stats-section">
-            <div class="container">
-                <div class="grid grid--columns-4 gap-lg">
-                    <div class="stat-item">
-                        <div class="stat-item__number">4</div>
-                        <div class="stat-item__label">مسارات تقنية</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-item__number">20+</div>
-                        <div class="stat-item__label">ساعات محتوى</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-item__number">100+</div>
-                        <div class="stat-item__label">سؤال تفاعلي</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-item__number">24/7</div>
-                        <div class="stat-item__label">متاح دائماً</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Courses Section -->
-        <section class="section section--alt" id="courses">
-            <div class="container layout-stack">
-                <div class="section__header">
-                    <span class="section__eyebrow">محتوى عربي أصيل</span>
-                    <h2 class="section__title">اختر مسارك التقني</h2>
-                    <p class="section__subtitle">أربعة مسارات تقنية مصممة خصيصاً للطلاب العرب مع محتوى يوتيوب مجاني.</p>
-                </div>
-                
-                <div class="filter-group">
-                    <button type="button" class="filter-btn is-active" data-filter="all">جميع الكورسات</button>
-                    <button type="button" class="filter-btn" data-filter="networking">الشبكات</button>
-                    <button type="button" class="filter-btn" data-filter="systems">الأنظمة</button>
-                    <button type="button" class="filter-btn" data-filter="programming">البرمجة</button>
-                    <button type="button" class="filter-btn" data-filter="security">الأمن السيبراني</button>
-                </div>
-
-                <div class="grid grid--columns-3" id="coursesList">
-                    <article class="card course-card layout-stack" tabindex="0" role="button" aria-pressed="false"
-                        data-course-category="networking"
-                        data-course-title="أساسيات Cisco Packet Tracer"
-                        data-course-description="ابدأ ببناء شبكات افتراضية باستخدام Packet Tracer وتعلم ضبط الأجهزة خطوة بخطوة مع سيناريوهات عملية."
-                        data-course-duration="5 أسابيع"
-                        data-course-level="مبتدئ"
-                        data-course-sessions="5 دروس + مختبرات تفاعلية"
-                        data-course-summary="استكشف واجهة Packet Tracer وأدوات بناء الشبكات.|طبّق عناوين IP ونماذج VLAN لضبط الاتصال بين الأجهزة.|تدرّب على استكشاف الأخطاء باستخدام وضع المحاكاة."
-                        data-course-preview="linear-gradient(135deg, rgba(59,130,246,0.85), rgba(96,165,250,0.75))">
-                        <div class="course-card__header">
-                            <span class="badge">شبكات</span>
-                            <h3>أساسيات Cisco Packet Tracer</h3>
-                        </div>
-                        <p class="text-muted">كوّن أول شبكة افتراضية لك وتعرّف على كيفية إدارة الأجهزة واختبار الاتصال في بيئة آمنة.</p>
-                        <div class="course-card__meta">
-                            <span>� 5 أسابيع</span>
-                            <span>🛠️ مختبرات محاكاة</span>
-                        </div>
-                    </article>
-
-                    <article class="card course-card layout-stack" tabindex="0" role="button" aria-pressed="false"
-                        data-course-category="linux"
-                        data-course-title="لينكس من الأساسيات إلى الإدارة"
-                        data-course-description="تعرّف على نظام لينكس، إدارة الملفات، المستخدمين، والعمليات باستخدام أوامر عملية."
-                        data-course-duration="5 أسابيع"
-                        data-course-level="مبتدئ إلى متوسط"
-                        data-course-sessions="5 وحدات + واجبات تطبيقية"
-                        data-course-summary="اكتشف توزيعات لينكس ومكونات النظام المفتوح.|أتقن التنقل في نظام الملفات وضبط الأذونات.|تحكّم بالمستخدمين والحزم لتشغيل الخوادم بكفاءة."
-                        data-course-preview="linear-gradient(135deg, rgba(34,197,94,0.85), rgba(16,185,129,0.7))">
-                        <div class="course-card__header">
-                            <span class="badge">لينكس</span>
-                            <h3>لينكس من الأساسيات إلى الإدارة</h3>
-                        </div>
-                        <p class="text-muted">اعمل بثقة على لينكس عبر تمارين عملية تغطي الملفات، الأذونات، والمستخدمين.</p>
-                        <div class="course-card__meta">
-                            <span>📅 5 أسابيع</span>
-                            <span>💻 أوامر عملية</span>
-                        </div>
-                    </article>
-
-                    <article class="card course-card layout-stack" tabindex="0" role="button" aria-pressed="false"
-                        data-course-category="programming"
-                        data-course-title="أساسيات برمجة Java"
-                        data-course-description="تعلّم بناء تطبيقات Java من المتغيرات وحتى مبادئ البرمجة كائنية التوجه."
-                        data-course-duration="5 أسابيع"
-                        data-course-level="مبتدئ"
-                        data-course-sessions="5 وحدات + تمارين برمجية"
-                        data-course-summary="هيئ بيئة التطوير وابدأ بكتابة برامج بسيطة.|تعرّف على المتغيرات، الجمل الشرطية، والحلقات.|بنِ دوالًا وأصنافًا لتطبيق مبادئ OOP الأساسية."
-                        data-course-preview="linear-gradient(135deg, rgba(249,115,22,0.85), rgba(253,186,116,0.7))">
-                        <div class="course-card__header">
-                            <span class="badge">برمجة</span>
-                            <h3>أساسيات برمجة Java</h3>
-                        </div>
-                        <p class="text-muted">أطلق مهاراتك في Java من الأساسيات إلى بناء تطبيقات كائنية التوجه جاهزة للتوسّع.</p>
-                        <div class="course-card__meta">
-                            <span>📅 5 أسابيع</span>
-                            <span>🧠 تمارين تفاعلية</span>
-                        </div>
-                    </article>
-
-                    <article class="card course-card layout-stack" tabindex="0" role="button" aria-pressed="false"
-                        data-course-category="security"
-                        data-course-title="مبادئ الأمن السيبراني"
-                        data-course-description="كوّن أساسًا متينًا لحماية الأنظمة من التهديدات مع تطبيقات عملية للتشفير والأمن الشبكي."
-                        data-course-duration="5 أسابيع"
-                        data-course-level="مبتدئ إلى متوسط"
-                        data-course-sessions="5 وحدات + سيناريوهات واقعية"
-                        data-course-summary="تعرف على مشهد التهديدات وأساسيات الدفاع.|طبّق مبادئ التشفير لحماية البيانات الحساسة.|حصّن الشبكات والأنظمة باستخدام أفضل الممارسات."
-                        data-course-preview="linear-gradient(135deg, rgba(139,92,246,0.85), rgba(79,70,229,0.7))">
-                        <div class="course-card__header">
-                            <span class="badge">أمن</span>
-                            <h3>مبادئ الأمن السيبراني</h3>
-                        </div>
-                        <p class="text-muted">تعلم كيفية التعرف على التهديدات الشائعة وتطبيق تقنيات الدفاع لحماية الأصول الرقمية.</p>
-                        <div class="course-card__meta">
-                            <span>� 5 أسابيع</span>
-                            <span>🔒 سيناريوهات واقعية</span>
-                        </div>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <section class="section">
-            <div class="container split">
-                <div class="card card--muted layout-stack">
-                    <h2 class="section__title section__title--md">ملخص الدرس</h2>
-                    <div id="lessonSummary" class="layout-stack layout-stack--md text-body">
-                        <p>استكشف واجهة Packet Tracer وأدوات بناء الشبكات.</p>
-                        <p>طبّق عناوين IP ونماذج VLAN لضبط الاتصال بين الأجهزة.</p>
-                        <p>تدرّب على استكشاف الأخطاء باستخدام وضع المحاكاة.</p>
-                    </div>
-                </div>
-                <div class="card card--glass layout-stack">
-                    <h3 class="heading-md">موارد مرافقة</h3>
-                    <p class="text-muted">نوفر مكتبة شاملة من الملفات الجاهزة والقوالب لتسريع تعلّمك، مع تحديث أسبوعي لأفضل المقالات والفيديوهات.</p>
-                    <ul class="layout-stack layout-stack--sm text-body">
-                        <li>📘 دليل عملي لكل وحدة مع أمثلة قابلة للتنزيل.</li>
-                        <li>🎧 تسجيلات الجلسات المباشرة للمراجعة في أي وقت.</li>
-                        <li>🤖 اختبارات تقييم ذاتية مع توصيات فورية للخطوات التالية.</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <section class="section section--alt">
-            <div class="container grid grid--columns-2">
-                <article class="card layout-stack">
-                    <h2 class="section__title section__title--md">قيّم تجربتك</h2>
-                    <p class="text-muted">ساعدنا على تحسين المحتوى من خلال مشاركتنا رأيك في الدرس الحالي.</p>
-                    <form id="ratingForm" class="layout-stack layout-stack--lg">
-                        <div class="rating-stars" role="radiogroup" aria-label="تقييم الدرس">
-                            <button type="button" class="rating-star" data-rating-star="1" aria-label="نجمة واحدة">★</button>
-                            <button type="button" class="rating-star" data-rating-star="2" aria-label="نجمتان">★</button>
-                            <button type="button" class="rating-star" data-rating-star="3" aria-label="ثلاث نجمات">★</button>
-                            <button type="button" class="rating-star" data-rating-star="4" aria-label="أربع نجمات">★</button>
-                            <button type="button" class="rating-star" data-rating-star="5" aria-label="خمس نجمات">★</button>
-                        </div>
-                        <textarea id="ratingComment" class="input-field" rows="3" placeholder="ما الذي أعجبك؟ وما الذي يمكن تحسينه؟"></textarea>
-                        <button type="submit" class="btn btn-primary">إرسال التقييم</button>
-                        <div id="ratingMessage" class="rating-message is-hidden" role="status"></div>
-                    </form>
-                </article>
-                <article class="card layout-stack">
-                    <h2 class="section__title section__title--md">اختبار قصير</h2>
-                    <p class="text-muted">اختبر معلوماتك بسرعة للتأكد من استيعاب المفاهيم الأساسية.</p>
-                    <form id="quizForm" class="layout-stack layout-stack--xl">
-                        <div class="filter-group">
-                            <button type="button" class="filter-btn" data-course-filter="all">كل الدورات</button>
-                            <button type="button" class="filter-btn" data-course-filter="networking">الشبكات</button>
-                            <button type="button" class="filter-btn" data-course-filter="linux">لينكس</button>
-                            <button type="button" class="filter-btn" data-course-filter="programming">البرمجة</button>
-                            <button type="button" class="filter-btn" data-course-filter="security">الأمن السيبراني</button>
-                                <span>اختبار حالة محددة وتغيير مسار التنفيذ بناءً على النتيجة.</span>
-                            </label>
-                        <div class="grid grid--columns-3" id="coursesList">
-                            <article class="card course-card layout-stack" tabindex="0" role="button" aria-pressed="false"
-                                data-course-category="networking"
-                                data-course-title="أساسيات Cisco Packet Tracer"
-                                data-course-description="ابدأ ببناء شبكات افتراضية باستخدام Packet Tracer وتعلم ضبط الأجهزة خطوة بخطوة مع سيناريوهات عملية."
-                                data-course-duration="5 أسابيع"
-                                data-course-level="مبتدئ"
-                                data-course-sessions="5 دروس + مختبرات تفاعلية"
-                                data-course-summary="استكشف واجهة Packet Tracer وأدوات بناء الشبكات.|طبّق عناوين IP ونماذج VLAN لضبط الاتصال بين الأجهزة.|تدرّب على استكشاف الأخطاء باستخدام وضع المحاكاة."
-                                data-course-preview="linear-gradient(135deg, rgba(59,130,246,0.85), rgba(96,165,250,0.75))">
-                                <div class="course-card__header">
-                                    <span class="badge">شبكات</span>
-                                    <h3>أساسيات Cisco Packet Tracer</h3>
-                                </div>
-                                <p class="text-muted">كوّن أول شبكة افتراضية لك وتعرّف على كيفية إدارة الأجهزة واختبار الاتصال في بيئة آمنة.</p>
-                                <div class="course-card__meta">
-                                    <span>📅 5 أسابيع</span>
-                                    <span>🛠️ مختبرات محاكاة</span>
-                                </div>
-                            </article>
-
-                            <article class="card course-card layout-stack" tabindex="0" role="button" aria-pressed="false"
-                                data-course-category="linux"
-                                data-course-title="لينكس من الأساسيات إلى الإدارة"
-                                data-course-description="تعرّف على نظام لينكس، إدارة الملفات، المستخدمين، والعمليات باستخدام أوامر عملية."
-                                data-course-duration="5 أسابيع"
-                                data-course-level="مبتدئ إلى متوسط"
-                                data-course-sessions="5 وحدات + واجبات تطبيقية"
-                                data-course-summary="اكتشف توزيعات لينكس ومكونات النظام المفتوح.|أتقن التنقل في نظام الملفات وضبط الأذونات.|تحكّم بالمستخدمين والحزم لتشغيل الخوادم بكفاءة."
-                                data-course-preview="linear-gradient(135deg, rgba(34,197,94,0.85), rgba(16,185,129,0.7))">
-                                <div class="course-card__header">
-                                    <span class="badge">لينكس</span>
-                                    <h3>لينكس من الأساسيات إلى الإدارة</h3>
-                                </div>
-                                <p class="text-muted">اعمل بثقة على لينكس عبر تمارين عملية تغطي الملفات، الأذونات، والمستخدمين.</p>
-                                <div class="course-card__meta">
-                                    <span>📅 5 أسابيع</span>
-                                    <span>💻 أوامر عملية</span>
-                                </div>
-                            </article>
-
-                            <article class="card course-card layout-stack" tabindex="0" role="button" aria-pressed="false"
-                                data-course-category="programming"
-                                data-course-title="أساسيات برمجة Java"
-                                data-course-description="تعلّم بناء تطبيقات Java من المتغيرات وحتى مبادئ البرمجة كائنية التوجه."
-                                data-course-duration="5 أسابيع"
-                                data-course-level="مبتدئ"
-                                data-course-sessions="5 وحدات + تمارين برمجية"
-                                data-course-summary="هيئ بيئة التطوير وابدأ بكتابة برامج بسيطة.|تعرّف على المتغيرات، الجمل الشرطية، والحلقات.|بنِ دوالًا وأصنافًا لتطبيق مبادئ OOP الأساسية."
-                                data-course-preview="linear-gradient(135deg, rgba(249,115,22,0.85), rgba(253,186,116,0.7))">
-                                <div class="course-card__header">
-                                    <span class="badge">برمجة</span>
-                                    <h3>أساسيات برمجة Java</h3>
-                                </div>
-                                <p class="text-muted">أطلق مهاراتك في Java من الأساسيات إلى بناء تطبيقات كائنية التوجه جاهزة للتوسّع.</p>
-                                <div class="course-card__meta">
-                                    <span>📅 5 أسابيع</span>
-                                    <span>🧠 تمارين تفاعلية</span>
-                                </div>
-                            </article>
-
-                            <article class="card course-card layout-stack" tabindex="0" role="button" aria-pressed="false"
-                                data-course-category="security"
-                                data-course-title="مبادئ الأمن السيبراني"
-                                data-course-description="كوّن أساسًا متينًا لحماية الأنظمة من التهديدات مع تطبيقات عملية للتشفير والأمن الشبكي."
-                                data-course-duration="5 أسابيع"
-                                data-course-level="مبتدئ إلى متوسط"
-                                data-course-sessions="5 وحدات + سيناريوهات واقعية"
-                                data-course-summary="تعرف على مشهد التهديدات وأساسيات الدفاع.|طبّق مبادئ التشفير لحماية البيانات الحساسة.|حصّن الشبكات والأنظمة باستخدام أفضل الممارسات."
-                                data-course-preview="linear-gradient(135deg, rgba(139,92,246,0.85), rgba(79,70,229,0.7))">
-                                <div class="course-card__header">
-                                    <span class="badge">أمن</span>
-                                    <h3>مبادئ الأمن السيبراني</h3>
-                                </div>
-                                <p class="text-muted">تعلم كيفية التعرف على التهديدات الشائعة وتطبيق تقنيات الدفاع لحماية الأصول الرقمية.</p>
-                                <div class="course-card__meta">
-                                    <span>📅 5 أسابيع</span>
-                                    <span>🔒 سيناريوهات واقعية</span>
-                                </div>
-                            </article>
-            const resetResultState = element => {
-                if (!element) {
-                    return;
-                }
-                element.classList.remove('quiz-result--success', 'quiz-result--error', 'quiz-result--warning');
-            };
-
-            const clearRatingFeedback = () => {
-                if (!ratingMessage) {
-                    return;
-                }
-                ratingMessage.classList.remove('is-error');
-                hideElement(ratingMessage);
-            };
-
-            function applyCourseData(card) {
-                if (!card) {
-                    lessonTitleEl.textContent = 'اختر دورة لاستعراض تفاصيلها';
-                    lessonDescriptionEl.textContent = '';
-                    lessonDurationEl.textContent = '-';
-                    lessonLevelEl.textContent = '-';
-                    lessonSessionsEl.textContent = '-';
-                    lessonSummaryEl.innerHTML = '<p class="text-muted">سيتم عرض ملخص الدرس بعد اختيار دورة من القائمة.</p>';
-                    lessonPreviewEl.style.background = defaultPreview;
-                    return;
-                }
-
-                lessonTitleEl.textContent = card.dataset.courseTitle || '';
-                lessonDescriptionEl.textContent = card.dataset.courseDescription || '';
-                lessonDurationEl.textContent = card.dataset.courseDuration || '-';
-                lessonLevelEl.textContent = card.dataset.courseLevel || '-';
-                lessonSessionsEl.textContent = card.dataset.courseSessions || '-';
-
-                const summary = (card.dataset.courseSummary || '')
-                    .split('|')
-                    .map(item => item.trim())
-                    .filter(Boolean)
-                    .map(item => `<p>${item}</p>`)
-                    .join('');
-
-                lessonSummaryEl.innerHTML = summary || '<p class="text-muted">جاري تحديث الملخص لهذه الدورة.</p>';
-                lessonPreviewEl.style.background = card.dataset.coursePreview || defaultPreview;
-            }
-
-            function setActiveCard(card) {
-                courseCards.forEach(c => {
-                    const isActive = c === card;
-                    c.classList.toggle('is-active', isActive);
-                    c.setAttribute('aria-pressed', isActive ? 'true' : 'false');
-                });
-                applyCourseData(card);
-            }
-
-            filterButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const value = button.dataset.courseFilter;
-                    filterButtons.forEach(btn => btn.classList.remove('is-active'));
-                    button.classList.add('is-active');
-
-                    let firstVisible = null;
-                    courseCards.forEach(card => {
-                        const matches = value === 'all' || card.dataset.courseCategory === value;
-                        card.style.display = matches ? '' : 'none';
-                        if (matches && !firstVisible) {
-                            firstVisible = card;
-                        }
-                    });
-
-                    setActiveCard(firstVisible);
-                });
-            });
-
-            courseCards.forEach(card => {
-                card.addEventListener('click', () => setActiveCard(card));
-                card.addEventListener('keypress', event => {
-                    if (event.key === 'Enter' || event.key === ' ') {
-                        event.preventDefault();
-                        setActiveCard(card);
-                    }
-                });
-            });
-
-            if (filterButtons.length) {
-                filterButtons[0].click();
-            } else if (courseCards.length) {
-                setActiveCard(courseCards[0]);
-            }
-
-            let currentRating = 0;
-
-            const highlightStars = value => {
-                ratingStars.forEach(star => {
-                    const starValue = Number(star.dataset.ratingStar);
-                    star.classList.toggle('is-active', starValue <= value);
-                });
-            };
-
-            ratingStars.forEach(star => {
-                const value = Number(star.dataset.ratingStar);
-                star.addEventListener('mouseenter', () => highlightStars(value));
-                star.addEventListener('focus', () => highlightStars(value));
-                star.addEventListener('mouseleave', () => highlightStars(currentRating));
-                star.addEventListener('blur', () => highlightStars(currentRating));
-                const handleSelection = () => {
-                    currentRating = value;
-                    highlightStars(currentRating);
-                    clearRatingFeedback();
-                };
-
-                star.addEventListener('click', handleSelection);
-                star.addEventListener('keydown', event => {
-                    if (event.key === 'Enter' || event.key === ' ') {
-                        event.preventDefault();
-                        handleSelection();
-                    }
-                });
-            });
-
-            if (ratingComment) {
-                ratingComment.addEventListener('input', clearRatingFeedback);
-            }
-
-            if (ratingForm && ratingMessage) {
-                ratingForm.addEventListener('submit', event => {
-                    event.preventDefault();
-
-                    if (!currentRating) {
-                        ratingMessage.textContent = 'اختر عدد النجوم قبل إرسال التقييم.';
-                        ratingMessage.classList.add('is-error');
-                        showElement(ratingMessage);
-                        return;
-                    }
-
-                    ratingMessage.textContent = 'شكرًا لملاحظاتك! سنستفيد منها في تحسين المحتوى.';
-                    ratingMessage.classList.remove('is-error');
-                    showElement(ratingMessage);
-                    ratingForm.reset();
-                    currentRating = 0;
-                    highlightStars(0);
-
-                    setTimeout(() => {
-                        hideElement(ratingMessage);
-                    }, 3500);
-                });
-            }
-
-            if (quizForm) {
-                quizForm.addEventListener('submit', event => {
-                    event.preventDefault();
-                    let score = 0;
-                    let total = 0;
-
-                    hideElement(quizScore);
-
-                    quizForm.querySelectorAll('[data-quiz-question]').forEach((question, index) => {
-                        total += 1;
-                        const correct = question.getAttribute('data-correct');
-                        const name = `q${index + 1}`;
-                        const selected = question.querySelector(`input[name="${name}"]:checked`);
-                        const result = question.querySelector('[data-quiz-result]');
-
-                        if (!result) {
-                            return;
-                        }
-
-                        resetResultState(result);
-
-                        if (!selected) {
-                            result.textContent = 'يرجى اختيار إجابة.';
-                            result.classList.add('quiz-result--warning');
-                            return;
-                        }
-
-                        if (selected.value === correct) {
-                            score += 1;
-                            result.textContent = 'إجابة صحيحة ✔';
-                            result.classList.add('quiz-result--success');
-                        } else {
-                            const correctOption = question.querySelector(`input[value="${correct}"]`);
-                            const correctText = correctOption ? correctOption.nextElementSibling.textContent : '';
-                            result.textContent = `إجابة خاطئة ✖، الإجابة الصحيحة: ${correctText}`;
-                            result.classList.add('quiz-result--error');
-                        }
-                    });
-
-                    if (quizScore) {
-                        quizScore.textContent = `نتيجتك: ${score} من ${total}. أحسنت!`;
-                        showElement(quizScore);
-                    }
-                });
-            }
-        })();
-    </script>
-</body>
-</html>

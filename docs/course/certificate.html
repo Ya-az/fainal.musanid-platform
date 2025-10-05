@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>شهادة إتمام الدورة - منصة مساند</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="../css/styles.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.08), rgba(59, 130, 246, 0));
+        }
+
+        .certificate-wrapper {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .certificate-paper {
+            position: relative;
+            width: min(900px, 100%);
+            background: #ffffff;
+            padding: 3rem;
+            border-radius: var(--radius-xl);
+            border: 1px solid rgba(var(--color-primary-rgb), 0.15);
+            box-shadow: 0 25px 70px -30px rgba(15, 23, 42, 0.35);
+            overflow: hidden;
+        }
+
+        .certificate-paper::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at top right, rgba(var(--color-primary-rgb), 0.12), transparent 55%),
+                        radial-gradient(circle at bottom left, rgba(14, 165, 233, 0.12), transparent 45%);
+            opacity: 0.85;
+            z-index: 0;
+        }
+
+        .certificate-paper > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .certificate-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .certificate-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.35rem 0.85rem;
+            border-radius: 999px;
+            font-size: 0.85rem;
+            background: rgba(var(--color-primary-rgb), 0.1);
+            color: var(--color-primary);
+        }
+
+        .certificate-name {
+            font-size: clamp(2.25rem, 5vw, 3.2rem);
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            margin: 0.5rem 0 1rem;
+        }
+
+        .certificate-body {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .certificate-text {
+            font-size: 1.1rem;
+            line-height: 1.9;
+            color: var(--color-neutral-600);
+        }
+
+        .certificate-footer {
+            display: grid;
+            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            align-items: center;
+            text-align: center;
+        }
+
+        .certificate-footer span {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--color-neutral-500);
+            margin-bottom: 0.35rem;
+        }
+
+        .certificate-footer strong {
+            font-size: 1.1rem;
+        }
+
+        .certificate-signature {
+            font-family: 'Tajawal', 'Cairo', sans-serif;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .certificate-watermark {
+            position: absolute;
+            inset: 1.5rem;
+            border: 2px dashed rgba(var(--color-primary-rgb), 0.15);
+            border-radius: calc(var(--radius-xl) - 1.5rem);
+            pointer-events: none;
+        }
+
+        .certificate-notice {
+            background: rgba(var(--color-primary-rgb), 0.08);
+            border-radius: var(--radius-lg);
+            padding: 1rem 1.25rem;
+            display: flex;
+            gap: 0.75rem;
+            align-items: flex-start;
+        }
+
+        .certificate-notice svg {
+            flex-shrink: 0;
+            color: var(--color-primary);
+        }
+
+        @media print {
+            body {
+                background: #ffffff;
+            }
+
+            header, footer, .actions-toolbar, .certificate-notice, .card:not(.print-visible) {
+                display: none !important;
+            }
+
+            .certificate-paper {
+                box-shadow: none;
+                border: none;
+                padding: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header" data-site-header data-base="../" data-active="courses" data-nav-id="certificateNav" data-home="../index.html"></header>
+
+    <main>
+        <section class="section">
+            <div class="container layout-stack">
+                <div class="actions-toolbar flex flex-wrap items-center justify-between gap-sm">
+                    <div class="layout-stack layout-stack--xs">
+                        <span class="badge badge--success">شهادة إتمام</span>
+                        <h1 class="heading-xl mb-0">قِسيمة إنجاز موثقة من منصة مساند</h1>
+                        <p class="text-muted mb-0">يمكنك الاحتفاظ بهذه الشهادة، مشاركتها مع أصحاب العمل، أو إضافتها إلى ملفك في لينكدإن.</p>
+                    </div>
+                    <div class="flex flex-wrap gap-sm">
+                        <button type="button" class="btn btn-primary" id="downloadCertificateBtn">تحميل كملف PDF</button>
+                        <button type="button" class="btn btn-secondary" id="shareCertificateBtn">نسخ رابط المشاركة</button>
+                    </div>
+                </div>
+
+                <div class="certificate-wrapper">
+                    <div class="certificate-paper" id="certificatePaper">
+                        <span class="certificate-watermark"></span>
+                        <div class="certificate-header">
+                            <span class="certificate-chip">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                                    <path d="M12 3 1 9l11 6 9-4.91V17" stroke-linejoin="round"/>
+                                    <path d="m7 12 5 3 4-2.3"/>
+                                    <path d="M22 21h-6"/>
+                                    <path d="m18 17-2 2 2 2 2-2-2-2z" stroke-linejoin="round"/>
+                                </svg>
+                                منصة مساند التعليمية
+                            </span>
+                            <span class="certificate-chip" id="certificateBadge">مجال التدريب</span>
+                        </div>
+
+                        <div class="certificate-body">
+                            <p class="text-sm text-muted uppercase tracking-wider">تقديرًا للالتزام والاجتهاد</p>
+                            <h2 class="certificate-name" id="certificateName">اسم المتعلم</h2>
+                            <p class="certificate-text">
+                                تمنح منصة مساند التعليمية هذه الشهادة لـ
+                                <strong id="certificateNameInline">اسم المتعلم</strong>
+                                لإتمامه بنجاح متطلبات دورة
+                                <strong id="certificateCourse">عنوان الدورة</strong>
+                                بإجمالي <span id="certificateLessons">—</span> دروس وبمعدل تقدم <span id="certificateScore">100%</span>.
+                            </p>
+                            <p class="certificate-text">
+                                تمت متابعة جميع الأنشطة والمسارات التدريبية ضمن مسار <span id="certificateTrack">—</span>
+                                خلال مدة تدريب مقدارها <span id="certificateDuration">—</span>.
+                            </p>
+                        </div>
+
+                        <div class="certificate-footer">
+                            <div>
+                                <span>تاريخ الإصدار</span>
+                                <strong id="certificateDate">—</strong>
+                            </div>
+                            <div>
+                                <span>رقم الشهادة</span>
+                                <strong id="certificateId">—</strong>
+                            </div>
+                            <div>
+                                <span>فريق منصة مساند</span>
+                                <span class="certificate-signature">مركز التطوير والتحول الرقمي</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="certificate-notice print-visible">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                        <path d="M12 9v4" stroke-linecap="round"/>
+                        <path d="M12 17h.01" stroke-linecap="round"/>
+                        <path d="m21 12-9 9-9-9 9-9 9 9z" stroke-linejoin="round"/>
+                    </svg>
+                    <div class="layout-stack layout-stack--xs">
+                        <strong>التحقق من الشهادة</strong>
+                        <p class="text-sm text-muted mb-0">يمكن التأكد من صحة هذه الشهادة عبر إدخال رقمها في بوابة منصة مساند أو التواصل مع فريق الدعم للتحقق من البيانات.</p>
+                    </div>
+                </div>
+
+                <div class="card layout-stack print-visible">
+                    <h2 class="heading-md mb-0">خطوات مقترحة بعد الحصول على الشهادة</h2>
+                    <ul class="list-disc pr-lg text-body layout-stack layout-stack--xs">
+                        <li>إضافة الشهادة إلى ملفك على لينكدإن أو السيرة الذاتية.</li>
+                        <li>مشاركة الشهادة مع فريقك أو أصدقائك لتلهمهم بخطوتك القادمة.</li>
+                        <li>العودة إلى صفحة الدورة ومتابعة المشاريع التطبيقية لتعزيز الخبرة.</li>
+                    </ul>
+                    <div class="flex flex-wrap gap-sm">
+                        <a class="btn btn-ghost" id="backToCourseBtn">العودة إلى صفحة الدورة</a>
+                        <a class="btn btn-secondary" href="cr_index.html">اكتشاف دورات جديدة</a>
+                    </div>
+                </div>
+
+                <div class="card layout-stack" id="certificateArchiveCard">
+                    <div class="flex flex-wrap items-start justify-between gap-sm">
+                        <div class="layout-stack layout-stack--xs">
+                            <h2 class="heading-md mb-0">سجل شهاداتك السابقة</h2>
+                            <p class="text-sm text-muted mb-0">يمكنك الرجوع إلى أي شهادة صدرت مسبقًا وإعادة تنزيلها أو مشاركتها بسهولة.</p>
+                        </div>
+                        <button type="button" class="btn btn-ghost btn--sm" id="refreshCertificatesBtn">تحديث القائمة</button>
+                    </div>
+                    <div class="layout-stack layout-stack--sm" id="certificateArchiveList" role="list"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer" data-site-footer data-base="../"></footer>
+
+    <script src="../js/course-manager.js"></script>
+    <script src="../js/certificate-manager.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js" integrity="sha384-WfXMXirMRHkRkNvztNFVQVw1Gc7YCOUMIqFZRMVAb9YSEuxsjjXNMTvEfgQ6Vw5j" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js" integrity="sha384-nNrihYUxE6xBPdZiZsaAJ+lZeI7IuAvV38DSHLVbkP4SRrped1IovnHgwlHGawEq" crossorigin="anonymous"></script>
+    <script src="../js/components/header.js"></script>
+    <script src="../js/components/footer.js"></script>
+    <script src="../js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const courseId = params.get('course');
+            const certificateParamId = params.get('certificateId');
+            const nameParam = params.get('name');
+
+            const course = courseId ? courseManager.getCourse(courseId) : null;
+            let certificateData = null;
+
+            if (typeof certificateManager !== 'undefined') {
+                if (courseId) {
+                    certificateData = certificateManager.getCertificate(courseId) || null;
+                }
+
+                if (!certificateData && certificateParamId) {
+                    certificateData = certificateManager.getCertificateById(certificateParamId);
+                }
+            }
+
+            const profile = typeof certificateManager !== 'undefined' ? certificateManager.getProfile() : null;
+            const fallbackName = nameParam || profile?.fullName || 'أحد متعلمي منصة مساند';
+
+            if (!certificateData && courseId && course) {
+                certificateData = {
+                    courseId,
+                    courseTitle: course.title,
+                    courseBadge: course.badge,
+                    userName: fallbackName,
+                    certificateId: `MSN-TEMP-${Date.now().toString(36).toUpperCase()}`,
+                    issuedAt: new Date().toISOString(),
+                    totalLessons: course.lessons?.length || null,
+                    lessonsCompleted: course.lessons?.length || null,
+                    score: 100,
+                    metadata: { generatedOnFly: true }
+                };
+            }
+
+            const courseTitle = certificateData?.courseTitle || course?.title || 'دورة تدريبية من منصة مساند';
+            const courseBadge = certificateData?.courseBadge || course?.badge || 'مسار تدريبي';
+            const userName = certificateData?.userName || fallbackName;
+            const totalLessons = certificateData?.totalLessons || course?.lessons?.length || null;
+            const progressScore = certificateData?.score ?? 100;
+            const issuedAt = certificateData?.issuedAt || new Date().toISOString();
+
+            document.getElementById('certificateCourse').textContent = courseTitle;
+            document.getElementById('certificateBadge').textContent = courseBadge;
+            document.getElementById('certificateName').textContent = userName;
+            document.getElementById('certificateNameInline').textContent = userName;
+            document.getElementById('certificateDate').textContent = formatCertificateDate(issuedAt);
+            document.getElementById('certificateId').textContent = certificateData?.certificateId || '—';
+            document.getElementById('certificateTrack').textContent = resolveTrackName(course?.category);
+            document.getElementById('certificateScore').textContent = `${progressScore}%`;
+            document.getElementById('certificateLessons').textContent = totalLessons ? `${totalLessons}` : '—';
+            document.getElementById('certificateDuration').textContent = course?.duration || '—';
+
+            const backToCourseBtn = document.getElementById('backToCourseBtn');
+            if (backToCourseBtn && courseId) {
+                backToCourseBtn.href = `course-detail.html?course=${courseId}`;
+            }
+
+            const archiveCard = document.getElementById('certificateArchiveCard');
+            const archiveList = document.getElementById('certificateArchiveList');
+            const refreshArchiveBtn = document.getElementById('refreshCertificatesBtn');
+
+            const downloadBtn = document.getElementById('downloadCertificateBtn');
+            downloadBtn?.addEventListener('click', () => {
+                downloadCertificateAsPdf(downloadBtn).catch(() => window.print());
+            });
+
+            const shareBtn = document.getElementById('shareCertificateBtn');
+            shareBtn?.addEventListener('click', () => {
+                shareCertificateLink(certificateData, { courseTitle, userName });
+            });
+
+            refreshArchiveBtn?.addEventListener('click', () => {
+                renderCertificateArchive(archiveCard, archiveList, certificateData?.certificateId || null);
+            });
+
+            renderCertificateArchive(archiveCard, archiveList, certificateData?.certificateId || null);
+        });
+
+        function formatCertificateDate(value) {
+            if (!value) {
+                return '—';
+            }
+            const date = new Date(value);
+            if (Number.isNaN(date.getTime())) {
+                return '—';
+            }
+            return date.toLocaleDateString('ar-SA', {
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric'
+            });
+        }
+
+        function resolveTrackName(category) {
+            switch (category) {
+                case 'networking':
+                    return 'الشبكات وتقنيات Cisco';
+                case 'security':
+                    return 'الأمن السيبراني وحماية البيانات';
+                case 'programming':
+                    return 'برمجة التطبيقات وJava';
+                case 'systems':
+                    return 'أنظمة التشغيل وإدارتها';
+                default:
+                    return 'المسارات التعليمية لدى منصة مساند';
+            }
+        }
+
+        function buildShareQuery(courseId, certificateData) {
+            const params = new URLSearchParams();
+            if (courseId) {
+                params.set('course', courseId);
+            }
+            if (certificateData?.certificateId) {
+                params.set('certificateId', certificateData.certificateId);
+            }
+            if (!certificateData || certificateData.metadata?.generatedOnFly) {
+                params.set('name', certificateData?.userName || '');
+            }
+            return params.toString();
+        }
+
+        function copyToClipboardFallback(text) {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            textarea.setAttribute('readonly', '');
+            textarea.style.position = 'absolute';
+            textarea.style.left = '-9999px';
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+        }
+
+        function notify(message, type) {
+            if (typeof showMessage === 'function') {
+                showMessage(message, type === 'error' ? 'error' : type === 'success' ? 'success' : 'info');
+            } else {
+                alert(message);
+            }
+        }
+
+        function renderCertificateArchive(archiveCard, archiveList, currentCertificateId = null) {
+            if (!archiveCard || !archiveList) {
+                return;
+            }
+
+            if (typeof certificateManager === 'undefined') {
+                archiveCard.classList.add('is-hidden');
+                archiveList.innerHTML = '';
+                return;
+            }
+
+            archiveCard.classList.remove('is-hidden');
+
+            const hasGetAll = typeof certificateManager.getAllCertificates === 'function';
+            let certificates = hasGetAll
+                ? certificateManager.getAllCertificates({ sort: 'desc' })
+                : Object.values(certificateManager.certificates || {});
+
+            if (!hasGetAll) {
+                certificates = certificates.sort((a, b) => {
+                    const timeA = a?.issuedAt ? Date.parse(a.issuedAt) || 0 : 0;
+                    const timeB = b?.issuedAt ? Date.parse(b.issuedAt) || 0 : 0;
+                    return timeB - timeA;
+                });
+            }
+
+            archiveList.innerHTML = '';
+
+            if (!certificates.length) {
+                const emptyState = document.createElement('div');
+                emptyState.className = 'text-sm text-muted';
+                emptyState.textContent = 'لم تصدر أي شهادات بعد. سيتم عرض الشهادات هنا فور إصدارها.';
+                archiveList.appendChild(emptyState);
+                return;
+            }
+
+            certificates.forEach(certificate => {
+                const item = document.createElement('div');
+                item.className = 'card card--muted layout-stack';
+                item.setAttribute('role', 'listitem');
+
+                const header = document.createElement('div');
+                header.className = 'flex flex-wrap items-start justify-between gap-sm';
+
+                const infoStack = document.createElement('div');
+                infoStack.className = 'layout-stack layout-stack--xs';
+
+                const titleEl = document.createElement('div');
+                titleEl.className = 'heading-sm mb-0';
+                titleEl.textContent = certificate.courseTitle || 'دورة من منصة مساند';
+
+                const metaEl = document.createElement('p');
+                metaEl.className = 'text-sm text-muted mb-0';
+                const dateLabel = formatCertificateDate(certificate.issuedAt);
+                const idLabel = certificate.certificateId || '—';
+                metaEl.textContent = `صدر بتاريخ ${dateLabel} • رقم الشهادة ${idLabel}`;
+
+                infoStack.append(titleEl, metaEl);
+
+                if (currentCertificateId && certificate.certificateId === currentCertificateId) {
+                    const badge = document.createElement('span');
+                    badge.className = 'badge badge--success align-start';
+                    badge.textContent = 'الشهادة الحالية';
+                    infoStack.appendChild(badge);
+                }
+
+                const actionsWrap = document.createElement('div');
+                actionsWrap.className = 'flex flex-wrap gap-sm';
+
+                const viewBtn = document.createElement('button');
+                viewBtn.type = 'button';
+                viewBtn.className = 'btn btn-secondary';
+                viewBtn.textContent = 'عرض الشهادة';
+                viewBtn.addEventListener('click', () => {
+                    openCertificatePage(certificate);
+                });
+
+                const shareBtn = document.createElement('button');
+                shareBtn.type = 'button';
+                shareBtn.className = 'btn btn-ghost';
+                shareBtn.textContent = 'نسخ الرابط';
+                shareBtn.addEventListener('click', () => {
+                    shareCertificateLink(certificate, {
+                        courseTitle: certificate.courseTitle,
+                        userName: certificate.userName
+                    });
+                });
+
+                actionsWrap.append(viewBtn, shareBtn);
+                header.append(infoStack, actionsWrap);
+                item.append(header);
+
+                archiveList.append(item);
+            });
+        }
+
+        function openCertificatePage(certificate) {
+            if (!certificate) {
+                notify('تعذر فتح الشهادة المطلوبة.', 'error');
+                return;
+            }
+
+            const query = buildShareQuery(certificate.courseId, certificate);
+            const targetUrl = query ? `${window.location.pathname}?${query}` : window.location.pathname;
+            window.open(targetUrl, '_blank', 'noopener');
+        }
+
+        async function shareCertificateLink(certificate, context = {}) {
+            if (!certificate) {
+                notify('لا توجد بيانات شهادة لمشاركتها.', 'error');
+                return;
+            }
+
+            const origin = (window.location.origin && window.location.origin !== 'null') ? window.location.origin : '';
+            const shareUrl = `${origin}${window.location.pathname}?${buildShareQuery(certificate.courseId, certificate)}`;
+            const courseTitle = context.courseTitle || certificate.courseTitle || 'شهادة منصة مساند';
+            const userName = context.userName || certificate.userName || 'أحد متعلمي منصة مساند';
+
+            try {
+                if (navigator.share) {
+                    await navigator.share({
+                        title: `شهادة إتمام - ${courseTitle}`,
+                        text: `${userName} أكمل دورة ${courseTitle} على منصة مساند.`,
+                        url: shareUrl
+                    });
+                    notify('تم فتح نافذة المشاركة.', 'success');
+                } else if (navigator.clipboard) {
+                    await navigator.clipboard.writeText(shareUrl);
+                    notify('تم نسخ رابط الشهادة إلى الحافظة.', 'success');
+                } else {
+                    copyToClipboardFallback(shareUrl);
+                    notify('انسخ الرابط يدويًا من النافذة المنبثقة.', 'info');
+                }
+            } catch (error) {
+                notify('تعذر مشاركة الرابط. جرّب نسخ الرابط يدويًا.', 'error');
+            }
+        }
+
+        async function downloadCertificateAsPdf(triggerBtn) {
+            const certificateElement = document.getElementById('certificatePaper');
+            if (!certificateElement) {
+                throw new Error('certificate element not found');
+            }
+
+            const hasLibraries = Boolean(window.html2canvas) && Boolean(window.jspdf?.jsPDF);
+            if (!hasLibraries) {
+                window.print();
+                return;
+            }
+
+            const originalText = triggerBtn?.textContent;
+            if (triggerBtn) {
+                triggerBtn.disabled = true;
+                triggerBtn.textContent = 'جارٍ إنشاء ملف PDF...';
+            }
+
+            try {
+                const canvas = await window.html2canvas(certificateElement, {
+                    scale: 2,
+                    useCORS: true,
+                    backgroundColor: '#ffffff',
+                    logging: false
+                });
+
+                const imgData = canvas.toDataURL('image/png', 1.0);
+                const pdf = new window.jspdf.jsPDF('landscape', 'pt', [canvas.width * 0.75, canvas.height * 0.75]);
+                pdf.addImage(imgData, 'PNG', 0, 0, canvas.width * 0.75, canvas.height * 0.75);
+
+                const learnerName = (document.getElementById('certificateName')?.textContent || 'learner')
+                    .replace(/[\\/:*?"<>|]+/g, '-')
+                    .trim() || 'learner';
+
+                pdf.save(`Musanid-Certificate-${learnerName}.pdf`);
+
+                notify('تم تنزيل الشهادة بصيغة PDF بنجاح.', 'success');
+            } catch (error) {
+                console.error('Failed to generate certificate PDF:', error);
+                notify('تعذر إنشاء ملف PDF، سيتم فتح نافذة الطباعة كبديل.', 'error');
+                window.print();
+            } finally {
+                if (triggerBtn) {
+                    triggerBtn.disabled = false;
+                    triggerBtn.textContent = originalText || 'تحميل كملف PDF';
+                }
+            }
+        }
+    </script>
+</body>
+</html>
