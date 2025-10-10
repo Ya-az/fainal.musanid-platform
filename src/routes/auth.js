@@ -13,9 +13,6 @@ router.get('/register', (req, res) => {
 });
 
 // إنشاء جدول المستخدمين إن لم يكن موجوداً
-const mysql = require('mysql2/promise');
-const rateLimit = require('express-rate-limit');
-const { requireAuth } = require('../middleware/auth');
 
 async function ensureUsersTable() {
   await db.query(`CREATE TABLE IF NOT EXISTS users (

@@ -55,11 +55,18 @@
         h1 { text-align: center; color: #333; }
         h2 { color: #555; margin-top: 30px; }
         .test-description {
-            background: #f0f7ff;
+            background: #e3f2fd;
             padding: 15px;
             border-radius: 8px;
             border-left: 4px solid #2196f3;
             margin-bottom: 20px;
+        }
+        .test-link {
+            color: #667eea;
+            text-decoration: none;
+        }
+        .test-link:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
@@ -112,13 +119,13 @@
         <h2>🔗 روابط الاختبار المباشر</h2>
         <p>
             <a href="http://127.0.0.1:8000/course/certificate.html?course=cisco-ccna&name=اختبار%20المطور" 
-               target="_blank" style="color: #667eea; text-decoration: none;">
+               target="_blank" rel="noopener" class="test-link">
                 🎓 فتح صفحة شهادة سيسكو للاختبار
             </a>
         </p>
         <p>
             <a href="http://127.0.0.1:8000/course/certificate.html?course=linux&name=اختبار%20المطور" 
-               target="_blank" style="color: #667eea; text-decoration: none;">
+               target="_blank" rel="noopener" class="test-link">
                 🐧 فتح صفحة شهادة لينكس للاختبار
             </a>
         </p>
