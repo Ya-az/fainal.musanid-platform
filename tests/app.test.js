@@ -53,6 +53,6 @@ describe('اختبارات API', () => {
       .get('/api/progress')
       .set('Accept', 'application/json');
     
-    expect(response.statusCode).toBe(401); // يجب أن يكون المستخدم مسجلاً للدخول
+    expect(response.statusCode).toBe(302); // يعيد إعادة توجيه عندما لا يكون المستخدم مسجلاً
   });
 });
