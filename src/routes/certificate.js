@@ -1,11 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const PDFDocument = require('pdfkit');
-
-function requireAuth(req, res, next) {
-  if (req.session && req.session.user) return next();
-  return res.redirect('/auth/login');
-}
+const { requireAuth } = require('../middleware/auth');
 
 router.get('/', requireAuth, (req, res) => {
   res.render('certificate/index', { title: 'الشهادات' });

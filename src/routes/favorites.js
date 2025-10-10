@@ -2,12 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { getAllLessons } = require('../models/Lesson');
 const { getUserFavoritesMap } = require('../models/Favorite');
-
-// Middleware to require authentication
-function requireAuth(req, res, next) {
-  if (req.session && req.session.user) return next();
-  return res.redirect('/auth/login?redirect=/favorites');
-}
+const { requireAuth } = require('../middleware/auth');
 
 // Route to display favorites page
 router.get('/', requireAuth, async (req, res) => {

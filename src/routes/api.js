@@ -3,11 +3,7 @@ const router = express.Router();
 const { getAllLessons } = require('../models/Lesson');
 const { getUserProgressMap, markLessonCompleted, unmarkLessonCompleted } = require('../models/Progress');
 const { getUserFavoritesMap, addFavorite, removeFavorite } = require('../models/Favorite');
-
-function requireAuth(req, res, next) {
-  if (req.session && req.session.user) return next();
-  return res.status(401).json({ message: 'غير مصرح' });
-}
+const { requireAuth } = require('../middleware/auth');
 
 // GET /api/progress  -> current user progress summary
 router.get('/progress', requireAuth, async (req, res) => {
