@@ -2474,7 +2474,7 @@ p {
 }
 
 .lesson-item p {
-    color: #FFFFFF !important;
+    color: #000000 !important;
     font-weight: 500 !important;
 }
 
@@ -2489,6 +2489,6 @@ p {
 }
 
 .card.card--feature p.text-muted {
-    color: #FFFFFF !important;
+    color: #000000 !important;
     font-weight: 500 !important;
 }
