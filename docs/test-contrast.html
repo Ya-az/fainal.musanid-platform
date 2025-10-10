@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اختبار التباين - منصة مسانيد</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .test-section {
+            margin: 2rem 0;
+            padding: 2rem;
+            border-radius: 12px;
+        }
+        
+        .test-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        
+        .test-text {
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        
+        .contrast-info {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            color: #333;
+        }
+    </style>
+</head>
+<body style="padding: 2rem; background: #f5f5f5;">
+    <h1 style="text-align: center; color: #333; margin-bottom: 3rem;">اختبار التباين للخلفيات البنفسجية</h1>
+
+    <!-- اختبار البطاقات -->
+    <div class="test-section card">
+        <div class="test-title">بطاقة مع خلفية بنفسجية متدرجة</div>
+        <div class="test-text">
+            هذا نص تجريبي للتحقق من وضوح النص على الخلفية البنفسجية المتدرجة. 
+            يجب أن يكون النص واضحاً وقابلاً للقراءة بسهولة.
+        </div>
+        <div class="contrast-info">
+            <strong>نوع الخلفية:</strong> linear-gradient(120deg, #7C3AED 0%, #8B5CF6 45%, #A78BFA 100%)<br>
+            <strong>لون النص المطبق:</strong> var(--dynamic-text-primary)
+        </div>
+    </div>
+
+    <!-- اختبار الأزرار -->
+    <div class="test-section" style="background: white; color: #333;">
+        <div class="test-title">الأزرار</div>
+        <button class="btn-primary" style="margin: 0.5rem;">زر أساسي</button>
+        <button class="btn-outline" style="margin: 0.5rem;">زر محدد</button>
+        <div class="contrast-info">
+            <strong>نوع الخلفية:</strong> linear-gradient(90deg, #7C3AED 0%, #A78BFA 100%)<br>
+            <strong>لون النص المطبق:</strong> var(--dynamic-text-primary)
+        </div>
+    </div>
+
+    <!-- اختبار أقسام Hero -->
+    <div class="test-section hero--light" style="text-align: center;">
+        <div class="test-title">قسم Hero خفيف</div>
+        <div class="test-text">
+            هذا مثال على قسم Hero مع خلفية بنفسجية متدرجة.
+            النص يجب أن يكون واضحاً ومقروءاً.
+        </div>
+        <div class="contrast-info">
+            <strong>نوع الخلفية:</strong> linear-gradient(120deg, #7C3AED 0%, #8B5CF6 45%, #A78BFA 100%)<br>
+            <strong>لون النص المطبق:</strong> var(--dynamic-text-primary)
+        </div>
+    </div>
+
+    <!-- اختبار إحصائيات موحدة -->
+    <div class="test-section stats-section-unified">
+        <div class="test-title">قسم الإحصائيات الموحد</div>
+        <div class="test-text">
+            هذا قسم الإحصائيات مع خلفية بنفسجية مخصصة.
+            يجب أن يكون النص واضحاً على هذه الخلفية.
+        </div>
+        <div class="contrast-info">
+            <strong>نوع الخلفية:</strong> linear-gradient(135deg, #6d35e7 0%, #b18aff 100%)<br>
+            <strong>لون النص المطبق:</strong> var(--dynamic-text-primary)
+        </div>
+    </div>
+
+    <!-- اختبار صورة الكورس الأمني -->
+    <div class="test-section course-img course-img--security" style="text-align: center; position: relative; height: 200px; display: flex; align-items: center; justify-content: center;">
+        <div style="position: relative; z-index: 2;">
+            <div class="test-title">كورس الأمن السيبراني</div>
+            <div class="test-text">محتوى تعليمي متقدم</div>
+        </div>
+        <div class="contrast-info" style="position: absolute; bottom: 10px; left: 10px; right: 10px; z-index: 3;">
+            <strong>نوع الخلفية:</strong> linear-gradient(135deg, #8B5CF6 0%, #4F46E5 100%)<br>
+            <strong>لون النص المطبق:</strong> var(--dynamic-text-primary)
+        </div>
+    </div>
+
+    <!-- اختبار زر نشط في FAQ -->
+    <div class="test-section" style="background: white; color: #333;">
+        <div class="test-title">زر نشط في FAQ</div>
+        <button class="faq-filter__button is-active" style="margin: 0.5rem;">فئة نشطة</button>
+        <div class="contrast-info">
+            <strong>نوع الخلفية:</strong> linear-gradient(120deg, #7C3AED 0%, #8B5CF6 45%, #A78BFA 100%)<br>
+            <strong>لون النص المطبق:</strong> var(--dynamic-text-primary)
+        </div>
+    </div>
+
+    <script>
+        // إظهار قيم CSS المحسوبة
+        document.addEventListener('DOMContentLoaded', function() {
+            const elements = document.querySelectorAll('.test-section');
+            elements.forEach(function(element) {
+                const computed = window.getComputedStyle(element);
+                const color = computed.color;
+                const background = computed.background;
+                
+                console.log('Element:', element.className);
+                console.log('Computed color:', color);
+                console.log('Computed background:', background);
+                console.log('---');
+            });
+        });
+    </script>
+</body>
+</html>

@@ -5,6 +5,7 @@ module.exports = {
   testPathIgnorePatterns: [
     '/node_modules/'
   ],
+  setupFilesAfterEnv: ['<rootDir>/tests/jest.setup.js'],
   // تغطية الكود
   collectCoverage: true,
   collectCoverageFrom: [

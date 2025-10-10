@@ -1,3 +1,303 @@
+/* تأثير بروز البطاقة عند تمرير الماوس */
+.feature-card {
+    transition: box-shadow 0.3s, transform 0.3s;
+    box-shadow: 0 2px 12px rgba(60,0,120,0.08);
+}
+.feature-card:hover {
+    box-shadow: 0 8px 32px rgba(60,0,120,0.18);
+    transform: translateY(-6px) scale(1.03);
+}
+.feature-title {
+    color: var(--color-primary-dark);
+    font-weight: 800;
+    font-size: 1.25rem;
+    letter-spacing: 0.01em;
+}
+.feature-desc {
+    color: var(--dynamic-text-primary);
+    opacity: 1;
+    font-size: 1.13rem;
+    font-weight: 500;
+    text-shadow: 0 1px 8px rgba(60,0,120,0.18);
+    line-height: 1.7;
+}
+
+/* كلاسات للأنماط المخصصة */
+.stats-section-unified {
+    background: linear-gradient(135deg, #6d35e7 0%, #b18aff 100%);
+    border-radius: 40px;
+    margin-top: 20px;
+    color: var(--dynamic-text-primary);
+}
+
+.support-title {
+    color: #5B21B6;
+}
+
+.support-description {
+    color: #FFFFFF;
+}
+
+.form-label-dark {
+    color: #000000;
+    font-weight: 600;
+}
+
+.copyright-text {
+    color: #FFFFFF;
+}
+
+/* تحسينات الأداء */
+.hero {
+    contain: layout;
+}
+
+.course-card {
+    content-visibility: auto;
+    contain-intrinsic-size: 400px;
+}
+
+/* النوافذ المنبثقة والعناصر الجانبية */
+.modal[style*="background"],
+.popup[style*="gradient"],
+.sidebar[style*="purple"],
+.overlay[style*="linear-gradient"] {
+    color: var(--dynamic-text-primary) !important;
+}
+
+/* ضمان وضوح جميع العناصر الفرعية */
+.modal[style*="background"] *,
+.popup[style*="gradient"] *,
+.sidebar[style*="purple"] *,
+.overlay[style*="linear-gradient"] * {
+    color: inherit !important;
+}
+
+/* واجهات التقدم والكورسات */
+.course-progress-sidebar,
+.lesson-progress-panel,
+.course-sidebar {
+    background: var(--gradient-primary);
+    color: var(--dynamic-text-primary) !important;
+}
+
+.course-progress-sidebar *,
+.lesson-progress-panel *,
+.course-sidebar * {
+    color: inherit !important;
+}
+
+/* عناصر التقدم البنفسجية */
+.progress-container[style*="background"],
+.progress-panel[style*="purple"],
+.course-panel[style*="gradient"],
+[class*="progress"][style*="background: linear-gradient"] {
+    color: var(--dynamic-text-primary) !important;
+}
+
+[class*="progress"][style*="background: linear-gradient"] * {
+    color: inherit !important;
+}
+
+.card:focus-within {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+/* تحسين التباين للوضع المظلم */
+@media (prefers-color-scheme: dark) {
+    .form-label-dark {
+        color: #FFFFFF;
+    }
+}
+
+/* تقليل الحركة للمستخدمين الذين يفضلون ذلك */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .feature-card:hover,
+    .card:hover,
+    .btn:hover {
+        transform: none;
+    }
+}
+
+/* تحسينات الأداء المتقدمة */
+.course-grid {
+    contain: layout style;
+}
+
+.course-card {
+    will-change: transform;
+}
+
+.course-card:not(:hover) {
+    will-change: auto;
+}
+
+/* تحسين الخطوط والنصوص */
+body {
+    font-display: swap;
+    text-rendering: optimizeSpeed;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    text-rendering: optimizeSpeed;
+}
+
+/* تحسين التداخل البصري */
+.hero__content {
+    contain: layout;
+}
+
+.card__content {
+    contain: layout style;
+}
+
+/* تحسينات إمكانية الوصول المتقدمة */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 6px;
+    background: var(--color-primary);
+    color: white;
+    padding: 8px;
+    text-decoration: none;
+    border-radius: 4px;
+    z-index: 100;
+    transition: top 0.3s;
+}
+
+.skip-link:focus {
+    top: 6px;
+}
+
+/* تحسين التباين العالي */
+@media (prefers-contrast: high) {
+    .btn-primary {
+        border: 2px solid var(--color-neutral-900);
+    }
+    
+    .card {
+        border: 1px solid var(--color-neutral-600);
+    }
+}
+
+/* دعم الشاشات الكبيرة */
+@media (min-width: 1920px) {
+    .container {
+        max-width: 1600px;
+    }
+    
+    .hero__headline {
+        font-size: 4rem;
+    }
+}
+
+/* كلاس للعناصر المخفية عن القارئات الشاشة */
+.sr-only {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+}
+
+/* تحسين طباعة الصفحة */
+@media print {
+    /* إعدادات عامة للطباعة */
+    * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    body {
+        background: white !important;
+        color: black !important;
+        font-size: 12pt !important;
+        line-height: 1.4 !important;
+    }
+
+    /* إخفاء عناصر التنقل والتفاعل */
+    .site-header,
+    .site-footer,
+    .btn,
+    .hero__actions,
+    .filter-group,
+    nav,
+    .modal,
+    .toast {
+        display: none !important;
+    }
+
+    /* تحسين عرض البطاقات */
+    .card {
+        break-inside: avoid;
+        box-shadow: none !important;
+        border: 1px solid #ddd !important;
+        margin-bottom: 1rem !important;
+        padding: 1rem !important;
+    }
+
+    /* تحسين الروابط */
+    a[href]:after {
+        content: " (" attr(href) ")";
+        font-size: 0.8em;
+        color: #666;
+    }
+
+    a[href^="#"]:after,
+    a[href^="javascript:"]:after,
+    a[href=""]:after {
+        content: "";
+    }
+
+    /* تحسين العناوين */
+    h1, h2, h3, h4, h5, h6 {
+        page-break-after: avoid;
+        color: black !important;
+    }
+
+    /* منع تقسيم العناصر المهمة */
+    .course-card,
+    .stat-item,
+    .accordion__item {
+        break-inside: avoid;
+    }
+
+    /* تحسين الصور */
+    img {
+        max-width: 100% !important;
+        height: auto !important;
+    }
+
+    /* للصفحات التي تحتوي على شهادة */
+    .certificate-page .certificate-paper {
+        position: absolute !important;
+        left: 0 !important;
+        top: 0 !important;
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 20px !important;
+    }
+
+    .certificate-page body * {
+        visibility: hidden;
+    }
+
+    .certificate-page .certificate-paper,
+    .certificate-page .certificate-paper * {
+        visibility: visible !important;
+    }
+}
 /* -------------------------------------------------------------------------- */
 /*  تصميم موحد لمنصة مساند التعليمية                                         */
 /* -------------------------------------------------------------------------- */
@@ -30,6 +330,16 @@
     --gradient-primary: linear-gradient(120deg, #6D28D9 0%, #8B5CF6 45%, #A78BFA 100%);
     --gradient-muted: linear-gradient(120deg, rgba(109, 40, 217, 0.05) 0%, rgba(139, 92, 246, 0.05) 100%);
 
+    /* نظام التباين التلقائي للنصوص على الخلفيات البنفسجية */
+    --text-on-primary: #FFFFFF;        /* نص أبيض على البنفسجي الداكن */
+    --text-on-secondary: #000000;      /* نص أسود على البنفسجي الفاتح */
+    --text-on-accent: #000000;         /* نص أسود على البنفسجي الفاتح جداً */
+    
+    /* متغيرات لألوان النصوص الديناميكية */
+    --dynamic-text-primary: var(--text-on-primary);
+    --dynamic-text-secondary: var(--text-on-secondary);
+    --dynamic-text-accent: var(--text-on-accent);
+
     --shadow-xs: 0 1px 2px rgba(17, 24, 39, 0.08);
     --shadow-sm: 0 6px 18px rgba(var(--color-primary-rgb), 0.10);
     --shadow-md: 0 16px 40px rgba(var(--color-primary-rgb), 0.18);
@@ -41,6 +351,105 @@
 
     --container-max: 1100px;
     --transition-base: 0.25s ease;
+}
+
+/* -------------------------------------------------------------------------- */
+/*  نظام التباين التلقائي للنصوص على الخلفيات البنفسجية                      */
+/* -------------------------------------------------------------------------- */
+
+/* كلاسات عامة للتباين التلقائي */
+.text-auto-contrast-primary {
+    color: var(--dynamic-text-primary) !important;
+}
+
+.text-auto-contrast-secondary {
+    color: var(--dynamic-text-secondary) !important;
+}
+
+.text-auto-contrast-accent {
+    color: var(--dynamic-text-accent) !important;
+}
+
+/* كلاس عام للعناصر ذات الخلفية البنفسجية */
+.purple-bg-auto-text {
+    color: var(--dynamic-text-primary);
+}
+
+.purple-bg-light-auto-text {
+    color: var(--dynamic-text-secondary);
+}
+
+.purple-bg-accent-auto-text {
+    color: var(--dynamic-text-accent);
+}
+
+/* تطبيق التباين التلقائي على العناصر الشائعة */
+[style*="background: linear-gradient"][style*="#6D28D9"],
+[style*="background: linear-gradient"][style*="#7C3AED"],
+[style*="background: linear-gradient"][style*="#5B21B6"] {
+    color: var(--dynamic-text-primary);
+}
+
+[style*="background: linear-gradient"][style*="#A78BFA"],
+[style*="background: linear-gradient"][style*="#C4B5FD"] {
+    color: var(--dynamic-text-primary) !important;
+}
+
+/* حماية شاملة للخلفيات البنفسجية المطبقة ديناميكيًا */
+[style*="background-color: #7C3AED"],
+[style*="background-color: #8B5CF6"],
+[style*="background-color: #A78BFA"],
+[style*="background: #7C3AED"],
+[style*="background: #8B5CF6"],
+[style*="background: #A78BFA"] {
+    color: var(--dynamic-text-primary) !important;
+}
+
+/* ضمان وراثة اللون لجميع العناصر الفرعية في الخلفيات البنفسجية */
+[style*="background"][style*="#7C3AED"] *,
+[style*="background"][style*="#8B5CF6"] *,
+[style*="background"][style*="#A78BFA"] *,
+[style*="background"][style*="linear-gradient"][style*="purple"] * {
+    color: inherit !important;
+}
+
+/* استثناء خاص لصفحة الشهادة - نصوص سوداء */
+.certificate-paper,
+.certificate-paper *,
+.certificate-paper h1,
+.certificate-paper strong,
+.certificate-paper .value {
+    color: #000000 !important;
+}
+
+.certificate-paper .certificate-text,
+.certificate-paper .text-muted {
+    color: #666666 !important;
+}
+
+/* أنماط إضافية قوية للشهادة */
+#certificateId,
+#certificateDate,
+#certificateName,
+#certificateNameInline,
+.recipient-name,
+.footer-item strong,
+.footer-item .value {
+    color: #000000 !important;
+    text-shadow: none !important;
+    -webkit-text-fill-color: #000000 !important;
+    background: transparent !important;
+}
+
+/* استهداف مباشر للعناصر */
+[id*="certificate"] {
+    color: #000000 !important;
+}
+
+.certificate-footer strong,
+.certificate-footer .value,
+.certificate-paper .certificate-footer * {
+    color: #000000 !important;
 }
 
 *, *::before, *::after {
@@ -121,13 +530,16 @@ img {
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 24px;
-    color: #fff;
+    color: var(--dynamic-text-primary);
 }
 
 .course-img--networking { background: linear-gradient(135deg, #3B82F6 0%, #60A5FA 100%); }
 .course-img--systems { background: linear-gradient(135deg, #22C55E 0%, #10B981 100%); }
 .course-img--programming { background: linear-gradient(135deg, #F97316 0%, #FDBA74 100%); }
-.course-img--security { background: linear-gradient(135deg, #8B5CF6 0%, #4F46E5 100%); }
+.course-img--security { 
+    background: linear-gradient(135deg, #8B5CF6 0%, #4F46E5 100%); 
+    color: var(--dynamic-text-primary);
+}
 
 /* -------------------------------------------------------------------------- */
 /*  أشرطة التقدم: فئات عرض مسبقة بدون أنماط مضمنة                              */
@@ -255,14 +667,33 @@ p {
 }
 
 .btn-primary {
-    background: var(--gradient-primary);
-    color: #fff;
-    box-shadow: var(--shadow-sm);
+    background: linear-gradient(90deg, #7C3AED 0%, #A78BFA 100%);
+    color: var(--dynamic-text-primary) !important;
+    box-shadow: none;
+    font-size: 1.02rem;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    text-shadow: none;
+    border: none;
+    padding: 0.55rem 1.35rem;
+    border-radius: 999px;
+    transition: background var(--transition-base), color var(--transition-base), transform var(--transition-base);
+    position: relative;
+    overflow: hidden;
+}
+.btn-primary::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: var(--radius-full);
+    box-shadow: 0 0 0 0 rgba(109,40,217,0.18);
+    transition: box-shadow var(--transition-base);
+    pointer-events: none;
 }
 
 .btn-primary:hover {
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-md);
+    transform: translateY(-3px) scale(1.04);
+    box-shadow: 0 16px 48px rgba(var(--color-primary-rgb), 0.22), 0 2px 12px rgba(var(--color-primary-rgb), 0.13);
 }
 
 .btn-secondary {
@@ -275,13 +706,23 @@ p {
 }
 
 .btn-outline {
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    color: #fff;
-    background: transparent;
+    border: none;
+    color: var(--dynamic-text-primary);
+    background: linear-gradient(90deg, #7C3AED 0%, #A78BFA 100%);
+    font-weight: 700;
+    font-size: 1.02rem;
+    padding: 0.55rem 1.35rem;
+    border-radius: 999px;
+    box-shadow: none;
+    position: relative;
+    overflow: hidden;
+    transition: background var(--transition-base), color var(--transition-base), transform var(--transition-base);
 }
 
 .btn-outline:hover {
-    background: rgba(255, 255, 255, 0.12);
+    background: linear-gradient(90deg, #7C3AED 0%, #A78BFA 100%);
+    color: var(--dynamic-text-primary);
+    transform: translateY(-2px) scale(1.03);
 }
 
 .btn-soft {
@@ -312,7 +753,8 @@ p {
     background: #fff;
     border-radius: var(--radius-md);
     padding: 2rem;
-    box-shadow: var(--shadow-sm);
+    background: linear-gradient(120deg, #7C3AED 0%, #8B5CF6 45%, #A78BFA 100%);
+    color: var(--dynamic-text-primary);
     transition: transform var(--transition-base), box-shadow var(--transition-base);
 }
 
@@ -326,6 +768,7 @@ p {
     padding: 2.25rem 1.75rem;
 }
 
+
 .card--feature .card__icon {
     width: 56px;
     height: 56px;
@@ -336,6 +779,20 @@ p {
     color: var(--color-secondary);
     font-size: 1.5rem;
     margin: 0 auto 1.25rem;
+}
+
+.card--feature .card__title {
+    color: var(--color-primary-dark);
+    font-weight: 700;
+    font-size: 1.18rem;
+    margin-bottom: 0.7rem;
+}
+
+.card--feature .card__desc {
+    color: var(--dynamic-text-primary);
+    font-size: 1.02rem;
+    font-weight: 500;
+    margin-bottom: 0.2rem;
 }
 
 .card--muted {
@@ -513,13 +970,13 @@ p {
 .filter-chip.is-active {
     background: var(--color-primary);
     border-color: var(--color-primary);
-    color: #fff;
+    color: var(--dynamic-text-primary);
     box-shadow: var(--shadow-sm);
 }
 
 .courses-stats {
     background: var(--gradient-primary);
-    color: #fff;
+    color: var(--dynamic-text-primary);
 }
 
 .courses-stats .stat-item__number {
@@ -637,12 +1094,13 @@ p {
     overflow: hidden;
     padding: clamp(3rem, 7vw, 5.5rem) clamp(2rem, 6vw, 4.5rem);
     background: var(--gradient-primary);
-    color: #fff;
+    color: var(--dynamic-text-primary);
     margin-top: clamp(1.5rem, 4vw, 2.5rem);
 }
 
 .hero--light {
-    background: linear-gradient(135deg, rgba(var(--color-primary-rgb), 0.95), rgba(var(--color-secondary-rgb), 0.88));
+    background: linear-gradient(120deg, #7C3AED 0%, #8B5CF6 45%, #A78BFA 100%);
+    color: var(--dynamic-text-primary);
 }
 
 .hero--compact {
@@ -702,6 +1160,23 @@ p {
     flex-wrap: wrap;
     gap: 0.85rem;
     justify-content: center;
+}
+
+.hero__grid {
+    display: grid;
+    gap: clamp(1rem, 3vw, 1.75rem);
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    width: 100%;
+}
+
+.hero__grid .card {
+    background: rgba(255, 255, 255, 0.96);
+    box-shadow: var(--shadow-md);
+    color: var(--color-neutral-800);
+}
+
+.hero__grid .text-muted {
+    color: var(--color-neutral-600);
 }
 
 .hero__media {
@@ -873,8 +1348,8 @@ p {
 }
 
 .faq-filter__button.is-active {
-    background: var(--gradient-primary);
-    color: #fff;
+    background: linear-gradient(120deg, #7C3AED 0%, #8B5CF6 45%, #A78BFA 100%);
+    color: var(--dynamic-text-primary);
     border-color: transparent;
     box-shadow: var(--shadow-sm);
 }
@@ -930,6 +1405,24 @@ p {
 
 .form-helper.is-error {
     color: var(--color-error);
+}
+
+.checkbox-field {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.95rem;
+    color: var(--color-neutral-600);
+}
+
+.checkbox-field input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--color-primary);
+}
+
+.checkbox-field span {
+    color: inherit;
 }
 
 .inline-alert {
@@ -1578,8 +2071,26 @@ p {
 }
 
 .pill--neutral {
-    background: rgba(var(--color-primary-rgb), 0.08);
-    color: var(--color-primary);
+    background: rgba(255, 255, 255, 0.96);
+    color: var(--color-secondary) !important;
+    border: 1px solid rgba(var(--color-primary-rgb), 0.08);
+    box-shadow: var(--shadow-xs);
+}
+
+.pill--accent {
+    background: linear-gradient(120deg, rgba(var(--color-primary-rgb), 0.85), rgba(var(--color-secondary-rgb), 0.85));
+    box-shadow: 0 10px 25px rgba(var(--color-primary-rgb), 0.18);
+}
+
+.card--elevated {
+    background: #fff;
+    box-shadow: var(--shadow-md);
+    border: 1px solid rgba(var(--color-primary-rgb), 0.08);
+}
+
+.text-contrast {
+    color: var(--color-neutral-800);
+    font-weight: 600;
 }
 
 .image-frame {
@@ -1624,19 +2135,23 @@ p {
 /* Hero variants ----------------------------------------------------------- */
 
 .hero--about {
-    background-image: linear-gradient(rgba(var(--color-primary-rgb), 0.88), rgba(var(--color-secondary-rgb), 0.82)), url('../img/about-hero.jpg');
+    background: linear-gradient(120deg, #7C3AED 0%, #8B5CF6 45%, #A78BFA 100%);
+    color: var(--dynamic-text-primary);
 }
 
 .hero--join {
-    background-image: linear-gradient(rgba(var(--color-primary-rgb), 0.88), rgba(var(--color-secondary-rgb), 0.82)), url('../img/join-us.jpg');
+    background: linear-gradient(120deg, #7C3AED 0%, #8B5CF6 45%, #A78BFA 100%);
+    color: var(--dynamic-text-primary);
 }
 
 .hero--support {
-    background-image: linear-gradient(rgba(var(--color-primary-rgb), 0.90), rgba(var(--color-primary-rgb), 0.78)), url('../img/support-hero.jpg');
+    background: linear-gradient(120deg, #7C3AED 0%, #8B5CF6 45%, #A78BFA 100%);
+    color: var(--dynamic-text-primary);
 }
 
 .hero--faq {
-    background-image: linear-gradient(rgba(var(--color-primary-rgb), 0.82), rgba(var(--color-secondary-rgb), 0.76)), url('../img/faq-hero.jpg');
+    background: linear-gradient(120deg, #7C3AED 0%, #8B5CF6 45%, #A78BFA 100%);
+    color: var(--dynamic-text-primary);
 }
 
 /* Responsive adjustments -------------------------------------------------- */
@@ -1695,4 +2210,274 @@ p {
     }
     .lessons-toggle { display: inline-flex; }
     .lessons-sidebar.is-collapsed #lessonsList { display: none; }
+}
+
+/* -------------------------------------------------------------------------- */
+/*  تصميم الشهادة المبسط والواضح                                              */
+/* -------------------------------------------------------------------------- */
+
+.certificate-wrapper {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.certificate-paper {
+    width: 100%;
+    max-width: 750px;
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 2rem 2rem;
+    position: relative;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Header */
+.certificate-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.platform-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--gradient-primary);
+    color: white;
+    padding: 0.6rem 1.2rem;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+}
+
+.field-badge {
+    display: inline-block;
+    background: rgba(109, 40, 217, 0.1);
+    color: var(--color-primary);
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    border: 1px solid rgba(109, 40, 217, 0.2);
+}
+
+/* Body */
+.certificate-body {
+    text-align: center;
+    margin: 1.8rem 0;
+}
+
+.subtitle {
+    font-size: 0.85rem;
+    color: var(--color-neutral-600);
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+.recipient-name {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #5B21B6;
+    margin: 1rem 0;
+    line-height: 1.1;
+}
+
+.certificate-text {
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.5;
+    color: var(--color-neutral-700);
+}
+
+.certificate-text p {
+    margin-bottom: 1rem;
+    font-size: 1rem;
+}
+
+.certificate-text strong {
+    color: var(--color-primary);
+    font-weight: 600;
+}
+
+/* Footer */
+.certificate-footer {
+    margin-top: 1.8rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #e5e7eb;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1rem;
+    text-align: center;
+}
+
+.footer-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.footer-item .label {
+    font-size: 0.75rem;
+    color: var(--color-neutral-500);
+    font-weight: 500;
+}
+
+.footer-item .value {
+    font-size: 0.85rem;
+    color: var(--color-neutral-700);
+    font-weight: 600;
+}
+
+/* تحسينات للطباعة */
+@media print {
+    * {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+    
+    body {
+        margin: 0 !important;
+        padding: 0 !important;
+        background: white !important;
+    }
+    
+    .certificate-paper {
+        box-shadow: none !important;
+        border: none !important;
+        margin: 0 !important;
+        padding: 1rem !important;
+        max-width: none !important;
+        width: 100% !important;
+        height: auto !important;
+        page-break-inside: avoid !important;
+        page-break-after: avoid !important;
+        page-break-before: avoid !important;
+        break-inside: avoid !important;
+        display: block !important;
+        position: relative !important;
+        top: 0 !important;
+        left: 0 !important;
+        transform: none !important;
+    }
+    
+    .certificate-header {
+        margin-bottom: 1rem !important;
+        page-break-inside: avoid !important;
+    }
+    
+    .certificate-body {
+        margin: 1rem 0 !important;
+        page-break-inside: avoid !important;
+    }
+    
+    .certificate-footer {
+        margin-top: 1rem !important;
+        padding-top: 1rem !important;
+        page-break-inside: avoid !important;
+    }
+    
+    .platform-badge {
+        background: #6D28D9 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+        page-break-inside: avoid !important;
+    }
+    
+    .recipient-name {
+        color: #5B21B6 !important;
+        font-size: 1.8rem !important;
+        margin: 0.8rem 0 !important;
+        page-break-inside: avoid !important;
+    }
+    
+    .certificate-text p {
+        font-size: 0.95rem !important;
+        line-height: 1.4 !important;
+        margin-bottom: 0.8rem !important;
+        page-break-inside: avoid !important;
+    }
+    
+    .footer-grid {
+        gap: 0.8rem !important;
+        page-break-inside: avoid !important;
+    }
+    
+    .footer-item {
+        page-break-inside: avoid !important;
+    }
+    
+    /* إخفاء كل شيء عدا الشهادة */
+    body * {
+        visibility: hidden !important;
+    }
+    
+    .certificate-paper,
+    .certificate-paper * {
+        visibility: visible !important;
+    }
+    
+    /* ضمان عدم تقسيم الشهادة على صفحات متعددة */
+    .certificate-wrapper {
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+        display: block !important;
+        height: auto !important;
+        overflow: visible !important;
+    }
+    
+    /* إعدادات الصفحة */
+    @page {
+        size: A4;
+        margin: 0.5in;
+    }
+}
+
+/* تصميم متجاوب */
+@media (max-width: 768px) {
+    .certificate-paper {
+        padding: 2rem 1.5rem;
+        margin: 1rem;
+    }
+    
+    .recipient-name {
+        font-size: 1.8rem;
+    }
+    
+    .certificate-text p {
+        font-size: 1rem;
+    }
+    
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+}
+
+/* Lesson Page Color Scheme */
+.lesson-item h3 {
+    color: #5B21B6 !important;
+    font-weight: 700 !important;
+}
+
+.lesson-item h4 {
+    color: #000000 !important;
+    font-weight: 600 !important;
+}
+
+.lesson-item .text-gray-600 {
+    color: #4B5563 !important;
+}
+
+.lesson-item p {
+    color: #FFFFFF !important;
+    font-weight: 500 !important;
+}
+
+.lesson-item span {
+    color: #4B5563 !important;
 }

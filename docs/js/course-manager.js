@@ -66,7 +66,7 @@ class CourseManager {
                     {
                         id: 2,
                         title: 'إنشاء أول شبكة',
-                        videoUrl: 'https://www.youtube.com/watch?v=ty0HMs48U1k',
+                        videoUrl: 'https://www.youtube.com/watch?v=B1oxjyNqCEE',
                         duration: '20:45',
                         description: 'تعلم كيفية ربط جهازين أو أكثر وإعداد عناوين IP الأساسية.',
                         summary: [
@@ -88,7 +88,7 @@ class CourseManager {
                     {
                         id: 3,
                         title: 'إعداد السويتشات',
-                        videoUrl: 'https://www.youtube.com/watch?v=example3',
+                        videoUrl: 'https://www.youtube.com/watch?v=ysLj1SqZXLs',
                         duration: '18:20',
                         description: 'فهم وظيفة السويتش وكيفية إعداده لربط عدة أجهزة.',
                         summary: [
@@ -109,7 +109,7 @@ class CourseManager {
                     {
                         id: 4,
                         title: 'إعداد الراوترات',
-                        videoUrl: 'https://www.youtube.com/watch?v=example4',
+                        videoUrl: 'https://www.youtube.com/watch?v=lHfq_Va5Gu4',
                         duration: '25:15',
                         description: 'تعلم إعداد الراوترات وتوجيه البيانات بين الشبكات المختلفة.',
                         summary: [
@@ -130,7 +130,7 @@ class CourseManager {
                     {
                         id: 5,
                         title: 'استكشاف الأخطاء',
-                        videoUrl: 'https://www.youtube.com/watch?v=example5',
+                        videoUrl: 'https://www.youtube.com/watch?v=QHkYJfuqW1k',
                         duration: '22:30',
                         description: 'اكتشف الأدوات المتاحة لتشخيص مشاكل الشبكة وحلها.',
                         summary: [
@@ -163,7 +163,7 @@ class CourseManager {
                     {
                         id: 1,
                         title: 'مقدمة في لينكس',
-                        videoUrl: 'https://www.youtube.com/watch?v=linux1',
+                        videoUrl: 'https://www.youtube.com/watch?v=2PGnYjbYuUo',
                         duration: '20:00',
                         description: 'نظرة عامة على نظام لينكس وتوزيعاته المختلفة.',
                         completed: false
@@ -171,7 +171,7 @@ class CourseManager {
                     {
                         id: 2,
                         title: 'الأوامر الأساسية',
-                        videoUrl: 'https://www.youtube.com/watch?v=linux2',
+                        videoUrl: 'https://www.youtube.com/watch?v=IVquJh3DXUA',
                         duration: '25:30',
                         description: 'تعلم الأوامر الأساسية للتنقل وإدارة الملفات.',
                         completed: false
@@ -179,7 +179,7 @@ class CourseManager {
                     {
                         id: 3,
                         title: 'إدارة المستخدمين والأذونات',
-                        videoUrl: 'https://www.youtube.com/watch?v=linux3',
+                        videoUrl: 'https://www.youtube.com/watch?v=jwnvKOjmtEA',
                         duration: '30:45',
                         description: 'كيفية إنشاء وإدارة المستخدمين وضبط الأذونات.',
                         completed: false
@@ -187,7 +187,7 @@ class CourseManager {
                     {
                         id: 4,
                         title: 'إدارة العمليات والخدمات',
-                        videoUrl: 'https://www.youtube.com/watch?v=linux4',
+                        videoUrl: 'https://www.youtube.com/watch?v=eL6Bl7hrrkU',
                         duration: '28:20',
                         description: 'مراقبة وإدارة العمليات والخدمات في النظام.',
                         completed: false
@@ -195,7 +195,7 @@ class CourseManager {
                     {
                         id: 5,
                         title: 'الشبكات في لينكس',
-                        videoUrl: 'https://www.youtube.com/watch?v=linux5',
+                        videoUrl: 'https://www.youtube.com/watch?v=qmtaBdukQdk',
                         duration: '35:15',
                         description: 'إعداد وإدارة الشبكات في بيئة لينكس.',
                         completed: false
@@ -214,7 +214,7 @@ class CourseManager {
                     {
                         id: 1,
                         title: 'مقدمة في Java',
-                        videoUrl: 'https://www.youtube.com/watch?v=java1',
+                        videoUrl: 'https://www.youtube.com/watch?v=A74TOX803D0',
                         duration: '25:00',
                         description: 'نظرة عامة على لغة Java وإعداد بيئة التطوير.',
                         completed: false
@@ -222,7 +222,7 @@ class CourseManager {
                     {
                         id: 2,
                         title: 'المتغيرات وأنواع البيانات',
-                        videoUrl: 'https://www.youtube.com/watch?v=java2',
+                        videoUrl: 'https://www.youtube.com/watch?v=DuF6d153ZxY',
                         duration: '30:15',
                         description: 'تعلم كيفية التعامل مع المتغيرات وأنواع البيانات المختلفة.',
                         completed: false
@@ -230,7 +230,7 @@ class CourseManager {
                     {
                         id: 3,
                         title: 'التحكم في التدفق',
-                        videoUrl: 'https://www.youtube.com/watch?v=java3',
+                        videoUrl: 'https://www.youtube.com/watch?v=ldYLYRNaucM',
                         duration: '35:30',
                         description: 'الجمل الشرطية والحلقات وبنى التحكم.',
                         completed: false
@@ -238,7 +238,7 @@ class CourseManager {
                     {
                         id: 4,
                         title: 'الدوال والكلاسات',
-                        videoUrl: 'https://www.youtube.com/watch?v=java4',
+                        videoUrl: 'https://www.youtube.com/watch?v=9nWzFCGJl0Y',
                         duration: '40:45',
                         description: 'إنشاء الدوال والكلاسات في Java.',
                         completed: false
@@ -246,7 +246,7 @@ class CourseManager {
                     {
                         id: 5,
                         title: 'البرمجة كائنية التوجه',
-                        videoUrl: 'https://www.youtube.com/watch?v=java5',
+                        videoUrl: 'https://www.youtube.com/watch?v=Qb_NUn0TSAU',
                         duration: '45:20',
                         description: 'مبادئ OOP في Java: الوراثة والتغليف وتعدد الأشكال.',
                         completed: false
@@ -265,7 +265,7 @@ class CourseManager {
                     {
                         id: 1,
                         title: 'مقدمة في الأمن السيبراني',
-                        videoUrl: 'https://www.youtube.com/watch?v=security1',
+                        videoUrl: 'https://www.youtube.com/watch?v=inWWhr5tnEA',
                         duration: '20:30',
                         description: 'نظرة عامة على التهديدات السيبرانية والحاجة للأمن.',
                         completed: false
@@ -273,7 +273,7 @@ class CourseManager {
                     {
                         id: 2,
                         title: 'التشفير وحماية البيانات',
-                        videoUrl: 'https://www.youtube.com/watch?v=security2',
+                        videoUrl: 'https://www.youtube.com/watch?v=NuiQS4ne5rE',
                         duration: '28:45',
                         description: 'أساسيات التشفير وطرق حماية البيانات الحساسة.',
                         completed: false
@@ -281,7 +281,7 @@ class CourseManager {
                     {
                         id: 3,
                         title: 'أمن الشبكات',
-                        videoUrl: 'https://www.youtube.com/watch?v=security3',
+                        videoUrl: 'https://www.youtube.com/watch?v=kBzbKUirOFk',
                         duration: '32:15',
                         description: 'حماية الشبكات من الهجمات والتسلل.',
                         completed: false
@@ -289,7 +289,7 @@ class CourseManager {
                     {
                         id: 4,
                         title: 'الهجمات الشائعة وطرق الدفاع',
-                        videoUrl: 'https://www.youtube.com/watch?v=security4',
+                        videoUrl: 'https://www.youtube.com/watch?v=DWHX8asLhCg',
                         duration: '35:20',
                         description: 'التعرف على الهجمات الشائعة وكيفية الحماية منها.',
                         completed: false
@@ -297,7 +297,7 @@ class CourseManager {
                     {
                         id: 5,
                         title: 'أفضل الممارسات الأمنية',
-                        videoUrl: 'https://www.youtube.com/watch?v=security5',
+                        videoUrl: 'https://www.youtube.com/watch?v=U_P23SqJaDc',
                         duration: '30:10',
                         description: 'تطبيق أفضل الممارسات لضمان الأمن السيبراني.',
                         completed: false

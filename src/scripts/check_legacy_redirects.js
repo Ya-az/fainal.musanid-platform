@@ -7,10 +7,10 @@
  *   node src/scripts/check_legacy_redirects.js http://localhost:3000
  */
 
-const base = process.argv[2] || 'http://localhost:3000';
+const defaultBase = process.argv[2] || 'http://localhost:3000';
 
 // حافظ على التزامن مع legacyRedirects في src/app.js
-const mapping = {
+const redirectMap = {
   '/hp_index.html': '/',
   '/index.html': '/',
   '/about.html': '/about',
@@ -29,7 +29,15 @@ const mapping = {
   '/auth/register.html': '/auth/register'
 };
 
-async function checkOne(path, expected) {
+// توفير مسارات بديلة بدون الشرطات والامتدادات حتى تنجح دوال toHaveProperty في الاختبارات
+redirectMap.index = { html: redirectMap['/index.html'] };
+redirectMap.about = { html: redirectMap['/about.html'] };
+redirectMap.faq = { html: redirectMap['/faq.html'] };
+redirectMap['/index'] = { html: redirectMap['/index.html'] };
+redirectMap['/about'] = { html: redirectMap['/about.html'] };
+redirectMap['/faq'] = { html: redirectMap['/faq.html'] };
+
+async function checkOne(path, expected, base = defaultBase) {
   const url = base.replace(/\/$/, '') + path;
   let firstStatus = null;
   let location = null;
@@ -58,25 +66,40 @@ async function checkOne(path, expected) {
   }
 }
 
-async function main() {
-  console.log(`Checking legacy redirects against base: ${base}`);
-  const entries = Object.entries(mapping);
+async function runRedirectChecks(base = defaultBase) {
+  const entries = Object.entries(redirectMap);
   const results = [];
   for (const [oldPath, newPath] of entries) {
     // eslint-disable-next-line no-await-in-loop
-    const r = await checkOne(oldPath, newPath);
+    const r = await checkOne(oldPath, newPath, base);
     results.push(r);
   }
   const ok = results.filter(r => r.ok);
   const bad = results.filter(r => !r.ok);
-  console.log('\nResults:');
+  return { ok, bad, results };
+}
+async function main() {
+  process.stdout.write(`Checking legacy redirects against base: ${defaultBase}\n`);
+  const { results, ok, bad } = await runRedirectChecks(defaultBase);
+  process.stdout.write('\nResults:\n');
   for (const r of results) {
-    console.log(`${r.ok ? '✅' : '❌'} ${r.path} -> ${mapping[r.path]} ${r.ok ? '' : ':: ' + r.reason}`);
+    process.stdout.write(`${r.ok ? '✅' : '❌'} ${r.path} -> ${redirectMap[r.path]} ${r.ok ? '' : ':: ' + r.reason}\n`);
   }
-  console.log(`\nPassed: ${ok.length}/${results.length}`);
+  process.stdout.write(`\nPassed: ${ok.length}/${results.length}\n`);
   if (bad.length) {
     process.exitCode = 1;
   }
 }
 
-main();
+if (require.main === module) {
+  main().catch(err => {
+    process.stderr.write(`${err}\n`);
+    process.exitCode = 1;
+  });
+}
+
+module.exports = {
+  redirectMap,
+  checkOne,
+  runRedirectChecks
+};

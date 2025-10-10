@@ -12,6 +12,7 @@ const csurf = require('csurf');
 require('dotenv').config();
 
 const app = express();
+const isTestEnv = process.env.NODE_ENV === 'test';
 
 // View engine (EJS) setup
 app.set('view engine', 'ejs');
@@ -22,7 +23,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(compression());
-app.use(morgan('combined'));
+if (!isTestEnv) {
+    app.use(morgan('combined'));
+}
 // أمن أساسي
 app.use(helmet());
 // تفعيل CSP (لا سكربتات inline حالياً)
@@ -30,14 +33,14 @@ app.use(helmet.contentSecurityPolicy({
     useDefaults: true,
     directives: {
         "default-src": ["'self'"],
-    // بعد نقل السكربتات إلى ملفات خارجية، نحذف 'unsafe-inline'
-    "script-src": ["'self'"],
-    "style-src": ["'self'", 'https:'],
-    "img-src": ["'self'", 'data:', 'https:'],
+        // بعد نقل السكربتات إلى ملفات خارجية، نحذف 'unsafe-inline'
+        "script-src": ["'self'"],
+        "style-src": ["'self'", 'https:'],
+        "img-src": ["'self'", 'data:', 'https:'],
         "object-src": ["'none'"],
         "base-uri": ["'self'"],
         "frame-ancestors": ["'self'"],
-        "form-action": ["'self'"],
+        "form-action": ["'self'"]
     }
 }));
 app.use(cors({
@@ -49,7 +52,7 @@ const authLimiter = rateLimit({
     windowMs: 15 * 60 * 1000,
     max: 100,
     standardHeaders: true,
-    legacyHeaders: false,
+    legacyHeaders: false
 });
 app.use('/auth', authLimiter);
 // معدل خاص لتحديث التقدم (أخف لكن يحمي من الإساءة)
@@ -57,31 +60,37 @@ const progressLimiter = rateLimit({
     windowMs: 60 * 1000,
     max: 60, // 60 طلب بالدقيقة للمستخدم (كافٍ للتفاعل)
     standardHeaders: true,
-    legacyHeaders: false,
+    legacyHeaders: false
 });
 app.use('/api/progress', progressLimiter);
 // دعم العمل خلف Proxy في بيئة الإنتاج (لتفعيل الكوكي الآمن)
 if (process.env.NODE_ENV === 'production') {
     app.set('trust proxy', 1);
 }
-// MySQL session store
-const MySQLStore = MySQLStoreFactory(session);
-const sessionStore = new MySQLStore({
-    host: process.env.DB_HOST || 'localhost',
-    port: process.env.DB_PORT ? parseInt(process.env.DB_PORT, 10) : 3306,
-    user: process.env.DB_USER || 'root',
-    password: process.env.DB_PASSWORD || '',
-    database: process.env.DB_NAME || 'musanid_db',
-    createDatabaseTable: true,
-    schema: {
-        tableName: 'sessions',
-        columnNames: {
-            session_id: 'session_id',
-            expires: 'expires',
-            data: 'data'
+
+// MySQL session store (نستخدم ذاكرة مؤقتة في بيئة الاختبار لتفادي الاتصال الفعلي)
+let sessionStore;
+if (isTestEnv) {
+    sessionStore = new session.MemoryStore();
+} else {
+    const MySQLStore = MySQLStoreFactory(session);
+    sessionStore = new MySQLStore({
+        host: process.env.DB_HOST || 'localhost',
+        port: process.env.DB_PORT ? parseInt(process.env.DB_PORT, 10) : 3306,
+        user: process.env.DB_USER || 'root',
+        password: process.env.DB_PASSWORD || '',
+        database: process.env.DB_NAME || 'musanid_db',
+        createDatabaseTable: true,
+        schema: {
+            tableName: 'sessions',
+            columnNames: {
+                session_id: 'session_id',
+                expires: 'expires',
+                data: 'data'
+            }
         }
-    }
-});
+    });
+}
 
 app.use(session({
     secret: process.env.SESSION_SECRET || 'musanid-secret-key',
@@ -167,16 +176,29 @@ app.use('/api', require('./routes/api'));
 
 // 404 Not Found
 app.use((req, res) => {
+    if (isTestEnv) {
+        res.status(404).send('Not Found');
+        return;
+    }
     res.status(404).render('errors/404', { title: 'غير موجود' });
 });
 
 // Error handling (500)
-app.use((err, req, res, next) => {
-    console.error(err.stack);
-    res.status(500).render('errors/500', { title: 'خطأ' });
+app.use((err, req, res, _next) => {
+    if (!isTestEnv) {
+        process.stderr.write(`${err.stack}\n`);
+        res.status(500).render('errors/500', { title: 'خطأ' });
+        return;
+    }
+    res.status(500).json({ error: 'Internal Server Error' });
 });
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-});
+
+if (require.main === module && !isTestEnv) {
+    app.listen(PORT, () => {
+        process.stdout.write(`Server is running on port ${PORT}\n`);
+    });
+}
+
+module.exports = app;

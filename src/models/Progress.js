@@ -37,6 +37,11 @@ async function getUserProgressMap(userId) {
   return map;
 }
 
+async function getUserProgress(userId) {
+  const map = await getUserProgressMap(userId);
+  return Array.from(map.values());
+}
+
 /**
  * تعليم درس كمكتمل للمستخدم
  * @async
@@ -48,6 +53,10 @@ async function getUserProgressMap(userId) {
 async function markLessonCompleted(userId, lessonId) {
   await ensureProgressTable();
   await db.query('INSERT IGNORE INTO lessons_progress (user_id, lesson_id) VALUES (?, ?)', [userId, lessonId]);
+}
+
+async function markCompleted(userId, lessonId) {
+  await markLessonCompleted(userId, lessonId);
 }
 
 /**
@@ -63,4 +72,16 @@ async function unmarkLessonCompleted(userId, lessonId) {
   await db.query('DELETE FROM lessons_progress WHERE user_id=? AND lesson_id=?', [userId, lessonId]);
 }
 
-module.exports = { ensureProgressTable, getUserProgressMap, markLessonCompleted, unmarkLessonCompleted };
+async function markIncomplete(userId, lessonId) {
+  await unmarkLessonCompleted(userId, lessonId);
+}
+
+module.exports = {
+  ensureProgressTable,
+  getUserProgressMap,
+  getUserProgress,
+  markLessonCompleted,
+  unmarkLessonCompleted,
+  markCompleted,
+  markIncomplete
+};

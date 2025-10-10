@@ -47,12 +47,12 @@
                         <ul class="layout-stack layout-stack--tight">
                             <li><a href="mailto:contact@musanid.com">contact@musanid.com</a></li>
                             <li><a href="tel:+966501234567">+966 50 123 4567</a></li>
-                            <li><span class="pill">الرياض - المملكة العربية السعودية</span></li>
+                            <li><span class="pill">جدة - المملكة العربية السعودية</span></li>
                         </ul>
                     </div>
                 </div>
                 <div class="site-footer__bottom">
-                    <p>© ${year} مساند. جميع الحقوق محفوظة.</p>
+                    <p class="copyright-text">© ${year} مساند. جميع الحقوق محفوظة.</p>
                     <div class="social-links">
                         <a href="#" aria-label="Twitter">ﻁ</a>
                         <a href="#" aria-label="LinkedIn">in</a>

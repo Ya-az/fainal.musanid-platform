@@ -1,4 +1,3 @@
-const path = require('path');
 const express = require('express');
 const router = express.Router();
 const db = require('../config/database');
@@ -27,11 +26,11 @@ router.post('/', async (req, res) => {
     if(!email || !subject || !message) return res.status(400).json({ message: 'بيانات ناقصة' });
     if(subject.length > 255) return res.status(400).json({ message: 'العنوان طويل جداً' });
     if(message.length < 10) return res.status(400).json({ message: 'الرسالة قصيرة جداً' });
-    let userId = (req.session && req.session.user && req.session.user.id) || null;
+    const userId = (req.session && req.session.user && req.session.user.id) || null;
     await db.query('INSERT INTO support_tickets (email, subject, message, user_id) VALUES (?, ?, ?, ?)', [email, subject, message, userId]);
     res.json({ message: 'تم إرسال التذكرة بنجاح' });
   } catch(e){
-    console.error(e);
+    process.stderr.write(`${e}\n`);
     res.status(500).json({ message: 'تعذر إنشاء التذكرة' });
   }
 });

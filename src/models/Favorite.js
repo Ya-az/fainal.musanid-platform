@@ -19,6 +19,12 @@ async function getUserFavoritesMap(userId) {
   return map;
 }
 
+async function getUserFavorites(userId) {
+  await ensureFavoritesTable();
+  const [rows] = await db.query('SELECT lesson_id FROM lessons_favorites WHERE user_id=?', [userId]);
+  return rows.map(r => r.lesson_id);
+}
+
 async function addFavorite(userId, lessonId) {
   await ensureFavoritesTable();
   await db.query('INSERT IGNORE INTO lessons_favorites (user_id, lesson_id) VALUES (?, ?)', [userId, lessonId]);
@@ -29,4 +35,10 @@ async function removeFavorite(userId, lessonId) {
   await db.query('DELETE FROM lessons_favorites WHERE user_id=? AND lesson_id=?', [userId, lessonId]);
 }
 
-module.exports = { ensureFavoritesTable, getUserFavoritesMap, addFavorite, removeFavorite };
+module.exports = {
+  ensureFavoritesTable,
+  getUserFavoritesMap,
+  getUserFavorites,
+  addFavorite,
+  removeFavorite
+};

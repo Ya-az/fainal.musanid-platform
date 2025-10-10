@@ -138,27 +138,63 @@
     });
   }
   
+  function calculatePasswordStrength(value){
+    if(!value) return 0;
+    let score = 0;
+    if(value.length >= 8){ score += 1; }
+    if(value.length >= 12){ score += 1; }
+    if(/[A-Z]/.test(value)){ score += 1; }
+    if(/[a-z]/.test(value)){ score += 1; }
+    if(/[0-9]/.test(value)){ score += 1; }
+    if(/[^A-Za-z0-9]/.test(value)){ score += 1; }
+    return Math.min(score, 5);
+  }
+
+  function initPasswordStrengthMeter(){
+    const input = qs('input[name="password"][data-strength]');
+    const meter = qs('#passwordStrength');
+    const label = qs('#passwordStrengthLabel');
+    if(!input || !meter) return;
+    const labels = ['ضعيفة جداً', 'ضعيفة', 'متوسطة', 'جيدة', 'قوية', 'ممتازة'];
+    const update = () => {
+      const score = calculatePasswordStrength(input.value);
+      meter.value = score;
+      if(label){
+        label.textContent = `قوة كلمة المرور: ${labels[score] || labels[labels.length - 1]}`;
+        label.classList.remove('text-red-500','text-yellow-500','text-green-600');
+        if(score <= 1){ label.classList.add('text-red-500'); }
+        else if(score === 2){ label.classList.add('text-yellow-500'); }
+        else { label.classList.add('text-green-600'); }
+      }
+    };
+    input.addEventListener('input', update);
+    update();
+  }
+
   function init(){
     initMobileMenu();
     initDarkMode();
     initFavoritesUI();
+    initPasswordStrengthMeter();
     // تسجيل Service Worker مع معالجة أفضل
     if('serviceWorker' in navigator){
-      window.addEventListener('load', ()=>{
+      const registerServiceWorker = () => {
         navigator.serviceWorker.register('/sw.js')
           .then(reg => {
             console.log('Service Worker مسجل بنجاح مع النطاق: ', reg.scope);
-            
-            // التعامل مع تحديثات الخدمة
-            reg.addEventListener('updatefound', () => {
-              const newWorker = reg.installing;
-              newWorker.addEventListener('statechange', () => {
-                if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-                  // توجد نسخة جديدة جاهزة للاستخدام - إظهار إشعار للمستخدم
-                  showToast('توجد نسخة جديدة من التطبيق متاحة! أعد تحميل الصفحة للتحديث.', false);
-                }
+            // التعامل مع تحديثات الخدمة (تحقق من وجود addEventListener في بيئات الاختبار)
+            if (typeof reg.addEventListener === 'function') {
+              reg.addEventListener('updatefound', () => {
+                const newWorker = reg.installing;
+                if (!newWorker || typeof newWorker.addEventListener !== 'function') return;
+                newWorker.addEventListener('statechange', () => {
+                  if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                    // توجد نسخة جديدة جاهزة للاستخدام - إظهار إشعار للمستخدم
+                    showToast('توجد نسخة جديدة من التطبيق متاحة! أعد تحميل الصفحة للتحديث.', false);
+                  }
+                });
               });
-            });
+            }
           })
           .catch(error => {
             console.error('فشل تسجيل Service Worker: ', error);
@@ -167,9 +203,20 @@
         // التحقق من حالة الاتصال وتوفير تجربة offline أفضل
         window.addEventListener('online', () => showToast('تم استعادة الاتصال بالإنترنت.', false));
         window.addEventListener('offline', () => showToast('أنت الآن غير متصل بالإنترنت. بعض الوظائف قد لا تعمل.', true));
-      });
+      };
+
+      if (document.readyState === 'complete') {
+        // في بيئة الاختبار (jsdom) يكون المستند مكتملاً بالفعل
+        registerServiceWorker();
+      } else {
+        window.addEventListener('load', registerServiceWorker);
+      }
     }
   }
 
-  document.addEventListener('DOMContentLoaded', init);
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
 })();

@@ -19,16 +19,16 @@ async function seed() {
 
   const [rows] = await db.query('SELECT id FROM users WHERE username=? OR email=? LIMIT 1', [username, email]);
   if (rows && rows.length) {
-    console.log('User already exists. Skipping.');
+    process.stdout.write('User already exists. Skipping.\n');
     process.exit(0);
   }
   await db.query('INSERT INTO users (firstName, lastName, username, email, password) VALUES (?, ?, ?, ?, ?)',
     ['Demo', 'User', username, email, hashed]);
-  console.log('Seeded demo user with provided password.');
+  process.stdout.write('Seeded demo user with provided password.\n');
   process.exit(0);
 }
 
 seed().catch((e) => {
-  console.error(e);
+  process.stderr.write(`${e}\n`);
   process.exit(1);
 });
