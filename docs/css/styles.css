@@ -38,6 +38,11 @@
     color: #FFFFFF;
 }
 
+/* تحديد خاص للنص الذي يشرح حالة المشكلات المالية والشهادات */
+.form-helper.support-description {
+    color: #FFFFFF !important;
+}
+
 .form-label-dark {
     color: #000000;
     font-weight: 600;
