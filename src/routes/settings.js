@@ -2,11 +2,7 @@ const express = require('express');
 const bcrypt = require('bcryptjs');
 const db = require('../config/database');
 const router = express.Router();
-
-function requireAuth(req, res, next) {
-  if (req.session && req.session.user) return next();
-  return res.redirect('/auth/login');
-}
+const { requireAuth } = require('../middleware/auth');
 
 router.get('/', requireAuth, (req, res) => {
   res.render('settings/index', { title: 'الإعدادات' });

@@ -2,11 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { getAllLessons, seedIfEmpty } = require('../models/Lesson');
 const { getUserProgressMap } = require('../models/Progress');
-
-function requireAuth(req, res, next) {
-  if (req.session && req.session.user) return next();
-  return res.redirect('/auth/login');
-}
+const { requireAuth } = require('../middleware/auth');
 
 router.get('/', requireAuth, async (req, res) => {
   try {
