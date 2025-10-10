@@ -2481,3 +2481,14 @@ p {
 .lesson-item span {
     color: #4B5563 !important;
 }
+
+/* تنسيق قسم المبادئ والقيم */
+.card.card--feature h3 {
+    color: #5B21B6 !important;
+    font-weight: 700 !important;
+}
+
+.card.card--feature p.text-muted {
+    color: #FFFFFF !important;
+    font-weight: 500 !important;
+}
