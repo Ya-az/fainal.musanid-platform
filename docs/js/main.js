@@ -198,3 +198,108 @@ function showMessage(message, type = 'info') {
         toast.remove();
     }, 4500);
 }
+
+// تحسينات الأداء وإمكانية الوصول المتقدمة
+(function() {
+    'use strict';
+
+    // Performance optimization: Debounce function
+    function debounce(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+            const later = () => {
+                clearTimeout(timeout);
+                func(...args);
+            };
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+        };
+    }
+
+    // Lazy loading for images
+    function initLazyLoading() {
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        if (img.dataset.src) {
+                            img.src = img.dataset.src;
+                            img.classList.remove('lazy');
+                            imageObserver.unobserve(img);
+                        }
+                    }
+                });
+            });
+
+            const lazyImages = document.querySelectorAll('img[data-src]');
+            lazyImages.forEach(img => imageObserver.observe(img));
+        }
+    }
+
+    // Accessibility improvements
+    function enhanceAccessibility() {
+        // Add main landmark if not exists
+        if (!document.getElementById('main')) {
+            const main = document.querySelector('main');
+            if (main) {
+                main.id = 'main';
+                main.setAttribute('role', 'main');
+            }
+        }
+
+        // Announce dynamic content changes
+        if (!document.getElementById('announcer')) {
+            const announcer = document.createElement('div');
+            announcer.setAttribute('aria-live', 'polite');
+            announcer.setAttribute('aria-atomic', 'true');
+            announcer.className = 'sr-only';
+            announcer.id = 'announcer';
+            announcer.style.cssText = 'position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0;';
+            document.body.appendChild(announcer);
+        }
+    }
+
+    // Service Worker registration
+    function registerServiceWorker() {
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js', { scope: '/' })
+                .then(registration => {
+                    console.log('SW registered:', registration.scope);
+                })
+                .catch(error => {
+                    console.log('SW registration failed:', error);
+                });
+        }
+    }
+
+    // Initialize improvements
+    function initPerformanceEnhancements() {
+        initLazyLoading();
+        enhanceAccessibility();
+        registerServiceWorker();
+
+        // Handle offline/online status
+        window.addEventListener('online', () => {
+            const announcer = document.getElementById('announcer');
+            if (announcer) {
+                announcer.textContent = 'تم استعادة الاتصال بالإنترنت';
+            }
+        });
+        
+        window.addEventListener('offline', () => {
+            const announcer = document.getElementById('announcer');
+            if (announcer) {
+                announcer.textContent = 'انقطع الاتصال بالإنترنت. بعض الميزات قد لا تعمل';
+            }
+        });
+    }
+
+    // Initialize when DOM is ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initPerformanceEnhancements);
+    } else {
+        initPerformanceEnhancements();
+    }
+
+})();

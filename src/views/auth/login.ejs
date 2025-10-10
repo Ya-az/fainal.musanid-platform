@@ -1,15 +1,42 @@
 <% layout('layout') -%>
-<h1 class="text-2xl font-bold text-musanid-dark mb-6">تسجيل الدخول</h1>
-<form method="POST" action="/auth/login" class="space-y-4 max-w-md">
-  <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-  <div>
-    <label class="block mb-1 text-sm font-medium">اسم المستخدم أو البريد</label>
-    <input name="userOrEmail" class="w-full border rounded px-3 py-2" required />
+<section class="max-w-6xl mx-auto grid gap-8 lg:grid-cols-2 items-center">
+  <div class="space-y-6">
+    <h1 class="text-3xl md:text-4xl font-extrabold text-musanid-dark">مرحباً بعودتك إلى مساند</h1>
+    <p class="text-gray-600 leading-relaxed">
+      واصل تعلمك بسهولة عبر لوحة التحكم الشخصية، تتبع التقدم في الدروس، واحفظ المقرر المفضل لديك بنقرة واحدة.
+      يوفر مساند تجربة تعليمية سلسة باللغة العربية مع محتوى مصمم بعناية.
+    </p>
+    <ul class="grid gap-3 text-sm text-gray-700">
+      <li class="flex items-start gap-3"><span class="text-musanid-dark mt-1">✔</span><span>شارك في مسارات تعليمية منظمة تغطي مهارات تقنية أساسية ومتقدمة.</span></li>
+      <li class="flex items-start gap-3"><span class="text-musanid-dark mt-1">✔</span><span>تابع إنجازك بدقة من خلال لوحات التقدم وتقارير الشهادات.</span></li>
+      <li class="flex items-start gap-3"><span class="text-musanid-dark mt-1">✔</span><span>استفد من خدمة الدعم السريعة وخيارات التعلم المرنة عبر جميع الأجهزة.</span></li>
+    </ul>
   </div>
-  <div>
-    <label class="block mb-1 text-sm font-medium">كلمة المرور</label>
-    <input type="password" name="password" class="w-full border rounded px-3 py-2" required />
+
+  <div class="bg-white dark:bg-dark-card shadow-xl rounded-2xl p-8 md:p-10 border border-gray-100 dark:border-gray-700">
+    <header class="space-y-2 text-center mb-6">
+      <h2 class="text-2xl font-bold text-musanid-dark">تسجيل الدخول</h2>
+      <p class="text-sm text-gray-500">أدخل بياناتك للوصول إلى لوحة التحكم الخاصة بك.</p>
+    </header>
+    <form method="POST" action="/auth/login" class="space-y-5" novalidate>
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+      <div class="space-y-2">
+        <label class="block text-sm font-medium text-gray-700">اسم المستخدم أو البريد الإلكتروني</label>
+        <input name="userOrEmail" class="w-full border border-gray-200 dark:border-gray-700 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-musanid-dark" autocomplete="username" required />
+      </div>
+      <div class="space-y-2">
+        <div class="flex items-center justify-between text-sm">
+          <label class="font-medium text-gray-700">كلمة المرور</label>
+          <a href="#" class="text-musanid-dark hover:underline">نسيت كلمة المرور؟</a>
+        </div>
+        <input type="password" name="password" class="w-full border border-gray-200 dark:border-gray-700 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-musanid-dark" autocomplete="current-password" required />
+      </div>
+      <div class="flex items-center gap-2 text-sm text-gray-600">
+        <input type="checkbox" id="rememberMe" name="remember" class="rounded border-gray-300 text-musanid-dark focus:ring-musanid-dark">
+        <label for="rememberMe">تذكرني في هذا الجهاز</label>
+      </div>
+      <button class="btn-primary w-full py-2.5 text-base">تسجيل الدخول</button>
+      <p class="text-sm text-gray-600 text-center">لا تملك حساباً بعد؟ <a class="text-musanid-dark font-medium hover:underline" href="/auth/register">إنشاء حساب جديد</a></p>
+    </form>
   </div>
-  <button class="btn-primary w-full">دخول</button>
-  <p class="text-sm text-gray-600">لا تملك حساباً؟ <a class="text-musanid-dark underline" href="/auth/register">سجل الآن</a></p>
-</form>
+</section>

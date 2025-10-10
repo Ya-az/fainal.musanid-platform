@@ -3,6 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="كورسات عربية شاملة في Cisco Packet Tracer، لينكس، Java، والأمن السيبراني مع فيديوهات يوتيوب مجانية واختبارات تفاعلية">
+    <meta name="keywords" content="دورات عربية, Cisco Packet Tracer, لينكس, Java, أمن سيبراني, تعليم إلكتروني">
+    <meta property="og:title" content="الدورات والمسارات - منصة مساند التعليمية">
+    <meta property="og:description" content="كورسات عربية شاملة في أحدث التقنيات">
+    <meta property="og:type" content="website">
     <title>الدورات والمسارات - منصة مساند التعليمية</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="../css/styles.css" rel="stylesheet">
@@ -90,7 +95,7 @@
         .filter-btn.is-active {
             border-color: var(--color-primary);
             background: var(--color-primary);
-            color: white;
+            color: var(--dynamic-text-primary);
         }
         
         .course-grid {
@@ -101,7 +106,7 @@
         
         .stats-section {
             background: var(--gradient-primary);
-            color: white;
+            color: var(--dynamic-text-primary);
             text-align: center;
         }
         
@@ -128,7 +133,7 @@
             align-items: center;
             justify-content: center;
             margin: 0 auto 1rem;
-            color: white;
+            color: var(--dynamic-text-primary);
         }
         
         .bg-primary { background: var(--color-primary); }
@@ -141,22 +146,13 @@
             border: 2px solid white;
         }
         
-        .btn-outline--white {
-            background: transparent;
-            color: white;
-            border: 2px solid white;
-        }
-        
-        .btn-outline--white:hover {
-            background: white;
-            color: var(--color-primary);
-        }
+        /* btn-outline--white removed for consistency. Use global btn-primary and btn-outline styles. */
     </style>
 </head>
 <body>
     <header class="site-header" data-site-header data-base="../" data-active="courses" data-nav-id="coursesNav" data-home="index.html" data-primary-href="../auth/login.html"></header>
 
-    <main>
+    <main id="main" role="main" aria-label="محتوى صفحة الدورات">
         <!-- Hero Section -->
         <section class="hero">
             <div class="container layout-stack text-center max-w-760">
@@ -171,8 +167,9 @@
         </section>
 
         <!-- Stats Section -->
-        <section class="section stats-section">
+        <section class="section stats-section stats-section-unified" aria-labelledby="stats-title">
             <div class="container">
+                <h2 id="stats-title" class="sr-only">إحصائيات المنصة</h2>
                 <div class="grid grid--columns-4 gap-lg">
                     <div class="stat-item">
                         <div class="stat-item__number">4</div>
@@ -203,8 +200,8 @@
                     <p class="section__subtitle">أربعة مسارات تقنية مصممة خصيصاً للطلاب العرب مع محتوى يوتيوب مجاني.</p>
                 </div>
                 
-                <div class="filter-group">
-                    <button type="button" class="filter-btn is-active" data-filter="all">جميع الكورسات</button>
+                <div class="filter-group" role="group" aria-label="تصفية الدورات">
+                    <button type="button" class="filter-btn is-active" data-filter="all" aria-pressed="true">جميع الكورسات</button>
                     <button type="button" class="filter-btn" data-filter="networking">الشبكات</button>
                     <button type="button" class="filter-btn" data-filter="systems">الأنظمة</button>
                     <button type="button" class="filter-btn" data-filter="programming">البرمجة</button>
@@ -248,7 +245,7 @@
                             
                             <div class="flex gap-sm">
                                 <a href="course-detail.html?course=cisco-packet-tracer" class="btn btn-primary flex-1">ابدأ الكورس</a>
-                                <button class="btn btn-ghost" onclick="toggleFavorite('cisco-packet-tracer')" title="إضافة إلى المفضلة" aria-label="إضافة إلى المفضلة">
+                                <button class="btn btn-ghost" onclick="toggleFavorite('cisco-packet-tracer')" title="إضافة إلى المفضلة" aria-label="إضافة دورة Cisco Packet Tracer إلى المفضلة">
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                         <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/>
                                     </svg>
@@ -412,8 +409,8 @@
                                 <path d="m2 12 10 5 10-5"/>
                             </svg>
                         </div>
-                        <h3 class="heading-md">محتوى مجاني 100%</h3>
-                        <p class="text-muted">جميع الفيديوهات والمواد متاحة مجاناً على يوتيوب ولا تحتاج اشتراك مدفوع.</p>
+                        <h3 class="heading-md feature-title">محتوى مجاني 100%</h3>
+                        <p class="feature-desc">جميع الفيديوهات والمواد متاحة مجاناً على يوتيوب ولا تحتاج اشتراك مدفوع.</p>
                     </div>
                     
                     <div class="card text-center layout-stack">
@@ -425,8 +422,8 @@
                                 <path d="M3 10h18"/>
                             </svg>
                         </div>
-                        <h3 class="heading-md">تعلم بالسرعة التي تناسبك</h3>
-                        <p class="text-muted">ادرس في أي وقت ومن أي مكان، وتقدم بالسرعة التي تريدها.</p>
+                        <h3 class="heading-md feature-title">تعلم بالسرعة التي تناسبك</h3>
+                        <p class="feature-desc">ادرس في أي وقت ومن أي مكان، وتقدم بالسرعة التي تريدها.</p>
                     </div>
                     
                     <div class="card text-center layout-stack">
@@ -439,8 +436,8 @@
                                 <path d="M12 21c0-1 1-3 3-3s3 2 3 3-1 3-3 3-3-2-3-3"/>
                             </svg>
                         </div>
-                        <h3 class="heading-md">اختبارات تفاعلية</h3>
-                        <p class="text-muted">قيّم مستواك مع اختبارات تفاعلية بعد كل درس لضمان الفهم.</p>
+                        <h3 class="heading-md feature-title">اختبارات تفاعلية</h3>
+                        <p class="feature-desc">قيّم مستواك مع اختبارات تفاعلية بعد كل درس لضمان الفهم.</p>
                     </div>
                 </div>
             </div>
@@ -452,7 +449,7 @@
                 <h2 class="heading-xl text-white">جاهز لبدء رحلتك التقنية؟</h2>
                 <p class="text-lg text-white opacity-90">انضم لآلاف الطلاب العرب واكتسب مهارات تقنية قيمة</p>
                 <div class="flex gap-md justify-center">
-                    <a href="../auth/login.html" class="btn btn-outline--white">إنشاء حساب</a>
+                    <a href="../auth/login.html" class="btn btn-primary">إنشاء حساب</a>
                     <a href="#courses" class="btn btn-white">تصفح الكورسات</a>
                 </div>
             </div>

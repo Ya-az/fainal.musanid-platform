@@ -43,10 +43,16 @@ async function ensureLessonsTable() {
  * @function getAllLessons
  * @returns {Promise<Array>} قائمة بجميع الدروس
  */
-async function getAllLessons() {
+async function findAll() {
   await ensureLessonsTable();
   const [rows] = await db.query('SELECT * FROM lessons ORDER BY id ASC');
   return rows;
+}
+
+async function findBySlug(slug) {
+  await ensureLessonsTable();
+  const [rows] = await db.query('SELECT * FROM lessons WHERE slug = ? LIMIT 1', [slug]);
+  return rows[0] || null;
 }
 
 async function seedIfEmpty() {
@@ -61,4 +67,9 @@ async function seedIfEmpty() {
   }
 }
 
-module.exports = { getAllLessons, seedIfEmpty };
+module.exports = {
+  ensureLessonsTable,
+  findAll,
+  findBySlug,
+  seedIfEmpty
+};

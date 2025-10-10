@@ -1,38 +1,69 @@
 <% layout('layout') -%>
-<h1 class="text-2xl font-bold text-musanid-dark mb-6">إنشاء حساب جديد</h1>
-<form method="POST" action="/auth/register" class="space-y-4 max-w-lg">
-  <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-  <div class="grid md:grid-cols-2 gap-4">
-    <div>
-      <label class="block mb-1 text-sm font-medium">الاسم الأول</label>
-      <input name="firstName" class="w-full border rounded px-3 py-2" required />
-    </div>
-    <div>
-      <label class="block mb-1 text-sm font-medium">اسم العائلة</label>
-      <input name="lastName" class="w-full border rounded px-3 py-2" required />
-    </div>
-    <div>
-      <label class="block mb-1 text-sm font-medium">اسم المستخدم</label>
-      <input name="username" class="w-full border rounded px-3 py-2" required />
-    </div>
-    <div>
-      <label class="block mb-1 text-sm font-medium">البريد الإلكتروني</label>
-      <input type="email" name="email" class="w-full border rounded px-3 py-2" required />
+<section class="max-w-6xl mx-auto grid gap-8 xl:gap-12 lg:grid-cols-2 items-start">
+  <div class="space-y-6">
+    <span class="inline-flex items-center gap-2 bg-musanid-dark text-white px-4 py-1.5 rounded-full text-sm font-medium">مجتمع متعلمي مساند</span>
+    <h1 class="text-3xl md:text-4xl font-extrabold text-musanid-dark leading-tight">ابدأ تجربتك التعليمية بخطوات سهلة</h1>
+    <p class="text-gray-600 leading-relaxed">
+      أنشئ حسابك لإدارة الدورات، حفظ الدروس المفضلة، واستلام شهادات الإنجاز الرقمية. يوفر مساند محتوىً عربيًا موثوقًا مع أدوات تفاعلية تساعدك على التعلم الذاتي بثقة.
+    </p>
+    <div class="grid gap-4 text-sm text-gray-700">
+      <div class="flex items-start gap-3">
+        <span class="mt-1.5 inline-flex h-6 w-6 items-center justify-center rounded-full bg-musanid-dark text-white text-xs">1</span>
+        <p>املأ بياناتك الأساسية لنخصّص لك المحتوى المناسب.</p>
+      </div>
+      <div class="flex items-start gap-3">
+        <span class="mt-1.5 inline-flex h-6 w-6 items-center justify-center rounded-full bg-musanid-dark text-white text-xs">2</span>
+        <p>اختر الدورات والمسارات التعليمية المفضلة لديك.</p>
+      </div>
+      <div class="flex items-start gap-3">
+        <span class="mt-1.5 inline-flex h-6 w-6 items-center justify-center rounded-full bg-musanid-dark text-white text-xs">3</span>
+        <p>تابع تقدمك واطلب شهاداتك المعتمدة فور إكمال كل مسار.</p>
+      </div>
     </div>
   </div>
-  <div>
-    <label class="block mb-1 text-sm font-medium">كلمة المرور</label>
-    <input type="password" name="password" class="w-full border rounded px-3 py-2" required />
-    <div class="mt-2 flex items-center gap-3">
-      <meter id="passwordStrength" min="0" max="5" low="2" high="4" optimum="5" value="0" class="w-40 h-4"></meter>
-      <span class="text-xs text-gray-500">قوة كلمة المرور</span>
-    </div>
-    <ul class="mt-2 text-xs text-gray-500 list-disc pr-4 space-y-1">
-      <li>٨ أحرف على الأقل</li>
-      <li>حرف كبير وحرف صغير</li>
-      <li>رقم ورمز خاص</li>
-    </ul>
+
+  <div class="bg-white dark:bg-dark-card shadow-2xl rounded-2xl p-8 md:p-10 border border-gray-100 dark:border-gray-700">
+    <header class="space-y-2 text-center mb-6">
+      <h2 class="text-2xl font-bold text-musanid-dark">إنشاء حساب جديد</h2>
+      <p class="text-sm text-gray-500">املأ الحقول التالية، وسنجهز حسابك فوراً.</p>
+    </header>
+    <form method="POST" action="/auth/register" class="space-y-5" novalidate>
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="space-y-2">
+          <label class="block text-sm font-medium text-gray-700">الاسم الأول</label>
+          <input name="firstName" class="w-full border border-gray-200 dark:border-gray-700 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-musanid-dark" autocomplete="given-name" required />
+        </div>
+        <div class="space-y-2">
+          <label class="block text-sm font-medium text-gray-700">اسم العائلة</label>
+          <input name="lastName" class="w-full border border-gray-200 dark:border-gray-700 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-musanid-dark" autocomplete="family-name" required />
+        </div>
+        <div class="space-y-2">
+          <label class="block text-sm font-medium text-gray-700">اسم المستخدم</label>
+          <input name="username" class="w-full border border-gray-200 dark:border-gray-700 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-musanid-dark" autocomplete="username" required />
+        </div>
+        <div class="space-y-2">
+          <label class="block text-sm font-medium text-gray-700">البريد الإلكتروني</label>
+          <input type="email" name="email" class="w-full border border-gray-200 dark:border-gray-700 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-musanid-dark" autocomplete="email" required />
+        </div>
+      </div>
+      <div class="space-y-2">
+        <label class="block text-sm font-medium text-gray-700">كلمة المرور</label>
+        <input type="password" name="password" data-strength="true" class="w-full border border-gray-200 dark:border-gray-700 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-musanid-dark" autocomplete="new-password" required />
+        <div class="mt-2 flex items-center gap-3">
+          <meter id="passwordStrength" min="0" max="5" low="2" high="4" optimum="5" value="0" class="w-40 h-3 rounded-lg"></meter>
+          <span id="passwordStrengthLabel" class="text-xs text-gray-500">قوة كلمة المرور</span>
+        </div>
+        <ul class="mt-2 text-xs text-gray-500 list-disc pr-4 space-y-1">
+          <li>٨ أحرف على الأقل</li>
+          <li>حرف كبير وحرف صغير</li>
+          <li>رقم واحد على الأقل ورمز خاص</li>
+        </ul>
+      </div>
+      <div class="space-y-3">
+        <button class="btn-primary w-full py-2.5 text-base">إنشاء الحساب</button>
+        <p class="text-sm text-gray-600 text-center">لديك حساب مسبقاً؟ <a class="text-musanid-dark font-medium hover:underline" href="/auth/login">سجّل الدخول الآن</a></p>
+      </div>
+    </form>
   </div>
-  <button class="btn-primary w-full">تسجيل</button>
-  <p class="text-sm text-gray-600">لديك حساب؟ <a class="text-musanid-dark underline" href="/auth/login">سجّل الدخول</a></p>
-</form>
+</section>

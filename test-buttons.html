@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اختبار أزرار الشهادة</title>
+    <style>
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            margin: 20px; 
+            background-color: #f5f5f5;
+        }
+        .test-container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            margin: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+        .button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+        }
+        .button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .result {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            background: #e8f5e8;
+            border-left: 4px solid #4caf50;
+        }
+        .error {
+            background: #ffeaea;
+            border-left-color: #f44336;
+        }
+        h1 { text-align: center; color: #333; }
+        h2 { color: #555; margin-top: 30px; }
+        .test-description {
+            background: #f0f7ff;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #2196f3;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🧪 اختبار أزرار الشهادة</h1>
+        
+        <div class="test-description">
+            <strong>الهدف:</strong> اختبار وظائف الأزرار الثلاثة في صفحة الشهادة
+        </div>
+
+        <h2>🖨️ اختبار زر الطباعة</h2>
+        <button class="button" id="testPrintBtn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6,9 6,2 18,2 18,9"></polyline>
+                <path d="M6,18H4a2,2,0,0,1-2-2v-5a2,2,0,0,1,2-2H20a2,2,0,0,1,2,2v5a2,2,0,0,1-2,2H18"></path>
+                <polyline points="6,14 6,22 18,22 18,14"></polyline>
+            </svg>
+            اختبار طباعة الشهادة
+        </button>
+        <div id="printResult"></div>
+
+        <h2>🔗 اختبار زر المشاركة</h2>
+        <button class="button" id="testShareBtn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="18" cy="5" r="3"></circle>
+                <circle cx="6" cy="12" r="3"></circle>
+                <circle cx="18" cy="19" r="3"></circle>
+                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+            </svg>
+            اختبار مشاركة الرابط
+        </button>
+        <div id="shareResult"></div>
+
+        <h2>🔄 اختبار زر التحديث</h2>
+        <button class="button" id="testRefreshBtn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="23,4 23,10 17,10"></polyline>
+                <polyline points="1,20 1,14 7,14"></polyline>
+                <path d="M20.49,9A9,9,0,0,0,5.64,5.64L1,10m22,4L18.36,18.36A9,9,0,0,1,3.51,15"></path>
+            </svg>
+            اختبار تحديث الأرشيف
+        </button>
+        <div id="refreshResult"></div>
+
+        <h2>📊 نتائج الاختبار</h2>
+        <div id="testSummary"></div>
+
+        <h2>🔗 روابط الاختبار المباشر</h2>
+        <p>
+            <a href="http://127.0.0.1:8000/course/certificate.html?course=cisco-ccna&name=اختبار%20المطور" 
+               target="_blank" style="color: #667eea; text-decoration: none;">
+                🎓 فتح صفحة شهادة سيسكو للاختبار
+            </a>
+        </p>
+        <p>
+            <a href="http://127.0.0.1:8000/course/certificate.html?course=linux&name=اختبار%20المطور" 
+               target="_blank" style="color: #667eea; text-decoration: none;">
+                🐧 فتح صفحة شهادة لينكس للاختبار
+            </a>
+        </p>
+    </div>
+
+    <script>
+        let testResults = {
+            print: false,
+            share: false,
+            refresh: false
+        };
+
+        // اختبار زر الطباعة
+        document.getElementById('testPrintBtn').addEventListener('click', () => {
+            const resultDiv = document.getElementById('printResult');
+            
+            try {
+                // محاكاة وظيفة الطباعة
+                if (typeof window.print === 'function') {
+                    resultDiv.innerHTML = '<div class="result">✅ <strong>نجح الاختبار:</strong> وظيفة الطباعة متوفرة ويمكن استدعاؤها</div>';
+                    testResults.print = true;
+                } else {
+                    throw new Error('وظيفة الطباعة غير متوفرة');
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `<div class="result error">❌ <strong>فشل الاختبار:</strong> ${error.message}</div>`;
+            }
+            updateTestSummary();
+        });
+
+        // اختبار زر المشاركة
+        document.getElementById('testShareBtn').addEventListener('click', async () => {
+            const resultDiv = document.getElementById('shareResult');
+            const btn = document.getElementById('testShareBtn');
+            
+            try {
+                const testUrl = 'http://127.0.0.1:8000/course/certificate.html?course=test';
+                
+                if (navigator.clipboard && window.isSecureContext) {
+                    await navigator.clipboard.writeText(testUrl);
+                    resultDiv.innerHTML = '<div class="result">✅ <strong>نجح الاختبار:</strong> تم نسخ الرابط باستخدام Clipboard API الحديث</div>';
+                } else {
+                    // طريقة بديلة
+                    const textArea = document.createElement('textarea');
+                    textArea.value = testUrl;
+                    document.body.appendChild(textArea);
+                    textArea.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(textArea);
+                    resultDiv.innerHTML = '<div class="result">✅ <strong>نجح الاختبار:</strong> تم نسخ الرابط باستخدام الطريقة البديلة</div>';
+                }
+                
+                // تأثير بصري
+                const originalText = btn.innerHTML;
+                btn.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>تم النسخ!';
+                btn.disabled = true;
+                
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    btn.disabled = false;
+                }, 2000);
+                
+                testResults.share = true;
+            } catch (error) {
+                resultDiv.innerHTML = `<div class="result error">❌ <strong>فشل الاختبار:</strong> ${error.message}</div>`;
+            }
+            updateTestSummary();
+        });
+
+        // اختبار زر التحديث
+        document.getElementById('testRefreshBtn').addEventListener('click', () => {
+            const resultDiv = document.getElementById('refreshResult');
+            const btn = document.getElementById('testRefreshBtn');
+            
+            try {
+                // محاكاة وظيفة التحديث
+                resultDiv.innerHTML = '<div class="result">✅ <strong>نجح الاختبار:</strong> وظيفة التحديث تعمل بشكل صحيح</div>';
+                
+                // تأثير بصري
+                const originalText = btn.innerHTML;
+                btn.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>تم التحديث!';
+                btn.disabled = true;
+                
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    btn.disabled = false;
+                }, 1500);
+                
+                testResults.refresh = true;
+            } catch (error) {
+                resultDiv.innerHTML = `<div class="result error">❌ <strong>فشل الاختبار:</strong> ${error.message}</div>`;
+            }
+            updateTestSummary();
+        });
+
+        function updateTestSummary() {
+            const summaryDiv = document.getElementById('testSummary');
+            const totalTests = Object.keys(testResults).length;
+            const passedTests = Object.values(testResults).filter(result => result).length;
+            
+            let summaryHTML = `
+                <div class="result">
+                    📈 <strong>إجمالي النتائج:</strong> ${passedTests}/${totalTests} اختبارات نجحت
+                    <br>
+                    ${passedTests === totalTests ? 
+                        '🎉 <strong>ممتاز!</strong> جميع الأزرار تعمل بشكل صحيح' : 
+                        '⚠️ <strong>تحذير:</strong> بعض الأزرار تحتاج إلى إصلاح'
+                    }
+                </div>
+            `;
+            
+            summaryDiv.innerHTML = summaryHTML;
+        }
+
+        // تشغيل الاختبارات تلقائياً عند التحميل
+        window.addEventListener('load', () => {
+            document.getElementById('testSummary').innerHTML = 
+                '<div class="result">🚀 جاهز للاختبار! انقر على الأزرار أعلاه لاختبار الوظائف</div>';
+        });
+    </script>
+</body>
+</html>

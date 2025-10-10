@@ -85,6 +85,7 @@
         .certificate-card {
             border: 1px dashed rgba(var(--color-primary-rgb), 0.35);
             background: linear-gradient(135deg, rgba(var(--color-primary-rgb), 0.08), rgba(var(--color-primary-rgb), 0));
+            color: var(--dynamic-text-primary);
         }
 
         .certificate-icon {
@@ -96,6 +97,94 @@
             place-items: center;
             color: var(--color-primary);
             flex-shrink: 0;
+        }
+
+        /* أنماط العناوين الرئيسية */
+        .lessons-sidebar h3,
+        .heading-md {
+            color: #5B21B6 !important;
+            font-weight: 700 !important;
+        }
+
+        /* عناوين الدروس */
+        .lesson-item .lesson-title,
+        .lesson-item h4,
+        #currentLessonTitle,
+        .heading-lg {
+            color: #000000 !important;
+            font-weight: 600 !important;
+        }
+
+        /* النصوص الثانوية - مدة الفيديو */
+        .lesson-item .lesson-duration,
+        .lesson-duration,
+        .text-sm:not(.purple-section .text-sm),
+        .lesson-meta {
+            color: #4B5563 !important;
+        }
+
+        /* وصف الدرس - النص أسفل الفيديو */
+        #lessonContent,
+        #lessonContent *,
+        #lessonContent p,
+        .lesson-description,
+        .lesson-intro {
+            color: #FFFFFF !important;
+            font-weight: 500 !important;
+        }
+
+        /* استثناءات للقسم البنفسجي */
+        .purple-section h3,
+        .purple-section .heading-md {
+            color: #FFFFFF !important;
+            font-weight: 700 !important;
+        }
+
+        .purple-section .text-sm {
+            color: rgba(255, 255, 255, 0.8) !important;
+        }
+
+        /* أنماط خاصة لعناصر الدروس */
+        .lesson-item.completed {
+            background: rgba(255, 255, 255, 0.1) !important;
+            color: #FFFFFF !important;
+        }
+
+        .lesson-item.completed * {
+            color: #FFFFFF !important;
+        }
+
+        /* أنماط إضافية للدروس المُنشأة ديناميكياً */
+        .purple-section .lesson-item,
+        .purple-section .lesson-item *,
+        .purple-section .lesson-item .lesson-title,
+        .purple-section .lesson-item .lesson-duration,
+        .purple-section .lesson-item .lesson-description {
+            color: #FFFFFF !important;
+        }
+
+        .purple-section .lesson-item .lesson-status {
+            color: rgba(255, 255, 255, 0.8) !important;
+        }
+
+        /* أنماط لمحتوى الدرس الرئيسي */
+        #lessonContent,
+        #lessonContent *,
+        #lessonContent p,
+        #lessonContent .mb-sm,
+        .lesson-intro,
+        .lesson-description-text {
+            color: #FFFFFF !important;
+        }
+
+        /* أنماط لقوائم الدروس */
+        .main-lesson-area,
+        .main-lesson-area *,
+        .main-lesson-area p,
+        .main-lesson-area h1,
+        .main-lesson-area h2,
+        .main-lesson-area h3 {
+            color: #FFFFFF !important;
         }
 
         .certificate-meta {
@@ -194,20 +283,20 @@
                     </div>
 
                     <!-- Progress Card -->
-                    <div class="card layout-stack">
+                    <div class="card layout-stack purple-section">
                         <h3 class="heading-md">التقدم في الكورس</h3>
                         <div class="flex items-center gap-md">
                             <div class="progress-circle">
                                 <svg width="80" height="80" viewBox="0 0 80 80">
-                                    <circle cx="40" cy="40" r="36" stroke="var(--color-neutral-200)" stroke-width="8" fill="none"/>
-                                    <circle cx="40" cy="40" r="36" stroke="var(--color-primary)" stroke-width="8" fill="none" 
+                                    <circle cx="40" cy="40" r="36" stroke="rgba(255,255,255,0.3)" stroke-width="8" fill="none"/>
+                                    <circle cx="40" cy="40" r="36" stroke="#FFFFFF" stroke-width="8" fill="none" 
                                             class="progress-ring" id="progressRing" stroke-dasharray="0 226"/>
                                 </svg>
                                 <div class="progress-percentage" id="progressPercentage">0%</div>
                             </div>
                             <div class="layout-stack layout-stack--sm">
                                 <div><strong id="completedLessons">0</strong> من <span id="totalLessonsCount">5</span> دروس</div>
-                                <div class="text-sm text-muted">دروس مكتملة</div>
+                                <div class="text-sm">دروس مكتملة</div>
                             </div>
                         </div>
                         <button class="btn btn-primary" id="continueBtn">متابعة التعلم</button>
@@ -272,7 +361,7 @@
                     <!-- Main Content -->
                     <div class="span-3">
                         <!-- Video Section -->
-                        <div class="card layout-stack mb-lg" id="videoSection">
+                        <div class="card layout-stack mb-lg purple-section" id="videoSection">
                             <div class="flex justify-between items-center">
                                 <h2 class="heading-lg" id="currentLessonTitle">الدرس الأول: مقدمة في Packet Tracer</h2>
                                 <div class="lesson-actions">
@@ -489,10 +578,20 @@
                 const intro = document.createElement('p');
                 intro.className = 'mb-sm';
                 intro.textContent = lesson.description || '';
+                intro.style.color = '#FFFFFF';
+                intro.style.fontWeight = '500';
+                intro.style.setProperty('color', '#FFFFFF', 'important');
+                intro.style.setProperty('font-weight', '500', 'important');
                 lessonContent.appendChild(intro);
                 lessonContent.appendChild(ul);
             } else {
                 lessonContent.textContent = lesson.description || '';
+                
+                // تطبيق أنماط وصف الدرس
+                lessonContent.style.color = '#FFFFFF';
+                lessonContent.style.fontWeight = '500';
+                lessonContent.style.setProperty('color', '#FFFFFF', 'important');
+                lessonContent.style.setProperty('font-weight', '500', 'important');
             }
             
             // Load YouTube video

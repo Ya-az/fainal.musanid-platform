@@ -1,4 +1,3 @@
-const path = require('path');
 const express = require('express');
 const bcrypt = require('bcryptjs');
 const db = require('../config/database');
@@ -26,7 +25,7 @@ async function ensureUsersTable() {
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;`);
 }
 
-ensureUsersTable().catch(console.error);
+ensureUsersTable().catch(err => process.stderr.write(`${err}\n`));
 
 // معالجة التسجيل
 router.post('/register', async (req, res) => {
@@ -80,11 +79,11 @@ router.post('/login', async (req, res) => {
       username: user.username,
       email: user.email,
       firstName: user.firstName,
-      lastName: user.lastName,
+      lastName: user.lastName
     };
     res.redirect('/dashboard');
   } catch (err) {
-    console.error(err);
+    process.stderr.write(`${err}\n`);
     res.status(500).send('خطأ في تسجيل الدخول');
   }
 });
