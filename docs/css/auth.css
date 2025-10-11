@@ -1,0 +1,127 @@
+/* Auth pages contrast and clarity enhancements */
+
+/* Scope to auth pages only */
+.auth-hero {
+  background: linear-gradient(135deg, #5b21b6 0%, #7c3aed 40%, #a78bfa 100%);
+}
+
+.auth-card {
+  background: rgba(255, 255, 255, 0.96);
+  -webkit-backdrop-filter: saturate(120%) blur(6px);
+  backdrop-filter: saturate(120%) blur(6px);
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(34, 0, 51, 0.22);
+}
+
+/* Ensure readable text inside glass cards placed on hero */
+.auth-hero .card--glass {
+  color: #1f2937; /* gray-800 */
+}
+
+/* Headings and body text on purple gradient */
+.auth-hero .section-title,
+.auth-hero .section-subtitle,
+.auth-hero .lead,
+.auth-hero .text,
+.auth-hero p,
+.auth-hero label {
+  color: #ffffff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+}
+
+/* Form card typography */
+.auth-card .form-title {
+  color: #1f2937; /* gray-800 */
+}
+.auth-card .form-subtitle,
+.auth-card .form-helper {
+  color: #4b5563; /* gray-600 */
+}
+
+/* Inputs */
+.auth-card input[type="text"],
+.auth-card input[type="email"],
+.auth-card input[type="password"],
+.auth-card input[type="tel"],
+.auth-card select {
+  background-color: #ffffff;
+  color: #0f172a; /* slate-900 */
+  border: 2px solid #e5e7eb; /* gray-200 */
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  min-height: 44px;
+  box-shadow: 0 1px 0 rgba(16, 24, 40, 0.02) inset;
+}
+
+.auth-card input::placeholder {
+  color: #94a3b8; /* slate-400 */
+}
+
+/* Focus styles aligned with global buttons */
+.auth-card input:focus,
+.auth-card select:focus,
+.auth-card textarea:focus {
+  outline: none;
+  border-color: #7c3aed; /* primary */
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.25);
+}
+
+/* Helper text on purple background */
+.auth-hero .helper,
+.auth-hero .hint,
+.auth-hero .supporting-text {
+  color: #f8fafc; /* near white */
+  opacity: 0.95;
+}
+
+/* Buttons: leverage global .btn styles; ensure contrast on gradient bg */
+.auth-hero .btn-primary {
+  box-shadow: 0 8px 24px rgba(124, 58, 237, 0.35), 0 2px 8px rgba(16, 24, 40, 0.12);
+}
+
+/* Links on gradient */
+.auth-hero a {
+  color: #fff;
+  text-decoration-color: rgba(255, 255, 255, 0.7);
+}
+.auth-hero a:hover {
+  color: #f0e7ff;
+  text-decoration-color: #f0e7ff;
+}
+
+/* Left column content within hero intro card */
+.auth-hero .card.card--glass .section__title,
+.auth-hero .card.card--glass p,
+.auth-hero .card.card--glass li,
+.auth-hero .card.card--glass .pill,
+.auth-hero .card.card--glass .stat-card__label,
+.auth-hero .card.card--glass .stat-card__value {
+  color: #ffffff;
+}
+
+/* Ensure stat-card in hero remains contrasty */
+.auth-hero .stat-card {
+  background: #ffffff;
+}
+
+/* Error and success messages */
+.auth-card .form-error {
+  color: #b91c1c; /* red-700 */
+}
+.auth-card .form-success {
+  color: #166534; /* green-700 */
+}
+
+/* Success helper text variant */
+.auth-card .form-helper.is-success {
+  color: #166534; /* green-700 */
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .auth-hero *,
+  .auth-card * {
+    transition: none !important;
+    animation: none !important;
+  }
+}

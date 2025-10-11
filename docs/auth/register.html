@@ -6,12 +6,13 @@
     <title>إنشاء حساب جديد - منصة مساند</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="../css/styles.css" rel="stylesheet">
+    <link href="../css/auth.css" rel="stylesheet">
 </head>
 <body>
     <header class="site-header" data-site-header data-base="../" data-nav-id="authNav" data-home="index.html" data-primary-text="تسجيل الدخول" data-primary-href="login.html" data-secondary-text="العودة للرئيسية" data-secondary-href="../index.html" data-secondary-variant="outline"></header>
 
     <main>
-        <section class="hero hero--light hero--compact">
+        <section class="hero hero--light hero--compact auth-hero">
             <div class="container split">
                 <div class="card card--glass layout-stack">
                     <span class="pill pill--neutral align-start">دقائق قليلة فقط</span>
@@ -30,9 +31,9 @@
                     </div>
                 </div>
 
-                <div class="card form layout-stack" aria-labelledby="signupTitle">
-                    <h2 id="signupTitle" class="section__title section__title--md mb-0">إنشاء حساب جديد</h2>
-                    <p class="text-muted">املأ البيانات التالية للبدء. لن يستغرق الأمر أكثر من دقيقتين.</p>
+                <div class="card form layout-stack auth-card" aria-labelledby="signupTitle">
+                    <h2 id="signupTitle" class="section__title section__title--md mb-0 form-title">إنشاء حساب جديد</h2>
+                    <p class="text-muted form-subtitle">املأ البيانات التالية للبدء. لن يستغرق الأمر أكثر من دقيقتين.</p>
                     <form id="signupForm" class="layout-stack" action="/auth/register" method="POST" novalidate>
                         <div class="form__row">
                             <div>
