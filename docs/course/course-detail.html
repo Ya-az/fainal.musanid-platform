@@ -377,6 +377,7 @@
                                             <path d="m9 18 6-6-6-6"/>
                                         </svg>
                                     </button>
+                                    <button class="btn btn-secondary is-hidden" id="startQuizBtn" type="button">بدء الاختبار</button>
                                 </div>
                             </div>
                             
@@ -487,7 +488,8 @@
         const quizScore = document.getElementById('quizScore');
         const showAnswersBtn = document.getElementById('showAnswersBtn');
         const prevLessonBtn = document.getElementById('prevLessonBtn');
-        const nextLessonBtn = document.getElementById('nextLessonBtn');
+    const nextLessonBtn = document.getElementById('nextLessonBtn');
+    const startQuizBtn = document.getElementById('startQuizBtn');
         const lessonsSidebar = document.getElementById('lessonsSidebar');
         const lessonsToggle = document.getElementById('lessonsToggle');
         const certificateCard = document.getElementById('certificateCard');
@@ -529,6 +531,9 @@
             
             // Update progress
             updateProgress();
+
+            // Prepare YouTube API for end-of-video detection
+            loadYouTubeAPI();
         }
 
         function renderLessonsList() {
@@ -598,8 +603,13 @@
             if (lesson.videoUrl) {
                 const videoId = extractYouTubeVideoId(lesson.videoUrl);
                 if (videoId) {
-                    videoPlayer.src = `https://www.youtube.com/embed/${videoId}`;
+                    // Enable JS API so we can detect video end
+                    videoPlayer.src = `https://www.youtube.com/embed/${videoId}?enablejsapi=1&rel=0&modestbranding=1`;
                     videoPlayer.title = lesson.title;
+                    // If API is ready, bind/end listener
+                    if (window.YT && window.YT.Player) {
+                        ensureYouTubePlayer(videoId, lesson.title);
+                    }
                 }
             }
             
@@ -616,6 +626,10 @@
             // Update navigation buttons
             prevLessonBtn.disabled = index === 0;
             nextLessonBtn.textContent = index === course.lessons.length - 1 ? 'إنهاء الكورس' : 'التالي';
+
+            // Toggle Start Quiz button depending on quiz availability
+            const hasQuiz = Array.isArray(lesson.quiz) && lesson.quiz.length > 0;
+            startQuizBtn.classList.toggle('is-hidden', !hasQuiz);
             
             // Re-render lessons list to update current lesson highlight
             renderLessonsList();
@@ -624,6 +638,57 @@
         function extractYouTubeVideoId(url) {
             const match = url.match(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/);
             return match ? match[1] : null;
+        }
+
+        // --- YouTube IFrame API integration ---
+        let ytPlayer = null;
+
+        function loadYouTubeAPI() {
+            if (window.YT && window.YT.Player) return;
+            const tag = document.createElement('script');
+            tag.src = 'https://www.youtube.com/iframe_api';
+            tag.async = true;
+            document.head.appendChild(tag);
+        }
+
+        window.onYouTubeIframeAPIReady = function() {
+            const lesson = course?.lessons?.[currentLessonIndex];
+            const videoId = lesson ? extractYouTubeVideoId(lesson.videoUrl || '') : null;
+            if (videoId) {
+                ensureYouTubePlayer(videoId, lesson.title);
+            }
+        };
+
+        function ensureYouTubePlayer(videoId, title) {
+            if (!videoId) return;
+            try {
+                if (ytPlayer && ytPlayer.loadVideoById) {
+                    ytPlayer.loadVideoById(videoId);
+                    return;
+                }
+            } catch (_) {}
+
+            ytPlayer = new YT.Player('videoPlayer', {
+                videoId,
+                playerVars: { rel: 0, modestbranding: 1 },
+                events: {
+                    onStateChange: (event) => {
+                        if (event.data === YT.PlayerState.ENDED) {
+                            // Auto-open quiz when video ends
+                            const lesson = course.lessons[currentLessonIndex];
+                            const hasQuiz = Array.isArray(lesson.quiz) && lesson.quiz.length > 0;
+                            if (hasQuiz) {
+                                showQuiz();
+                            } else {
+                                markLessonCompleted();
+                            }
+                        }
+                    },
+                    onReady: () => {
+                        try { ytPlayer.getIframe().setAttribute('title', title || 'مشغل فيديو الدرس'); } catch (_) {}
+                    }
+                }
+            });
         }
 
         function showQuiz() {
@@ -980,6 +1045,7 @@
     submitQuizBtn.addEventListener('click', submitQuiz);
         retryQuizBtn.addEventListener('click', retryQuiz);
     showAnswersBtn.addEventListener('click', showAnswers);
+        startQuizBtn.addEventListener('click', showQuiz);
 
         certificateBtn?.addEventListener('click', openCertificateModal);
         viewCertificateBtn?.addEventListener('click', () => {
