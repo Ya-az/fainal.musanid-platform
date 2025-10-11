@@ -657,9 +657,11 @@ p {
     justify-content: center;
     gap: 0.5rem;
     padding: 0.65rem 1.8rem;
-    border-radius: var(--radius-full);
+    min-height: 44px; /* حجم لمس مريح ومتسق */
+    border-radius: 9999px; /* توحيد الزوايا الدائرية */
     font-weight: 600;
     font-size: 0.98rem;
+    font-family: inherit; /* نفس خط الموقع */
     transition: transform var(--transition-base), box-shadow var(--transition-base), background var(--transition-base), color var(--transition-base);
     border: none;
     cursor: pointer;
@@ -672,63 +674,39 @@ p {
 }
 
 .btn-primary {
-    background: linear-gradient(90deg, #7C3AED 0%, #A78BFA 100%);
-    color: var(--dynamic-text-primary) !important;
-    box-shadow: none;
+    background: linear-gradient(90deg, #7B61FF 0%, #9B79FF 100%);
+    color: #FFFFFF !important;
+    box-shadow: 0 4px 12px rgba(123, 97, 255, 0.2);
     font-size: 1.02rem;
     font-weight: 700;
     letter-spacing: 0.01em;
     text-shadow: none;
     border: none;
     padding: 0.55rem 1.35rem;
-    border-radius: 999px;
-    transition: background var(--transition-base), color var(--transition-base), transform var(--transition-base);
-    position: relative;
-    overflow: hidden;
-}
-.btn-primary::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: var(--radius-full);
-    box-shadow: 0 0 0 0 rgba(109,40,217,0.18);
-    transition: box-shadow var(--transition-base);
-    pointer-events: none;
+    border-radius: 9999px;
+    transition: background var(--transition-base), color var(--transition-base), transform var(--transition-base), box-shadow var(--transition-base);
 }
 
 .btn-primary:hover {
-    transform: translateY(-3px) scale(1.04);
-    box-shadow: 0 16px 48px rgba(var(--color-primary-rgb), 0.22), 0 2px 12px rgba(var(--color-primary-rgb), 0.13);
+    background: linear-gradient(90deg, #6A4DFF 0%, #8A68FF 100%);
+    transform: translateY(-2px);
 }
 
-.btn-secondary {
-    background: rgba(var(--color-primary-rgb), 0.10);
-    color: var(--color-primary);
+.btn-secondary,
+.btn-outline { /* نستخدم .btn-outline كزر ثانوي في الواجهات الحالية */
+    background: #F3E9FF;
+    color: #7B61FF;
+    border: 1px solid #D7C9FF;
+    box-shadow: 0 4px 12px rgba(123, 97, 255, 0.12);
 }
 
-.btn-secondary:hover {
-    background: rgba(var(--color-primary-rgb), 0.18);
-}
-
-.btn-outline {
-    border: none;
-    color: var(--dynamic-text-primary);
-    background: linear-gradient(90deg, #7C3AED 0%, #A78BFA 100%);
-    font-weight: 700;
-    font-size: 1.02rem;
-    padding: 0.55rem 1.35rem;
-    border-radius: 999px;
-    box-shadow: none;
-    position: relative;
-    overflow: hidden;
-    transition: background var(--transition-base), color var(--transition-base), transform var(--transition-base);
-}
-
+.btn-secondary:hover,
 .btn-outline:hover {
-    background: linear-gradient(90deg, #7C3AED 0%, #A78BFA 100%);
-    color: var(--dynamic-text-primary);
-    transform: translateY(-2px) scale(1.03);
+    background: linear-gradient(90deg, #ECE0FF 0%, #F7EFFF 100%);
+    color: #7B61FF;
 }
+
+/* تم تحويل .btn-outline لتكون النمط الثانوي المتوافق مع التصميم المطلوب */
 
 .btn-soft {
     background: rgba(var(--color-secondary-rgb), 0.14);
@@ -749,6 +727,48 @@ p {
     font-size: 0.85rem;
     background: rgba(var(--color-primary-rgb), 0.08);
     color: var(--color-primary);
+}
+
+/* حالات إضافية: نجاح / تحذير / معلومات */
+.btn-success {
+    background: #4ADE80;
+    color: #FFFFFF;
+}
+.btn-success:hover {
+    background: #22C55E;
+}
+
+.btn-danger {
+    background: #EF4444;
+    color: #FFFFFF;
+}
+.btn-danger:hover {
+    background: #DC2626;
+}
+
+.btn-info {
+    background: #60A5FA;
+    color: #FFFFFF;
+}
+.btn-info:hover {
+    background: #3B82F6;
+}
+
+/* تباعد موثوق بين الأزرار عندما تكون بجانب بعضها (Fallback للمتصفحات التي لا تدعم gap في flex) */
+.hero__actions .btn + .btn,
+.btn-group .btn + .btn,
+.layout-stack .btn + .btn {
+    margin-inline-start: 0.75rem;
+}
+
+/* الأزرار المنفردة تعرض كزر ثانوي تلقائياً */
+.hero__actions .btn:only-child:not(.btn-success):not(.btn-danger):not(.btn-info),
+.card .btn:only-child:not(.btn-success):not(.btn-danger):not(.btn-info),
+.layout-stack .btn:only-child:not(.btn-success):not(.btn-danger):not(.btn-info) {
+    background: #F3E9FF !important;
+    color: #7B61FF !important;
+    border: 1px solid #D7C9FF !important;
+    box-shadow: 0 4px 12px rgba(123, 97, 255, 0.12) !important;
 }
 
 /* Cards ------------------------------------------------------------------- */
@@ -2496,4 +2516,27 @@ p {
 .card.card--feature p.text-muted {
     color: #000000 !important;
     font-weight: 500 !important;
+}
+
+/* About page specific overrides: clearer contrast per user request */
+body.page-about .card.card--feature p.text-muted {
+    color: #FFFFFF !important; /* نصوص وصف القيم باللون الأبيض */
+}
+body.page-about .card.card--feature h3 {
+    color: #C7B5FF !important; /* عناوين القيم بالبنفسجي الفاتح */
+}
+
+/* -------------------------------------------------------------------------- */
+/*  About Page overrides: clearer text on purple feature cards                 */
+/*  Scope to About page only using the nav header attribute                    */
+/*  - Paragraphs: white                                                        */
+/*  - Titles: light purple                                                     */
+/* -------------------------------------------------------------------------- */
+header[data-active="about"] + main .card.card--feature p.text-muted {
+    color: #FFFFFF !important;
+}
+
+header[data-active="about"] + main .card.card--feature h3 {
+    /* Light purple for headings to improve hierarchy on gradient cards */
+    color: #E9D5FF !important; /* light lavender */
 }
