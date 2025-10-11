@@ -26,65 +26,50 @@ class CourseManager {
                         ],
                         completed: false,
                         quiz: [
-                            {
-                                type: 'mcq',
-                                question: 'ما الهدف الأساسي من Cisco Packet Tracer؟',
-                                options: ['محاكاة الشبكات', 'اختبار سرعة الإنترنت', 'إدارة كلمات المرور', 'محرر نصوص'],
-                                correct: 0,
-                                explanation: 'Packet Tracer هو برنامج لمحاكاة الشبكات يساعد على تصميم واختبار الشبكات افتراضيًا.'
-                            },
-                            {
-                                type: 'tf',
-                                question: 'يمكن استخدام وضع المحاكاة لمراقبة مرور الحزم خطوة بخطوة.',
-                                options: ['صح', 'خطأ'],
-                                correct: 0,
-                                explanation: 'وضع Simulation يعرض انتقال الحزم عبر الشبكة خطوة بخطوة لتحليل السلوك.'
-                            },
-                            {
-                                type: 'mcq',
-                                question: 'أي من التالي ليس جهاز شبكة يمكن إضافته في Packet Tracer؟',
-                                options: ['سويتش', 'راوتر', 'حاسوب شخصي', 'طابعة ثلاثية الأبعاد'],
-                                correct: 3,
-                                explanation: 'الخيارات الثلاثة الأولى مدعومة، بينما الطابعة ثلاثية الأبعاد ليست جهاز شبكة.'
-                            },
-                            {
-                                type: 'mcq',
-                                question: 'ما الفرق بين وضع الوقت الحقيقي (Realtime) ووضع المحاكاة (Simulation)؟',
-                                options: ['Realtime أسرع بدون تتبع الحزم، Simulation للتتبع', 'لا فرق بينهما', 'Simulation أسرع من Realtime', 'Realtime يعطل الشبكة'],
-                                correct: 0,
-                                explanation: 'Realtime يحاكي التشغيل الفعلي دون تتبع مفصل، Simulation يتيح تتبع الحزم.'
-                            },
-                            {
-                                type: 'tf',
-                                question: 'لا يمكن حفظ ملفات المشاريع بصيغة .pkt في Packet Tracer.',
-                                options: ['صح', 'خطأ'],
-                                correct: 1,
-                                explanation: 'يمكن حفظ المشاريع بصيغة .pkt لإعادة فتحها لاحقاً.'
-                            }
+                            { type: 'mcq', question: 'ما الهدف الأساسي من Cisco Packet Tracer؟', options: ['محاكاة الشبكات', 'اختبار سرعة الإنترنت', 'إدارة كلمات المرور', 'محرر نصوص'], correct: 0, explanation: 'Packet Tracer هو برنامج لمحاكاة الشبكات يساعد على تصميم واختبار الشبكات افتراضيًا.' },
+                            { type: 'tf', question: 'يمكن استخدام وضع المحاكاة لمراقبة مرور الحزم خطوة بخطوة.', options: ['صح', 'خطأ'], correct: 0, explanation: 'وضع Simulation يعرض انتقال الحزم عبر الشبكة خطوة بخطوة لتحليل السلوك.' },
+                            { type: 'mcq', question: 'أي من التالي ليس جهاز شبكة يمكن إضافته في Packet Tracer؟', options: ['سويتش', 'راوتر', 'حاسوب شخصي', 'طابعة ثلاثية الأبعاد'], correct: 3, explanation: 'الخيارات الثلاثة الأولى مدعومة، بينما الطابعة ثلاثية الأبعاد ليست جهاز شبكة.' },
+                            { type: 'mcq', question: 'ما الفرق بين وضع الوقت الحقيقي (Realtime) ووضع المحاكاة (Simulation)؟', options: ['Realtime أسرع بدون تتبع الحزم، Simulation للتتبع', 'لا فرق بينهما', 'Simulation أسرع من Realtime', 'Realtime يعطل الشبكة'], correct: 0, explanation: 'Realtime يحاكي التشغيل الفعلي دون تتبع مفصل، Simulation يتيح تتبع الحزم.' },
+                            { type: 'tf', question: 'لا يمكن حفظ ملفات المشاريع بصيغة .pkt في Packet Tracer.', options: ['صح', 'خطأ'], correct: 1, explanation: 'يمكن حفظ المشاريع بصيغة .pkt لإعادة فتحها لاحقاً.' }
                         ]
                     },
                     {
                         id: 2,
                         title: 'إنشاء أول شبكة',
                         videoUrl: 'https://www.youtube.com/watch?v=B1oxjyNqCEE',
-                        duration: '20:45',
-                        description: 'تعلم كيفية ربط جهازين أو أكثر وإعداد عناوين IP الأساسية.',
+                        description: 'الجمل الشرطية والحلقات وبنى التحكم.',
+                        completed: false,
+                        quiz: [
+                            { type: 'mcq', question: 'أي عبارة تُستخدم للتفرع الشرطي؟', options: ['for', 'if', 'while', 'switch فقط'], correct: 1, explanation: 'if وswitch للتفرع، if الأكثر أساسية.' },
+                            { type: 'mcq', question: 'الحلقة المناسبة لتكرار حتى تحقق شرط:', options: ['for', 'while', 'do-while', 'لا شيء'], correct: 1, explanation: 'while تكرارية بشرط مسبق؛ do-while شرط لاحق.' },
+                            { type: 'tf', question: 'break تُنهي الحلقة الحالية فورًا.', options: ['صح', 'خطأ'], correct: 0, explanation: 'break تخرج من الحلقة الحالية.' }
+                        ]
                         summary: [
                             'إضافة جهازين حاسوب وتوصيلهما بسويتش.',
                             'تحديد نوع الكابل المناسب (Copper Straight-Through).',
                             'تعيين عناوين IP وSubnet Mask يدوياً.',
                             'اختبار الاتصال باستخدام أمر ping.',
                             'حل أخطاء التوصيل الشائعة.'
-                        ],
+                        description: 'إنشاء الدوال والكلاسات في Java.',
                         completed: false,
+                        quiz: [
+                            { type: 'mcq', question: 'الكلمة المفتاحية this تشير إلى:', options: ['الكلاس الحالي', 'الكائن الحالي', 'الحزمة الحالية', 'الدالة الرئيسية'], correct: 1, explanation: 'this تُشير إلى الكائن الحالي.' },
+                            { type: 'mcq', question: 'أي مُعدِّل وصول يجعل العضو متاحًا داخل نفس الحزمة؟', options: ['private', 'protected', 'public', 'default (بدون مُعدِّل)'], correct: 3, explanation: 'الوصول الافتراضي يقتصر على نفس الحزمة.' },
+                            { type: 'tf', question: 'الدالة static يمكن استدعاؤها دون إنشاء كائن.', options: ['صح', 'خطأ'], correct: 0, explanation: 'يمكن استدعاء الدوال الساكنة عبر اسم الكلاس.' }
+                        ]
                         quiz: [
                             { type: 'mcq', question: 'أي كابل يُستخدم غالباً بين PC وسويتش؟', options: ['Cross-Over', 'Straight-Through', 'Fiber Patch', 'Console'], correct: 1, explanation: 'الكابل الموصل الشائع بين PC وسويتش هو Straight-Through.' },
                             { type: 'tf', question: 'الأمر ping يساعد على التحقق من الوصول بين جهازين.', options: ['صح', 'خطأ'], correct: 0, explanation: 'ping يرسل ICMP Echo للتحقق من الوصول.' },
                             { type: 'mcq', question: 'أين تُضبط عناوين IP في حاسوب افتراضي؟', options: ['Desktop > IP Configuration', 'Config > Interfaces', 'Services > DHCP', 'Physical > Modules'], correct: 0, explanation: 'يتم الضبط من Desktop > IP Configuration.' },
                             { type: 'mcq', question: 'Subnet mask المناسب لشبكة صغيرة /24 هو:', options: ['255.255.255.0', '255.255.0.0', '255.0.0.0', '255.255.255.252'], correct: 0, explanation: 'قناع /24 يساوي 255.255.255.0.' },
                             { type: 'tf', question: 'يجب أن تكون الأجهزة في نفس الشبكة الفرعية للاتصال المباشر بدون راوتر.', options: ['صح', 'خطأ'], correct: 0, explanation: 'للاتصال المباشر دون توجيه يجب أن تكون ضمن نفس الشبكة الفرعية.' }
+                        description: 'مبادئ OOP في Java: الوراثة والتغليف وتعدد الأشكال.',
+                        completed: false,
+                        quiz: [
+                            { type: 'mcq', question: 'التغليف (Encapsulation) يعني:', options: ['إخفاء التفاصيل الداخلية', 'إعادة الاستخدام', 'التعددية الشكلية', 'الوراثة'], correct: 0, explanation: 'التغليف يحمي الحالة عبر واجهات عامة.' },
+                            { type: 'mcq', question: 'Polymorphism يُتيح:', options: ['تعريف نفس الدالة بعدة سلوكيات', 'نسخ الكلاسات', 'تعريف عدة حزم', 'تعريف متغيرات ثابتة فقط'], correct: 0, explanation: 'تعدد الأشكال يسمح بتصرفات مختلفة لنفس الواجهة.' },
+                            { type: 'tf', question: 'يمكن للـclass في Java أن يرث من أكثر من class.', options: ['صح', 'خطأ'], correct: 1, explanation: 'لا يوجد وراثة متعددة للكلاسات، لكن يمكن تطبيق واجهات متعددة.' }
                         ]
-                    },
                     {
                         id: 3,
                         title: 'إعداد السويتشات',
@@ -110,24 +95,39 @@ class CourseManager {
                         id: 4,
                         title: 'إعداد الراوترات',
                         videoUrl: 'https://www.youtube.com/watch?v=lHfq_Va5Gu4',
-                        duration: '25:15',
-                        description: 'تعلم إعداد الراوترات وتوجيه البيانات بين الشبكات المختلفة.',
+                        description: 'حماية الشبكات من الهجمات والتسلل.',
+                        completed: false,
+                        quiz: [
+                            { type: 'mcq', question: 'جدار الحماية (Firewall) يُستخدم لـ:', options: ['تشفير القرص', 'تصفية المرور', 'رفع السرعة', 'إدارة المستخدمين'], correct: 1, explanation: 'Firewall يرشّح المرور وفق قواعد.' },
+                            { type: 'mcq', question: 'WPA2 هو معيار متعلق بـ:', options: ['شبكات Wi-Fi', 'الأقراص الصلبة', 'USB', 'DNS'], correct: 0, explanation: 'WPA2 معيار أمني لشبكات الواي فاي.' },
+                            { type: 'tf', question: 'VLANs تساعد على عزل حركة المرور داخل نفس الشبكة المادية.', options: ['صح', 'خطأ'], correct: 0, explanation: 'تعزل النطاقات المنطقية حركة المرور.' }
+                        ]
                         summary: [
                             'تهيئة المنافذ وإسناد عناوين IP.',
                             'تفعيل التوجيه الثابت Static Routing.',
                             'التحقق عبر أوامر show ip route وshow ip interface brief.',
                             'حل مشاكل التوجيه الشائعة.'
                         ],
+                        description: 'التعرف على الهجمات الشائعة وكيفية الحماية منها.',
                         completed: false,
                         quiz: [
+                            { type: 'mcq', question: 'هجوم DDoS يستهدف:', options: ['انتحال الهوية', 'إغراق الخدمة بالطلبات', 'التصعيد الصلاحي', 'التجسس على المستخدم'], correct: 1, explanation: 'يُغرق الخدمة بطلبات لمنع الوصول الشرعي.' },
+                            { type: 'mcq', question: 'XSS مرتبط بـ:', options: ['إدخال أوامر على الخادم', 'حقن سكربت في المتصفح', 'التنصت على الشبكات', 'تجاوز المصادقة'], correct: 1, explanation: 'Cross-Site Scripting يُدخل سكربت في صفحات الويب.' },
+                            { type: 'tf', question: 'SQL Injection يمكن من الوصول غير المصرّح لقاعدة البيانات.', options: ['صح', 'خطأ'], correct: 0, explanation: 'استغلال ثغرات الاستعلامات للوصول أو التلاعب بالبيانات.' }
+                        ]
                             { type: 'mcq', question: 'الأمر لعرض جدول التوجيه:', options: ['show ip interface brief', 'show running-config', 'show ip route', 'show cdp neighbors'], correct: 2, explanation: 'show ip route يعرض مسارات التوجيه.' },
                             { type: 'tf', question: 'Static route يتوقف على بروتوكول ديناميكي ليعمل.', options: ['صح', 'خطأ'], correct: 1, explanation: 'المسار الثابت لا يعتمد على بروتوكول ديناميكي.' },
                             { type: 'mcq', question: 'تعريف مسار ثابت إلى 192.168.2.0/24 عبر 192.168.1.1:', options: ['ip route 192.168.2.0 255.255.255.0 192.168.1.1', 'route add 192.168.2.0/24 gw 192.168.1.1', 'set route ...', 'ip static 192.168.2.0 192.168.1.1'], correct: 0, explanation: 'بناء الجملة الصحيح كما في IOS: ip route <network> <mask> <next-hop>.' },
                             { type: 'mcq', question: 'أي بروتوكول ديناميكي شائع للتوجيه الداخلي؟', options: ['FTP', 'RIP', 'NTP', 'ARP'], correct: 1, explanation: 'RIP هو بروتوكول توجيه ديناميكي بسيط للشبكات الصغيرة.' },
                             { type: 'tf', question: 'يجب أن تكون الواجهة في حالة up/up كي تمرر الترافيك.', options: ['صح', 'خطأ'], correct: 0, explanation: 'واجهة down أو administratively down تمنع مرور الترافيك.' }
                         ]
-                    },
-                    {
+                        description: 'تطبيق أفضل الممارسات لضمان الأمن السيبراني.',
+                        completed: false,
+                        quiz: [
+                            { type: 'mcq', question: 'أي من التالي يُعد ممارسة آمنة لكلمات المرور؟', options: ['إعادة استخدام نفس الكلمة', 'مشاركة الكلمة', 'مدير كلمات مرور + MFA', 'حفظها في البريد'], correct: 2, explanation: 'إدارة كلمات المرور وMFA من أفضل الممارسات.' },
+                            { type: 'tf', question: 'التحديثات الأمنية الدورية غير مهمة.', options: ['صح', 'خطأ'], correct: 1, explanation: 'التحديثات تُغلق الثغرات المعروفة.' },
+                            { type: 'mcq', question: 'مبدأ أقل صلاحية (Least Privilege) يعني:', options: ['منح جميع الصلاحيات دائمًا', 'منح الحد الأدنى اللازم من الصلاحيات', 'عدم وجود صلاحيات', 'صلاحيات مؤقتة فقط'], correct: 1, explanation: 'يُعطي المستخدم أقل صلاحيات لازمة لأداء مهامه.' }
+                        ]
                         id: 5,
                         title: 'استكشاف الأخطاء',
                         videoUrl: 'https://www.youtube.com/watch?v=QHkYJfuqW1k',
@@ -228,7 +228,12 @@ class CourseManager {
                         videoUrl: 'https://www.youtube.com/watch?v=jwnvKOjmtEA',
                         duration: '30:45',
                         description: 'كيفية إنشاء وإدارة المستخدمين وضبط الأذونات.',
-                        completed: false
+                        completed: false,
+                        quiz: [
+                            { type: 'mcq', question: 'أي أمر يُستخدم لإضافة مستخدم جديد؟', options: ['useradd', 'adduser', 'newuser', 'mkuser'], correct: 0, explanation: 'useradd هو الأمر الشائع (وأحيانًا adduser حسب التوزيعة).' },
+                            { type: 'mcq', question: 'صلاحيات rwx تعني:', options: ['قراءة فقط', 'قراءة وكتابة وتنفيذ', 'تنفيذ فقط', 'كتابة فقط'], correct: 1, explanation: 'r=read, w=write, x=execute.' },
+                            { type: 'tf', question: 'الأمر chmod يُستخدم لتعديل الصلاحيات.', options: ['صح', 'خطأ'], correct: 0, explanation: 'chmod يعدّل صلاحيات الملفات والمجلدات.' }
+                        ]
                     },
                     {
                         id: 4,
@@ -236,7 +241,12 @@ class CourseManager {
                         videoUrl: 'https://www.youtube.com/watch?v=eL6Bl7hrrkU',
                         duration: '28:20',
                         description: 'مراقبة وإدارة العمليات والخدمات في النظام.',
-                        completed: false
+                        completed: false,
+                        quiz: [
+                            { type: 'mcq', question: 'أي أمر يعرض العمليات الجارية؟', options: ['ls', 'ps', 'cat', 'grep'], correct: 1, explanation: 'ps يعرض العمليات، وtop/htop تفاعلية أيضاً.' },
+                            { type: 'mcq', question: 'systemctl start nginx يقوم بـ:', options: ['إعادة تشغيل الخدمة', 'إيقاف الخدمة', 'بدء الخدمة', 'عرض الحالة'], correct: 2, explanation: 'start لبدء خدمة systemd.' },
+                            { type: 'tf', question: 'kill -9 يُرسل إشارة SIGKILL لإنهاء العملية فورًا.', options: ['صح', 'خطأ'], correct: 0, explanation: 'SIGKILL لا يُلتقط ويُنهي العملية مباشرة.' }
+                        ]
                     },
                     {
                         id: 5,
@@ -244,7 +254,12 @@ class CourseManager {
                         videoUrl: 'https://www.youtube.com/watch?v=qmtaBdukQdk',
                         duration: '35:15',
                         description: 'إعداد وإدارة الشبكات في بيئة لينكس.',
-                        completed: false
+                        completed: false,
+                        quiz: [
+                            { type: 'mcq', question: 'أي أمر يعرض إعدادات الشبكة؟', options: ['ifconfig/ip', 'ls', 'df', 'whoami'], correct: 0, explanation: 'ip addr أو ifconfig (قديم).' },
+                            { type: 'tf', question: 'الملف /etc/hosts يُستخدم لتعيين أسماء محلية لعناوين IP.', options: ['صح', 'خطأ'], correct: 0, explanation: 'يُستخدم لحل الأسماء محليًا.' },
+                            { type: 'mcq', question: 'الأمر لعرض اتصالات المنافذ:', options: ['netstat/ss', 'cat /proc/cpuinfo', 'uname -a', 'echo $SHELL'], correct: 0, explanation: 'ss/netstat يعرضان الاتصالات والمنافذ.' }
+                        ]
                     }
                 ]
             },
