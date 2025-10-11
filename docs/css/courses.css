@@ -1,0 +1,11 @@
+/* Button consistency overrides (courses pages) */
+.btn{border-radius:9999px;min-height:44px;padding:.65rem 1.8rem;font-weight:600}
+.btn-primary{background:linear-gradient(90deg,#7B61FF 0%,#9B79FF 100%);color:#fff}
+.btn-primary:hover{background:linear-gradient(90deg,#6A4DFF 0%,#8A68FF 100%)}
+.btn-outline,.btn-secondary{background:#F3E9FF;color:#7B61FF;border:1px solid #D7C9FF}
+.btn-outline:hover,.btn-secondary:hover{background:linear-gradient(90deg,#ECE0FF 0%,#F7EFFF 100%)}
+.btn-success{background:#4ADE80;color:#fff}.btn-success:hover{background:#22C55E}
+.btn-danger{background:#EF4444;color:#fff}.btn-danger:hover{background:#DC2626}
+.btn-info{background:#60A5FA;color:#fff}.btn-info:hover{background:#3B82F6}
+.btn+.btn{margin-inline-start:.75rem}
+.btn:only-child{background:#F3E9FF;color:#7B61FF;border:1px solid #D7C9FF}
