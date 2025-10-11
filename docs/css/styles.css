@@ -667,6 +667,24 @@ p {
     cursor: pointer;
 }
 
+/* Focus visibility for accessibility */
+.btn:focus-visible {
+    outline: 3px solid rgba(123, 97, 255, 0.35);
+    outline-offset: 2px;
+}
+
+/* Disabled states */
+.btn[disabled],
+.btn[aria-disabled="true"],
+.btn.is-disabled {
+    background: #E5E7EB !important;
+    color: #9CA3AF !important;
+    border-color: transparent !important;
+    box-shadow: none !important;
+    cursor: not-allowed !important;
+    transform: none !important;
+}
+
 .btn.is-loading,
 .btn[disabled] {
     opacity: 0.65;
@@ -2539,4 +2557,18 @@ header[data-active="about"] + main .card.card--feature p.text-muted {
 header[data-active="about"] + main .card.card--feature h3 {
     /* Light purple for headings to improve hierarchy on gradient cards */
     color: #E9D5FF !important; /* light lavender */
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    .btn,
+    .btn-primary,
+    .btn-secondary,
+    .btn-outline {
+        transition: none !important;
+    }
+    .btn-primary:hover,
+    .btn:hover {
+        transform: none !important;
+    }
 }
