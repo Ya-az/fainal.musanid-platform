@@ -3,6 +3,7 @@
   "env": {
     "es2021": true,
     "node": true,
+    "jest": true,
     "browser": true
   },
   "extends": [
@@ -12,11 +13,18 @@
   ],
   "parserOptions": {
     "ecmaVersion": 2021,
-    "sourceType": "module"
+    "sourceType": "script"
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".json"]
+      }
+    }
   },
   "rules": {
-    "no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }],
-    "no-console": ["warn", { "allow": ["error", "warn", "info"] }],
+    "no-unused-vars": ["warn", { "argsIgnorePattern": "^_", "caughtErrorsIgnorePattern": "^_" }],
+    "no-console": "off",
     "import/no-unresolved": "off",
     "prefer-const": "warn",
     "no-var": "warn",
@@ -32,5 +40,12 @@
         "node": false
       }
     }
+  ],
+  "ignorePatterns": [
+    "coverage/",
+    "public/",
+    "docs/",
+    "temp/",
+    "**/*.min.js"
   ]
 }

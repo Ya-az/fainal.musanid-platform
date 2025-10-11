@@ -63,6 +63,14 @@ const progressLimiter = rateLimit({
     legacyHeaders: false
 });
 app.use('/api/progress', progressLimiter);
+// Rate limit for favorites APIs (safer boundary)
+const favoritesLimiter = rateLimit({
+    windowMs: 60 * 1000,
+    max: 60,
+    standardHeaders: true,
+    legacyHeaders: false
+});
+app.use('/api/favorites', favoritesLimiter);
 // دعم العمل خلف Proxy في بيئة الإنتاج (لتفعيل الكوكي الآمن)
 if (process.env.NODE_ENV === 'production') {
     app.set('trust proxy', 1);
@@ -158,7 +166,12 @@ app.use((req, res, next) => {
 });
 
 // Static files
-app.use(express.static(path.join(__dirname, '../public')));
+// Static files with cache headers (configurable via env)
+const staticMaxAge = process.env.STATIC_MAX_AGE ? parseInt(process.env.STATIC_MAX_AGE, 10) : 0;
+app.use(express.static(path.join(__dirname, '../public'), {
+    maxAge: staticMaxAge,
+    etag: true
+}));
 
 // Health check
 app.get('/health', (req, res) => res.json({ status: 'ok' }));
