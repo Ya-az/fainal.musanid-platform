@@ -92,7 +92,7 @@ router.post('/login', async (req, res) => {
 // تسجيل الخروج
 router.post('/logout', (req, res) => {
   req.session.destroy(() => {
-    res.clearCookie('connect.sid');
+    res.clearCookie('musanid.sid');
     res.redirect('/');
   });
 });

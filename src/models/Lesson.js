@@ -71,5 +71,7 @@ module.exports = {
   ensureLessonsTable,
   findAll,
   findBySlug,
-  seedIfEmpty
+  seedIfEmpty,
+  // Alias to maintain compatibility with routes expecting getAllLessons
+  getAllLessons: findAll
 };
