@@ -166,7 +166,30 @@ class CourseManager {
                         videoUrl: 'https://www.youtube.com/watch?v=2PGnYjbYuUo',
                         duration: '20:00',
                         description: 'نظرة عامة على نظام لينكس وتوزيعاته المختلفة.',
-                        completed: false
+                        completed: false,
+                        quiz: [
+                            {
+                                type: 'mcq',
+                                question: 'ما هو لينكس؟',
+                                options: ['برنامج تحرير فيديو', 'نظام تشغيل مفتوح المصدر', 'متصفح إنترنت', 'قاعدة بيانات'],
+                                correct: 1,
+                                explanation: 'لينكس نظام تشغيل مفتوح المصدر يعتمد على نواة Linux.'
+                            },
+                            {
+                                type: 'tf',
+                                question: 'الدليل الجذر في لينكس يُشار إليه بالرمز /',
+                                options: ['صح', 'خطأ'],
+                                correct: 0,
+                                explanation: 'جذر نظام الملفات في لينكس هو /.'
+                            },
+                            {
+                                type: 'mcq',
+                                question: 'أي مما يلي يعتبر توزيعة لينكس؟',
+                                options: ['Ubuntu', 'Windows', 'macOS', 'iOS'],
+                                correct: 0,
+                                explanation: 'Ubuntu إحدى التوزيعات الشائعة المبنية على لينكس.'
+                            }
+                        ]
                     },
                     {
                         id: 2,
@@ -174,7 +197,30 @@ class CourseManager {
                         videoUrl: 'https://www.youtube.com/watch?v=IVquJh3DXUA',
                         duration: '25:30',
                         description: 'تعلم الأوامر الأساسية للتنقل وإدارة الملفات.',
-                        completed: false
+                        completed: false,
+                        quiz: [
+                            {
+                                type: 'mcq',
+                                question: 'أي أمر يُستخدم لعرض الملفات والمجلدات؟',
+                                options: ['cd', 'ls', 'pwd', 'mkdir'],
+                                correct: 1,
+                                explanation: 'ls يعرض محتوى الدليل الحالي.'
+                            },
+                            {
+                                type: 'mcq',
+                                question: 'الأمر pwd يعرض:',
+                                options: ['صلاحيات الملف', 'المسار الحالي', 'المجلدات المخفية', 'نسخة النظام'],
+                                correct: 1,
+                                explanation: 'pwd يطبع مسار الدليل الحالي.'
+                            },
+                            {
+                                type: 'tf',
+                                question: 'الأمر cd .. يعيدك خطوة للخلف في التسلسل الهرمي للمجلدات.',
+                                options: ['صح', 'خطأ'],
+                                correct: 0,
+                                explanation: 'cd .. يعود بك للمجلد الأب.'
+                            }
+                        ]
                     },
                     {
                         id: 3,
@@ -217,7 +263,30 @@ class CourseManager {
                         videoUrl: 'https://www.youtube.com/watch?v=A74TOX803D0',
                         duration: '25:00',
                         description: 'نظرة عامة على لغة Java وإعداد بيئة التطوير.',
-                        completed: false
+                        completed: false,
+                        quiz: [
+                            {
+                                type: 'mcq',
+                                question: 'أي عبارة صحيحة عن Java؟',
+                                options: ['لغة مترجمة فقط', 'لغة مفسرة فقط', 'تُحوّل إلى بايت كود يعمل على JVM', 'لا تعمل عبر المنصات'],
+                                correct: 2,
+                                explanation: 'Java تُترجم إلى بايت كود يعمل على الآلة الافتراضية JVM.'
+                            },
+                            {
+                                type: 'mcq',
+                                question: 'الفرق بين JDK وJRE هو أن:',
+                                options: ['JRE للتطوير، JDK للتشغيل', 'JDK للتطوير، JRE للتشغيل', 'لا فرق', 'كلاهما محررات نصية'],
+                                correct: 1,
+                                explanation: 'JDK يتضمن أدوات التطوير والمترجم؛ JRE لتشغيل التطبيقات.'
+                            },
+                            {
+                                type: 'tf',
+                                question: 'Java تدعم البرمجة كائنية التوجه.',
+                                options: ['صح', 'خطأ'],
+                                correct: 0,
+                                explanation: 'Java لغة OOP بالكامل.'
+                            }
+                        ]
                     },
                     {
                         id: 2,
@@ -225,7 +294,30 @@ class CourseManager {
                         videoUrl: 'https://www.youtube.com/watch?v=DuF6d153ZxY',
                         duration: '30:15',
                         description: 'تعلم كيفية التعامل مع المتغيرات وأنواع البيانات المختلفة.',
-                        completed: false
+                        completed: false,
+                        quiz: [
+                            {
+                                type: 'mcq',
+                                question: 'أي نوع بيانات لعدد صحيح صغير؟',
+                                options: ['int', 'byte', 'double', 'boolean'],
+                                correct: 1,
+                                explanation: 'byte يمثل 8-بت للأعداد الصحيحة الصغيرة.'
+                            },
+                            {
+                                type: 'mcq',
+                                question: 'أي نوع مناسب للأرقام العشرية؟',
+                                options: ['int', 'double', 'char', 'boolean'],
+                                correct: 1,
+                                explanation: 'double للأعداد ذات الفاصلة العائمة.'
+                            },
+                            {
+                                type: 'tf',
+                                question: 'قيمة boolean يمكن أن تكون true أو false فقط.',
+                                options: ['صح', 'خطأ'],
+                                correct: 0,
+                                explanation: 'boolean نوع منطقي ذو قيمتين.'
+                            }
+                        ]
                     },
                     {
                         id: 3,
@@ -268,7 +360,30 @@ class CourseManager {
                         videoUrl: 'https://www.youtube.com/watch?v=inWWhr5tnEA',
                         duration: '20:30',
                         description: 'نظرة عامة على التهديدات السيبرانية والحاجة للأمن.',
-                        completed: false
+                        completed: false,
+                        quiz: [
+                            {
+                                type: 'mcq',
+                                question: 'ما الهدف من الأمن السيبراني؟',
+                                options: ['تسريع الإنترنت', 'حماية الأنظمة والبيانات', 'تصميم مواقع', 'إدارة قواعد البيانات فقط'],
+                                correct: 1,
+                                explanation: 'الأمن السيبراني يهدف لحماية الأنظمة والبيانات من التهديدات.'
+                            },
+                            {
+                                type: 'tf',
+                                question: 'التصيد (Phishing) هو محاولة لسرقة المعلومات عبر انتحال الهوية.',
+                                options: ['صح', 'خطأ'],
+                                correct: 0,
+                                explanation: 'Phishing يعتمد على رسائل مزيفة لخداع المستخدم.'
+                            },
+                            {
+                                type: 'mcq',
+                                question: 'أي مما يلي مثال على برمجيات خبيثة؟',
+                                options: ['Antivirus', 'Malware', 'Firewall', 'VPN'],
+                                correct: 1,
+                                explanation: 'Malware هو مصطلح شامل للبرمجيات الخبيثة.'
+                            }
+                        ]
                     },
                     {
                         id: 2,
@@ -276,7 +391,30 @@ class CourseManager {
                         videoUrl: 'https://www.youtube.com/watch?v=NuiQS4ne5rE',
                         duration: '28:45',
                         description: 'أساسيات التشفير وطرق حماية البيانات الحساسة.',
-                        completed: false
+                        completed: false,
+                        quiz: [
+                            {
+                                type: 'mcq',
+                                question: 'أي مما يلي يُعد نوعًا من التشفير المتماثل؟',
+                                options: ['RSA', 'AES', 'ECC', 'DSA'],
+                                correct: 1,
+                                explanation: 'AES خوارزمية تشفير متماثل شائعة.'
+                            },
+                            {
+                                type: 'tf',
+                                question: 'التجزئة (Hashing) قابلة للعكس بسهولة.',
+                                options: ['صح', 'خطأ'],
+                                correct: 1,
+                                explanation: 'التجزئة غير قابلة للعكس نظريًا.'
+                            },
+                            {
+                                type: 'mcq',
+                                question: 'أفضل ممارسة لحماية كلمات المرور:',
+                                options: ['حفظها كنص صريح', 'استخدام Hash مع Salt', 'إرسالها بالبريد', 'مشاركتها شفهيًا'],
+                                correct: 1,
+                                explanation: 'Hash مع Salt يزيد صعوبة الهجمات.'
+                            }
+                        ]
                     },
                     {
                         id: 3,
