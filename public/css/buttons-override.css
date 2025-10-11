@@ -16,6 +16,49 @@
   transition: background 0.25s ease, color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
 }
 
+/* Focus visibility for accessibility */
+.btn:focus-visible,
+.btn-primary:focus-visible,
+.btn-secondary:focus-visible,
+.btn-outline:focus-visible,
+.btn-success:focus-visible,
+.btn-danger:focus-visible,
+.btn-info:focus-visible {
+  outline: 3px solid rgba(123, 97, 255, 0.35);
+  outline-offset: 2px;
+}
+
+/* Disabled states */
+.btn[disabled],
+.btn[aria-disabled="true"],
+.btn.is-disabled,
+.btn-primary[disabled],
+.btn-primary[aria-disabled="true"],
+.btn-primary.is-disabled,
+.btn-secondary[disabled],
+.btn-secondary[aria-disabled="true"],
+.btn-secondary.is-disabled,
+.btn-outline[disabled],
+.btn-outline[aria-disabled="true"],
+.btn-outline.is-disabled,
+.btn-success[disabled],
+.btn-success[aria-disabled="true"],
+.btn-success.is-disabled,
+.btn-danger[disabled],
+.btn-danger[aria-disabled="true"],
+.btn-danger.is-disabled,
+.btn-info[disabled],
+.btn-info[aria-disabled="true"],
+.btn-info.is-disabled {
+  background: #E5E7EB !important;
+  color: #9CA3AF !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+  cursor: not-allowed !important;
+  transform: none !important;
+  pointer-events: none;
+}
+
 /* Primary */
 .btn-primary {
   background: linear-gradient(90deg, #7B61FF 0%, #9B79FF 100%);
@@ -56,6 +99,27 @@
 /* Reliable spacing between adjacent buttons when placed inline */
 .btn + .btn {
   margin-inline-start: 0.75rem;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .btn-primary,
+  .btn-secondary,
+  .btn-outline,
+  .btn-success,
+  .btn-danger,
+  .btn-info {
+    transition: none !important;
+  }
+  .btn-primary:hover,
+  .btn-secondary:hover,
+  .btn-outline:hover,
+  .btn-success:hover,
+  .btn-danger:hover,
+  .btn-info:hover,
+  .btn:hover {
+    transform: none !important;
+  }
 }
 
 /* Solo buttons should look secondary by default */
