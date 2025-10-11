@@ -409,6 +409,7 @@
                                 <div class="alert">
                                     <h4 id="quizResultTitle">النتيجة</h4>
                                     <p id="quizScore">لقد أجبت بشكل صحيح على جميع الأسئلة.</p>
+                                    <p class="text-sm text-muted" id="quizThresholdHint"></p>
                                 </div>
                             </div>
                         </div>
@@ -454,6 +455,10 @@
     <script src="../js/components/header.js"></script>
     <script src="../js/components/footer.js"></script>
     <script src="../js/main.js"></script>
+    <script>
+        // Optional: Configure global quiz pass percentage here
+        window.quizConfig = { passPercentage: 80 };
+    </script>
     <script>
         // Get course ID from URL parameters or default to Cisco
         const urlParams = new URLSearchParams(window.location.search);
@@ -792,6 +797,10 @@
             
             // Show results
             quizScore.textContent = `لقد أجبت بشكل صحيح على ${result.score} من ${result.total} أسئلة (${result.percentage}%)`;
+            const hint = document.getElementById('quizThresholdHint');
+            if (hint && typeof result.threshold === 'number') {
+                hint.textContent = `النجاح يتطلب ${result.threshold}% فأكثر`;
+            }
             const titleEl = document.getElementById('quizResultTitle');
             if (result.passed) {
                 quizResults.firstElementChild.className = 'alert alert--success';
