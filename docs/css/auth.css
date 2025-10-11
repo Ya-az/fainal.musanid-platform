@@ -31,11 +31,30 @@
 
 /* Form card typography */
 .auth-card .form-title {
-  color: #1f2937; /* gray-800 */
+  color: var(--color-primary-dark);
 }
 .auth-card .form-subtitle,
 .auth-card .form-helper {
   color: #4b5563; /* gray-600 */
+}
+
+/* Make form labels and important inline texts dark purple */
+.auth-card .form-label {
+  color: var(--color-primary-dark);
+}
+
+/* Checkbox sentence and its links */
+.auth-card .checkbox-field span,
+.auth-card .checkbox-field a {
+  color: var(--color-primary-dark);
+}
+
+/* Auth links like "سجّل الدخول الآن" */
+.auth-card .link-accent {
+  color: var(--color-primary-dark);
+}
+.auth-card .link-accent:hover {
+  color: var(--color-primary);
 }
 
 /* Inputs */
@@ -89,19 +108,39 @@
   text-decoration-color: #f0e7ff;
 }
 
-/* Left column content within hero intro card */
-.auth-hero .card.card--glass .section__title,
+/* Left column content within hero intro card: enforce readable text */
 .auth-hero .card.card--glass p,
 .auth-hero .card.card--glass li,
-.auth-hero .card.card--glass .pill,
+.auth-hero .card.card--glass label {
+  color: #111827; /* slate-900 */
+}
+
+/* Title and stats in purple */
+.auth-hero .card.card--glass .section__title,
 .auth-hero .card.card--glass .stat-card__label,
 .auth-hero .card.card--glass .stat-card__value {
-  color: #ffffff;
+  color: var(--color-primary-dark);
+}
+
+/* Links inside the glass intro card */
+.auth-hero .card.card--glass a {
+  color: var(--color-primary-dark);
+  text-decoration-color: rgba(91, 33, 182, 0.4);
+}
+.auth-hero .card.card--glass a:hover {
+  color: var(--color-primary);
+  text-decoration-color: rgba(124, 58, 237, 0.6);
 }
 
 /* Ensure stat-card in hero remains contrasty */
 .auth-hero .stat-card {
   background: #ffffff;
+}
+
+/* Force neutral pill variant to dark text when inside glass card */
+.auth-hero .card.card--glass .pill--neutral {
+  color: #5B21B6 !important; /* keep brand purple for text */
+  border-color: rgba(91, 33, 182, 0.18) !important;
 }
 
 /* Error and success messages */
