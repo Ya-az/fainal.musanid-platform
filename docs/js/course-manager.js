@@ -458,6 +458,14 @@ class CourseManager {
                 ]
             }
         };
+        // Configurable pass threshold (default 80%)
+        try {
+            const cfg = (typeof window !== 'undefined' && window.quizConfig) ? window.quizConfig : {};
+            const fromCfg = typeof cfg.passPercentage === 'number' ? cfg.passPercentage : undefined;
+            this.passThreshold = Number.isFinite(fromCfg) ? fromCfg : 80;
+        } catch (_) {
+            this.passThreshold = 80;
+        }
         
         this.loadProgressFromStorage();
     }
@@ -512,6 +520,15 @@ class CourseManager {
             }, {});
     }
 
+    // Get pass threshold (course-level override or global)
+    getPassThreshold(courseId) {
+        const course = courseId ? this.courses[courseId] : undefined;
+        if (course && typeof course.passThreshold === 'number') {
+            return course.passThreshold;
+        }
+        return this.passThreshold ?? 70;
+    }
+
     // Get course progress percentage
     getProgressPercentage(courseId) {
         const course = this.courses[courseId];
@@ -560,7 +577,7 @@ class CourseManager {
     // Check quiz answers
     checkQuizAnswers(courseId, lessonId, answers) {
         const quiz = this.generateQuiz(courseId, lessonId);
-        if (!quiz || quiz.length === 0) return { score: 0, total: 0, percentage: 0, passed: true, details: [] };
+        if (!quiz || quiz.length === 0) return { score: 0, total: 0, percentage: 0, passed: true, threshold: this.getPassThreshold(courseId), details: [] };
 
         let correctCount = 0;
         const details = quiz.map((q, i) => {
@@ -578,7 +595,8 @@ class CourseManager {
         });
 
         const percentage = Math.round((correctCount / quiz.length) * 100);
-        return { score: correctCount, total: quiz.length, percentage, passed: percentage >= 70, details };
+        const threshold = this.getPassThreshold(courseId);
+        return { score: correctCount, total: quiz.length, percentage, passed: percentage >= threshold, threshold, details };
     }
 }
 
