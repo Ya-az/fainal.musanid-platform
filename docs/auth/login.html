@@ -6,12 +6,13 @@
     <title>تسجيل الدخول - منصة مساند</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="../css/styles.css" rel="stylesheet">
+    <link href="../css/auth.css" rel="stylesheet">
 </head>
 <body>
     <header class="site-header" data-site-header data-base="../" data-nav-id="authNav" data-home="index.html" data-primary-text="إنشاء حساب" data-primary-href="register.html" data-secondary-text="العودة للرئيسية" data-secondary-href="../index.html" data-secondary-variant="outline"></header>
 
     <main>
-        <section class="hero hero--light hero--compact">
+    <section class="hero hero--light hero--compact auth-hero">
             <div class="container split">
                 <div class="card card--glass layout-stack">
                     <span class="pill pill--neutral align-start">مرحباً مجدداً</span>
@@ -30,18 +31,18 @@
                     </div>
                 </div>
 
-                        <div class="card form layout-stack card--elevated" aria-labelledby="loginTitle">
-                    <h2 id="loginTitle" class="section__title section__title--md mb-0">تسجيل الدخول</h2>
-                    <p class="text-body">أدخل بياناتك للمتابعة. جميع الاتصالات مشفّرة بالكامل.</p>
+                        <div class="card form layout-stack auth-card" aria-labelledby="loginTitle">
+                    <h2 id="loginTitle" class="section__title section__title--md mb-0 form-title">تسجيل الدخول</h2>
+                    <p class="text-body form-subtitle">أدخل بياناتك للمتابعة. جميع الاتصالات مشفّرة بالكامل.</p>
                     <form id="loginForm" class="layout-stack" action="/auth/login" method="POST" novalidate>
                         <div>
-                            <label for="userOrEmail" class="form-label text-contrast">اسم المستخدم أو البريد الإلكتروني</label>
+                            <label for="userOrEmail" class="form-label">اسم المستخدم أو البريد الإلكتروني</label>
                             <input id="userOrEmail" name="userOrEmail" type="text" class="input-field" placeholder="example@musanid.com" autocomplete="username" required>
                         </div>
 
                         <div>
                             <div class="layout-inline layout-inline--between layout-inline--center">
-                                <label for="password" class="form-label mb-0 text-contrast">كلمة المرور</label>
+                                <label for="password" class="form-label mb-0">كلمة المرور</label>
                         		<a class="link-accent text-sm" href="#">نسيت كلمة المرور؟</a>
                             </div>
                             <input id="password" name="password" type="password" class="input-field" placeholder="••••••••" autocomplete="current-password" required>
