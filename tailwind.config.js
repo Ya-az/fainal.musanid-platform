@@ -21,5 +21,9 @@ module.exports = {
       }
     },
   },
+  corePlugins: {
+    // تعطيل الخصائص التي تسبب تحذيرات التوافق
+    textSizeAdjust: false,
+  },
   plugins: [],
 }

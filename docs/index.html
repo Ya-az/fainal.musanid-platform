@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منصة مساند - لتعليم أفضل بخطوات واضحة</title>
+    <title>🎓 منصة مساند - لتعليم أفضل بخطوات واضحة</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -21,6 +21,12 @@
             }
         }
     </script>
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="img/icons/icon-192x192.png">
+    <meta name="theme-color" content="#5b21b6">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="مساند">
     <link href="css/styles.css" rel="stylesheet">
 </head>
 <body>
@@ -234,9 +240,10 @@
 
     <footer class="site-footer" data-site-footer data-base=""></footer>
 
+    <!-- تحميل ملف التكوين المركزي أولاً -->
+    <script src="js/config.js"></script>
     <script src="js/components/header.js"></script>
     <script src="js/components/footer.js"></script>
-    <script src="js/main.js"></script>
 </body>
 </html>
 
