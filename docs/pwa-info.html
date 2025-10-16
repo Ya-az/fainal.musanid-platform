@@ -3,7 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>التطبيق التقدمي PWA - منصة مساند</title>
+    <title>🎓 التطبيق التقدمي PWA | منصة مساند</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'musanid-dark': '#6D28D9',
+                        'musanid-light': '#A78BFA',
+                    }
+                }
+            }
+        }
+    </script>
     <link rel="manifest" href="manifest.json">
     <link rel="apple-touch-icon" href="img/icons/icon-192x192.png">
     <meta name="theme-color" content="#5b21b6">
@@ -161,9 +174,9 @@
 
     <footer class="site-footer" data-site-footer data-base="./"></footer>
 
+    <script src="js/config.js"></script>
     <script src="js/components/header.js"></script>
-    <script src="js/components/footer.js"></script>
-    <script src="js/main.js"></script>
+    <script src="js/components/footer.js"></script></script>
     
     <script>
         // PWA Installation Logic
