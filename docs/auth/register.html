@@ -3,13 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>إنشاء حساب جديد - منصة مساند</title>
+    <title>🎓 إنشاء حساب جديد - منصة مساند</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="../css/styles.css" rel="stylesheet">
     <link href="../css/auth.css" rel="stylesheet">
 </head>
 <body>
-    <header class="site-header" data-site-header data-base="../" data-nav-id="authNav" data-home="index.html" data-primary-text="تسجيل الدخول" data-primary-href="login.html" data-secondary-text="العودة للرئيسية" data-secondary-href="../index.html" data-secondary-variant="outline"></header>
+    <header class="site-header" 
+            data-site-header 
+            data-base="../" 
+            data-active="register"
+            data-primary-text="تسجيل الدخول"
+            data-primary-href="login.html"
+            data-secondary-text="العودة للرئيسية"
+            data-secondary-href="../index.html"
+            data-secondary-variant="outline"></header>
 
     <main>
         <section class="hero hero--light hero--compact auth-hero">
@@ -54,12 +62,34 @@
                         <div class="form__row">
                             <div>
                                 <label for="password" class="form-label">كلمة المرور</label>
-                                <input id="password" name="password" type="password" class="input-field" placeholder="••••••••" minlength="8" autocomplete="new-password" required>
-                                <p class="form-helper">يُفضّل استخدام 8 أحرف على الأقل مع مزيج من الرموز والأرقام.</p>
+                                <div class="input-group">
+                                    <input id="password" name="password" type="password" class="input-field" placeholder="••••••••" minlength="8" autocomplete="new-password" required>
+                                    <button type="button" id="togglePassword" class="input-group__btn" aria-label="إظهار كلمة المرور" title="إظهار كلمة المرور">
+                                        <svg id="eyeIcon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                            <circle cx="12" cy="12" r="3"></circle>
+                                        </svg>
+                                        <svg id="eyeOffIcon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19M1 1l22 22M6.71 6.71l10.58 10.58"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <p class="form-helper">يُفضّّ استخدام 8 أحرف على الأقل مع مزيج من الرموز والأرقام.</p>
                             </div>
                             <div>
                                 <label for="confirmPassword" class="form-label">تأكيد كلمة المرور</label>
-                                <input id="confirmPassword" name="confirmPassword" type="password" class="input-field" placeholder="أعد كتابة كلمة المرور" autocomplete="new-password" required>
+                                <div class="input-group">
+                                    <input id="confirmPassword" name="confirmPassword" type="password" class="input-field" placeholder="أعد كتابة كلمة المرور" autocomplete="new-password" required>
+                                    <button type="button" id="toggleConfirmPassword" class="input-group__btn" aria-label="إظهار تأكيد كلمة المرور" title="إظهار تأكيد كلمة المرور">
+                                        <svg id="eyeIconConfirm" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                            <circle cx="12" cy="12" r="3"></circle>
+                                        </svg>
+                                        <svg id="eyeOffIconConfirm" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19M1 1l22 22M6.71 6.71l10.58 10.58"></path>
+                                        </svg>
+                                    </button>
+                                </div>
                             </div>
                         </div>
 
@@ -93,10 +123,10 @@
 
     <footer class="site-footer" data-site-footer data-base="../"></footer>
 
+    <script src="../js/config.js"></script>
     <script src="../js/components/header.js"></script>
     <script src="../js/components/footer.js"></script>
     <script src="../js/certificate-manager.js"></script>
-    <script src="../js/main.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const form = document.getElementById('signupForm');
@@ -153,6 +183,56 @@
                 event.preventDefault();
                 form.reset();
             });
+
+            // إظهار/إخفاء كلمة المرور
+            const togglePassword = document.getElementById('togglePassword');
+            const passwordField = document.getElementById('password');
+            const eyeIcon = document.getElementById('eyeIcon');
+            const eyeOffIcon = document.getElementById('eyeOffIcon');
+
+            togglePassword?.addEventListener('click', () => {
+                const isPassword = passwordField.type === 'password';
+                passwordField.type = isPassword ? 'text' : 'password';
+                
+                if (isPassword) {
+                    eyeIcon.style.display = 'none';
+                    eyeOffIcon.style.display = 'block';
+                    togglePassword.setAttribute('aria-label', 'إخفاء كلمة المرور');
+                    togglePassword.setAttribute('title', 'إخفاء كلمة المرور');
+                } else {
+                    eyeIcon.style.display = 'block';
+                    eyeOffIcon.style.display = 'none';
+                    togglePassword.setAttribute('aria-label', 'إظهار كلمة المرور');
+                    togglePassword.setAttribute('title', 'إظهار كلمة المرور');
+                }
+            });
+
+            // إظهار/إخفاء تأكيد كلمة المرور
+            const toggleConfirmPassword = document.getElementById('toggleConfirmPassword');
+            const confirmPasswordField = document.getElementById('confirmPassword');
+            const eyeIconConfirm = document.getElementById('eyeIconConfirm');
+            const eyeOffIconConfirm = document.getElementById('eyeOffIconConfirm');
+
+            toggleConfirmPassword?.addEventListener('click', () => {
+                const isPassword = confirmPasswordField.type === 'password';
+                confirmPasswordField.type = isPassword ? 'text' : 'password';
+                
+                if (isPassword) {
+                    eyeIconConfirm.style.display = 'none';
+                    eyeOffIconConfirm.style.display = 'block';
+                    toggleConfirmPassword.setAttribute('aria-label', 'إخفاء تأكيد كلمة المرور');
+                    toggleConfirmPassword.setAttribute('title', 'إخفاء تأكيد كلمة المرور');
+                } else {
+                    eyeIconConfirm.style.display = 'block';
+                    eyeOffIconConfirm.style.display = 'none';
+                    toggleConfirmPassword.setAttribute('aria-label', 'إظهار تأكيد كلمة المرور');
+                    toggleConfirmPassword.setAttribute('title', 'إظهار تأكيد كلمة المرور');
+                }
+            });
+
+            // إخفاء أيقونات العين المغلقة في البداية
+            if (eyeOffIcon) eyeOffIcon.style.display = 'none';
+            if (eyeOffIconConfirm) eyeOffIconConfirm.style.display = 'none';
         });
     </script>
 </body>

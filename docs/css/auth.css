@@ -49,6 +49,26 @@
   color: var(--color-primary-dark);
 }
 
+/* Ensure all input text is black for readability */
+.auth-card input[type="text"],
+.auth-card input[type="email"],
+.auth-card input[type="password"],
+.auth-card input[type="search"],
+.auth-card textarea,
+.auth-card select {
+  color: #000000 !important;
+}
+
+/* Maintain black text on focus */
+.auth-card input[type="text"]:focus,
+.auth-card input[type="email"]:focus,
+.auth-card input[type="password"]:focus,
+.auth-card input[type="search"]:focus,
+.auth-card textarea:focus,
+.auth-card select:focus {
+  color: #000000 !important;
+}
+
 /* Auth links like "سجّل الدخول الآن" */
 .auth-card .link-accent {
   color: var(--color-primary-dark);
@@ -154,6 +174,52 @@
 /* Success helper text variant */
 .auth-card .form-helper.is-success {
   color: #166534; /* green-700 */
+}
+
+/* Input group for password toggle */
+.input-group {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-group .input-field {
+  padding-left: 3rem; /* مساحة للزر */
+  width: 100%;
+}
+
+.input-group__btn {
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #6b7280; /* gray-500 */
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 0.375rem;
+  transition: color 0.2s ease;
+  z-index: 10;
+}
+
+.input-group__btn:hover {
+  color: #374151; /* gray-700 */
+}
+
+.input-group__btn:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.input-group__btn svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+/* إخفاء الأيقونة الثانية افتراضياً */
+.input-group__btn #eyeOffIcon {
+  display: none;
 }
 
 /* Reduced motion */

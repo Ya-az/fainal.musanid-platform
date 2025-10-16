@@ -3,13 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تسجيل الدخول - منصة مساند</title>
+    <title>🎓 تسجيل الدخول - منصة مساند</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="../css/styles.css" rel="stylesheet">
     <link href="../css/auth.css" rel="stylesheet">
 </head>
 <body>
-    <header class="site-header" data-site-header data-base="../" data-nav-id="authNav" data-home="index.html" data-primary-text="إنشاء حساب" data-primary-href="register.html" data-secondary-text="العودة للرئيسية" data-secondary-href="../index.html" data-secondary-variant="outline"></header>
+    <header class="site-header" 
+            data-site-header 
+            data-base="../" 
+            data-active="login"
+            data-primary-text="إنشاء حساب"
+            data-primary-href="register.html"
+            data-secondary-text="العودة للرئيسية"
+            data-secondary-href="../index.html"
+            data-secondary-variant="outline"></header>
 
     <main>
     <section class="hero hero--light hero--compact auth-hero">
@@ -45,7 +53,18 @@
                                 <label for="password" class="form-label mb-0">كلمة المرور</label>
                         		<a class="link-accent text-sm" href="#">نسيت كلمة المرور؟</a>
                             </div>
-                            <input id="password" name="password" type="password" class="input-field" placeholder="••••••••" autocomplete="current-password" required>
+                            <div class="input-group">
+                                <input id="password" name="password" type="password" class="input-field" placeholder="••••••••" autocomplete="current-password" required>
+                                <button type="button" id="togglePassword" class="input-group__btn" aria-label="إظهار كلمة المرور" title="إظهار كلمة المرور">
+                                    <svg id="eyeIcon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                        <circle cx="12" cy="12" r="3"></circle>
+                                    </svg>
+                                    <svg id="eyeOffIcon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19M1 1l22 22M6.71 6.71l10.58 10.58"></path>
+                                    </svg>
+                                </button>
+                            </div>
                             <p class="form-helper text-sm">استخدم ٨ أحرف على الأقل مع مزيج من الرموز والأرقام.</p>
                         </div>
 
@@ -66,12 +85,45 @@
         </section>
     </main>
 
-    <footer class="site-footer" data-site-footer data-base="../"></footer>
+    <footer class="site-footer" 
+            data-site-footer 
+            data-base="../"></footer>
 
+    <!-- Load Reusability System Scripts -->
+    <script src="../js/config.js"></script>
     <script src="../js/components/header.js"></script>
     <script src="../js/components/footer.js"></script>
-    <script src="../js/main.js"></script>
+
     <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const toggleBtn = document.getElementById('togglePassword');
+            const passwordInput = document.getElementById('password');
+            const eyeIcon = document.getElementById('eyeIcon');
+            const eyeOffIcon = document.getElementById('eyeOffIcon');
+
+            if (toggleBtn && passwordInput && eyeIcon && eyeOffIcon) {
+                toggleBtn.addEventListener('click', () => {
+                    const isPassword = passwordInput.type === 'password';
+                    
+                    // تبديل نوع الحقل
+                    passwordInput.type = isPassword ? 'text' : 'password';
+                    
+                    // تبديل الأيقونات
+                    if (isPassword) {
+                        eyeIcon.style.display = 'none';
+                        eyeOffIcon.style.display = 'block';
+                        toggleBtn.setAttribute('aria-label', 'إخفاء كلمة المرور');
+                        toggleBtn.setAttribute('title', 'إخفاء كلمة المرور');
+                    } else {
+                        eyeIcon.style.display = 'block';
+                        eyeOffIcon.style.display = 'none';
+                        toggleBtn.setAttribute('aria-label', 'إظهار كلمة المرور');
+                        toggleBtn.setAttribute('title', 'إظهار كلمة المرور');
+                    }
+                });
+            }
+        });
+
         document.addEventListener('DOMContentLoaded', async () => {
             try {
                 const res = await fetch('/csrf-token', { credentials: 'include' });

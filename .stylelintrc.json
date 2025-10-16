@@ -1,0 +1,21 @@
+{
+  "rules": {
+    "property-no-unknown": [
+      true,
+      {
+        "ignoreProperties": [
+          "-webkit-text-size-adjust",
+          "-webkit-tap-highlight-color",
+          "-webkit-appearance",
+          "-webkit-text-decoration",
+          "-webkit-inner-spin-button",
+          "-webkit-outer-spin-button",
+          "-webkit-search-decoration",
+          "-webkit-file-upload-button",
+          "-webkit-backdrop-filter"
+        ]
+      }
+    ],
+    "property-no-vendor-prefix": null
+  }
+}

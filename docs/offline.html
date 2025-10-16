@@ -3,61 +3,85 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>وضع عدم الاتصال | منصة مساند</title>
+  <title>🎓 وضع عدم الاتصال | منصة مساند</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'musanid-dark': '#6D28D9',
+            'musanid-light': '#A78BFA',
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="img/icons/icon-192x192.png">
+  <meta name="theme-color" content="#5b21b6">
   <link href="css/styles.css" rel="stylesheet">
 </head>
 <body>
   <header class="site-header" data-site-header data-base="./" data-home="index.html" data-nav-id="offlineNav"></header>
 
   <main>
-    <section class="hero hero--light hero--compact">
+    <section class="hero">
       <div class="container">
         <div class="hero__content">
-          <span class="pill hero__pill">لا توجد إشارة إنترنت</span>
-          <h1 class="hero__headline">يبدو أنك غير متصل بالإنترنت حاليًا</h1>
+          <span class="pill pill--inverse">🔌 لا توجد إشارة إنترنت</span>
+          <h1 class="hero__headline">🎓 يبدو أنك غير متصل بالإنترنت حالياً</h1>
           <p class="hero__subheadline">
             احرص على الاتصال بالشبكة لمتابعة تعلمك، أو تصفح المحتوى الذي تم حفظه مسبقًا دون اتصال. بمجرد عودة الإنترنت يمكنك تحديث الصفحة ومتابعة العمل.
           </p>
           <div class="hero__actions">
-            <button type="button" class="btn btn-primary" onclick="window.location.reload()">إعادة المحاولة الآن</button>
-            <a href="support/sp_index.html#contact" class="btn btn-secondary">طلب المساعدة</a>
+            <button type="button" class="btn btn-primary" onclick="window.location.reload()">🔄 إعادة المحاولة الآن</button>
+            <a href="support/sp_index.html#contact" class="btn btn-outline">🆘 طلب المساعدة</a>
           </div>
         </div>
-      </div>
-    </section>
 
-    <section class="section section--flush-top">
-      <div class="container grid grid--columns-3">
-        <article class="card card--muted layout-stack">
-          <h2 class="section__title section__title--sm">ماذا يحدث أثناء عدم الاتصال؟</h2>
-          <p class="text-muted">نحاول حفظ آخر درس زرته وبعض الملفات المهمة لتستمر بالاطلاع عليها دون توقف. قد لا تتوفر المزايا التفاعلية مثل الاختبارات أو تحديث التقدم لحين عودة الشبكة.</p>
-        </article>
-        <article class="card layout-stack">
-          <h3 class="heading-sm">نصائح سريعة</h3>
-          <ul class="layout-stack layout-stack--tight text-body">
-            <li>📁 قم بتنزيل الموارد المهمة كي تبقى معك في وضع عدم الاتصال.</li>
-            <li>🗒️ دوّن ملاحظاتك وسيتم مزامنتها تلقائيًا عند الاتصال من جديد.</li>
-            <li>🔔 ستتلقى إشعارًا بمجرد عودة الإنترنت واستئناف التتبع.</li>
-          </ul>
-        </article>
-        <article class="card card--glass layout-stack">
-          <h3 class="heading-sm">حالة الاتصال</h3>
-          <p class="text-muted">نراقب حالة الاتصال في الخلفية. عند عودته، سيتم تحديث الصفحة تلقائيًا أو يمكنك الضغط على زر إعادة المحاولة.</p>
-          <div class="badge">تلميح: جرّب التبديل إلى شبكة مختلفة إن أمكن.</div>
-        </article>
+        <div class="hero__grid">
+          <article class="card card--feature">
+            <div class="card__icon">📊</div>
+            <h3>ماذا يحدث أثناء عدم الاتصال؟</h3>
+            <p class="text-muted">نحاول حفظ آخر درس زرته وبعض الملفات المهمة لتستمر بالاطلاع عليها دون توقف. قد لا تتوفر المزايا التفاعلية مثل الاختبارات أو تحديث التقدم لحين عودة الشبكة.</p>
+          </article>
+
+          <article class="card card--feature">
+            <div class="card__icon">💡</div>
+            <h3>نصائح سريعة</h3>
+            <ul class="layout-stack layout-stack--tight text-muted" style="text-align: right; padding-right: 1.5rem;">
+              <li style="margin-bottom: 0.5rem;">📁 قم بتنزيل الموارد المهمة كي تبقى معك في وضع عدم الاتصال</li>
+              <li style="margin-bottom: 0.5rem;">🗒️ دوّن ملاحظاتك وسيتم مزامنتها تلقائيًا عند الاتصال من جديد</li>
+              <li>🔔 ستتلقى إشعارًا بمجرد عودة الإنترنت واستئناف التتبع</li>
+            </ul>
+          </article>
+
+          <article class="card card--feature">
+            <div class="card__icon">🌐</div>
+            <h3>حالة الاتصال</h3>
+            <p class="text-muted">نراقب حالة الاتصال في الخلفية. عند عودته، سيتم تحديث الصفحة تلقائيًا أو يمكنك الضغط على زر إعادة المحاولة.</p>
+            <div style="margin-top: 1rem; padding: 0.75rem; background: linear-gradient(120deg, rgba(109, 40, 217, 0.05) 0%, rgba(139, 92, 246, 0.05) 100%); border-radius: 8px; font-size: 0.9rem;">
+              💡 <strong>تلميح:</strong> جرّب التبديل إلى شبكة مختلفة إن أمكن
+            </div>
+          </article>
+        </div>
       </div>
     </section>
   </main>
 
   <footer class="site-footer" data-site-footer data-base="./"></footer>
 
+  <script src="js/config.js"></script>
   <script src="js/components/header.js"></script>
   <script src="js/components/footer.js"></script>
-  <script src="js/main.js"></script>
   <script>
+    // مراقبة حالة الاتصال
     window.addEventListener('online', () => {
-      window.location.reload();
+      // إشعار بسيط قبل إعادة التحميل
+      if (confirm('🌐 تم استعادة الاتصال! هل تريد تحديث الصفحة؟')) {
+        window.location.reload();
+      }
     });
   </script>
 </body>
