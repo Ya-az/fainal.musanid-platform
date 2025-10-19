@@ -470,9 +470,10 @@
 
     <footer class="site-footer" data-site-footer data-base="../"></footer>
 
-    <script src="../js/config.js"></script>
-    <script src="../js/components/header.js"></script>
-    <script src="../js/components/footer.js"></script>
+    <script defer src="../js/config.js"></script>
+    <script defer src="../js/components/header.js"></script>
+    <script defer src="../js/components/footer.js"></script>
+    <script defer src="../js/main.js"></script>
     <script>
         // Course filtering functionality
         const filterButtons = document.querySelectorAll('.filter-btn');
@@ -559,16 +560,6 @@
             `;
             document.head.appendChild(style);
         });
-
-        // Navigation toggle functionality
-        const navToggle = document.querySelector('.site-nav__toggle');
-        const navLinks = document.querySelector('.site-nav__links');
-
-        if (navToggle && navLinks) {
-            navToggle.addEventListener('click', () => {
-                navLinks.classList.toggle('is-open');
-            });
-        }
 
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {

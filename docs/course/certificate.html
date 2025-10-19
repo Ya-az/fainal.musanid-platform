@@ -426,14 +426,12 @@
 
     <footer class="site-footer" data-site-footer data-base="../"></footer>
 
-    <script src="../js/config.js"></script>
-    <script src="../js/course-manager.js"></script>
-    <script src="../js/certificate-manager.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js" integrity="sha384-WfXMXirMRHkRkNvztNFVQVw1Gc7YCOUMIqFZRMVAb9YSEuxsjjXNMTvEfgQ6Vw5j" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js" integrity="sha384-nNrihYUxE6xBPdZiZsaAJ+lZeI7IuAvV38DSHLVbkP4SRrped1IovnHgwlHGawEq" crossorigin="anonymous"></script>
-    <script src="../js/config.js"></script>
-    <script src="../js/components/header.js"></script>
-    <script src="../js/components/footer.js"></script>
+    <script defer src="../js/config.js"></script>
+    <script defer src="../js/course-manager.js"></script>
+    <script defer src="../js/certificate-manager.js"></script>
+    <script defer src="../js/components/header.js"></script>
+    <script defer src="../js/components/footer.js"></script>
+    <script defer src="../js/main.js"></script>
     <script>
         // إجبار النصوص على اللون الأسود
         document.addEventListener('DOMContentLoaded', function() {
@@ -822,16 +820,82 @@
             }
         }
 
+        const PDF_LIBRARIES = [
+            {
+                src: 'https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js',
+                integrity: 'sha384-WfXMXirMRHkRkNvztNFVQVw1Gc7YCOUMIqFZRMVAb9YSEuxsjjXNMTvEfgQ6Vw5j',
+                isLoaded: () => Boolean(window.html2canvas)
+            },
+            {
+                src: 'https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js',
+                integrity: 'sha384-nNrihYUxE6xBPdZiZsaAJ+lZeI7IuAvV38DSHLVbkP4SRrped1IovnHgwlHGawEq',
+                isLoaded: () => Boolean(window.jspdf?.jsPDF)
+            }
+        ];
+
+        function loadScriptOnce({ src, integrity }) {
+            return new Promise((resolve, reject) => {
+                if (!src) {
+                    resolve();
+                    return;
+                }
+
+                const existing = document.querySelector(`script[src="${src}"]`);
+                if (existing) {
+                    if (existing.dataset.loaded === 'true') {
+                        resolve();
+                        return;
+                    }
+
+                    existing.addEventListener('load', () => resolve(), { once: true });
+                    existing.addEventListener('error', event => reject(event?.error || new Error(`فشل تحميل ${src}`)), { once: true });
+                    return;
+                }
+
+                const script = document.createElement('script');
+                script.src = src;
+                script.async = true;
+                if (integrity) {
+                    script.integrity = integrity;
+                    script.crossOrigin = 'anonymous';
+                }
+                script.dataset.loaded = 'pending';
+
+                script.addEventListener('load', () => {
+                    script.dataset.loaded = 'true';
+                    resolve();
+                }, { once: true });
+
+                script.addEventListener('error', event => {
+                    script.dataset.loaded = 'error';
+                    reject(event?.error || new Error(`فشل تحميل ${src}`));
+                }, { once: true });
+
+                document.head.appendChild(script);
+            });
+        }
+
+        async function ensurePdfLibraries() {
+            const pendingLoads = PDF_LIBRARIES.filter(lib => !lib.isLoaded())
+                .map(loadScriptOnce);
+
+            if (!pendingLoads.length) {
+                return true;
+            }
+
+            try {
+                await Promise.all(pendingLoads);
+                return PDF_LIBRARIES.every(lib => lib.isLoaded());
+            } catch (error) {
+                console.error('تعذر تحميل مكتبات إنشاء ملفات PDF:', error);
+                return false;
+            }
+        }
+
         async function downloadCertificateAsPdf(triggerBtn) {
             const certificateElement = document.getElementById('certificatePaper');
             if (!certificateElement) {
                 throw new Error('certificate element not found');
-            }
-
-            const hasLibraries = Boolean(window.html2canvas) && Boolean(window.jspdf?.jsPDF);
-            if (!hasLibraries) {
-                window.print();
-                return;
             }
 
             const originalText = triggerBtn?.textContent;
@@ -841,6 +905,13 @@
             }
 
             try {
+                const librariesReady = await ensurePdfLibraries();
+                if (!librariesReady) {
+                    notify('سيتم فتح نافذة الطباعة لأن مكتبات التصدير غير متاحة حاليًا.', 'info');
+                    window.print();
+                    return;
+                }
+
                 const canvas = await window.html2canvas(certificateElement, {
                     scale: 2,
                     useCORS: true,
@@ -869,6 +940,8 @@
                     triggerBtn.textContent = originalText || 'تحميل كملف PDF';
                 }
             }
+
+            window.downloadCertificateAsPdf = downloadCertificateAsPdf;
         }
     </script>
 </body>

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Navigation Test - اختبار التنقل على الجوال</title>
+    <link rel="stylesheet" href="docs/css/styles.css">
+    <style>
+        .test-info {
+            padding: 1.5rem;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            margin: 2rem 0;
+            border-radius: 12px;
+            border: 1px solid #0ea5e9;
+        }
+        .test-status {
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 8px;
+            border-left: 4px solid #22c55e;
+            background: #f0fdf4;
+        }
+        .screen-info {
+            position: fixed;
+            top: 80px;
+            left: 10px;
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            z-index: 9999;
+            font-family: monospace;
+        }
+        @media (max-width: 960px) {
+            .desktop-note { display: none; }
+        }
+        @media (min-width: 961px) {
+            .mobile-note { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="screen-info" id="screenInfo"></div>
+    <header class="site-header" data-site-header="testing"></header>
+    
+    <main>
+        <div class="container">
+            <h1 style="color: var(--color-primary); margin-bottom: 1rem;">🧪 اختبار التنقل على الجوال</h1>
+            
+            <div class="test-info">
+                <h3>📱 حالة التنقل الحالية:</h3>
+                <div class="mobile-note">
+                    <div class="test-status">
+                        ✅ <strong>وضع الجوال نشط</strong> - يجب أن تشاهد أيقونة الهامبرغر (☰) في الأعلى
+                    </div>
+                </div>
+                <div class="desktop-note">
+                    <div class="test-status">
+                        💻 <strong>وضع سطح المكتب نشط</strong> - يجب أن تشاهد روابط التنقل مباشرة
+                    </div>
+                </div>
+            </div>
+
+            <div class="test-info">
+                <h3>📋 إرشادات الاختبار:</h3>
+                <ol style="margin: 1rem 0; padding-right: 1.5rem;">
+                    <li><strong>لأجهزة الكمبيوتر:</strong> قم بتصغير حجم النافذة لأقل من 960 بكسل</li>
+                    <li><strong>للجوال:</strong> يجب أن تظهر أيقونة الهامبرغر (☰) تلقائياً</li>
+                    <li>انقر على أيقونة الهامبرغر لفتح القائمة</li>
+                    <li>تأكد من ظهور القائمة بشكل صحيح ومنسق</li>
+                    <li>انقر خارج القائمة أو على الأيقونة مرة أخرى لإغلاقها</li>
+                    <li>جرب التنقل بين الروابط للتأكد من عملها</li>
+                </ol>
+            </div>
+
+            <div style="display: grid; gap: 1rem; margin: 2rem 0;">
+                <div style="padding: 1rem; background: #fef3c7; border-radius: 8px;">
+                    <h4>🔧 معلومات تقنية:</h4>
+                    <ul style="margin: 0.5rem 0; padding-right: 1.5rem;">
+                        <li>نقطة التحول: 960px</li>
+                        <li>معرف القائمة: <code id="navId">يتم تحديده ديناميكياً</code></li>
+                        <li>حالة القائمة: <span id="navState">مغلقة</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <h2>🎯 اختبارات إضافية</h2>
+            <div style="display: grid; gap: 1rem; margin: 1rem 0;">
+                <details style="background: #f8fafc; padding: 1rem; border-radius: 8px;">
+                    <summary style="font-weight: bold; cursor: pointer;">اختبار التفاعل باللمس</summary>
+                    <p style="margin: 0.5rem 0;">انقر/المس كل عنصر في القائمة للتأكد من أن جميع الروابط قابلة للنقر بسهولة.</p>
+                </details>
+                
+                <details style="background: #f8fafc; padding: 1rem; border-radius: 8px;">
+                    <summary style="font-weight: bold; cursor: pointer;">اختبار أحجام الشاشة المختلفة</summary>
+                    <p style="margin: 0.5rem 0;">جرب تغيير حجم النافذة أو استخدم أدوات المطور لمحاكاة أجهزة مختلفة.</p>
+                </details>
+                
+                <details style="background: #f8fafc; padding: 1rem; border-radius: 8px;">
+                    <summary style="font-weight: bold; cursor: pointer;">اختبار إمكانية الوصول</summary>
+                    <p style="margin: 0.5rem 0;">استخدم لوحة المفاتيح (Tab، Enter، Escape) للتنقل في القائمة.</p>
+                </details>
+            </div>
+        </div>
+    </main>
+
+    <script src="docs/js/config.js"></script>
+    <script src="docs/js/components/header.js"></script>
+    <script src="docs/js/main.js"></script>
+    <script>
+        function updateScreenInfo() {
+            const screenInfo = document.getElementById('screenInfo');
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            screenInfo.textContent = `${width}×${height}px | ${width <= 960 ? 'Mobile' : 'Desktop'} Mode`;
+        }
+
+        function monitorNavigation() {
+            const toggle = document.querySelector('.site-nav__toggle');
+            const links = document.querySelector('.site-nav__links');
+            const navIdSpan = document.getElementById('navId');
+            const navStateSpan = document.getElementById('navState');
+
+            if (toggle && links) {
+                navIdSpan.textContent = links.id || 'غير محدد';
+                
+                const updateState = () => {
+                    const isOpen = links.classList.contains('is-open');
+                    navStateSpan.textContent = isOpen ? 'مفتوحة' : 'مغلقة';
+                    navStateSpan.style.color = isOpen ? '#059669' : '#dc2626';
+                };
+
+                // Monitor state changes
+                const observer = new MutationObserver(updateState);
+                observer.observe(links, { attributes: true, attributeFilter: ['class'] });
+                
+                updateState();
+
+                console.log('✅ Navigation monitoring active');
+                console.log('Toggle button:', toggle);
+                console.log('Links container:', links);
+                console.log('Toggle display:', window.getComputedStyle(toggle).display);
+                console.log('Links display:', window.getComputedStyle(links).display);
+            } else {
+                console.log('❌ Navigation elements not found');
+                navStateSpan.textContent = 'عناصر غير موجودة';
+                navStateSpan.style.color = '#dc2626';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            updateScreenInfo();
+            
+            // Wait for header to load
+            setTimeout(() => {
+                monitorNavigation();
+            }, 500);
+        });
+
+        window.addEventListener('resize', updateScreenInfo);
+    </script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="320" viewBox="0 0 320 320" role="img" aria-labelledby="title desc">
+  <title id="title">Student Avatar Two</title>
+  <desc id="desc">Gradient illustration placeholder for a student avatar.</desc>
+  <defs>
+    <linearGradient id="bgGradient2" x1="0" x2="1" y1="1" y2="0">
+      <stop offset="0" stop-color="#0ea5e9" />
+      <stop offset="1" stop-color="#38bdf8" />
+    </linearGradient>
+  </defs>
+  <rect width="320" height="320" rx="32" fill="url(#bgGradient2)" />
+  <circle cx="160" cy="124" r="68" fill="#ffffff" fill-opacity="0.85" />
+  <path d="M160 192c46 0 92 28 104 72H56c12-44 58-72 104-72z" fill="#e0f2fe" />
+  <circle cx="160" cy="140" r="52" fill="#e0f2fe" />
+  <path d="M160 94a46 46 0 0 1 46 46v8a46 46 0 0 1-92 0v-8a46 46 0 0 1 46-46z" fill="#fff" fill-opacity="0.95" />
+  <path d="M160 76c28 0 54 24 54 60 0 10-3 20-7 28-8-16-26-26-47-26s-39 10-47 26c-4-8-7-18-7-28 0-36 26-60 54-60z" fill="#1d4ed8" fill-opacity="0.4" />
+</svg>

@@ -67,7 +67,7 @@
                         <span class="brand-icon">${config.site.icon}</span>
                         ${config.site.name}
                     </a>
-                    <button class="site-nav__toggle" type="button" aria-label="فتح القائمة" data-nav-target="${navId}">
+                    <button class="site-nav__toggle" type="button" aria-label="فتح القائمة" aria-controls="${navId}" aria-expanded="false" data-nav-target="${navId}">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <line x1="3" y1="6" x2="21" y2="6" />
                             <line x1="3" y1="12" x2="21" y2="12" />

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اختبار عمل الهامبرغر</title>
+    <link rel="stylesheet" href="docs/css/styles.css">
+    <style>
+        .test-status {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            z-index: 999;
+            font-family: 'Cairo', sans-serif;
+            max-width: 300px;
+        }
+        .status-item {
+            margin: 8px 0;
+            padding: 8px;
+            border-radius: 4px;
+        }
+        .status-ok { background: #d4edda; color: #155724; }
+        .status-error { background: #f8d7da; color: #721c24; }
+        .status-info { background: #d1ecf1; color: #0c5460; }
+    </style>
+</head>
+<body>
+    <header class="site-header" data-site-header data-base="docs/" data-active="test" data-nav-id="testNav" data-home="index.html"></header>
+    
+    <main>
+        <div class="container" style="padding-top: 120px;">
+            <h1>🍔 اختبار عمل علامة الهامبرغر</h1>
+            <p>هذه صفحة اختبار للتأكد من عمل علامة الهامبرغر في جميع الصفحات.</p>
+            
+            <div class="test-status">
+                <h3>📊 حالة الاختبار</h3>
+                <div id="toggle-status" class="status-item">جاري التحقق...</div>
+                <div id="links-status" class="status-item">جاري التحقق...</div>
+                <div id="js-status" class="status-item">جاري التحقق...</div>
+                <div id="width-status" class="status-item">جاري التحقق...</div>
+            </div>
+            
+            <div style="margin-top: 40px; padding: 20px; background: #f8f9fa; border-radius: 8px;">
+                <h3>خطوات الاختبار:</h3>
+                <ol style="margin-right: 20px;">
+                    <li>تأكد من أن عرض الشاشة أقل من 960px</li>
+                    <li>يجب أن تظهر علامة الهامبرغر (☰) في الأعلى</li>
+                    <li>انقر على العلامة لفتح القائمة</li>
+                    <li>انقر مرة أخرى أو خارج القائمة لإغلاقها</li>
+                </ol>
+            </div>
+        </div>
+    </main>
+
+    <script src="docs/js/config.js"></script>
+    <script src="docs/js/components/header.js"></script>
+    <script src="docs/js/main.js"></script>
+    
+    <script>
+        // اختبار تلقائي لحالة الهامبرغر
+        function runTests() {
+            setTimeout(() => {
+                // تحقق من وجود زر الهامبرغر
+                const toggle = document.querySelector('.site-nav__toggle');
+                const toggleStatus = document.getElementById('toggle-status');
+                
+                if (toggle) {
+                    toggleStatus.textContent = '✅ زر الهامبرغر موجود';
+                    toggleStatus.className = 'status-item status-ok';
+                } else {
+                    toggleStatus.textContent = '❌ زر الهامبرغر غير موجود';
+                    toggleStatus.className = 'status-item status-error';
+                }
+                
+                // تحقق من وجود روابط التنقل
+                const links = document.querySelector('.site-nav__links');
+                const linksStatus = document.getElementById('links-status');
+                
+                if (links) {
+                    linksStatus.textContent = '✅ روابط التنقل موجودة';
+                    linksStatus.className = 'status-item status-ok';
+                } else {
+                    linksStatus.textContent = '❌ روابط التنقل غير موجودة';
+                    linksStatus.className = 'status-item status-error';
+                }
+                
+                // تحقق من تحميل main.js
+                const jsStatus = document.getElementById('js-status');
+                if (window.setupNavigation || document.querySelector('[data-nav-target]')) {
+                    jsStatus.textContent = '✅ main.js محمل بنجاح';
+                    jsStatus.className = 'status-item status-ok';
+                } else {
+                    jsStatus.textContent = '❌ main.js غير محمل';
+                    jsStatus.className = 'status-item status-error';
+                }
+                
+                // عرض عرض الشاشة
+                const widthStatus = document.getElementById('width-status');
+                const width = window.innerWidth;
+                widthStatus.textContent = `📏 عرض الشاشة: ${width}px`;
+                
+                if (width <= 960) {
+                    widthStatus.className = 'status-item status-ok';
+                } else {
+                    widthStatus.className = 'status-item status-info';
+                }
+                
+                // اختبار وظيفة النقر
+                if (toggle && links) {
+                    setTimeout(() => {
+                        console.log('🧪 اختبار الهامبرغر...');
+                        
+                        // محاكاة نقرة
+                        toggle.click();
+                        
+                        setTimeout(() => {
+                            if (links.classList.contains('is-open')) {
+                                console.log('✅ القائمة فتحت بنجاح!');
+                                
+                                // إغلاق القائمة
+                                toggle.click();
+                                
+                                setTimeout(() => {
+                                    if (!links.classList.contains('is-open')) {
+                                        console.log('✅ القائمة أغلقت بنجاح!');
+                                    }
+                                }, 300);
+                            } else {
+                                console.log('❌ القائمة لم تفتح');
+                            }
+                        }, 300);
+                    }, 1000);
+                }
+            }, 1500);
+        }
+        
+        document.addEventListener('DOMContentLoaded', runTests);
+        
+        // إعادة تشغيل الاختبار عند تغيير حجم النافذة
+        window.addEventListener('resize', () => {
+            setTimeout(runTests, 500);
+        });
+    </script>
+</body>
+</html>

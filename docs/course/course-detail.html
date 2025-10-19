@@ -18,27 +18,12 @@
         }
     </script>
     <link href="../css/styles.css" rel="stylesheet">
-    <script src="../js/course-manager.js"></script>
-    <script src="../js/certificate-manager.js"></script>
+    <script defer src="../js/course-manager.js"></script>
+    <script defer src="../js/certificate-manager.js"></script>
     <style>
         .progress-ring {
             transform: rotate(-90deg);
             transition: stroke-dasharray 0.35s;
-        }
-        
-        .lesson-item {
-            transition: all 0.3s ease;
-            border-right: 4px solid transparent;
-        }
-        
-        .lesson-item:hover {
-            background: var(--color-neutral-50);
-            border-right-color: var(--color-primary);
-        }
-        
-        .lesson-item.completed {
-            background: rgba(var(--color-primary-rgb), 0.05);
-            border-right-color: var(--color-success);
         }
         
         .video-container {
@@ -94,113 +79,19 @@
             background: rgba(220, 38, 38, 0.1);
         }
 
-        .certificate-card {
-            border: 1px dashed rgba(var(--color-primary-rgb), 0.35);
-            background: linear-gradient(135deg, rgba(var(--color-primary-rgb), 0.08), rgba(var(--color-primary-rgb), 0));
-            color: var(--dynamic-text-primary);
-        }
-
         .certificate-icon {
             width: 3.25rem;
             height: 3.25rem;
             border-radius: var(--radius-full);
-            background: rgba(var(--color-primary-rgb), 0.12);
+            background: rgba(255, 255, 255, 0.2);
             display: grid;
             place-items: center;
-            color: var(--color-primary);
+            color: #FFFFFF;
             flex-shrink: 0;
         }
 
-        /* أنماط العناوين الرئيسية */
-        .lessons-sidebar h3,
-        .heading-md {
-            color: #5B21B6 !important;
-            font-weight: 700 !important;
-        }
-
-        /* عناوين الدروس */
-        .lesson-item .lesson-title,
-        .lesson-item h4,
-        #currentLessonTitle,
-        .heading-lg {
-            color: #000000 !important;
-            font-weight: 600 !important;
-        }
-
-        /* النصوص الثانوية - مدة الفيديو */
-        .lesson-item .lesson-duration,
-        .lesson-duration,
-        .text-sm:not(.purple-section .text-sm),
-        .lesson-meta {
-            color: #4B5563 !important;
-        }
-
-        /* وصف الدرس - النص أسفل الفيديو */
-        #lessonContent,
-        #lessonContent *,
-        #lessonContent p,
-        .lesson-description,
-        .lesson-intro {
-            color: #FFFFFF !important;
-            font-weight: 500 !important;
-        }
-
-        /* استثناءات للقسم البنفسجي */
-        .purple-section h3,
-        .purple-section .heading-md {
-            color: #FFFFFF !important;
-            font-weight: 700 !important;
-        }
-
-        .purple-section .text-sm {
-            color: rgba(255, 255, 255, 0.8) !important;
-        }
-
-        /* أنماط خاصة لعناصر الدروس */
-        .lesson-item.completed {
-            background: rgba(255, 255, 255, 0.1) !important;
-            color: #FFFFFF !important;
-        }
-
-        .lesson-item.completed * {
-            color: #FFFFFF !important;
-        }
-
-        /* أنماط إضافية للدروس المُنشأة ديناميكياً */
-        .purple-section .lesson-item,
-        .purple-section .lesson-item *,
-        .purple-section .lesson-item .lesson-title,
-        .purple-section .lesson-item .lesson-duration,
-        .purple-section .lesson-item .lesson-description {
-            color: #FFFFFF !important;
-        }
-
-        .purple-section .lesson-item .lesson-status {
-            color: rgba(255, 255, 255, 0.8) !important;
-        }
-
-        /* أنماط لمحتوى الدرس الرئيسي */
-        #lessonContent,
-        #lessonContent *,
-        #lessonContent p,
-        #lessonContent .mb-sm,
-        .lesson-intro,
-        .lesson-description-text {
-            color: #FFFFFF !important;
-        }
-
-        /* أنماط لقوائم الدروس */
-        .main-lesson-area,
-        .main-lesson-area *,
-        .main-lesson-area p,
-        .main-lesson-area h1,
-        .main-lesson-area h2,
-        .main-lesson-area h3 {
-            color: #FFFFFF !important;
-        }
-
         .certificate-meta {
-            border-top: 1px solid var(--color-neutral-200);
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
             margin-top: var(--spacing-sm);
             padding-top: var(--spacing-sm);
             gap: 0.5rem;
@@ -315,7 +206,7 @@
                     </div>
 
                     <!-- Certificate Card -->
-                    <div class="card layout-stack certificate-card is-hidden" id="certificateCard" aria-live="polite">
+                    <div class="card layout-stack certificate-card purple-section is-hidden" id="certificateCard" aria-live="polite">
                         <div class="flex items-center gap-md">
                             <div class="certificate-icon" aria-hidden="true">
                                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
@@ -358,7 +249,7 @@
             <div class="container">
                 <div class="grid grid--columns-4 gap-lg">
                     <!-- Lessons Sidebar -->
-                    <div class="card layout-stack lessons-sidebar" id="lessonsSidebar">
+                    <div class="card layout-stack lessons-sidebar purple-section" id="lessonsSidebar">
                         <div class="flex items-center justify-between">
                             <h3 class="heading-md">قائمة الدروس</h3>
                             <button type="button" class="btn btn-secondary lessons-toggle" id="lessonsToggle" aria-expanded="true" aria-controls="lessonsList">
@@ -394,7 +285,7 @@
                             </div>
                             
                             <div class="video-container" id="videoContainer">
-                                <iframe id="videoPlayer" src="" title="مشغل فيديو الدرس" allowfullscreen></iframe>
+                                <iframe id="videoPlayer" src="" title="مشغل فيديو الدرس" allowfullscreen data-priority="high"></iframe>
                             </div>
                             
                             <div class="lesson-content" id="lessonContent">
@@ -403,7 +294,7 @@
                         </div>
 
                         <!-- Quiz Section -->
-                        <div class="card layout-stack is-hidden" id="quizSection">
+                        <div class="card layout-stack purple-section is-hidden" id="quizSection">
                             <h3 class="heading-md">اختبار سريع</h3>
                             <p class="text-muted">أجب على الأسئلة التالية للتأكد من فهمك للدرس:</p>
                             
@@ -418,10 +309,10 @@
                             </div>
                             
                             <div id="quizResults" class="quiz-results is-hidden" aria-live="polite">
-                                <div class="alert">
+                                <div class="alert quiz-result-alert">
                                     <h4 id="quizResultTitle">النتيجة</h4>
                                     <p id="quizScore">لقد أجبت بشكل صحيح على جميع الأسئلة.</p>
-                                    <p class="text-sm text-muted" id="quizThresholdHint"></p>
+                                    <p class="text-sm" id="quizThresholdHint"></p>
                                 </div>
                             </div>
                         </div>
@@ -464,9 +355,10 @@
 
     <footer class="site-footer" data-site-footer data-base="../"></footer>
 
-    <script src="../js/config.js"></script>
-    <script src="../js/components/header.js"></script>
-    <script src="../js/components/footer.js"></script>
+    <script defer src="../js/config.js"></script>
+    <script defer src="../js/components/header.js"></script>
+    <script defer src="../js/components/footer.js"></script>
+    <script defer src="../js/main.js"></script>
     <script>
         // Optional: Configure global quiz pass percentage here
         window.quizConfig = { passPercentage: 80 };
@@ -562,14 +454,17 @@
                 
                 const lessonItem = document.createElement('div');
                 lessonItem.className = `lesson-item p-md cursor-pointer ${isCompleted ? 'completed' : ''} ${isCurrent ? 'bg-primary-light' : ''}`;
+                lessonItem.style.padding = '1rem';
+                lessonItem.style.cursor = 'pointer';
+                lessonItem.style.borderRadius = 'var(--radius-sm)';
                 lessonItem.innerHTML = `
                     <div class="flex items-center gap-sm">
-                        <div class="lesson-number">
+                        <div class="lesson-number" style="font-weight: 600;">
                             ${isCompleted ? '✓' : index + 1}
                         </div>
                         <div class="flex-1">
-                            <h4 class="text-sm font-medium">${lesson.title}</h4>
-                            <div class="text-xs text-muted">${lesson.duration}</div>
+                            <h4 class="lesson-title" style="font-size: 0.9rem; font-weight: 600; margin-bottom: 0.25rem;">${lesson.title}</h4>
+                            <div class="lesson-duration" style="font-size: 0.85rem;">${lesson.duration}</div>
                         </div>
                     </div>
                 `;
