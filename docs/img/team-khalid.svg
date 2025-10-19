@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="320" viewBox="0 0 320 320" role="img" aria-labelledby="title desc">
+  <title id="title">Team Member Khalid</title>
+  <desc id="desc">Illustrated placeholder avatar for team member Khalid.</desc>
+  <defs>
+    <linearGradient id="teamGradientKhalid" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#0f172a" />
+      <stop offset="1" stop-color="#1e293b" />
+    </linearGradient>
+  </defs>
+  <rect width="320" height="320" rx="28" fill="url(#teamGradientKhalid)" />
+  <circle cx="160" cy="124" r="70" fill="#e2e8f0" />
+  <path d="M160 92a46 46 0 0 1 46 46v10a46 46 0 0 1-92 0v-10a46 46 0 0 1 46-46z" fill="#fff" />
+  <path d="M160 74c30 0 56 26 56 64 0 14-3 26-8 36-9-18-28-30-48-30s-39 12-48 30c-5-10-8-22-8-36 0-38 26-64 56-64z" fill="#0f172a" fill-opacity="0.55" />
+  <path d="M64 260c16-52 64-70 96-70s80 18 96 70H64z" fill="#cbd5f5" />
+</svg>

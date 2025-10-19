@@ -43,29 +43,29 @@
                     <h2 id="loginTitle" class="section__title section__title--md mb-0 form-title">تسجيل الدخول</h2>
                     <p class="text-body form-subtitle">أدخل بياناتك للمتابعة. جميع الاتصالات مشفّرة بالكامل.</p>
                     <form id="loginForm" class="layout-stack" action="/auth/login" method="POST" novalidate>
-                        <div>
-                            <label for="userOrEmail" class="form-label">اسم المستخدم أو البريد الإلكتروني</label>
-                            <input id="userOrEmail" name="userOrEmail" type="text" class="input-field" placeholder="example@musanid.com" autocomplete="username" required>
-                        </div>
+                        <div class="form__row">
+                            <div>
+                                <label for="userOrEmail" class="form-label">اسم المستخدم أو البريد الإلكتروني</label>
+                                <input id="userOrEmail" name="userOrEmail" type="text" class="input-field" placeholder="example@musanid.com" autocomplete="username" required>
+                            </div>
 
-                        <div>
-                            <div class="layout-inline layout-inline--between layout-inline--center">
-                                <label for="password" class="form-label mb-0">كلمة المرور</label>
-                        		<a class="link-accent text-sm" href="#">نسيت كلمة المرور؟</a>
+                            <div>
+                                <label for="password" class="form-label">كلمة المرور</label>
+                                <div class="input-group">
+                                    <input id="password" name="password" type="password" class="input-field" placeholder="••••••••" autocomplete="current-password" required>
+                                    <button type="button" id="togglePassword" class="input-group__btn" aria-label="إظهار كلمة المرور" title="إظهار كلمة المرور">
+                                        <svg id="eyeIcon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                            <circle cx="12" cy="12" r="3"></circle>
+                                        </svg>
+                                        <svg id="eyeOffIcon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19M1 1l22 22M6.71 6.71l10.58 10.58"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <p class="form-helper text-sm">استخدم ٨ أحرف على الأقل مع مزيج من الرموز والأرقام.</p>
+                                <a class="link-accent text-sm" href="#">نسيت كلمة المرور؟</a>
                             </div>
-                            <div class="input-group">
-                                <input id="password" name="password" type="password" class="input-field" placeholder="••••••••" autocomplete="current-password" required>
-                                <button type="button" id="togglePassword" class="input-group__btn" aria-label="إظهار كلمة المرور" title="إظهار كلمة المرور">
-                                    <svg id="eyeIcon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                                        <circle cx="12" cy="12" r="3"></circle>
-                                    </svg>
-                                    <svg id="eyeOffIcon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19M1 1l22 22M6.71 6.71l10.58 10.58"></path>
-                                    </svg>
-                                </button>
-                            </div>
-                            <p class="form-helper text-sm">استخدم ٨ أحرف على الأقل مع مزيج من الرموز والأرقام.</p>
                         </div>
 
                         <label class="checkbox-field">
@@ -90,9 +90,10 @@
             data-base="../"></footer>
 
     <!-- Load Reusability System Scripts -->
-    <script src="../js/config.js"></script>
-    <script src="../js/components/header.js"></script>
-    <script src="../js/components/footer.js"></script>
+    <script defer src="../js/config.js"></script>
+    <script defer src="../js/components/header.js"></script>
+    <script defer src="../js/components/footer.js"></script>
+    <script defer src="../js/main.js"></script>
 
     <script>
         document.addEventListener('DOMContentLoaded', async () => {

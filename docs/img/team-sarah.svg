@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="320" viewBox="0 0 320 320" role="img" aria-labelledby="title desc">
+  <title id="title">Team Member Sarah</title>
+  <desc id="desc">Illustrated placeholder avatar for team member Sarah.</desc>
+  <defs>
+    <linearGradient id="teamGradientSarah" x1="0" x2="1" y1="1" y2="0">
+      <stop offset="0" stop-color="#9333ea" />
+      <stop offset="1" stop-color="#ec4899" />
+    </linearGradient>
+  </defs>
+  <rect width="320" height="320" rx="28" fill="url(#teamGradientSarah)" />
+  <circle cx="160" cy="124" r="72" fill="#fdf2f8" />
+  <path d="M160 92a48 48 0 0 1 48 48v10a48 48 0 0 1-96 0v-10a48 48 0 0 1 48-48z" fill="#fff" />
+  <path d="M160 72c30 0 58 26 58 66 0 14-4 26-9 36-9-20-28-32-49-32s-40 12-49 32c-5-10-9-22-9-36 0-40 28-66 58-66z" fill="#be185d" fill-opacity="0.45" />
+  <ellipse cx="160" cy="232" rx="92" ry="56" fill="#f9a8d4" />
+</svg>

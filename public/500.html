@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>حدث خطأ - مساند</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="/css/styles.css" rel="stylesheet" />
-  <link href="/css/buttons-override.css" rel="stylesheet" />
+  <link href="css/styles.css" rel="stylesheet" />
+  <link href="css/buttons-override.css" rel="stylesheet" />
   <meta name="robots" content="noindex" />
   <style>body{min-height:100vh;display:flex;flex-direction:column}</style>
   <style>main{flex:1}</style>
@@ -22,8 +22,14 @@
     <p class="text-gray-600 mb-8">نحن نعمل على إصلاح المشكلة. حاول مجدداً لاحقاً.</p>
     <a href="/" class="btn-primary">العودة للرئيسية</a>
   </main>
-  <footer class="site-footer" data-site-footer data-base="docs/"></footer>
-  
-  <script src="docs/js/components/footer.js"></script>
+  <footer class="bg-white border-t border-gray-200 py-6 mt-auto">
+    <div class="container mx-auto px-4 text-center text-gray-500 text-sm">
+      © <span id="errorFooterYear"></span> مساند. جميع الحقوق محفوظة.
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('errorFooterYear').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>

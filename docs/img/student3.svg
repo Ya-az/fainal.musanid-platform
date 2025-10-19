@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="320" viewBox="0 0 320 320" role="img" aria-labelledby="title desc">
+  <title id="title">Student Avatar Three</title>
+  <desc id="desc">Warm gradient illustration placeholder for a student avatar.</desc>
+  <defs>
+    <linearGradient id="bgGradient3" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#f97316" />
+      <stop offset="1" stop-color="#facc15" />
+    </linearGradient>
+  </defs>
+  <rect width="320" height="320" rx="32" fill="url(#bgGradient3)" />
+  <circle cx="160" cy="124" r="68" fill="#ffffff" fill-opacity="0.82" />
+  <path d="M160 188c44 0 86 26 100 68H60c14-42 56-68 100-68z" fill="#fef3c7" />
+  <circle cx="160" cy="140" r="52" fill="#fef3c7" />
+  <path d="M160 94a46 46 0 0 1 46 46v10a46 46 0 0 1-92 0v-10a46 46 0 0 1 46-46z" fill="#fff" fill-opacity="0.95" />
+  <path d="M160 74c28 0 54 26 54 62 0 12-3 24-8 34-8-18-27-30-46-30s-38 12-46 30c-5-10-8-22-8-34 0-36 26-62 54-62z" fill="#b45309" fill-opacity="0.45" />
+</svg>
