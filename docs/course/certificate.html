@@ -23,6 +23,33 @@
             background: linear-gradient(135deg, rgba(59, 130, 246, 0.08), rgba(59, 130, 246, 0));
         }
 
+        /* --- Scoped readability fixes (outside certificate-paper) --- */
+        /* Steps card (classes: card layout-stack print-visible) */
+        .card.print-visible { color: #FFFFFF; }
+        .card.print-visible h2,
+        .card.print-visible p,
+        .card.print-visible li { color: #FFFFFF !important; }
+        .card.print-visible .text-muted { color: rgba(255,255,255,0.92) !important; }
+        .card.print-visible .btn-ghost { color: #FFFFFF !important; border-color: rgba(255,255,255,0.45); }
+        /* Secondary button in steps card: purple text for better contrast on light button */
+        .card.print-visible .btn-secondary {
+            color: var(--color-primary-dark) !important;
+        }
+
+        /* Archive card (سجل شهاداتك السابقة) */
+        #certificateArchiveCard h2,
+        #certificateArchiveCard p,
+        #certificateArchiveCard .text-muted,
+        #certificateArchiveCard .heading-sm,
+        #certificateArchiveCard .badge,
+        #certificateArchiveCard .btn-ghost,
+        #certificateArchiveCard .btn-secondary { color: #FFFFFF !important; }
+        #certificateArchiveCard .btn-ghost { border-color: rgba(255,255,255,0.45); }
+        /* Items rendered dynamically inside archive list */
+        #certificateArchiveList .card,
+        #certificateArchiveList .card * { color: #FFFFFF !important; }
+        #certificateArchiveList .text-muted { color: rgba(255,255,255,0.92) !important; }
+
         .certificate-wrapper {
             position: relative;
             display: flex;
@@ -297,6 +324,12 @@
                     border-color: #ccc !important;
                 }
             }
+        }
+
+        /* لون مخصص لزر عرض الشهادة فقط داخل الأرشيف */
+        #certificateArchiveList .btn-view-certificate {
+            color: #5B21B6 !important;
+            font-weight: 700 !important;
         }
     </style>
 </head>
@@ -753,7 +786,7 @@
 
                 const viewBtn = document.createElement('button');
                 viewBtn.type = 'button';
-                viewBtn.className = 'btn btn-secondary';
+                viewBtn.className = 'btn btn-secondary btn-view-certificate';
                 viewBtn.textContent = 'عرض الشهادة';
                 viewBtn.addEventListener('click', () => {
                     openCertificatePage(certificate);
