@@ -12,22 +12,40 @@
     }
 
     const config = window.MusanidConfig;
-    const normalize = (path) => {
+    const ensureTrailingSlash = (path) => {
         if (!path) {
             return '';
         }
-        return path.endsWith('/') ? path : `${path}`;
+        return path.endsWith('/') ? path : `${path}/`;
     };
 
     headers.forEach((header, index) => {
         const basePath = header.getAttribute('data-base') || './';
-        const base = normalize(basePath);
+        const base = ensureTrailingSlash(basePath.trim());
         const activeKey = header.getAttribute('data-active') || '';
         const navId = header.getAttribute('data-nav-id') || `siteNav${index + 1}`;
         const homePath = header.getAttribute('data-home') || 'index.html';
 
         const getText = (value, fallback) => (value && value.trim()) ? value.trim() : fallback;
         const getHref = (value, fallback) => (value && value.trim()) ? value.trim() : fallback;
+
+        const resolveHref = (rawHref, fallback) => {
+            const target = getHref(rawHref, fallback);
+            if (!target) {
+                return '';
+            }
+
+            const trimmed = target.trim();
+            if (/^(?:[a-z]+:|\/\/|#|\/)/i.test(trimmed)) {
+                return trimmed;
+            }
+
+            if (trimmed.startsWith('../') || trimmed.startsWith('./')) {
+                return trimmed;
+            }
+
+            return `${base}${trimmed}`;
+        };
 
         const primaryTextAttr = header.getAttribute('data-primary-text');
         const primaryHrefAttr = header.getAttribute('data-primary-href');
@@ -37,10 +55,10 @@
         const secondaryVariant = getText(header.getAttribute('data-secondary-variant'), config.navigation.actions.secondary.variant);
 
         // استخدام إعدادات من MusanidConfig
-        const primaryText = getText(primaryTextAttr, config.navigation.actions.primary.text);
-        const primaryHref = getHref(primaryHrefAttr, `${base}${config.navigation.actions.primary.href}`);
-        const secondaryText = getText(secondaryTextAttr, config.navigation.actions.secondary.text);
-        const secondaryHref = getHref(secondaryHrefAttr, `${base}${config.navigation.actions.secondary.href}`);
+    const primaryText = getText(primaryTextAttr, config.navigation.actions.primary.text);
+    const primaryHref = resolveHref(primaryHrefAttr, config.navigation.actions.primary.href);
+    const secondaryText = getText(secondaryTextAttr, config.navigation.actions.secondary.text);
+    const secondaryHref = resolveHref(secondaryHrefAttr, config.navigation.actions.secondary.href);
 
         const showPrimary = header.hasAttribute('data-primary-text') ? !!(primaryTextAttr && primaryTextAttr.trim()) : true;
         const showSecondary = header.hasAttribute('data-secondary-text') ? !!(secondaryTextAttr && secondaryTextAttr.trim()) : true;
@@ -48,7 +66,7 @@
         // بناء قائمة التنقل من MusanidConfig
         const navItems = config.navigation.main.map(item => ({
             ...item,
-            href: `${base}${item.href}`
+            href: resolveHref(item.href)
         }));
 
         const navLinks = navItems
@@ -60,10 +78,12 @@
             showPrimary ? `<a href="${primaryHref}" class="btn btn-${primaryVariant}">${primaryText}</a>` : ''
         ].join('');
 
+        const brandHref = resolveHref(homePath);
+
         header.innerHTML = `
             <div class="container">
                 <nav class="site-nav">
-                    <a href="${base}${homePath}" class="site-brand" title="${config.site.name} - الصفحة الرئيسية">
+                    <a href="${brandHref}" class="site-brand" title="${config.site.name} - الصفحة الرئيسية">
                         <span class="brand-icon">${config.site.icon}</span>
                         ${config.site.name}
                     </a>
