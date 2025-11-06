@@ -495,6 +495,18 @@ img {
     display: block;
 }
 
+/* Make embeds fluid by default */
+iframe, embed, object {
+    max-width: 100%;
+}
+
+/* Table responsiveness helper */
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
 .container {
     width: min(100%, var(--container-max));
     margin-inline: auto;
@@ -903,6 +915,18 @@ p {
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }
 
+/* Responsive span utilities for complex grids (used in course pages) */
+@media (min-width: 1024px) {
+    .grid--columns-3 > .span-2 { grid-column: span 2 / span 2; }
+    .grid--columns-4 > .span-3 { grid-column: span 3 / span 3; }
+}
+
+/* Safe small-screen fallback to a single column when space is tight */
+@media (max-width: 640px) {
+    .grid[class*="grid--columns-"] { grid-template-columns: 1fr !important; }
+    .grid--columns-2, .grid--columns-3, .grid--columns-4 { grid-template-columns: 1fr !important; }
+}
+
 .split {
     display: grid;
     gap: clamp(2rem, 6vw, 3.5rem);
@@ -923,10 +947,11 @@ p {
     position: sticky;
     top: 0;
     z-index: 1000;
-    background: rgba(255, 255, 255, 0.92);
-    -webkit-backdrop-filter: blur(14px);
-    backdrop-filter: blur(14px);
-    border-bottom: 1px solid rgba(var(--color-primary-rgb), 0.08);
+    /* Solid background without blur or shadow line to avoid white haze band */
+    background: #ffffff;
+    /* removed: -webkit-backdrop-filter */
+    /* removed: backdrop-filter */
+    /* removed: border-bottom */
 }
 
 .site-nav {

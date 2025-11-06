@@ -1,20 +1,21 @@
 {
+  "$schema": "https://json.schemastore.org/eslintrc",
   "root": true,
   "env": {
-    "es2021": true,
+    "es2022": true,
     "node": true,
-    "jest": true,
-    "browser": true
+    "jest": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 2022,
+    "sourceType": "script"
   },
   "extends": [
     "eslint:recommended",
     "plugin:import/recommended",
     "prettier"
   ],
-  "parserOptions": {
-    "ecmaVersion": 2021,
-    "sourceType": "script"
-  },
+  "plugins": ["import"],
   "settings": {
     "import/resolver": {
       "node": {
@@ -23,29 +24,16 @@
     }
   },
   "rules": {
-    "no-unused-vars": ["warn", { "argsIgnorePattern": "^_", "caughtErrorsIgnorePattern": "^_" }],
+    "no-unused-vars": ["warn", { "argsIgnorePattern": "^_", "varsIgnorePattern": "^_" }],
     "no-console": "off",
     "import/no-unresolved": "off",
-    "prefer-const": "warn",
-    "no-var": "warn",
-    "eqeqeq": ["warn", "always"],
-    "curly": ["warn", "multi-line"],
-    "comma-dangle": ["warn", "never"]
-  },
-  "overrides": [
-    {
-      "files": ["public/js/*.js"],
-      "env": {
-        "browser": true,
-        "node": false
+    "import/order": [
+      "warn",
+      {
+        "groups": [["builtin", "external"], ["internal"], ["parent", "sibling", "index"]],
+        "newlines-between": "always",
+        "alphabetize": { "order": "asc", "caseInsensitive": true }
       }
-    }
-  ],
-  "ignorePatterns": [
-    "coverage/",
-    "public/",
-    "docs/",
-    "temp/",
-    "**/*.min.js"
-  ]
+    ]
+  }
 }

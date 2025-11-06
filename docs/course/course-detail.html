@@ -25,6 +25,126 @@
             transform: rotate(-90deg);
             transition: stroke-dasharray 0.35s;
         }
+        /* Redesigned progress card styles (scoped) */
+        .progress-card {
+            position: relative;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            contain: paint; /* clip any internal glow safely */
+            /* keep site purple gradient but add a soft gloss */
+            background: var(--gradient-primary);
+            border: 1px solid rgba(255, 255, 255, 0.22);
+            box-shadow: 0 18px 42px rgba(17, 24, 42, 0.25);
+            transition: box-shadow var(--transition-base), transform var(--transition-base);
+        }
+        .progress-card::before {
+            /* decorative glow */
+            content: "";
+            position: absolute;
+            inset: -18% -16% auto auto;
+            width: 240px;
+            height: 240px;
+            background: radial-gradient(closest-side, rgba(255,255,255,0.14), rgba(255,255,255,0) 60%);
+            /* removed blur to prevent page-wide haze */
+            pointer-events: none;
+        }
+        .progress-card::after {
+            /* soft inner gloss layer */
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+            pointer-events: none;
+        }
+        .progress-card:hover { box-shadow: 0 24px 56px rgba(17,24,42,0.28); transform: translateY(-2px); }
+        .progress-card .heading-md {
+            margin: 0 0 .5rem 0;
+            font-weight: 800;
+            letter-spacing: .01em;
+            color: #fff !important;
+        }
+        .progress-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+        .progress-circle {
+            position: relative;
+            width: 96px;
+            height: 96px;
+            display: grid;
+            place-items: center;
+        }
+        .progress-circle svg { width: 96px; height: 96px; }
+        .progress-circle circle:first-child { opacity: .35; }
+        .progress-percentage {
+            position: absolute;
+            inset: 0;
+            display: grid;
+            place-items: center;
+            font-weight: 800;
+            font-size: 1rem;
+            color: #fff;
+            pointer-events: none;
+        }
+        .progress-meta { color: rgba(255,255,255,.92); }
+        .progress-meta strong { font-weight: 800; color: #fff; }
+        /* Buttons revamp (scoped to purple sections on this page) */
+        .purple-section .btn {
+            border: 2px solid transparent;
+            border-radius: var(--radius-full);
+            background:
+                linear-gradient(rgba(255,255,255,0.10), rgba(255,255,255,0.10)) padding-box,
+                linear-gradient(90deg, #7B61FF 0%, #9B79FF 50%, #A78BFA 100%) border-box;
+            color: #FFFFFF !important;
+            box-shadow: 0 10px 24px rgba(0,0,0,0.15);
+            transition: transform var(--transition-base), box-shadow var(--transition-base), background var(--transition-base), color var(--transition-base);
+        }
+        .purple-section .btn:hover {
+            transform: translateY(-2px);
+            background:
+                linear-gradient(90deg, #7B61FF 0%, #9B79FF 50%, #A78BFA 100%) padding-box,
+                linear-gradient(90deg, #7B61FF 0%, #9B79FF 50%, #A78BFA 100%) border-box;
+        }
+        .purple-section .btn:focus-visible {
+            outline: 3px solid rgba(123, 97, 255, 0.35);
+            outline-offset: 2px;
+        }
+        .purple-section .btn:active {
+            transform: translateY(0);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.14), inset 0 1px 0 rgba(255,255,255,0.12);
+            filter: brightness(0.98);
+        }
+        .purple-section .btn--lg { min-height: 48px; padding: 0.8rem 1.6rem; font-size: 1.02rem; }
+        .purple-section .btn-elevated { box-shadow: 0 10px 24px rgba(0,0,0,0.16), inset 0 1px 0 rgba(255,255,255,0.15); }
+        .purple-section .btn[disabled],
+        .purple-section .btn.is-disabled,
+        .purple-section .btn[aria-disabled="true"] {
+            background:
+                linear-gradient(rgba(255,255,255,0.18), rgba(255,255,255,0.18)) padding-box,
+                linear-gradient(90deg, rgba(255,255,255,0.45), rgba(255,255,255,0.45)) border-box !important;
+            color: rgba(255,255,255,0.65) !important;
+            border-color: transparent;
+            box-shadow: none;
+            transform: none;
+            cursor: not-allowed;
+        }
+        /* Primary appears filled by default */
+        .purple-section .btn-primary {
+            background:
+                linear-gradient(90deg, #7B61FF 0%, #9B79FF 50%, #A78BFA 100%) padding-box,
+                linear-gradient(90deg, #7B61FF 0%, #9B79FF 50%, #A78BFA 100%) border-box;
+        }
+        /* Ghost/secondary remain glassy with gradient border only */
+        .purple-section .btn-ghost,
+        .purple-section .btn-secondary {
+            background:
+                linear-gradient(rgba(255,255,255,0.10), rgba(255,255,255,0.10)) padding-box,
+                linear-gradient(90deg, #7B61FF 0%, #9B79FF 50%, #A78BFA 100%) border-box;
+        }
+
+        /* (removed cyan variants per request; keep default purple palette) */
         
         .video-container {
             position: relative;
@@ -142,6 +262,236 @@
         body.has-modal-open {
             overflow: hidden;
         }
+
+        /* Unified style for video and quiz cards */
+        .content-card {
+            position: relative;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            contain: paint; /* clip internal effects */
+            background: var(--gradient-primary);
+            color: #fff;
+            border: 1px solid rgba(255,255,255,0.22);
+            box-shadow: 0 18px 42px rgba(17, 24, 39, 0.25);
+            transition: box-shadow var(--transition-base), transform var(--transition-base);
+        }
+        .content-card .heading-lg,
+        .content-card .heading-md { color: #fff !important; }
+        .content-card .text-muted,
+        .content-card .text-sm { color: rgba(255,255,255,.88) !important; }
+        /* inherit the purple-section styles; ensure equal look inside content cards */
+        .content-card .btn { color: #fff !important; }
+        .content-card .video-container iframe { border-radius: var(--radius-md); }
+        .content-card .quiz-option { border-color: rgba(255,255,255,.35); color: #fff; }
+        .content-card .quiz-option:hover { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.6); }
+        .content-card .quiz-option.selected { background: rgba(255,255,255,.14); border-color: #fff; }
+        .content-card .quiz-option.correct { background: rgba(22,163,74,.20); border-color: #22C55E; }
+        .content-card .quiz-option.incorrect { background: rgba(220,38,38,.20); border-color: #EF4444; }
+        /* decorative glow to match progress-card */
+        .content-card::before {
+            content: "";
+            position: absolute;
+            inset: -18% -16% auto auto;
+            width: 240px;
+            height: 240px;
+            background: radial-gradient(closest-side, rgba(255,255,255,0.14), rgba(255,255,255,0) 60%);
+            /* removed blur to prevent bleed */
+            pointer-events: none;
+        }
+        /* soft inner gloss layer */
+        .content-card::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+            pointer-events: none;
+        }
+        .content-card:hover { box-shadow: 0 24px 56px rgba(17,24,39,0.28); transform: translateY(-2px); }
+
+        /* Toolbar for lesson actions */
+        .content-card .lesson-actions {
+            display: inline-flex;
+            gap: 0.5rem;
+            padding: 0.35rem;
+            border-radius: 9999px;
+            background: rgba(255,255,255,0.14);
+            border: 1px solid rgba(255,255,255,0.28);
+            -webkit-backdrop-filter: blur(6px);
+            backdrop-filter: blur(6px);
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.18);
+        }
+
+        /* Lessons sidebar as a glassy panel */
+        .sidebar-card {
+            position: relative;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            contain: paint;
+            background: var(--gradient-primary);
+            color: #fff;
+            border: 1px solid rgba(255,255,255,0.22);
+            box-shadow: 0 18px 42px rgba(17,24,39,.25);
+            transition: box-shadow var(--transition-base), transform var(--transition-base);
+            max-height: 65vh;
+            overflow: auto; /* enable container scrolling so header can stick */
+        }
+        /* decorative glow and gloss for sidebar to match other cards */
+        .sidebar-card::before {
+            content: "";
+            position: absolute;
+            inset: -18% -16% auto auto;
+            width: 220px;
+            height: 220px;
+            background: radial-gradient(closest-side, rgba(255,255,255,0.14), rgba(255,255,255,0) 60%);
+            pointer-events: none;
+        }
+        .sidebar-card::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+            pointer-events: none;
+        }
+        .sidebar-card:hover { box-shadow: 0 24px 56px rgba(17,24,39,0.28); transform: translateY(-2px); }
+        .sidebar-card .heading-md { color: #fff !important; }
+        .sidebar-card .lessons-list { margin-top: .5rem; padding-inline: .25rem; }
+        /* simple scrollbar for Windows */
+        .sidebar-card .lessons-list::-webkit-scrollbar { width: 10px; }
+        .sidebar-card .lessons-list::-webkit-scrollbar-thumb { background: rgba(255,255,255,.35); border-radius: 999px; }
+        .sidebar-card .lessons-list::-webkit-scrollbar-track { background: rgba(255,255,255,.08); border-radius: 999px; }
+        .lessons-sidebar.is-collapsed #lessonsList { display: none; }
+        .sidebar-card .sidebar-header {
+            position: sticky;
+            top: 0;
+            z-index: 2;
+            /* remove inner shadow/gradient */
+            background: transparent;
+            border-bottom: 0;
+            padding-block: .25rem;
+            -webkit-backdrop-filter: none;
+            backdrop-filter: none;
+        }
+
+        /* Page-level sticky for wide screens */
+        @media (min-width: 1024px) {
+            .lessons-sidebar.sidebar-card {
+                position: sticky;
+                top: 1rem;
+                align-self: start;
+                max-height: calc(100vh - 2rem);
+            }
+        }
+
+        /* Scroll offset so sticky header doesn't cover the target */
+        .scroll-offset { scroll-margin-top: 96px; }
+        @media (min-width: 961px) { .scroll-offset { scroll-margin-top: 110px; } }
+
+        /* --- Mobile responsiveness polish for lesson header/actions --- */
+        /* Medium screens (tablets) – stack title and actions and relax sizes */
+        @media (max-width: 960px) {
+            /* Title + actions container at top of video card */
+            #videoSection > .flex { flex-direction: column; align-items: stretch; gap: 0.75rem; }
+            /* Let actions take full width and wrap nicely */
+            .content-card .lesson-actions { width: 100%; justify-content: stretch; gap: 0.5rem; flex-wrap: wrap; }
+            .content-card .lesson-actions .btn { flex: 1 1 auto; min-width: 0; }
+            /* Slightly reduce large control sizes for tablets */
+            .purple-section .btn--lg { min-height: 46px; padding: 0.65rem 1.1rem; font-size: 1rem; }
+            /* Make heading a bit smaller so it doesn't crowd */
+            #currentLessonTitle.heading-lg { font-size: 1.25rem; line-height: 1.5; }
+            /* Hide inline SVG icons to free space on tablet widths */
+            .content-card .lesson-actions svg { display: none; }
+        }
+        /* Make the header row stack on small screens to avoid crowding */
+        @media (max-width: 640px) {
+            /* Title + actions container at top of video card */
+            #videoSection > .flex { flex-direction: column; align-items: stretch; gap: 0.75rem; }
+            /* So actions take full width under the title */
+            .content-card .lesson-actions {
+                width: 100%;
+                justify-content: stretch;
+                gap: 0.5rem;
+                padding: 0.35rem;
+                border-radius: 16px; /* slightly smaller on mobile */
+            }
+            /* Large buttons become comfortable but compact on mobile */
+            .purple-section .btn--lg { min-height: 44px; padding: 0.6rem 1rem; font-size: 0.98rem; }
+            /* Allow buttons to shrink nicely without overflow */
+            .content-card .lesson-actions .btn { flex: 1 1 auto; min-width: 0; }
+            /* Slightly smaller title to fit */
+            #currentLessonTitle.heading-lg { font-size: 1.125rem; line-height: 1.4; }
+            /* Hide inline SVG icons to save space */
+            .content-card .lesson-actions svg { display: none; }
+            /* Make progress circle smaller so it never collides */
+            .progress-circle { width: 78px; height: 78px; }
+            .progress-circle svg { width: 78px; height: 78px; }
+            .progress-percentage { font-size: 0.95rem; }
+        }
+        /* On very narrow screens, stack the action buttons vertically */
+        @media (max-width: 420px) {
+            .content-card .lesson-actions { flex-wrap: wrap; }
+            .content-card .lesson-actions .btn { flex-basis: 100%; }
+        }
+
+        /* Quiz actions responsive layout */
+        .quiz-actions { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+        @media (max-width: 480px) {
+            .quiz-actions .btn { flex: 1 1 100%; }
+        }
+        /* Ensure quiz text is visible: dark purple on light quiz cards */
+        #quizSection .quiz-question,
+        #quizSection .quiz-question * { color: var(--color-primary-dark) !important; }
+        #quizSection .quiz-option {
+            color: var(--color-primary-dark) !important;
+            border-color: rgba(var(--color-primary-rgb), 0.28) !important;
+            background: #ffffff;
+        }
+        #quizSection .quiz-option:hover {
+            background: rgba(var(--color-primary-rgb), 0.06);
+            border-color: rgba(var(--color-primary-rgb), 0.45) !important;
+        }
+        #quizSection .quiz-option.selected {
+            background: rgba(var(--color-primary-rgb), 0.12);
+            border-color: var(--color-primary) !important;
+        }
+        #quizSection .quiz-option.correct {
+            color: #065f46 !important; /* readable success text */
+            background: rgba(22, 163, 74, 0.12) !important;
+            border-color: #22C55E !important;
+        }
+        #quizSection .quiz-option.incorrect {
+            color: #7f1d1d !important; /* readable error text */
+            background: rgba(220, 38, 38, 0.12) !important;
+            border-color: #EF4444 !important;
+        }
+        /* Certificate card polish to match other cards */
+        .certificate-card {
+            position: relative;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            contain: paint;
+            background: var(--gradient-primary);
+            color: #fff;
+            border: 1px solid rgba(255,255,255,0.22);
+            box-shadow: 0 18px 42px rgba(17, 24, 42, 0.25);
+            transition: box-shadow var(--transition-base), transform var(--transition-base);
+        }
+        .certificate-card::before {
+            content: "";
+            position: absolute;
+            inset: -18% -16% auto auto;
+            width: 230px;
+            height: 230px;
+            background: radial-gradient(closest-side, rgba(255,255,255,0.14), rgba(255,255,255,0) 60%);
+            pointer-events: none;
+        }
+        .certificate-card::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+            pointer-events: none;
+        }
+        .certificate-card:hover { box-shadow: 0 24px 56px rgba(17,24,42,0.28); transform: translateY(-2px); }
     </style>
 </head>
 <body>
@@ -186,10 +536,10 @@
                     </div>
 
                     <!-- Progress Card -->
-                    <div class="card layout-stack purple-section">
+                    <div class="card layout-stack purple-section progress-card" aria-live="polite">
                         <h3 class="heading-md">التقدم في الكورس</h3>
-                        <div class="flex items-center gap-md">
-                            <div class="progress-circle">
+                        <div class="progress-row">
+                            <div class="progress-circle" aria-hidden="true">
                                 <svg width="80" height="80" viewBox="0 0 80 80">
                                     <circle cx="40" cy="40" r="36" stroke="rgba(255,255,255,0.3)" stroke-width="8" fill="none"/>
                                     <circle cx="40" cy="40" r="36" stroke="#FFFFFF" stroke-width="8" fill="none" 
@@ -197,16 +547,16 @@
                                 </svg>
                                 <div class="progress-percentage" id="progressPercentage">0%</div>
                             </div>
-                            <div class="layout-stack layout-stack--sm">
+                            <div class="layout-stack layout-stack--sm progress-meta">
                                 <div><strong id="completedLessons">0</strong> من <span id="totalLessonsCount">5</span> دروس</div>
                                 <div class="text-sm">دروس مكتملة</div>
                             </div>
                         </div>
-                        <button class="btn btn-primary" id="continueBtn">متابعة التعلم</button>
+                        <button class="btn btn-primary btn--lg btn-elevated" id="continueBtn">متابعة التعلم</button>
                     </div>
 
                     <!-- Certificate Card -->
-                    <div class="card layout-stack certificate-card purple-section is-hidden" id="certificateCard" aria-live="polite">
+                    <div class="card layout-stack certificate-card purple-section is-hidden scroll-offset" id="certificateCard" aria-live="polite">
                         <div class="flex items-center gap-md">
                             <div class="certificate-icon" aria-hidden="true">
                                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
@@ -222,8 +572,8 @@
                             </div>
                         </div>
                         <div class="flex flex-wrap gap-sm">
-                            <button type="button" class="btn btn-primary flex-1" id="certificateBtn">إصدار الشهادة</button>
-                            <button type="button" class="btn btn-secondary flex-1 is-hidden" id="viewCertificateBtn">عرض الشهادة</button>
+                            <button type="button" class="btn btn-primary btn--lg btn-elevated flex-1" id="certificateBtn">إصدار الشهادة</button>
+                            <button type="button" class="btn btn-secondary btn--lg btn-elevated flex-1 is-hidden" id="viewCertificateBtn">عرض الشهادة</button>
                         </div>
                         <dl class="layout-stack layout-stack--xs certificate-meta is-hidden" id="certificateDetails">
                             <div class="certificate-meta__row">
@@ -249,10 +599,10 @@
             <div class="container">
                 <div class="grid grid--columns-4 gap-lg">
                     <!-- Lessons Sidebar -->
-                    <div class="card layout-stack lessons-sidebar purple-section" id="lessonsSidebar">
-                        <div class="flex items-center justify-between">
+                    <div class="card layout-stack lessons-sidebar purple-section sidebar-card" id="lessonsSidebar">
+                        <div class="flex items-center justify-between sidebar-header">
                             <h3 class="heading-md">قائمة الدروس</h3>
-                            <button type="button" class="btn btn-secondary lessons-toggle" id="lessonsToggle" aria-expanded="true" aria-controls="lessonsList">
+                            <button type="button" class="btn btn-secondary btn--lg btn-elevated lessons-toggle" id="lessonsToggle" aria-expanded="true" aria-controls="lessonsList">
                                 إخفاء القائمة
                             </button>
                         </div>
@@ -264,23 +614,23 @@
                     <!-- Main Content -->
                     <div class="span-3">
                         <!-- Video Section -->
-                        <div class="card layout-stack mb-lg purple-section" id="videoSection">
+                        <div class="card layout-stack mb-lg purple-section content-card scroll-offset" id="videoSection">
                             <div class="flex justify-between items-center">
                                 <h2 class="heading-lg" id="currentLessonTitle">الدرس الأول: مقدمة في Packet Tracer</h2>
                                 <div class="lesson-actions">
-                                    <button class="btn btn-ghost" id="prevLessonBtn" disabled>
+                                    <button class="btn btn-ghost btn--lg btn-elevated" id="prevLessonBtn" disabled>
                                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                             <path d="m15 18-6-6 6-6"/>
                                         </svg>
                                         السابق
                                     </button>
-                                    <button class="btn btn-primary" id="nextLessonBtn">
+                                    <button class="btn btn-primary btn--lg btn-elevated" id="nextLessonBtn">
                                         التالي
                                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                             <path d="m9 18 6-6-6-6"/>
                                         </svg>
                                     </button>
-                                    <button class="btn btn-secondary is-hidden" id="startQuizBtn" type="button">بدء الاختبار</button>
+                                    <button class="btn btn-secondary btn--lg btn-elevated is-hidden" id="startQuizBtn" type="button">بدء الاختبار</button>
                                 </div>
                             </div>
                             
@@ -294,7 +644,7 @@
                         </div>
 
                         <!-- Quiz Section -->
-                        <div class="card layout-stack purple-section is-hidden" id="quizSection">
+                        <div class="card layout-stack purple-section content-card is-hidden scroll-offset" id="quizSection">
                             <h3 class="heading-md">اختبار سريع</h3>
                             <p class="text-muted">أجب على الأسئلة التالية للتأكد من فهمك للدرس:</p>
                             
@@ -303,9 +653,9 @@
                             </div>
                             
                             <div class="quiz-actions">
-                                <button class="btn btn-primary" id="submitQuizBtn">إرسال الإجابات</button>
-                                <button class="btn btn-secondary is-hidden" id="showAnswersBtn">عرض الإجابات</button>
-                                <button class="btn btn-ghost is-hidden" id="retryQuizBtn">إعادة المحاولة</button>
+                                <button class="btn btn-primary btn--lg btn-elevated" id="submitQuizBtn">إرسال الإجابات</button>
+                                <button class="btn btn-secondary btn--lg btn-elevated is-hidden" id="showAnswersBtn">عرض الإجابات</button>
+                                <button class="btn btn-ghost btn--lg btn-elevated is-hidden" id="retryQuizBtn">إعادة المحاولة</button>
                             </div>
                             
                             <div id="quizResults" class="quiz-results is-hidden" aria-live="polite">
@@ -469,7 +819,10 @@
                     </div>
                 `;
                 
-                lessonItem.addEventListener('click', () => loadLesson(index));
+                lessonItem.addEventListener('click', () => {
+                    loadLesson(index);
+                    try { videoSection?.scrollIntoView({ behavior: 'smooth', block: 'start' }); } catch (_) {}
+                });
                 lessonsList.appendChild(lessonItem);
             });
         }
@@ -534,6 +887,7 @@
             retryQuizBtn.classList.add('is-hidden');
             showAnswersBtn.classList.add('is-hidden');
             showAnswersBtn.textContent = 'عرض الإجابات';
+            try { videoSection?.scrollIntoView({ behavior: 'smooth', block: 'start' }); } catch (_) {}
             
             // Update navigation buttons
             prevLessonBtn.disabled = index === 0;
@@ -621,6 +975,7 @@
             
             videoSection.classList.add('is-hidden');
             quizSection.classList.remove('is-hidden');
+            try { quizSection?.scrollIntoView({ behavior: 'smooth', block: 'start' }); } catch (_) {}
             
             // Generate quiz HTML
             quizQuestions.innerHTML = '';

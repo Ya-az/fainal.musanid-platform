@@ -1,0 +1,7 @@
+node_modules/
+coverage/
+public/
+docs/
+temp/
+scripts/link-audit.js
+*.min.js
