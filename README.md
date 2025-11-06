@@ -1,5 +1,9 @@
 # 🎓 منصة مساند التعليمية
 
+[![CI](https://github.com/Ya-az/fainal.musanid-platform/actions/workflows/ci.yml/badge.svg)](https://github.com/Ya-az/fainal.musanid-platform/actions/workflows/ci.yml)
+[![codecov](https://codecov.io/gh/Ya-az/fainal.musanid-platform/branch/main/graph/badge.svg)](https://codecov.io/gh/Ya-az/fainal.musanid-platform)
+[![Node](https://img.shields.io/badge/node-%3E%3D18-339933?logo=node.js&logoColor=white)](https://nodejs.org/)
+
 منصة تعليمية حديثة لتعلم التقنيات والبرمجة باللغة العربية.
 
 ## ✨ المميزات
@@ -56,6 +60,13 @@ npx http-server . -p 8080
 ```
 https://ya-az.github.io/fainal.musanid-platform/
 ```
+
+## ✅ CI والتغطية (Coverage)
+
+- كل دفعة/PR إلى `main` تشغل CI تلقائيًا: تثبيت، لنت، اختبارات بتغطية، بناء CSS، وتدقيق روابط.
+- التغطية تُرفع إلى Codecov ويمكن الاطلاع عليها من الشارة بالأعلى.
+- أيضًا تُرفع تقارير HTML كـ Artifact باسم `coverage` في صفحة Action الخاصة بالتشغيل.
+
 
 ### تفعيل GitHub Pages
 1. اذهب إلى: `Settings` → `Pages`
