@@ -173,16 +173,36 @@
                         ...profile,
                         updatedAt: new Date().toISOString()
                     }));
+                    // Store simple credentials locally for demo/offline login (NOT secure for production)
+                    try {
+                        const pwd = form.querySelector('#password')?.value || '';
+                        if (pwd && profile.email) {
+                            const creds = {
+                                email: profile.email.toLowerCase(),
+                                // store base64 to avoid plain-text readability in UI (still insecure!)
+                                password: btoa(pwd),
+                                username: profile.email.split('@')[0]
+                            };
+                            window.localStorage.setItem('musanid-user-credentials', JSON.stringify(creds));
+                        }
+                    } catch (err) {
+                        console.warn('Unable to store local credentials', err);
+                    }
                 }
 
                 helper?.classList.remove('is-hidden', 'is-error');
                 helper?.classList.add('is-success');
                 if (helper) {
-                    helper.textContent = 'تم إنشاء حسابك بنجاح! يمكنك الآن متابعة الدورات واستلام الشهادات الرقمية.';
+                    helper.textContent = 'تم إنشاء حسابك بنجاح! سيتم نقلك إلى صفحة تسجيل الدخول لتفعيل الدخول.';
                 }
 
+                // Prevent default POST and redirect to the login page so user can sign in
                 event.preventDefault();
-                form.reset();
+                const redirectEmail = profile.email ? `login.html?email=${encodeURIComponent(profile.email)}` : 'login.html';
+                // Small delay to allow user to read the success message
+                setTimeout(() => {
+                    window.location.href = redirectEmail;
+                }, 800);
             });
 
             // إظهار/إخفاء كلمة المرور

@@ -864,22 +864,32 @@
                 lessonContent.style.setProperty('font-weight', '500', 'important');
             }
             
-            // Load YouTube video
+
+            // Handle video section
             if (lesson.videoUrl) {
                 const videoId = extractYouTubeVideoId(lesson.videoUrl);
                 if (videoId) {
-                    // Enable JS API so we can detect video end
                     videoPlayer.src = `https://www.youtube.com/embed/${videoId}?enablejsapi=1&rel=0&modestbranding=1`;
                     videoPlayer.title = lesson.title;
-                    // If API is ready, bind/end listener
                     if (window.YT && window.YT.Player) {
                         ensureYouTubePlayer(videoId, lesson.title);
                     }
+                    // Show video section, hide message
+                    videoSection.classList.remove('is-hidden');
+                    let noVideoMsg = document.getElementById('noVideoMsg');
+                    if (noVideoMsg) noVideoMsg.classList.add('is-hidden');
+                } else {
+                    // Hide video section, show message
+                    videoSection.classList.add('is-hidden');
+                    showNoVideoMessage();
                 }
+            } else {
+                // Hide video section, show message
+                videoSection.classList.add('is-hidden');
+                showNoVideoMessage();
             }
-            
-            // Show video section, hide quiz section initially
-            videoSection.classList.remove('is-hidden');
+
+            // Hide quiz section initially
             quizSection.classList.add('is-hidden');
             quizQuestions.innerHTML = '';
             quizResults.classList.add('is-hidden');
@@ -887,7 +897,14 @@
             retryQuizBtn.classList.add('is-hidden');
             showAnswersBtn.classList.add('is-hidden');
             showAnswersBtn.textContent = 'عرض الإجابات';
-            try { videoSection?.scrollIntoView({ behavior: 'smooth', block: 'start' }); } catch (_) {}
+
+            // Scroll to video/message section if visible
+            let scrollTarget = document.getElementById('noVideoMsg')?.classList.contains('is-hidden') === false
+                ? document.getElementById('noVideoMsg')
+                : (!videoSection.classList.contains('is-hidden') ? videoSection : null);
+            if (scrollTarget) {
+                try { scrollTarget.scrollIntoView({ behavior: 'smooth', block: 'start' }); } catch (_) {}
+            }
             
             // Update navigation buttons
             prevLessonBtn.disabled = index === 0;
@@ -896,10 +913,31 @@
             // Toggle Start Quiz button depending on quiz availability
             const hasQuiz = Array.isArray(lesson.quiz) && lesson.quiz.length > 0;
             startQuizBtn.classList.toggle('is-hidden', !hasQuiz);
-            
+
             // Re-render lessons list to update current lesson highlight
             renderLessonsList();
         }
+
+        // Show a message if no video is available for the lesson
+        function showNoVideoMessage() {
+            let msg = document.getElementById('noVideoMsg');
+            if (!msg) {
+                msg = document.createElement('div');
+                msg.id = 'noVideoMsg';
+                msg.className = 'alert alert-info mb-lg';
+                msg.style.textAlign = 'center';
+                msg.style.background = '#f3f4f6';
+                msg.style.color = '#6b7280';
+                msg.style.fontWeight = '600';
+                msg.style.borderRadius = 'var(--radius-md)';
+                msg.style.padding = '1.5rem';
+                msg.style.marginBottom = '1.5rem';
+                msg.textContent = 'لا يوجد فيديو لهذا الدرس. يمكنك متابعة الملخص أو الانتقال للاختبار.';
+                // Insert after videoSection
+                videoSection.parentNode.insertBefore(msg, videoSection.nextSibling);
+            }
+            msg.classList.remove('is-hidden');
+    }
 
         function extractYouTubeVideoId(url) {
             const match = url.match(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/);

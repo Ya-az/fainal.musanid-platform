@@ -42,7 +42,7 @@
                         <div class="card form layout-stack auth-card" aria-labelledby="loginTitle">
                     <h2 id="loginTitle" class="section__title section__title--md mb-0 form-title">تسجيل الدخول</h2>
                     <p class="text-body form-subtitle">أدخل بياناتك للمتابعة. جميع الاتصالات مشفّرة بالكامل.</p>
-                    <form id="loginForm" class="layout-stack" action="/auth/login" method="POST" novalidate>
+                    <form id="loginForm" class="layout-stack" action="/auth/login" method="POST" novalidate onsubmit="return false;">
                         <div class="form__row">
                             <div>
                                 <label for="userOrEmail" class="form-label">اسم المستخدم أو البريد الإلكتروني</label>
@@ -73,7 +73,7 @@
                             <span>تذكرني مجدداً</span>
                         </label>
 
-                        <button type="submit" class="btn btn-primary btn--block">تسجيل الدخول</button>
+                        <button type="button" id="loginSubmit" class="btn btn-primary btn--block">تسجيل الدخول</button>
                         <p class="form-helper text-center">
                             لا تملك حساباً بعد؟
                             <a class="link-accent" href="register.html">أنشئ حساباً جديداً</a>
@@ -124,37 +124,175 @@
                 });
             }
         });
-
         document.addEventListener('DOMContentLoaded', async () => {
             try {
                 const res = await fetch('/csrf-token', { credentials: 'include' });
-                if (!res.ok) {
-                    return;
+                if (res && res.ok) {
+                    const data = await res.json();
+                    if (data?.csrfToken) {
+                        const form = document.getElementById('loginForm');
+                        if (form) {
+                            const input = document.createElement('input');
+                            input.type = 'hidden';
+                            input.name = '_csrf';
+                            input.value = data.csrfToken;
+                            form.prepend(input);
+                        }
+                    }
                 }
-
-                const data = await res.json();
-                if (!data?.csrfToken) {
-                    return;
-                }
-
-                const form = document.getElementById('loginForm');
-                if (!form) {
-                    return;
-                }
-
-                const input = document.createElement('input');
-                input.type = 'hidden';
-                input.name = '_csrf';
-                input.value = data.csrfToken;
-                form.prepend(input);
             } catch (error) {
-                const helper = document.getElementById('loginMessage');
-                if (helper) {
-                    helper.textContent = 'تعذّر الاتصال بالخادم. سيُعاد المحاولة عند التحديث.';
-                    helper.classList.remove('is-hidden');
-                    helper.classList.add('is-error');
+                // If CSRF fetch fails, we silently continue and enable a local fallback below.
+                console.warn('CSRF token fetch failed, falling back to client-side auth for demo.');
+            }
+
+            // Client-side login handler: prevents form doing a hard POST when no backend exists.
+            const form = document.getElementById('loginForm');
+            const helper = document.getElementById('loginMessage');
+            // support the new button id or fall back to a submit button if present
+            const submitBtn = document.getElementById('loginSubmit') || form?.querySelector('button[type="submit"]');
+
+            // If redirected from signup with email in query, prefill the user/email field
+            try {
+                const params = new URLSearchParams(window.location.search);
+                const prefillEmail = params.get('email');
+                if (prefillEmail) {
+                    const userInput = document.getElementById('userOrEmail');
+                    if (userInput) userInput.value = decodeURIComponent(prefillEmail);
+                }
+            } catch (err) {
+                // ignore URL parsing errors
+            }
+
+            // Developer/demo seed: if no credentials exist, seed the provided test account locally.
+            // NOTE: This is ONLY for local demo/testing. DO NOT use this in production.
+            try {
+                if (!window.localStorage.getItem('musanid-user-credentials')) {
+                    const demoCreds = {
+                        email: 'd@gmail.com',
+                        username: 'd',
+                        // store base64 of the password (Dd@123456) for compatibility with local-check
+                        password: btoa('Dd@123456')
+                    };
+                    window.localStorage.setItem('musanid-user-credentials', JSON.stringify(demoCreds));
+                    // also store a basic profile so register/login flows find it
+                    window.localStorage.setItem('musanid-user-profile', JSON.stringify({
+                        firstName: 'Demo',
+                        lastName: 'User',
+                        email: demoCreds.email,
+                        preferredTrack: ''
+                    }));
+                }
+            } catch (e) {
+                console.warn('Unable to seed demo credentials', e);
+            }
+
+            // Extracted handler so we can call it from a click listener and from a submit event
+            async function handleLoginEvent(ev) {
+                if (ev && ev.preventDefault) ev.preventDefault();
+
+                helper?.classList.add('is-hidden');
+                helper?.classList.remove('is-error', 'is-success');
+
+                const userOrEmail = form.querySelector('#userOrEmail')?.value.trim() || '';
+                const password = form.querySelector('#password')?.value || '';
+
+                if (!userOrEmail || !password) {
+                    helper?.classList.remove('is-hidden');
+                    helper?.classList.add('is-error');
+                    if (helper) helper.textContent = 'الرجاء إدخال اسم المستخدم/البريد وكلمة المرور.';
+                    return;
+                }
+
+                // Disable button during processing
+                if (submitBtn) {
+                    submitBtn.disabled = true;
+                    submitBtn.setAttribute('aria-busy', 'true');
+                }
+
+                // Try to POST to backend if available
+                let backendOk = false;
+                let backendUser = null;
+                try {
+                    const res = await fetch(form.action, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        credentials: 'include',
+                        body: JSON.stringify({ userOrEmail, password })
+                    });
+                    if (res && res.ok) {
+                        backendOk = true;
+                        try { backendUser = await res.json(); } catch (e) { backendUser = null; }
+                    }
+                } catch (e) {
+                    // network/backend not available -> fallback to localStorage
+                    backendOk = false;
+                }
+
+                if (backendOk) {
+                    // If server handled it, store minimal session (if returned) and redirect
+                    try {
+                        const session = {
+                            email: backendUser?.email || userOrEmail,
+                            username: backendUser?.username || (userOrEmail.split && userOrEmail.split('@')[0]) || userOrEmail,
+                            loggedInAt: new Date().toISOString(),
+                            source: 'backend'
+                        };
+                        window.localStorage.setItem('musanid-current-user', JSON.stringify(session));
+                    } catch (e) {
+                        console.warn('Could not persist session locally', e);
+                    }
+                    window.location.href = '../index.html';
+                    return;
+                }
+
+                // Local fallback: check stored credentials (for demo/offline)
+                try {
+                    const credRaw = window.localStorage.getItem('musanid-user-credentials');
+                    if (credRaw) {
+                        const creds = JSON.parse(credRaw);
+                        const storedEmail = creds.email?.toLowerCase?.() || '';
+                        const storedPassword = creds.password || ''; // stored base64
+                        const providedPasswordB64 = btoa(password);
+
+                        if ((userOrEmail.toLowerCase() === storedEmail || userOrEmail === creds.username) && providedPasswordB64 === storedPassword) {
+                            // Persist a simple session object to indicate logged-in state
+                            try {
+                                const session = {
+                                    email: creds.email,
+                                    username: creds.username,
+                                    loggedInAt: new Date().toISOString(),
+                                    source: 'local'
+                                };
+                                window.localStorage.setItem('musanid-current-user', JSON.stringify(session));
+                            } catch (e) {
+                                console.warn('Could not persist session locally', e);
+                            }
+
+                            helper?.classList.remove('is-hidden', 'is-error');
+                            helper?.classList.add('is-success');
+                            if (helper) helper.textContent = 'تم تسجيل الدخول بنجاح (وضع العرض المحلي). سيتم التحويل...';
+                            setTimeout(() => window.location.href = '../index.html', 800);
+                            return;
+                        }
+                    }
+                } catch (err) {
+                    console.error('Local auth check failed', err);
+                }
+
+                // If reached here, auth failed
+                helper?.classList.remove('is-hidden');
+                helper?.classList.add('is-error');
+                if (helper) helper.textContent = 'بيانات الاعتماد غير صحيحة أو الخادم غير متاح. حاول مرة أخرى.';
+
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.removeAttribute('aria-busy');
                 }
             }
+
+            // Wire submit button to handler and keep submit event as a fallback
+            if (submitBtn) submitBtn.addEventListener('click', handleLoginEvent);
+            form?.addEventListener('submit', handleLoginEvent);
         });
     </script>
 </body>

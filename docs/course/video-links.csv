@@ -1,0 +1,6 @@
+courseId,lessonId,lessonTitle,videoUrl
+cisco-packet-tracer,1,"مقدمة عن Packet Tracer",https://www.youtube.com/watch?v=8g9itb8I1Uo
+cisco-packet-tracer,2,"إنشاء أول شبكة",https://www.youtube.com/watch?v=QJHeq6r6QwA
+cisco-packet-tracer,3,"إعداد السويتشات",https://www.youtube.com/watch?v=QwUE0cQZkqY
+cisco-packet-tracer,4,"إعداد الراوترات",https://www.youtube.com/watch?v=lHfq_Va5Gu4
+cisco-packet-tracer,5,"استكشاف الأخطاء وإصلاحها",https://www.youtube.com/watch?v=6U9V6gYt5yA
