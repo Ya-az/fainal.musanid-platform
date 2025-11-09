@@ -30,7 +30,7 @@
     <link href="css/styles.css" rel="stylesheet">
 </head>
 <body>
-    <header class="site-header" data-site-header data-base="./" data-active="home" data-nav-id="primaryNav" data-home="index.html"></header>
+    <header class="site-header" data-site-header data-base="./" data-active="home" data-nav-id="primaryNav" data-home="index.html" data-primary-text="تسجيل الدخول" data-primary-href="/docs/auth/login.html" data-secondary-text="ابدأ التعلم" data-secondary-href="/docs/auth/register.html"></header>
 
     <main>
         <section class="hero">
@@ -42,7 +42,7 @@
                         صممنا مساند لترافقك خطوة بخطوة؛ بدءاً من أول درس وحتى الحصول على شهادة رقمية تثبت مهاراتك في الشبكات، البرمجة، أو الأمن السيبراني.
                     </p>
                     <div class="hero__actions">
-                        <a href="auth/register.html" class="btn btn-primary">ابدأ التعلم الآن</a>
+                        <a id="startLearning" href="auth/register.html" class="btn btn-primary">ابدأ التعلم الآن</a>
                         <a href="about-musanid.html" class="btn btn-outline">تعرّف على المنصة</a>
                     </div>
                 </div>
@@ -245,6 +245,33 @@
     <script defer src="js/components/header.js"></script>
     <script defer src="js/components/footer.js"></script>
     <script defer src="js/main.js"></script>
+    <script>
+        // Make "ابدأ التعلم الآن" smarter: go to courses if user is logged-in, otherwise go to register
+        document.addEventListener('DOMContentLoaded', () => {
+            const start = document.getElementById('startLearning');
+            if (!start) return;
+
+            start.addEventListener('click', (ev) => {
+                // allow modifier clicks to open in new tab
+                if (ev.metaKey || ev.ctrlKey || ev.shiftKey || ev.button === 1) return;
+                ev.preventDefault();
+
+                try {
+                    const current = window.localStorage.getItem('musanid-current-user');
+                    if (current) {
+                        // user appears logged in -> go to courses
+                        window.location.href = 'course/cr_index.html';
+                    } else {
+                        // not logged in -> go to register
+                        window.location.href = 'auth/register.html';
+                    }
+                } catch (e) {
+                    // fallback to register on error
+                    window.location.href = 'auth/register.html';
+                }
+            });
+        });
+    </script>
 </body>
 </html>
 
