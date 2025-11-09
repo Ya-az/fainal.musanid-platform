@@ -16,7 +16,7 @@ class CourseManager {
                     {
                         id: 1,
                         title: 'مقدمة عن Packet Tracer',
-                        videoUrl: 'https://www.youtube.com/watch?v=6f5MFLjrBzw',
+                        videoUrl: 'https://www.youtube.com/watch?v=PxeywyVOAqU', // فيديو عربي: مقدمة Packet Tracer (Dr. Omar Aldabbagh)
                         duration: '15:30',
                         description: 'يتعرف المتعلم في هذا الدرس على بيئة عمل Cisco Packet Tracer وكيفية التنقل بين أدواته الأساسية.',
                         summary: [
@@ -38,7 +38,7 @@ class CourseManager {
                     {
                         id: 2,
                         title: 'إنشاء أول شبكة',
-                        videoUrl: 'https://www.youtube.com/watch?v=B1oxjyNqCEE',
+                        videoUrl: 'https://www.youtube.com/watch?v=RlxlG7UrWFY', // فيديو عربي: إنشاء أول شبكة (OMER ALATTAS)
                         duration: '20:15',
                         description: 'بناء أول شبكة بسيطة وربط الأجهزة باستخدام Packet Tracer.',
                         summary: [
@@ -60,7 +60,7 @@ class CourseManager {
                     {
                         id: 3,
                         title: 'إعداد السويتشات',
-                        videoUrl: 'https://www.youtube.com/watch?v=ysLj1SqZXLs',
+                        videoUrl: 'https://www.youtube.com/watch?v=au_nDtlq1V0', // فيديو عربي: إعداد السويتشات (Fn)
                         duration: '18:20',
                         description: 'فهم وظيفة السويتش وكيفية إعداده لربط عدة أجهزة.',
                         summary: [
@@ -81,7 +81,7 @@ class CourseManager {
                     {
                         id: 4,
                         title: 'إعداد الراوترات',
-                        videoUrl: 'https://www.youtube.com/watch?v=lHfq_Va5Gu4',
+                        videoUrl: 'https://www.youtube.com/watch?v=1VeO0KUOgUc', // فيديو عربي: إعداد الراوترات (Tach-Maith)
                         duration: '22:45',
                         description: 'تكوين الراوترات لربط الشبكات المختلفة وتوجيه المرور.',
                         summary: [
@@ -102,7 +102,7 @@ class CourseManager {
                     {
                         id: 5,
                         title: 'استكشاف الأخطاء وإصلاحها',
-                        videoUrl: 'https://www.youtube.com/watch?v=gVYdKgULdH0',
+                        videoUrl: 'https://www.youtube.com/watch?v=2aPmrxj_eWo', // فيديو عربي: استكشاف الأخطاء وإصلاحها (MOHAMMAD DABBIT)
                         duration: '25:00',
                         description: 'منهجية حل المشاكل الشائعة في الشبكات.',
                         summary: [
@@ -136,7 +136,7 @@ class CourseManager {
                     {
                         id: 1,
                         title: 'مقدمة إلى Linux',
-                        videoUrl: 'https://www.youtube.com/watch?v=ROjZy1WbCIA',
+                        videoUrl: 'https://www.youtube.com/watch?v=OxL0B1F65W8', // فيديو عربي: مقدمة إلى Linux (Linux 101 Crash Course)
                         duration: '18:00',
                         description: 'التعرف على نظام Linux وتاريخه ومميزاته.',
                         summary: [
@@ -158,7 +158,7 @@ class CourseManager {
                     {
                         id: 2,
                         title: 'الأوامر الأساسية',
-                        videoUrl: 'https://www.youtube.com/watch?v=IVquJh3DXUA',
+                        videoUrl: 'https://www.youtube.com/watch?v=vrYCXNKtdSQ', // فيديو عربي: الأوامر الأساسية (Root-IT)
                         duration: '22:30',
                         description: 'تعلم أوامر Linux الأساسية للتنقل وإدارة الملفات.',
                         summary: [
@@ -180,7 +180,7 @@ class CourseManager {
                     {
                         id: 3,
                         title: 'الصلاحيات والملكية',
-                        videoUrl: 'https://www.youtube.com/watch?v=LnKoncbQBsM',
+                        videoUrl: 'https://www.youtube.com/watch?v=qt6SkmajjZI', // فيديو عربي: الصلاحيات والملكية
                         duration: '20:15',
                         description: 'فهم نظام الصلاحيات وكيفية إدارتها.',
                         summary: [
@@ -202,7 +202,7 @@ class CourseManager {
                     {
                         id: 4,
                         title: 'إدارة العمليات',
-                        videoUrl: 'https://www.youtube.com/watch?v=PgM3LNT8CBg',
+                        videoUrl: 'https://www.youtube.com/watch?v=gMoYC2fSk4w', // فيديو عربي: إدارة العمليات (TryHackMe/Linux Fundamentals)
                         duration: '19:45',
                         description: 'مراقبة وإدارة العمليات الجارية في النظام.',
                         summary: [
@@ -224,7 +224,7 @@ class CourseManager {
                     {
                         id: 5,
                         title: 'إدارة الحزم والتحديثات',
-                        videoUrl: 'https://www.youtube.com/watch?v=wBp0Rb-ZJak',
+                        videoUrl: 'https://www.youtube.com/watch?v=pYdB2uG9pnE', // فيديو عربي: إدارة الحزم والتحديثات (Linux Crash Course)
                         duration: '21:30',
                         description: 'تثبيت وتحديث البرامج في Linux.',
                         summary: [
@@ -258,7 +258,7 @@ class CourseManager {
                     {
                         id: 1,
                         title: 'مقدمة في Java',
-                        videoUrl: 'https://www.youtube.com/watch?v=eIrMbAQSU34',
+                        videoUrl: 'https://www.youtube.com/watch?v=ezOvr_qK3f4', // فيديو عربي: مقدمة في Java (BarmajaOnline - مقدمة نظرة عامة)
                         duration: '20:00',
                         description: 'التعرف على لغة Java وبيئة التطوير.',
                         summary: [
@@ -280,7 +280,7 @@ class CourseManager {
                     {
                         id: 2,
                         title: 'المتغيرات وأنواع البيانات',
-                        videoUrl: 'https://www.youtube.com/watch?v=NG4HNV-L5qA',
+                        videoUrl: 'https://www.youtube.com/watch?v=mY8yxPP9_AE', // فيديو عربي: المتغيرات وأنواع البيانات (Adel Nasim - Data Types)
                         duration: '18:30',
                         description: 'التعرف على أنواع البيانات والمتغيرات في Java.',
                         summary: [
@@ -302,7 +302,7 @@ class CourseManager {
                     {
                         id: 3,
                         title: 'الشروط والحلقات',
-                        videoUrl: 'https://www.youtube.com/watch?v=ldYLYRNaucM',
+                        videoUrl: 'https://www.youtube.com/watch?v=4HOpxzgyNoo', // فيديو عربي: الشروط والحلقات (Desouki / Java Loops & Control)
                         duration: '22:00',
                         description: 'التحكم بسير البرنامج باستخدام if, switch, for, while.',
                         summary: [
@@ -324,7 +324,7 @@ class CourseManager {
                     {
                         id: 4,
                         title: 'الدوال والمصفوفات',
-                        videoUrl: 'https://www.youtube.com/watch?v=vvanI8NRlSI',
+                        videoUrl: 'https://www.youtube.com/watch?v=izzJtoZnbHY', // فيديو عربي: الدوال والمصفوفات (Adel Nasim - Methods)
                         duration: '24:30',
                         description: 'إنشاء الدوال واستخدام المصفوفات.',
                         summary: [
@@ -346,7 +346,7 @@ class CourseManager {
                     {
                         id: 5,
                         title: 'البرمجة الكائنية (OOP)',
-                        videoUrl: 'https://www.youtube.com/watch?v=pTB0EiLXUC8',
+                        videoUrl: 'https://www.youtube.com/watch?v=3n47zkGMIxc', // فيديو عربي: البرمجة الكائنية (OOP) (Adel Nasim - OOP playlist)
                         duration: '26:00',
                         description: 'مبادئ البرمجة الكائنية في Java.',
                         summary: [
@@ -380,7 +380,7 @@ class CourseManager {
                     {
                         id: 1,
                         title: 'أساسيات الأمن السيبراني',
-                        videoUrl: 'https://www.youtube.com/watch?v=inWWhr5tnEA',
+                        videoUrl: 'https://www.youtube.com/watch?v=9etF0qpQ7BI', // فيديو عربي: مقدمة في الأمن السيبراني (Saad Alqarni)
                         duration: '19:00',
                         description: 'مقدمة شاملة للأمن السيبراني ومفاهيمه الأساسية.',
                         summary: [
@@ -402,7 +402,7 @@ class CourseManager {
                     {
                         id: 2,
                         title: 'التشفير وحماية البيانات',
-                        videoUrl: 'https://www.youtube.com/watch?v=jhXCTbFnK8o',
+                        videoUrl: 'https://www.youtube.com/watch?v=J4_R_bysWAI', // فيديو عربي: RSA: Key Generation / Encryption / Decryption (iTeam Academy)
                         duration: '21:30',
                         description: 'فهم أساسيات التشفير وكيفية حماية البيانات.',
                         summary: [
@@ -424,7 +424,7 @@ class CourseManager {
                     {
                         id: 3,
                         title: 'أمن الشبكات',
-                        videoUrl: 'https://www.youtube.com/watch?v=qiQR5rTSshw',
+                        videoUrl: 'https://www.youtube.com/watch?v=geQS8wLq9IA', // فيديو عربي: شرح تفصيلي للفايروول - Firewall وأنواعه (IT Dose)
                         duration: '20:00',
                         description: 'حماية الشبكات من الهجمات والاختراقات.',
                         summary: [
@@ -446,7 +446,7 @@ class CourseManager {
                     {
                         id: 4,
                         title: 'الهجمات الشائعة وطرق الحماية',
-                        videoUrl: 'https://www.youtube.com/watch?v=Dk-ZqQ-bfy4',
+                        videoUrl: 'https://www.youtube.com/watch?v=gmOaz5WbBt8', // فيديو عربي: انواع الهجمات الإلكترونية (عبدالله للتقنية)
                         duration: '23:00',
                         description: 'التعرف على أشهر الهجمات السيبرانية وكيفية الوقاية منها.',
                         summary: [
@@ -468,7 +468,7 @@ class CourseManager {
                     {
                         id: 5,
                         title: 'إدارة الهويات والوصول',
-                        videoUrl: 'https://www.youtube.com/watch?v=Tcvsefz5DmA',
+                        videoUrl: 'https://www.youtube.com/watch?v=qgdlaQmYzjA', // فيديو عربي: Implement Identity and Access Management (Hackazol)
                         duration: '18:30',
                         description: 'التحكم في الوصول وإدارة الهويات بشكل آمن.',
                         summary: [
