@@ -76,7 +76,7 @@
                         <button type="button" id="loginSubmit" class="btn btn-primary btn--block">تسجيل الدخول</button>
                         <p class="form-helper text-center">
                             لا تملك حساباً بعد؟
-                            <a class="link-accent" href="register.html">أنشئ حساباً جديداً</a>
+                            <a id="toRegister" class="link-accent" href="register.html">أنشئ حساباً جديداً</a>
                         </p>
                         <div class="form-helper is-hidden" id="loginMessage" role="alert"></div>
                     </form>
@@ -293,6 +293,43 @@
             // Wire submit button to handler and keep submit event as a fallback
             if (submitBtn) submitBtn.addEventListener('click', handleLoginEvent);
             form?.addEventListener('submit', handleLoginEvent);
+
+            // Make the "create account" link robust across different server roots.
+            // Some dev setups serve the `docs/` folder as root, others serve project root.
+            // Probe several likely locations and navigate to the first that returns 200.
+            (function makeRegisterLinkRobust() {
+                const reg = document.getElementById('toRegister');
+                if (!reg) return;
+
+                reg.addEventListener('click', async (ev) => {
+                    // Allow normal modifier-clicks to open in new tab
+                    if (ev.metaKey || ev.ctrlKey || ev.shiftKey || ev.button === 1) return;
+                    ev.preventDefault();
+
+                    const candidates = [
+                        'register.html',
+                        './register.html',
+                        '../auth/register.html',
+                        '/auth/register.html',
+                        '/docs/auth/register.html'
+                    ];
+
+                    for (const url of candidates) {
+                        try {
+                            const res = await fetch(url, { method: 'GET', cache: 'no-store' });
+                            if (res && (res.status === 200 || res.ok)) {
+                                window.location.href = url;
+                                return;
+                            }
+                        } catch (e) {
+                            // ignore network errors and try next candidate
+                        }
+                    }
+
+                    // Last resort: follow the original href (may 404) so user sees error
+                    window.location.href = reg.getAttribute('href') || 'register.html';
+                });
+            })();
         });
     </script>
 </body>
