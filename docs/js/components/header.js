@@ -29,22 +29,31 @@
         const getText = (value, fallback) => (value && value.trim()) ? value.trim() : fallback;
         const getHref = (value, fallback) => (value && value.trim()) ? value.trim() : fallback;
 
+        // Resolve href in a robust way across different page roots.
+        // If the value is absolute (protocol, //, or starts with / or #) return as-is.
+        // Otherwise, use the page-provided `base` (if present) or the current location
+        // to resolve the relative path via the URL constructor so links are consistent
+        // across pages served from different folders (e.g. docs/ vs project root).
         const resolveHref = (rawHref, fallback) => {
             const target = getHref(rawHref, fallback);
-            if (!target) {
-                return '';
-            }
+            if (!target) return '';
 
             const trimmed = target.trim();
             if (/^(?:[a-z]+:|\/\/|#|\/)/i.test(trimmed)) {
                 return trimmed;
             }
 
-            if (trimmed.startsWith('../') || trimmed.startsWith('./')) {
-                return trimmed;
+            // Try to resolve relative URL against provided base (if any) or current page
+            try {
+                // base may be a relative token like './' or '../' — convert it to an absolute base
+                const baseCandidate = base && base !== './' ? new URL(base, window.location.href).href : window.location.href;
+                const resolved = new URL(trimmed, baseCandidate).href;
+                // Return a path-relative URL (strip origin) so links work in different hosts
+                return resolved.replace(window.location.origin, '');
+            } catch (e) {
+                // Fallback to simple concatenation if URL resolution fails
+                return `${base}${trimmed}`;
             }
-
-            return `${base}${trimmed}`;
         };
 
         const primaryTextAttr = header.getAttribute('data-primary-text');
