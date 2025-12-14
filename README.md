@@ -1,7 +1,5 @@
 # 🎓 منصة مساند التعليمية
 
-[![CI](https://github.com/Ya-az/fainal.musanid-platform/actions/workflows/ci.yml/badge.svg)](https://github.com/Ya-az/fainal.musanid-platform/actions/workflows/ci.yml)
-[![codecov](https://codecov.io/gh/Ya-az/fainal.musanid-platform/branch/main/graph/badge.svg)](https://codecov.io/gh/Ya-az/fainal.musanid-platform)
 [![Node](https://img.shields.io/badge/node-%3E%3D18-339933?logo=node.js&logoColor=white)](https://nodejs.org/)
 
 منصة تعليمية حديثة لتعلم التقنيات والبرمجة باللغة العربية.
@@ -26,7 +24,7 @@
 
 ```bash
 # استنساخ المشروع
-git clone https://github.com/Ya-az/fainal.musanid-platform.git
+git clone https://github.com/ipaddana10-debug/musanid-platform.git
 cd musanidproject
 
 # تشغيل الواجهة الأمامية
@@ -58,7 +56,7 @@ npx http-server . -p 8080
 
 الموقع منشور على:
 ```
-https://ya-az.github.io/fainal.musanid-platform/
+https://ipaddana10-debug.github.io/musanid-platform/
 ```
 
 ## ✅ CI والتغطية (Coverage)

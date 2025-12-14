@@ -26,7 +26,7 @@ window.MusanidConfig = {
             linkedin: '#',
             youtube: '#',
             instagram: '#',
-            github: 'https://github.com/Ya-az/fainal.musanid-platform'
+            github: 'https://github.com/ipaddana10-debug/musanid-platform'
         }
     },
 
