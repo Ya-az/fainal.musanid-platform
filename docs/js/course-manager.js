@@ -468,7 +468,7 @@ class CourseManager {
                     {
                         id: 5,
                         title: 'إدارة الهويات والوصول',
-                        videoUrl: 'https://www.youtube.com/watch?v=qgdlaQmYzjA', // فيديو عربي: Implement Identity and Access Management (Hackazol)
+                        videoUrl: 'https://www.youtube.com/watch?v=Tcvsefz5DmA', // فيديو عربي: Identity and Access Management IAM (TheGLUG)
                         duration: '18:30',
                         description: 'التحكم في الوصول وإدارة الهويات بشكل آمن.',
                         summary: [
