@@ -468,8 +468,8 @@ class CourseManager {
                     {
                         id: 5,
                         title: 'إدارة الهويات والوصول',
-                        videoUrl: 'https://www.youtube.com/watch?v=Tcvsefz5DmA', // فيديو عربي: Identity and Access Management IAM (TheGLUG)
-                        duration: '18:30',
+                        videoUrl: 'https://www.youtube.com/watch?v=Y7gK-xxlYUY', // فيديو عربي: (Identity and access management) اداره الهوية والوصول
+                        duration: '23:00',
                         description: 'التحكم في الوصول وإدارة الهويات بشكل آمن.',
                         summary: [
                             'المصادقة متعددة العوامل (MFA).',
